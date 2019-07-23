@@ -114,9 +114,9 @@ namespace eGradeBook.Infrastructure
 
             // --- Class rooms
 
-            ClassRoom classRoomOne = new ClassRoom() { ClassGrade = 5, Name = "5 A" };
-            ClassRoom classRoomTwo = new ClassRoom() { ClassGrade = 5, Name = "5 B" };
-            ClassRoom classRoomThree = new ClassRoom() { ClassGrade = 6, Name = "6 A" };
+            SchoolClass classRoomOne = new SchoolClass() { ClassGrade = 5, Name = "5 A" };
+            SchoolClass classRoomTwo = new SchoolClass() { ClassGrade = 5, Name = "5 B" };
+            SchoolClass classRoomThree = new SchoolClass() { ClassGrade = 6, Name = "6 A" };
 
             context.ClassRooms.Add(classRoomOne);
             context.ClassRooms.Add(classRoomTwo);
@@ -126,12 +126,12 @@ namespace eGradeBook.Infrastructure
 
             // --- Subjects
 
-            Subject subjectMath5 = new Subject() { ClassGrade = 5, Name = "Mathematics", ShortName = "Math 5" };
-            Subject subjectMath6 = new Subject() { ClassGrade = 6, Name = "Mathematics", ShortName = "Math 6" };
-            Subject subjectBiology5 = new Subject() { ClassGrade = 5, Name = "Biology", ShortName = "Biology 5" };
-            Subject subjectBiology6 = new Subject() { ClassGrade = 6, Name = "Biology", ShortName = "Biology 6" };
-            Subject subjectPhysics5 = new Subject() { ClassGrade = 5, Name = "Physics", ShortName = "Physics 5" };
-            Subject subjectPhysics6 = new Subject() { ClassGrade = 6, Name = "Physics", ShortName = "Physics 6" };
+            Course subjectMath5 = new Course() { ClassGrade = 5, Name = "Mathematics", ShortName = "Math 5" };
+            Course subjectMath6 = new Course() { ClassGrade = 6, Name = "Mathematics", ShortName = "Math 6" };
+            Course subjectBiology5 = new Course() { ClassGrade = 5, Name = "Biology", ShortName = "Biology 5" };
+            Course subjectBiology6 = new Course() { ClassGrade = 6, Name = "Biology", ShortName = "Biology 6" };
+            Course subjectPhysics5 = new Course() { ClassGrade = 5, Name = "Physics", ShortName = "Physics 5" };
+            Course subjectPhysics6 = new Course() { ClassGrade = 6, Name = "Physics", ShortName = "Physics 6" };
 
             context.Subjects.Add(subjectMath5);
             context.Subjects.Add(subjectMath6);
@@ -164,10 +164,10 @@ namespace eGradeBook.Infrastructure
 
             // --- Teaching assignments *** This one could have been added to curriculum....
 
-            TeachingAssignment ta1 = new TeachingAssignment() { Teacher = teacherOne, Subject = subjectBiology5, ClassRoom = classRoomOne };
-            TeachingAssignment ta2 = new TeachingAssignment() { Teacher = teacherTwo, Subject = subjectBiology6, ClassRoom = classRoomThree };
-            TeachingAssignment ta3 = new TeachingAssignment() { Teacher = teacherThree, Subject = subjectMath5, ClassRoom = classRoomTwo };
-            TeachingAssignment ta4 = new TeachingAssignment() { Teacher = teacherFour, Subject = subjectMath6, ClassRoom = classRoomThree };
+            Teaching ta1 = new Teaching() { Teacher = teacherOne, Subject = subjectBiology5, ClassRoom = classRoomOne };
+            Teaching ta2 = new Teaching() { Teacher = teacherTwo, Subject = subjectBiology6, ClassRoom = classRoomThree };
+            Teaching ta3 = new Teaching() { Teacher = teacherThree, Subject = subjectMath5, ClassRoom = classRoomTwo };
+            Teaching ta4 = new Teaching() { Teacher = teacherFour, Subject = subjectMath6, ClassRoom = classRoomThree };
 
             context.TeachingAssignments.Add(ta1);
             context.TeachingAssignments.Add(ta2);

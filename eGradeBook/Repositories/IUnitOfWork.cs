@@ -15,10 +15,10 @@ namespace eGradeBook.Repositories
         IGenericRepository<StudentUser> StudentsRepository { get; }
         IGenericRepository<ParentUser> ParentsRepository { get; }
         IGenericRepository<Grade> GradesRepository { get; }
-        IGenericRepository<Subject> SubjectsRepository { get; }
+        IGenericRepository<Course> SubjectsRepository { get; }
         IGenericRepository<Curriculum> CurriculaRepository { get; }
-        IGenericRepository<ClassRoom> ClassRoomsRepository { get; }
-        IGenericRepository<TeachingAssignment> TeachingAssignmentsRepository { get; }
+        IGenericRepository<SchoolClass> ClassRoomsRepository { get; }
+        IGenericRepository<Teaching> TeachingAssignmentsRepository { get; }
 
         void Save();
     }

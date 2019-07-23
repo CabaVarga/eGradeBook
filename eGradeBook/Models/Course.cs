@@ -6,7 +6,7 @@ using System.Web;
 
 namespace eGradeBook.Models
 {
-    public class Subject
+    public class Course
     {
         public int Id { get; set; }
 

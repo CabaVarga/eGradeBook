@@ -8,9 +8,9 @@ using System.Web;
 
 namespace eGradeBook.Models
 {
-    public class ClassRoom
+    public class SchoolClass
     {
-        public ClassRoom()
+        public SchoolClass()
         {
             this.Students = new HashSet<StudentUser>();
         }

@@ -155,7 +155,7 @@
     <Compile Include="Infrastructure\GradeBookInitializer.cs" />
     <Compile Include="Models\AdminUser.cs" />
     <Compile Include="Models\ClassMasterUser.cs" />
-    <Compile Include="Models\ClassRoom.cs" />
+    <Compile Include="Models\SchoolClass.cs" />
     <Compile Include="Models\Curriculum.cs" />
     <Compile Include="Models\Dtos\GradeDto.cs" />
     <Compile Include="Models\Dtos\UserDto.cs" />
@@ -164,9 +164,9 @@
     <Compile Include="Models\IdentityCustomization.cs" />
     <Compile Include="Models\ParentUser.cs" />
     <Compile Include="Models\StudentUser.cs" />
-    <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\Course.cs" />
     <Compile Include="Models\TeacherUser.cs" />
-    <Compile Include="Models\TeachingAssignment.cs" />
+    <Compile Include="Models\Teaching.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\CustomAuthorizationServerProvider.cs" />
     <Compile Include="Providers\CustomJwtFormat.cs" />

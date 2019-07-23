@@ -22,8 +22,8 @@ namespace eGradeBook.Models
 
         public int? HoursPerSchoolYear { get; set; }
 
-        public virtual ClassRoom ClassRoom { get; set; }
+        public virtual SchoolClass ClassRoom { get; set; }
 
-        public virtual Subject Subject { get; set; }
+        public virtual Course Subject { get; set; }
     }
 }

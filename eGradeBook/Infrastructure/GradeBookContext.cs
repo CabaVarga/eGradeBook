@@ -25,10 +25,10 @@ namespace eGradeBook.Infrastructure
             modelBuilder.Entity<ClassMasterUser>().ToTable("ClassMasterUser");
         }
 
-        public DbSet<ClassRoom> ClassRooms { get; set; }
-        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<SchoolClass> ClassRooms { get; set; }
+        public DbSet<Course> Subjects { get; set; }
         public DbSet<Curriculum> Curricula { get; set; }
         public DbSet<Grade> Grades { get; set; }
-        public DbSet<TeachingAssignment> TeachingAssignments { get; set; }
+        public DbSet<Teaching> TeachingAssignments { get; set; }
     }
 }

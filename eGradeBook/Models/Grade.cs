@@ -33,6 +33,6 @@ namespace eGradeBook.Models
 
         public virtual TeacherUser Teacher { get; set; }
 
-        public virtual Subject Subject { get; set; }
+        public virtual Course Subject { get; set; }
     }
 }

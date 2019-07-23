@@ -6,7 +6,7 @@ using System.Web;
 
 namespace eGradeBook.Models
 {
-    public class TeachingAssignment
+    public class Teaching
     {
         public int Id { get; set; }
 
@@ -21,9 +21,9 @@ namespace eGradeBook.Models
 
         public virtual TeacherUser Teacher { get; set; }
 
-        public virtual Subject Subject { get; set; }
+        public virtual Course Subject { get; set; }
 
-        public virtual ClassRoom ClassRoom { get; set; }
+        public virtual SchoolClass ClassRoom { get; set; }
 
     }
 }

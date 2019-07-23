@@ -33,16 +33,16 @@ namespace eGradeBook.Repositories
         public IGenericRepository<ParentUser> ParentsRepository { get; set; }
 
         [Dependency]
-        public IGenericRepository<Subject> SubjectsRepository { get; set; }
+        public IGenericRepository<Course> SubjectsRepository { get; set; }
 
         [Dependency]
         public IGenericRepository<Curriculum> CurriculaRepository { get; set; }
 
         [Dependency]
-        public IGenericRepository<ClassRoom> ClassRoomsRepository { get; set; }
+        public IGenericRepository<SchoolClass> ClassRoomsRepository { get; set; }
 
         [Dependency]
-        public IGenericRepository<TeachingAssignment> TeachingAssignmentsRepository { get; set; }
+        public IGenericRepository<Teaching> TeachingAssignmentsRepository { get; set; }
 
         [Dependency]
         public IGenericRepository<Grade> GradesRepository { get; set; }
