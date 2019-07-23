@@ -26,7 +26,7 @@ namespace eGradeBook.Infrastructure
         }
 
         public DbSet<SchoolClass> ClassRooms { get; set; }
-        public DbSet<Course> Subjects { get; set; }
+        public DbSet<Course> Courses { get; set; }
         public DbSet<Curriculum> Curricula { get; set; }
         public DbSet<Grade> Grades { get; set; }
         public DbSet<Teaching> TeachingAssignments { get; set; }
