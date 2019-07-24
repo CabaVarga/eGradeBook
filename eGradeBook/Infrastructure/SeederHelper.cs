@@ -101,7 +101,23 @@ namespace eGradeBook.Infrastructure
             // This also can't be completely random... if someone teaches math, the weight for teaching another math or physics is greater...
             List<Teaching> assignments = new List<Teaching>();
 
-            return null;
+            // the trivial approach
+            foreach (var t in teachers)
+            {
+                for (int i = 0; i <= random.Next(3); i++)
+                {
+                    // Need to prevent multiples...
+                    // A 'Take' would be much better... but that one needs state
+                    // Also 'Shuffle'
+                    assignments.Add(new Teaching()
+                    {
+                        Teacher = t,
+                        Subject = courses.ElementAt(random.Next(courses.Count()))
+                    });
+                }
+            }
+
+            return assignments;
         }
 
         public static Dictionary<string, string> CreateName()

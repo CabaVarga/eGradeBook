@@ -151,6 +151,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\GradesController.cs" />
+    <Compile Include="Infrastructure\Deal.cs" />
     <Compile Include="Infrastructure\GradeBookContext.cs" />
     <Compile Include="Infrastructure\GradeBookInitializer.cs" />
     <Compile Include="Infrastructure\SeederHelper.cs" />
