@@ -88,7 +88,7 @@ namespace eGradeBook
 
             //container.RegisterType<IStudentsService, StudentsService>();
             container.RegisterType<IUsersService, UsersService>();
-            container.RegisterType<IGradesService, GradesService>();
+            // container.RegisterType<IGradesService, GradesService>();
             return container;
         }
     }

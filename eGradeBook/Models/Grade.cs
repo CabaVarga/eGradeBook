@@ -22,7 +22,7 @@ namespace eGradeBook.Models
         public DateTime Assigned { get; set; }
 
         [Timestamp]
-        public DateTime Created { get; set; }
+        public byte[] Created { get; set; }
 
         public DateTime? LastChange { get; set; }
 

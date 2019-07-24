@@ -18,6 +18,7 @@ namespace eGradeBook.Models
 
         [Index("IX_Course_Grade", IsUnique = true, Order = 2)]
         [Required]
+        [StringLength(50)]
         public string Name { get; set; }
 
         public string ColloqialName { get; set; }

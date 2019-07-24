@@ -104,6 +104,8 @@ namespace eGradeBook.Infrastructure
             // the trivial approach
             foreach (var t in teachers)
             {
+                Deal<Course> dealer = new Deal<Course>(courses);
+
                 for (int i = 0; i <= random.Next(3); i++)
                 {
                     // Need to prevent multiples...
@@ -112,7 +114,8 @@ namespace eGradeBook.Infrastructure
                     assignments.Add(new Teaching()
                     {
                         Teacher = t,
-                        Subject = courses.ElementAt(random.Next(courses.Count()))
+                        // Subject = courses.ElementAt(random.Next(courses.Count()))
+                        Subject = dealer.DealOne()
                     });
                 }
             }
