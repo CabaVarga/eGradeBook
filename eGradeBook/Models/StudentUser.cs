@@ -13,13 +13,13 @@ namespace eGradeBook.Models
             this.Parents = new HashSet<ParentUser>();
         }
 
-        [ForeignKey("ClassRoom")]
         public int? ClassRoomId { get; set; }
 
+        [ForeignKey("ClassRoomId")]
         public virtual SchoolClass ClassRoom { get; set; }
 
         public virtual ICollection<ParentUser> Parents { get; set; }
 
-        public virtual ICollection<Grade> Grades { get; set; }
+        public virtual ICollection<Taking> Takings { get; set; }
     }
 }

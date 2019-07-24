@@ -10,20 +10,16 @@ namespace eGradeBook.Models
     {
         public int Id { get; set; }
 
-        [ForeignKey("Teacher")]
+        [Index("IX_Teacher_Subject", IsUnique = true, Order = 1)]
         public int TeacherId { get; set; }
 
-        [ForeignKey("Subject")]
+        [Index("IX_Teacher_Subject", IsUnique = true, Order = 2)]
         public int SubjectId { get; set; }
 
-        [ForeignKey("ClassRoom")]
-        public int ClassRoomId { get; set; }
-
+        [ForeignKey("TeacherId")]
         public virtual TeacherUser Teacher { get; set; }
 
+        [ForeignKey("SubjectId")]
         public virtual Course Subject { get; set; }
-
-        public virtual SchoolClass ClassRoom { get; set; }
-
     }
 }

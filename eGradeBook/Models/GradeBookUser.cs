@@ -20,6 +20,9 @@ namespace eGradeBook.Models
         [MaxLength(100)]
         public string LastName { get; set; }
 
+        [MaxLength(1)]
+        public string Gender { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<GradeBookUser, int> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

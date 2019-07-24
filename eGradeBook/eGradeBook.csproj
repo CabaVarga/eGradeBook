@@ -153,8 +153,11 @@
     <Compile Include="Controllers\GradesController.cs" />
     <Compile Include="Infrastructure\GradeBookContext.cs" />
     <Compile Include="Infrastructure\GradeBookInitializer.cs" />
+    <Compile Include="Infrastructure\SeederHelper.cs" />
     <Compile Include="Models\AdminUser.cs" />
     <Compile Include="Models\ClassMasterUser.cs" />
+    <Compile Include="Models\FinalGrade.cs" />
+    <Compile Include="Models\Grading.cs" />
     <Compile Include="Models\SchoolClass.cs" />
     <Compile Include="Models\Curriculum.cs" />
     <Compile Include="Models\Dtos\GradeDto.cs" />
@@ -165,6 +168,7 @@
     <Compile Include="Models\ParentUser.cs" />
     <Compile Include="Models\StudentUser.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\Taking.cs" />
     <Compile Include="Models\TeacherUser.cs" />
     <Compile Include="Models\Teaching.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
