@@ -36,9 +36,6 @@ namespace eGradeBook.Repositories
         public IGenericRepository<Course> SubjectsRepository { get; set; }
 
         [Dependency]
-        public IGenericRepository<Curriculum> CurriculaRepository { get; set; }
-
-        [Dependency]
         public IGenericRepository<SchoolClass> ClassRoomsRepository { get; set; }
 
         [Dependency]

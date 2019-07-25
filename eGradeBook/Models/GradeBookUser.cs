@@ -12,6 +12,8 @@ namespace eGradeBook.Models
 {
     public abstract class GradeBookUser : IdentityUser<int, CustomUserLogin, CustomUserRole, CustomUserClaim>
     {
+        // public override int Id { get; set; }
+
         [Required]
         [MaxLength(100)]
         public string FirstName { get; set; }

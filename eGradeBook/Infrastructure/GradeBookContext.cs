@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 
@@ -17,6 +18,8 @@ namespace eGradeBook.Infrastructure
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<AdminUser>().ToTable("AdminUser");
             modelBuilder.Entity<StudentUser>().ToTable("StudentUser");
@@ -27,7 +30,6 @@ namespace eGradeBook.Infrastructure
 
         public DbSet<SchoolClass> ClassRooms { get; set; }
         public DbSet<Course> Courses { get; set; }
-        public DbSet<Curriculum> Curricula { get; set; }
         public DbSet<Grade> Grades { get; set; }
         public DbSet<Teaching> TeachingAssignments { get; set; }
     }

@@ -21,5 +21,7 @@ namespace eGradeBook.Models
 
         [ForeignKey("StudentId")]
         public virtual StudentUser Student { get; set; }
+
+        public virtual Grading Grading { get; set; }
     }
 }

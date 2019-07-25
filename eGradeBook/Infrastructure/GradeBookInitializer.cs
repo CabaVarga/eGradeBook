@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -27,7 +28,7 @@ namespace eGradeBook.Infrastructure
             CustomRole parentRole = new CustomRole() { Name = "parents" };
 
             _roleManager.Create(adminRole);
-            _roleManager.Create(teacherRole);
+            _roleManager.Create(studentRole);
             _roleManager.Create(teacherRole);
             _roleManager.Create(parentRole);
             #endregion
@@ -88,22 +89,20 @@ namespace eGradeBook.Infrastructure
 
             #region Courses
             //// --- Subjects
+            List<Course> courses = new List<Course>();
+            courses.Add(new Course() { ClassGrade = 5, Name = "Mathematics", ColloqialName = "Math 5" });
+            courses.Add(new Course() { ClassGrade = 6, Name = "Mathematics", ColloqialName = "Math 6" });
+            courses.Add(new Course() { ClassGrade = 5, Name = "Biology", ColloqialName = "Biology 5" });
+            courses.Add(new Course() { ClassGrade = 6, Name = "Biology", ColloqialName = "Biology 6" });
+            courses.Add(new Course() { ClassGrade = 5, Name = "Physics", ColloqialName = "Physics 5" });
+            courses.Add(new Course() { ClassGrade = 6, Name = "History", ColloqialName = "History 6" });
+            courses.Add(new Course() { ClassGrade = 6, Name = "English", ColloqialName = "English 6" });
+            courses.Add(new Course() { ClassGrade = 6, Name = "Chemistry", ColloqialName = "Chemistry 6" });
+            courses.Add(new Course() { ClassGrade = 5, Name = "German", ColloqialName = "German 5" });
 
-            //Course subject_math_5 = new Course() { ClassGrade = 5, Name = "Mathematics", ShortName = "Math 5" };
-            //Course subject_math_6 = new Course() { ClassGrade = 6, Name = "Mathematics", ShortName = "Math 6" };
-            //Course subject_biology_5 = new Course() { ClassGrade = 5, Name = "Biology", ShortName = "Biology 5" };
-            //Course subject_biology_6 = new Course() { ClassGrade = 6, Name = "Biology", ShortName = "Biology 6" };
-            //Course subject_physics_5 = new Course() { ClassGrade = 5, Name = "Physics", ShortName = "Physics 5" };
-            //Course subject_physics_6 = new Course() { ClassGrade = 6, Name = "Physics", ShortName = "Physics 6" };
+            context.Courses.AddRange(courses);
 
-            //context.Courses.Add(subject_math_5);
-            //context.Courses.Add(subject_math_6);
-            //context.Courses.Add(subject_biology_5);
-            //context.Courses.Add(subject_biology_6);
-            //context.Courses.Add(subject_physics_5);
-            //context.Courses.Add(subject_physics_6);
-
-            //context.SaveChanges();
+            context.SaveChanges();
             #endregion
 
             // HAVE ROLES AND SOME ADMINS
@@ -111,18 +110,51 @@ namespace eGradeBook.Infrastructure
             // CREATE Students.
 
             List<StudentUser> students = SeederHelper.CreateStudents(20);
+            //foreach (var s in students)
+            //{
+            //    _userManager.Create(s);
+
+            //    // THIS IS CRITICAL!!!! stupid thing won't update id without manually setting it, tsss
+            //    s.Id = _userManager.FindByName(s.UserName).Id;
+
+            //    // context.SaveChanges();
+            //    Debug.WriteLine(s.FirstName + ", Id: " + s.Id);
+
+            //    _userManager.AddToRole(s.Id, "students");
+            //}
+
+            // let's see if manual approach works better...
             foreach (var s in students)
             {
-                _userManager.Create(s);
-                _userManager.AddToRole(s.Id, "students");
+                context.Users.Add(s);
+
+                context.SaveChanges();
+
+                CustomUserRole st = new CustomUserRole() { RoleId = studentRole.Id, UserId = s.Id };
+                Debug.WriteLine(s.FirstName + ", Id: " + s.Id);
+                context.SaveChanges();
             }
 
             List<TeacherUser> teachers = SeederHelper.CreateTeachers(10);
 
+            foreach (var t in teachers)
+            {
+                context.Users.Add(t);
+
+                context.SaveChanges();
+
+                CustomUserRole st = new CustomUserRole() { RoleId = teacherRole.Id, UserId = t.Id };
+                Debug.WriteLine(t.FirstName + ", Id: " + t.Id);
+                context.SaveChanges();
+            }
+
             #region Teaching (assignments)
 
             // --- Teaching assignments *** This one could have been added to curriculum....
+            List<Teaching> teachings = SeederHelper.AssignTeaching(teachers, courses);
 
+            context.TeachingAssignments.AddRange(teachings);
+            context.SaveChanges();
 
             #endregion
             context.SaveChanges();

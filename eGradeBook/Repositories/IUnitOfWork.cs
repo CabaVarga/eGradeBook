@@ -16,7 +16,6 @@ namespace eGradeBook.Repositories
         IGenericRepository<ParentUser> ParentsRepository { get; }
         IGenericRepository<Grade> GradesRepository { get; }
         IGenericRepository<Course> SubjectsRepository { get; }
-        IGenericRepository<Curriculum> CurriculaRepository { get; }
         IGenericRepository<SchoolClass> ClassRoomsRepository { get; }
         IGenericRepository<Teaching> TeachingAssignmentsRepository { get; }
 

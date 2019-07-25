@@ -19,6 +19,38 @@ namespace eGradeBook.Services
             db = unitOfWork;
         }
 
+        // DELETE START
+
+        public void teacherclassroom()
+        {
+            TeacherUser teacher = new TeacherUser();
+            SchoolClass schoolClass = new SchoolClass();
+
+            // get to all classRooms!
+
+            var clsrms = teacher.Teachings
+                .SelectMany(t => t.Gradings)
+                .Select(g => g.Taking.Student.ClassRoom.Name)
+                .Distinct();
+
+            // Piece of cake...
+
+            var stdtns = teacher.Teachings
+                .SelectMany(t => t.Gradings)
+                .Select(g => g.Taking.Student)
+                .Distinct();
+
+            // From classroom:
+
+            var tchrs = schoolClass.Students.SelectMany(s => s.Takings)
+                .Select(t => t.Grading)
+                .Select(g => g.Teaching)
+                .Select(tc => tc.Teacher)
+                .Distinct();
+        }
+
+
+        // DELETE END
         public async Task<IdentityResult> RegisterAdmin(UserDTO userModel)
         {
             AdminUser user = new AdminUser

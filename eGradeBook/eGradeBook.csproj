@@ -151,16 +151,18 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\GradesController.cs" />
+    <Compile Include="Controllers\TeachingsController.cs" />
     <Compile Include="Infrastructure\Deal.cs" />
     <Compile Include="Infrastructure\GradeBookContext.cs" />
     <Compile Include="Infrastructure\GradeBookInitializer.cs" />
     <Compile Include="Infrastructure\SeederHelper.cs" />
     <Compile Include="Models\AdminUser.cs" />
     <Compile Include="Models\ClassMasterUser.cs" />
+    <Compile Include="Models\Dtos\TeachingsByCoursesDto.cs" />
+    <Compile Include="Models\Dtos\TeachingsByTeachersDto.cs" />
     <Compile Include="Models\FinalGrade.cs" />
     <Compile Include="Models\Grading.cs" />
     <Compile Include="Models\SchoolClass.cs" />
-    <Compile Include="Models\Curriculum.cs" />
     <Compile Include="Models\Dtos\GradeDto.cs" />
     <Compile Include="Models\Dtos\UserDto.cs" />
     <Compile Include="Models\Grade.cs" />
@@ -183,7 +185,9 @@
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="Services\GradesService.cs" />
     <Compile Include="Services\IGradesService.cs" />
+    <Compile Include="Services\ITeachingsService.cs" />
     <Compile Include="Services\IUsersServices.cs" />
+    <Compile Include="Services\TeachingsService.cs" />
     <Compile Include="Services\UsersService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

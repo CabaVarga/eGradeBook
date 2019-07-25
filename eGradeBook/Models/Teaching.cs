@@ -21,5 +21,7 @@ namespace eGradeBook.Models
 
         [ForeignKey("SubjectId")]
         public virtual Course Subject { get; set; }
+
+        public virtual ICollection<Grading> Gradings { get; set; }
     }
 }

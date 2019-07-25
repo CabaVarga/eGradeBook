@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -34,7 +35,7 @@ namespace eGradeBook.Infrastructure
             }
 
             int ix = _rnd.Next(cnt);
-
+            Debug.WriteLine("cnt: " + cnt + ", ix: " + ix);
             T one = _remaining.ElementAt(ix);
 
             _remaining.RemoveAt(ix);

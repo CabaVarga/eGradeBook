@@ -82,12 +82,12 @@ namespace eGradeBook
             container.RegisterType<IGenericRepository<ParentUser>, GenericRepository<ParentUser>>();
             container.RegisterType<IGenericRepository<Course>, GenericRepository<Course>>();
             container.RegisterType<IGenericRepository<SchoolClass>, GenericRepository<SchoolClass>>();
-            container.RegisterType<IGenericRepository<Curriculum>, GenericRepository<Curriculum>>();
             container.RegisterType<IGenericRepository<Teaching>, GenericRepository<Teaching>>();
             container.RegisterType<IAuthRepository, AuthRepository>();
 
             //container.RegisterType<IStudentsService, StudentsService>();
             container.RegisterType<IUsersService, UsersService>();
+            container.RegisterType<ITeachingsService, TeachingsService>();
             // container.RegisterType<IGradesService, GradesService>();
             return container;
         }

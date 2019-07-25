@@ -100,13 +100,14 @@ namespace eGradeBook.Infrastructure
         {
             // This also can't be completely random... if someone teaches math, the weight for teaching another math or physics is greater...
             List<Teaching> assignments = new List<Teaching>();
+            Deal<Course> dealer = new Deal<Course>(courses);
 
             // the trivial approach
             foreach (var t in teachers)
             {
-                Deal<Course> dealer = new Deal<Course>(courses);
+                int numberOfCoursesTeached = random.Next(3);
 
-                for (int i = 0; i <= random.Next(3); i++)
+                for (int i = 0; i <= numberOfCoursesTeached; i++)
                 {
                     // Need to prevent multiples...
                     // A 'Take' would be much better... but that one needs state
@@ -158,6 +159,9 @@ namespace eGradeBook.Infrastructure
 
                 username = username + (number + 1);
             }
+
+            // We can safely add it here....
+            userNames.Add(username);
 
             return username;
         }
