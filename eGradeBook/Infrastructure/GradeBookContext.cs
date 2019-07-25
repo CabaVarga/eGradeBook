@@ -32,5 +32,9 @@ namespace eGradeBook.Infrastructure
         public DbSet<Course> Courses { get; set; }
         public DbSet<Grade> Grades { get; set; }
         public DbSet<Teaching> TeachingAssignments { get; set; }
+
+        // Additions for new schema
+        public DbSet<Program> Programs { get; set; }
+        public DbSet<Taking> Takings { get; set; }
     }
 }

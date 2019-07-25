@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -17,11 +18,13 @@ namespace eGradeBook.Models
         public int SubjectId { get; set; }
 
         [ForeignKey("TeacherId")]
+        [Required]
         public virtual TeacherUser Teacher { get; set; }
 
         [ForeignKey("SubjectId")]
-        public virtual Course Subject { get; set; }
+        [Required]
+        public virtual Course Course { get; set; }
 
-        public virtual ICollection<Grading> Gradings { get; set; }
+        public virtual ICollection<Program> Programs { get; set; }
     }
 }

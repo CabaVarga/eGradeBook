@@ -18,6 +18,7 @@ namespace eGradeBook.Repositories
         IGenericRepository<Course> SubjectsRepository { get; }
         IGenericRepository<SchoolClass> ClassRoomsRepository { get; }
         IGenericRepository<Teaching> TeachingAssignmentsRepository { get; }
+        IGenericRepository<Program> ProgramsRepository { get; }
 
         void Save();
     }

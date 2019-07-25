@@ -29,21 +29,22 @@ namespace eGradeBook.Services
             // get to all classRooms!
 
             var clsrms = teacher.Teachings
-                .SelectMany(t => t.Gradings)
-                .Select(g => g.Taking.Student.ClassRoom.Name)
+                .SelectMany(t => t.Programs)
+                .Select(g => g.SchoolClass.Name)
                 .Distinct();
 
             // Piece of cake...
 
             var stdtns = teacher.Teachings
-                .SelectMany(t => t.Gradings)
-                .Select(g => g.Taking.Student)
+                .SelectMany(t => t.Programs)
+                .SelectMany(g => g.Students)
+                .Select(s => s.UserName)
                 .Distinct();
 
             // From classroom:
 
-            var tchrs = schoolClass.Students.SelectMany(s => s.Takings)
-                .Select(t => t.Grading)
+            var tchrs = schoolClass.Students.SelectMany(s => s.Advancements)
+                .Select(t => t.Program)
                 .Select(g => g.Teaching)
                 .Select(tc => tc.Teacher)
                 .Distinct();

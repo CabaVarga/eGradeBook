@@ -87,18 +87,17 @@ namespace eGradeBook.Infrastructure
             //context.SaveChanges();
             #endregion
 
-            #region Courses
+            #region Courses, FOR NOW LET's use these
             //// --- Subjects
             List<Course> courses = new List<Course>();
-            courses.Add(new Course() { ClassGrade = 5, Name = "Mathematics", ColloqialName = "Math 5" });
-            courses.Add(new Course() { ClassGrade = 6, Name = "Mathematics", ColloqialName = "Math 6" });
-            courses.Add(new Course() { ClassGrade = 5, Name = "Biology", ColloqialName = "Biology 5" });
-            courses.Add(new Course() { ClassGrade = 6, Name = "Biology", ColloqialName = "Biology 6" });
-            courses.Add(new Course() { ClassGrade = 5, Name = "Physics", ColloqialName = "Physics 5" });
-            courses.Add(new Course() { ClassGrade = 6, Name = "History", ColloqialName = "History 6" });
-            courses.Add(new Course() { ClassGrade = 6, Name = "English", ColloqialName = "English 6" });
-            courses.Add(new Course() { ClassGrade = 6, Name = "Chemistry", ColloqialName = "Chemistry 6" });
-            courses.Add(new Course() { ClassGrade = 5, Name = "German", ColloqialName = "German 5" });
+            courses.Add(new Course() { Name = "Mathematics", ColloqialName = "Matis" });
+            courses.Add(new Course() { Name = "Chemistry", ColloqialName = "Hemija" });
+            courses.Add(new Course() { Name = "Biology", ColloqialName = "Biologija" });
+            courses.Add(new Course() { Name = "Informatics", ColloqialName = "Infroaa" });
+            courses.Add(new Course() { Name = "German", ColloqialName = "Physicdfafds 5" });
+            courses.Add(new Course() { Name = "History", ColloqialName = "History 6" });
+            courses.Add(new Course() { Name = "English", ColloqialName = "Englishaf 6" });
+
 
             context.Courses.AddRange(courses);
 
@@ -148,6 +147,22 @@ namespace eGradeBook.Infrastructure
                 context.SaveChanges();
             }
 
+            List<ParentUser> parents = SeederHelper.CreateRealisticParents(students);
+
+            foreach (var p in parents)
+            {
+                context.Users.Add(p);
+
+                context.SaveChanges();
+
+                CustomUserRole st = new CustomUserRole() { RoleId = parentRole.Id, UserId = p.Id };
+                Debug.WriteLine(p.FirstName + ", Id: " + p.Id);
+                context.SaveChanges();
+            }
+
+
+
+
             #region Teaching (assignments)
 
             // --- Teaching assignments *** This one could have been added to curriculum....
@@ -157,6 +172,19 @@ namespace eGradeBook.Infrastructure
             context.SaveChanges();
 
             #endregion
+            context.SaveChanges();
+
+
+            List<SchoolClass> classes = SeederHelper.CreateSchoolClasses(2, 5, 6);
+            context.ClassRooms.AddRange(classes);
+
+            context.SaveChanges();
+
+            // --- PROGRAMS
+
+            List<Program> programs = SeederHelper.AssignProgram(teachings, classes);
+            context.Programs.AddRange(programs);
+
             context.SaveChanges();
 
             #region Students

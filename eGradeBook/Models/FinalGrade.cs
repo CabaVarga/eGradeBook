@@ -14,12 +14,12 @@ namespace eGradeBook.Models
         [Range(1, 5, ErrorMessage = "Grades are from 1 to 5")]
         public int GradePoint { get; set; }
 
-        [Index("IX_Grading_SchoolTerm", IsUnique = true, Order = 2)]
+        [Index("IX_Advancement_SchoolTerm", IsUnique = true, Order = 1)]
         [Range(1, 2, ErrorMessage = "First or second term are possible values")]
         public int SchoolTerm { get; set; }
 
-        [Index("IX_Grading_SchoolTerm", IsUnique = true, Order = 1)]
-        public int GradingId { get; set; }
+        [Index("IX_Advancement_SchoolTerm", IsUnique = true, Order = 2)]
+        public int AdvancementId { get; set; }
 
         public string Notes { get; set; }
 
@@ -30,7 +30,7 @@ namespace eGradeBook.Models
 
         public DateTime? LastChange { get; set; }
 
-        [ForeignKey("GradingId")]
-        public virtual Grading Grading { get; set; }
+        [ForeignKey("AdvancementId")]
+        public virtual Taking Grading { get; set; }
     }
 }

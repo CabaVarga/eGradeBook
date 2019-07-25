@@ -20,7 +20,7 @@ namespace eGradeBook.Services
         public IEnumerable<TeachingsByCoursesDto> GetAllTeachingAssignmentsByCourses()
         {
             var teachings = db.TeachingAssignmentsRepository.Get()
-                .GroupBy(ta => ta.Subject)
+                .GroupBy(ta => ta.Course)
                 .Select(ta => new TeachingsByCoursesDto()
                 {
                     Course = ta.Key.ColloqialName,
@@ -37,7 +37,7 @@ namespace eGradeBook.Services
                 .Select(ta => new TeachingsByTeachersDto()
                 {
                     Teacher = ta.Key.UserName,
-                    Courses = ta.Select(c => c.Subject.ColloqialName).OrderBy(t => t).ToList()
+                    Courses = ta.Select(c => c.Course.ColloqialName).OrderBy(t => t).ToList()
                 });
 
             return teachings;

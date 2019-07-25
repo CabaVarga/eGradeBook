@@ -26,6 +26,6 @@ namespace eGradeBook.Models
 
         public DateTime? LastChange { get; set; }
 
-        public virtual Grading Grading { get; set; }
+        public virtual Taking Advancement { get; set; }
     }
 }

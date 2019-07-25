@@ -16,6 +16,7 @@ using Unity;
 using Unity.Lifetime;
 using Unity.WebApi;
 
+
 [assembly: OwinStartup(typeof(eGradeBook.Startup))]
 
 namespace eGradeBook
@@ -67,7 +68,7 @@ namespace eGradeBook
 
         private UnityContainer SetupUnity()
         {
-            var container = new UnityContainer();
+            var container = new UnityContainer().EnableDiagnostic();
 
             // register all your components with the container here
             // it is NOT necessary to register your controllers
@@ -83,11 +84,13 @@ namespace eGradeBook
             container.RegisterType<IGenericRepository<Course>, GenericRepository<Course>>();
             container.RegisterType<IGenericRepository<SchoolClass>, GenericRepository<SchoolClass>>();
             container.RegisterType<IGenericRepository<Teaching>, GenericRepository<Teaching>>();
+            container.RegisterType<IGenericRepository<Program>, GenericRepository<Program>>();
             container.RegisterType<IAuthRepository, AuthRepository>();
 
             //container.RegisterType<IStudentsService, StudentsService>();
             container.RegisterType<IUsersService, UsersService>();
             container.RegisterType<ITeachingsService, TeachingsService>();
+            container.RegisterType<IProgramsService, ProgramsService>();
             // container.RegisterType<IGradesService, GradesService>();
             return container;
         }

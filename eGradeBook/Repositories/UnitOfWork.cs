@@ -44,6 +44,9 @@ namespace eGradeBook.Repositories
         [Dependency]
         public IGenericRepository<Grade> GradesRepository { get; set; }
 
+        [Dependency]
+        public IGenericRepository<Program> ProgramsRepository { get; set; }
+
         public void Save()
         {
             context.SaveChanges();
