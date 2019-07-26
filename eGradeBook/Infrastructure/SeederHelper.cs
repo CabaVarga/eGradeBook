@@ -353,6 +353,81 @@ namespace eGradeBook.Infrastructure
 
 
         // OK grades are super easy...
+
+        public static List<Grade> AssignGrades(List<Taking> takings, 
+            DateTime startPeriod, DateTime endPeriod, 
+            int semester = 1, int howManyMin = 1, int howManyMax = 5)
+        {
+            List<Grade> grades = new List<Grade>();
+
+            var daysbetween = (endPeriod - startPeriod).Days;
+
+            foreach (var taking in takings)
+            {
+                for (int i = howManyMin; i <= howManyMax; i++)
+                {
+                    var date = startPeriod + TimeSpan.FromDays(random.Next(daysbetween));
+                    var gradePoint = random.Next(1, 6);
+
+                    var grade = new Grade()
+                    {
+                        Advancement = taking,
+                        Assigned = date,
+                        GradePoint = gradePoint,
+                        SchoolTerm = semester
+                    };
+
+                    grades.Add(grade);
+                }
+            }
+
+            return grades;
+        }
+
+
+        public static List<FinalGrade> AssignFinalGrades(List<Taking> takings,
+            DateTime startPeriod, DateTime endPeriod,
+            int semester = 1)
+        {
+            List<FinalGrade> grades = new List<FinalGrade>();
+
+            // Some checks would be in order here...
+            var daysbetween = (endPeriod - startPeriod).Days;
+            // and so on...
+
+            // the real logic stuff should be in giving a final grade by hand!
+            foreach (var taking in takings)
+            {
+                // we need an average
+
+                // oops! for 2nd semester all grades are counting in the average!
+                double gpa;
+
+                if (semester == 1)
+                {
+                    gpa = taking.Grades.Where(g => g.SchoolTerm == semester).Average(g => g.GradePoint);
+                }
+                else
+                {
+                    gpa = taking.Grades.Average(g => g.GradePoint);
+                }
+
+                int gpaInt = (int)Math.Round(gpa);
+
+                var grade = new FinalGrade()
+                {
+                    GradePoint = gpaInt,
+                    Assigned = endPeriod,
+                    SchoolTerm = semester,
+                };
+
+                grades.Add(grade);
+            }
+
+            return grades;
+        }
+
+
         public static Dictionary<string, string> CreateName()
         {
             Dictionary<string, string> valuePairs = new Dictionary<string, string>();

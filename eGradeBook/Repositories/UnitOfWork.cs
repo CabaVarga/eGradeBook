@@ -33,7 +33,7 @@ namespace eGradeBook.Repositories
         public IGenericRepository<ParentUser> ParentsRepository { get; set; }
 
         [Dependency]
-        public IGenericRepository<Course> SubjectsRepository { get; set; }
+        public IGenericRepository<Course> CoursesRepository { get; set; }
 
         [Dependency]
         public IGenericRepository<SchoolClass> ClassRoomsRepository { get; set; }
@@ -46,6 +46,9 @@ namespace eGradeBook.Repositories
 
         [Dependency]
         public IGenericRepository<Program> ProgramsRepository { get; set; }
+
+        [Dependency]
+        public IGenericRepository<Taking> TakingsRepository { get; set; }
 
         public void Save()
         {

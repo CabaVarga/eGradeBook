@@ -24,5 +24,8 @@ namespace eGradeBook.Models
         [Required]
         [ForeignKey("StudentId")]
         public virtual StudentUser Student { get; set; }
+
+        public virtual ICollection<Grade> Grades { get; set; }
+        public virtual ICollection<FinalGrade> FinalGrades { get; set; }
     }
 }

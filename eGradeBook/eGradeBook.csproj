@@ -188,12 +188,15 @@
     <Compile Include="Repositories\IGenericRepository.cs" />
     <Compile Include="Repositories\IUnitOfWork.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
+    <Compile Include="Services\Exceptions\InvalidUserIdException.cs" />
     <Compile Include="Services\GradesService.cs" />
     <Compile Include="Services\IGradesService.cs" />
     <Compile Include="Services\IProgramsService.cs" />
+    <Compile Include="Services\IStudentsService.cs" />
     <Compile Include="Services\ITeachingsService.cs" />
     <Compile Include="Services\IUsersServices.cs" />
     <Compile Include="Services\ProgramsService.cs" />
+    <Compile Include="Services\StudentsService.cs" />
     <Compile Include="Services\TeachingsService.cs" />
     <Compile Include="Services\UsersService.cs" />
     <Compile Include="Startup.cs" />

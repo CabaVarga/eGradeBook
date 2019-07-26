@@ -1,179 +1,198 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Diagnostics;
-//using System.Linq;
-//using System.Web;
-//using eGradeBook.Models;
-//using eGradeBook.Models.Dtos;
-//using eGradeBook.Repositories;
+﻿using eGradeBook.Models;
+using eGradeBook.Models.Dtos;
+using eGradeBook.Repositories;
+using eGradeBook.Services.Exceptions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-//namespace eGradeBook.Services
-//{
-//    public class GradesService : IGradesService
-//    {
-//        private IUnitOfWork db;
+namespace eGradeBook.Services
+{
+    public class GradesService : IGradesService
+    {
+        private IUnitOfWork db;
 
-//        public GradesService(IUnitOfWork db)
-//        {
-//            this.db = db;
-//        }
+        public GradesService(IUnitOfWork db)
+        {
+            this.db = db;
+        }
 
-//        //        //public GradeDto CreateGrade(int teacherId, int studentId, int subjectId, int gradePoint, string notes = null)
-//        //        {
-//        //            // Teacher Id must be same as the teacher that is accessing the system...
-//        //            // If it's not then he/she should not even get here!
-//        //            // Should that be done in the controller by accessing the authrepo? probably...
+        public GradeDto CreateGrade(int teacherId, int studentId, int subjectId, int gradePoint, string notes = null)
+        {
+            // Teacher Id must be same as the teacher that is accessing the system...
+            // If it's not then he/she should not even get here!
+            // Should that be done in the controller by accessing the authrepo? probably...
 
 
-//        //            // check if teacherId is valid ---> I need to check if a Teacher repo is possible... let's find out...
-//        //            // it will raise an exception if the id is not of a teacher!
-//        //            // what now? Typechecks...
-//        //            var teacherMaybe = db.GradeBookUsersRepository.GetByID(teacherId);
+            // check if teacherId is valid ---> I need to check if a Teacher repo is possible... let's find out...
+            // it will raise an exception if the id is not of a teacher!
+            // what now? Typechecks...
+            var teacherMaybe = db.GradeBookUsersRepository.GetByID(teacherId);
 
-//        //            // first check for null
+            // first check for null
 
-//        //            // then check for teacher
-//        //            // many ways....
-//        //            bool itsateacher = teacherMaybe is TeacherUser;
-//        //            bool itsastudent = teacherMaybe is StudentUser;
-//        //            bool itsanadmin = teacherMaybe is AdminUser;
+            if (teacherMaybe == null)
+            {
+                throw new InvalidUserIdException($"There is no registered user in the system for the provided Id: {teacherId}");
+            }
 
-//        //            bool itsaparent = teacherMaybe is ParentUser;
+            // then check for teacher
+            // many ways....
+            bool itsateacher = teacherMaybe is TeacherUser;
+            bool itsastudent = teacherMaybe is StudentUser;
+            bool itsanadmin = teacherMaybe is AdminUser;
+            bool itsaparent = teacherMaybe is ParentUser;
 
-//        //            var teacher = db.TeachersRepository.GetByID(teacherId);
+            if (!itsateacher)
+            {
+                throw new Exception("Unauthorized");
+            }
 
-//        //            if (teacher == null)
-//        //            {
-//        //                throw new Exception("Teacher Id is invalid");
-//        //            }
+            // Same thing, must check for Type again
+            //var teacher = db.TeachersRepository.GetByID(teacherId);
 
-//        //            // students repo...
-//        //            var student = db.StudentsRepository.GetByID(studentId);
+            //if (teacher == null)
+            //{
+            //    throw new Exception("Teacher Id is invalid");
+            //}
 
-//        //            if (student == null)
-//        //            {
-//        //                throw new Exception("Student Id is invalid");
-//        //            }
+            // students repo...
+            var student = db.StudentsRepository.GetByID(studentId);
 
-//        //            // check subject --- repooo...
-//        //            var subject = db.SubjectsRepository.GetByID(subjectId);
+            if (student == null)
+            {
+                throw new Exception("Student Id is invalid");
+            }
 
-//        //            if (subject == null)
-//        //            {
-//        //                throw new Exception("Subject Id is invalid");
-//        //            }
+            // must check for student!
+            // returns all users unfortunately, except when using typeof stuff..
 
-//        //            // check if teacher teaches the subject
-//        //            var assignments = db.TeachingAssignmentsRepository.Get(filter: a => a.SubjectId == subjectId && a.TeacherId == teacherId).FirstOrDefault();
+            // check subject --- repooo...
+            // its called course...
+            var subject = db.CoursesRepository.GetByID(subjectId);
 
-//        //            if (assignments == null)
-//        //            {
-//        //                throw new Exception("Teacher is not teaching the subject");
-//        //            }
+            if (subject == null)
+            {
+                throw new Exception("Subject Id is invalid");
+            }
 
-//        //            // check if student is in the classroom where teacher teaches the subject
-//        //            //if (student.ClassRoomId != assignments.ClassRoomId)
-//        //            //{
-//        //            //    throw new Exception("Student does not taking the subject with the teacher");
-//        //            //}
+            // check if teacher teaches the subject
+            var assignment = db.TeachingAssignmentsRepository.Get(filter: a => a.SubjectId == subjectId && a.TeacherId == teacherId).FirstOrDefault();
 
-//        //            // Ok, every Id is valid, teacher teaches the subject to the student.
-//        //            Grade grade = new Grade()
-//        //            {
-//        //                GradePoint = gradePoint,
-//        //                //Student = student,
-//        //                //Teacher = teacher,
-//        //                //Subject = subject,
-//        //                Assigned = DateTime.UtcNow,
-//        //                Notes = notes
-//        //            };
+            if (assignment == null)
+            {
+                throw new Exception("Teacher is not teaching the subject");
+            }
 
-//        //            db.GradesRepository.Insert(grade);
-//        //            db.Save();
+            // we need to get to the Takings
+            // we need 1. assignment -> we have that
+            // we need 2. classRoom (or schoolClass)
+            // we need 3. program
+            // based on the above 3 we can finally get the taking..
 
-//        //            return new GradeDto()
-//        //            {
-//        //                GradePoint = gradePoint,
-//        //                Subject = subject.Name,
-//        //                StudentName = student.FirstName + " " + student.LastName,
-//        //                TeacherName = teacher.FirstName + " " + teacher.LastName
-//        //            };
-//        //        }
+            var schoolClass = student.SchoolClass;
 
-//        //        public IEnumerable<GradeDto> GetAllGrades()
-//        //        {
-//        //            // This is the most basic implementation, with every grade included, no ordering, no grouping..
-//        //            var grades = db.GradesRepository.Get(includeProperties: "Subject,Student,Teacher")
-//        //                .Select(g =>
-//        //                new GradeDto()
-//        //                {
-//        //                    GradePoint = g.GradePoint,
-//        //                    Subject = g.Subject.Name,
-//        //                    StudentName = g.Student.FirstName + " " + g.Student.LastName,
-//        //                    TeacherName = g.Teacher.FirstName + " " + g.Teacher.LastName
-//        //                });
+            var program = db.ProgramsRepository.Get(p => p.SchoolClass == schoolClass && p.Teaching == assignment && p.Course == subject).FirstOrDefault();
 
-//        //            return grades;
-//        //        }
+            // easy way, if null then bad for you. no helpful exception handling though...
+            var taking = db.TakingsRepository.Get(t => t.Program.CourseId == subjectId && t.Program.Teaching.TeacherId == teacherId
+                && t.StudentId == studentId).FirstOrDefault();
 
-//        //        public IEnumerable<GradeDto> GetAllGradesForTeacher(int teacherId)
-//        //        {
-//        //            var grades = db.GradesRepository.Get(
-//        //                filter: g => g.TeacherId == teacherId,
-//        //                includeProperties: "Subject,Student,Teacher")
-//        //                .Select(g =>
-//        //                new GradeDto()
-//        //                {
-//        //                    GradePoint = g.GradePoint,
-//        //                    Subject = g.Subject.Name,
-//        //                    StudentName = g.Student.FirstName + " " + g.Student.LastName,
-//        //                    TeacherName = g.Teacher.FirstName + " " + g.Teacher.LastName
-//        //                });
+            // School Term (or semester) check
+            // Final Grade check (if there is a final grade for a given semester, you cant assign a new grade
+            // also: without final grade for first semester cant assign a grade into the new semester...
 
-//        //            return grades;
-//        //        }
+            Grade grade = new Grade()
+            {
+                GradePoint = gradePoint,
+                Advancement = taking,
+                Assigned = DateTime.UtcNow,
+                Notes = notes,
+                SchoolTerm = 1
+            };
 
-//        //        public IEnumerable<GradeDto> GetAllGradesForStudent(int studentId)
-//        //        {
-//        //            var grades = db.GradesRepository.Get(
-//        //                filter: g => g.StudentId == studentId,
-//        //                includeProperties: "Subject,Student,Teacher")
-//        //                .Select(g =>
-//        //                new GradeDto()
-//        //                {
-//        //                    GradePoint = g.GradePoint,
-//        //                    Subject = g.Subject.Name,
-//        //                    StudentName = g.Student.FirstName + " " + g.Student.LastName,
-//        //                    TeacherName = g.Teacher.FirstName + " " + g.Teacher.LastName
-//        //                });
+            db.GradesRepository.Insert(grade);
+            db.Save();
 
-//        //            return grades;
-//        //        }
+            return new GradeDto()
+            {
+                GradePoint = gradePoint,
+                Subject = subject.Name,
+                StudentName = student.FirstName + " " + student.LastName,
+                TeacherName = teacherMaybe.FirstName + " " + teacherMaybe.LastName
+            };
+        }
 
-//        //        public IEnumerable<GradeDto> GetAllGradesForParent(int parentId)
-//        //        {
-//        //            var children = db.ParentsRepository.GetByID(parentId).Children;
-//        //            var childrenIds = new List<int>();
+        public IEnumerable<GradeDto> GetAllGrades()
+        {
+            // This is the most basic implementation, with every grade included, no ordering, no grouping..
+            var grades = db.GradesRepository.Get()
+                .Select(g =>
+                new GradeDto()
+                {
+                    GradePoint = g.GradePoint,
+                    Subject = g.Advancement.Program.Teaching.Course.Name,
+                    StudentName = g.Advancement.Student.FirstName + " " + g.Advancement.Student.LastName,
+                    TeacherName = g.Advancement.Program.Teaching.Teacher.FirstName + " " + g.Advancement.Program.Teaching.Teacher.LastName
+                });
 
-//        //            foreach (var c in children)
-//        //            {
-//        //                childrenIds.Add(c.Id);
-//        //            }
+            return grades;
+        }
 
-//        //            // Hmm... i'm not quite it will work...
-//        //            var grades = db.GradesRepository.Get(
-//        //                filter: g => childrenIds.Any(el => el == g.StudentId),
-//        //                includeProperties: "Subject,Student,Teacher")
-//        //                .Select(g =>
-//        //                new GradeDto()
-//        //                {
-//        //                    GradePoint = g.GradePoint,
-//        //                    Subject = g.Subject.Name,
-//        //                    StudentName = g.Student.FirstName + " " + g.Student.LastName,
-//        //                    TeacherName = g.Teacher.FirstName + " " + g.Teacher.LastName
-//        //                });
+        public IEnumerable<GradeDto> GetAllGradesForTeacher(int teacherId)
+        {
+            var grades = db.GradesRepository.Get(
+                filter: g => g.Advancement.Program.Teaching.TeacherId == teacherId)
+                .Select(g =>
+                new GradeDto()
+                {
+                    GradePoint = g.GradePoint,
+                    Subject = g.Advancement.Program.Teaching.Course.Name,
+                    StudentName = g.Advancement.Student.FirstName + " " + g.Advancement.Student.LastName,
+                    TeacherName = g.Advancement.Program.Teaching.Teacher.FirstName + " " + g.Advancement.Program.Teaching.Teacher.LastName
+                });
 
-//        //            return grades;
-//        //        }
-//    }
-//}
+            return grades;
+        }
+
+        public IEnumerable<GradeDto> GetAllGradesForStudent(int studentId)
+        {
+            var grades = db.GradesRepository.Get(
+                filter: g => g.Advancement.StudentId == studentId)
+                .Select(g =>
+                new GradeDto()
+                {
+                    GradePoint = g.GradePoint,
+                    Subject = g.Advancement.Program.Teaching.Course.Name,
+                    StudentName = g.Advancement.Student.FirstName + " " + g.Advancement.Student.LastName,
+                    TeacherName = g.Advancement.Program.Teaching.Teacher.FirstName + " " + g.Advancement.Program.Teaching.Teacher.LastName
+                });
+
+            return grades;
+        }
+
+        public IEnumerable<GradeDto> GetAllGradesForParent(int parentId)
+        {
+            var children = db.ParentsRepository.GetByID(parentId).Children;
+            var childrenIds = new List<int>();
+
+            foreach (var c in children)
+            {
+                childrenIds.Add(c.Id);
+            }
+
+            // Hmm... i'm not quite it will work...
+            var grades = db.GradesRepository.Get(g => g.Advancement.Student.Parents.Any(p => p.Id == parentId))
+                .Select(g =>
+                new GradeDto()
+                {
+                    GradePoint = g.GradePoint,
+                    Subject = g.Advancement.Program.Teaching.Course.Name,
+                    StudentName = g.Advancement.Student.FirstName + " " + g.Advancement.Student.LastName,
+                    TeacherName = g.Advancement.Program.Teaching.Teacher.FirstName + " " + g.Advancement.Program.Teaching.Teacher.LastName
+                });
+
+            return grades;
+        }
+    }
+}

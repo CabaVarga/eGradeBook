@@ -11,5 +11,8 @@ namespace eGradeBook.Services
     {
         IEnumerable<TeachingsByCoursesDto> GetAllTeachingAssignmentsByCourses();
         IEnumerable<TeachingsByTeachersDto> GetAllTeachingAssignmentsByTeachers();
+
+        Teaching AssignTeacherToCourse(int courseId, int teacherId);
+        Teaching RemoveTeacherFromCourse(int courseId, int teacherId);
     }
 }
