@@ -5,6 +5,7 @@ using eGradeBook.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace eGradeBook.Services
 {
@@ -193,6 +194,49 @@ namespace eGradeBook.Services
                 });
 
             return grades;
+        }
+
+        public IEnumerable<GradeDto> GetGradesByCourses()
+        {
+            var grades = db.GradesRepository.Get().Select(g => new GradeDto()
+            {
+                GradePoint = g.GradePoint,
+                StudentName = g.Advancement.Student.FirstName + " " + g.Advancement.Student.LastName,
+                Subject = g.Advancement.Program.Course.Name,
+                TeacherName = g.Advancement.Program.Teaching.Teacher.FirstName + " " + g.Advancement.Program.Teaching.Teacher.LastName
+            });
+
+
+            return grades;
+        }
+
+        public IEnumerable<GradeDto> GetGradesByParameters(int? studentId, int? gradeId, int? teacherId, int? courseId, int? semesterId, int? classId)
+        {
+            
+            Func<Grade, bool> filter =
+                g => studentId != null ? g.Advancement.StudentId == studentId : true &&
+                    gradeId != null ? g.Advancement.Program.SchoolClass.ClassGrade == gradeId : true &&
+                    teacherId != null ? g.Advancement.Program.Teaching.TeacherId == teacherId : true &&
+                    courseId != null ? g.Advancement.Program.CourseId == courseId : true &&
+                    semesterId != null ? g.SchoolTerm == semesterId : true &&
+                    classId != null ? g.Advancement.Program.SchoolClassId == classId : true;
+
+            return db.GradesRepository.Get(
+                filter:
+                g => studentId != null ? g.Advancement.StudentId == studentId : true &&
+                    gradeId != null ? g.Advancement.Program.SchoolClass.ClassGrade == gradeId : true &&
+                    teacherId != null ? g.Advancement.Program.Teaching.TeacherId == teacherId : true &&
+                    courseId != null ? g.Advancement.Program.CourseId == courseId : true &&
+                    semesterId != null ? g.SchoolTerm == semesterId : true &&
+                    classId != null ? g.Advancement.Program.SchoolClassId == classId : true)
+                    .Select(g => new GradeDto()
+                    {
+                        StudentName = g.Advancement.Student.FirstName + " " + g.Advancement.Student.LastName,
+                        Subject = g.Advancement.Program.Course.Name,
+                        GradePoint = g.GradePoint,
+                        TeacherName = g.Advancement.Program.Teaching.Teacher.FirstName + " " + g.Advancement.Program.Teaching.Teacher.LastName
+                    });
+
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace eGradeBook.Controllers
 {
+    [RoutePrefix("api/grades")]
     public class GradesController : ApiController
     {
         private IGradesService gradesService;
@@ -64,5 +65,30 @@ namespace eGradeBook.Controllers
             return Ok();
 
         }
+
+        [Route("api/grades/forpublic")]
+        public IHttpActionResult GetGradesForPublic()
+        {
+            return Ok(gradesService.GetGradesByCourses());
+        }
+
+        [Route("query")]
+        public IHttpActionResult GetGradesByParameters(
+            [FromUri]int? studentId = null, 
+            [FromUri]int? gradeId = null, 
+            [FromUri]int? teacherId = null, 
+            [FromUri]int? courseId = null, 
+            [FromUri]int? semesterId = null, 
+            [FromUri]int? classId = null)
+        {
+            return Ok(gradesService.GetGradesByParameters(studentId, gradeId, teacherId, courseId, semesterId, classId));
+        }
+
+        [Route("query2")]
+        public IHttpActionResult GetGradesByParameters2([FromUri]int? studentId)
+        {
+            return Ok(gradesService.GetGradesByParameters(studentId, null, null, null, null, null));
+        }
+
     }
 }

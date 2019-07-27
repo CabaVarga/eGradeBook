@@ -28,6 +28,13 @@ namespace eGradeBook.Infrastructure
             return list.ElementAt(random.Next(list.Count));
         }
 
+        /// <summary>
+        /// Create a list of School classes (Classrooms).
+        /// </summary>
+        /// <param name="howManyPerGrade">How many classrooms per school grade (default is 2)</param>
+        /// <param name="lowGrade">Starting school grade (default is 5)</param>
+        /// <param name="highGrade">Ending school grade (default is 8)</param>
+        /// <returns>A list of created school classes</returns>
         public static List<SchoolClass> CreateSchoolClasses(int howManyPerGrade = 2, int lowGrade = 5, int highGrade = 8)
         {
             List<SchoolClass> classes = new List<SchoolClass>();
@@ -47,6 +54,11 @@ namespace eGradeBook.Infrastructure
             return classes;
         }
 
+        /// <summary>
+        /// Create a list of students.
+        /// </summary>
+        /// <param name="howMany">How many students should be created</param>
+        /// <returns>A list of students</returns>
         public static List<StudentUser> CreateStudents(int howMany)
         {
             List<StudentUser> students = new List<StudentUser>();
@@ -67,6 +79,13 @@ namespace eGradeBook.Infrastructure
             return students;
         }
 
+        /// <summary>
+        /// Assign students to classes. IMPORTANT: The current implementation does not take into account the min and max values
+        /// </summary>
+        /// <param name="students">A list of students to assign</param>
+        /// <param name="classes">A list of classes where students should be assigned</param>
+        /// <param name="minPerClass">The minimum number of students a class must have (default is 0)</param>
+        /// <param name="maxPerClas">The maximum number of students a class can have (default is unlimited)</param>
         public static void AssignStudentsToClasses(List<StudentUser> students, List<SchoolClass> classes, int minPerClass = 0, int maxPerClas = int.MaxValue)
         {
             int classCount = classes.Count();
@@ -419,6 +438,7 @@ namespace eGradeBook.Infrastructure
                     GradePoint = gpaInt,
                     Assigned = endPeriod,
                     SchoolTerm = semester,
+                    Taking = taking
                 };
 
                 grades.Add(grade);

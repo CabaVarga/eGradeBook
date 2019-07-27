@@ -14,5 +14,13 @@ namespace eGradeBook.Services
         IEnumerable<GradeDto> GetAllGradesForParent(int parentId);
 
         GradeDto CreateGrade(int teacherId, int studentId, int subjectId, int gradePoint, string notes = null);
+
+        // --- PRETRAZIVANJE --- Najvise se spominje povodom ocene
+        // po studentu, razredu, nastavniku, predmetu, roditelju, polugodistu, odeljenju
+        // mozda dodati jedno mega-pretrazivanje sa navedenim URI parametrima?
+        // da probam....
+
+        IEnumerable<GradeDto> GetGradesByParameters(int? studentId, int? gradeId, int? teacherId, int? courseId, int? semesterId, int? classId);
+        IEnumerable<GradeDto> GetGradesByCourses();
     }
 }

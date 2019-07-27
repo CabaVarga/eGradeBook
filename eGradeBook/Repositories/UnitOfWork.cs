@@ -50,6 +50,9 @@ namespace eGradeBook.Repositories
         [Dependency]
         public IGenericRepository<Taking> TakingsRepository { get; set; }
 
+        [Dependency]
+        public IGenericRepository<FinalGrade> FinalGradesRepository { get; set; }
+
         public void Save()
         {
             context.SaveChanges();

@@ -172,15 +172,15 @@ namespace eGradeBook.Infrastructure
             context.SaveChanges();
 
             #endregion
-            context.SaveChanges();
-
-
             List<SchoolClass> classes = SeederHelper.CreateSchoolClasses(2, 5, 6);
             context.ClassRooms.AddRange(classes);
 
             context.SaveChanges();
 
             // --- PROGRAMS
+            SeederHelper.AssignStudentsToClasses(students, classes, 2);
+            context.SaveChanges();
+
 
             List<Program> programs = SeederHelper.AssignProgram(teachings, classes);
             context.Programs.AddRange(programs);
@@ -230,15 +230,30 @@ namespace eGradeBook.Infrastructure
 
             #region Learning (student learning a subject)
 
+            List<Taking> takings = SeederHelper.AssignTakings(students, programs);
+            context.Takings.AddRange(takings);
+            context.SaveChanges();
             #endregion
 
             #region Grading (teacher teaching a subject to the student)
 
+
+
             #endregion
 
             #region Grades 
-
+            List<Grade> grades = SeederHelper.AssignGrades(takings, new DateTime(2018, 9, 1), new DateTime(2018, 12, 31), 1, 2, 5);
+            context.Grades.AddRange(grades);
+            context.SaveChanges();
             #endregion
+
+            #region Final Grades
+            List<FinalGrade> finalGrades = SeederHelper.AssignFinalGrades(takings, new DateTime(2018, 9, 1), new DateTime(2018, 12, 31), 1);
+            context.FinalGrades.AddRange(finalGrades);
+            context.SaveChanges();
+            
+            #endregion
+
 
             base.Seed(context);
         }
