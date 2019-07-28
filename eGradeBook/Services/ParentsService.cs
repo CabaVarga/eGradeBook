@@ -25,13 +25,6 @@ namespace eGradeBook.Services
                 return null;
             }
 
-            List<StudentUser> children = parent.Children.ToList();
-
-            if (children.Where(c => c.Id == studentId).FirstOrDefault() != null)
-            {
-                return null;
-            }
-
             StudentUser student = db.StudentsRepository.Get(s => s.Id == studentId).FirstOrDefault();
 
             if (student == null)
@@ -39,23 +32,26 @@ namespace eGradeBook.Services
                 return null;
             }
 
-            children.Add(student);
+            StudentParent sp = new StudentParent()
+            {
+                Student = student,
+                Parent = parent
+            };
 
-            parent.Children = children;
-
+            db.StudentParentsRepository.Insert(sp);            
             db.Save();
 
             return new ParentChildrenDto()
             {
                 Name = parent.FirstName + " " + parent.LastName,
                 ParentId = parent.Id,
-                Children = parent.Children.Select(c => new StudentDto()
+                Children = parent.StudentParents.Select(c => new StudentDto()
                 {
-                    FirstName = c.FirstName,
-                    LastName = c.LastName,
-                    ClassRoom = c.SchoolClass.Name,
-                    ClassRoomId = c.SchoolClass.Id,
-                    StudentId = c.Id
+                    FirstName = c.Student.FirstName,
+                    LastName = c.Student.LastName,
+                    ClassRoom = c.Student.SchoolClass.Name,
+                    ClassRoomId = c.Student.SchoolClass.Id,
+                    StudentId = c.Student.Id
                 }).ToList()
             };
         }
@@ -69,14 +65,14 @@ namespace eGradeBook.Services
                 return null;
             }
 
-            return parent.Children.Select(c => new StudentDto()
+            return parent.StudentParents.Select(c => new StudentDto()
             {
 
-                FirstName = c.FirstName,
-                LastName = c.LastName,
-                ClassRoom = c.SchoolClass.Name,
-                ClassRoomId = c.SchoolClass.Id,
-                StudentId = c.Id
+                FirstName = c.Student.FirstName,
+                LastName = c.Student.LastName,
+                ClassRoom = c.Student.SchoolClass.Name,
+                ClassRoomId = c.Student.SchoolClass.Id,
+                StudentId = c.Student.Id
             });
         }
 
@@ -87,13 +83,13 @@ namespace eGradeBook.Services
                 {
                     Name = parent.FirstName + " " + parent.LastName,
                     ParentId = parent.Id,
-                    Children = parent.Children.Select(c => new StudentDto()
+                    Children = parent.StudentParents.Select(c => new StudentDto()
                     {
-                        FirstName = c.FirstName,
-                        LastName = c.LastName,
-                        ClassRoom = c.SchoolClass.Name,
-                        ClassRoomId = c.SchoolClass.Id,
-                        StudentId = c.Id
+                        FirstName = c.Student.FirstName,
+                        LastName = c.Student.LastName,
+                        ClassRoom = c.Student.SchoolClass.Name,
+                        ClassRoomId = c.Student.SchoolClass.Id,
+                        StudentId = c.Student.Id
                     }).ToList()
                 });
         }
@@ -109,7 +105,7 @@ namespace eGradeBook.Services
                 .Select(s => new StudentParentsDto()
                 {
                     Name = s.FirstName + " " + s.LastName,
-                    Parents = s.Parents.Select(p => p.LastName + " " + p.FirstName).ToList()
+                    Parents = s.StudentParents.Select(p => p.Parent.LastName + " " + p.Parent.FirstName).ToList()
                 });
         }
     }

@@ -44,37 +44,29 @@ namespace eGradeBook.Controllers
                     ctx.Takings.Remove(taking);
                 }
 
-                // The ParentChildren invisible table does not let me delete everything...
+                var studentParents = ctx.StudentParents;
+                report["StudentParents"] = studentParents.Count();
+
+                foreach (var studentParent in studentParents)
+                {
+                    ctx.StudentParents.Remove(studentParent);
+                }
+
                 var parents = ctx.Users.OfType<ParentUser>();
                 report["Parents"] = parents.Count();
-
-                foreach (var parent in parents)
-                {
-                    parent.Children = new List<StudentUser>();
-                }
-
-                ctx.SaveChanges();
-
-                var students = ctx.Users.OfType<StudentUser>();
-                report["Students"] = students.Count();
-
-                foreach (var student in students)
-                {
-                    student.Parents = new List<ParentUser>();
-                }
-
-                ctx.SaveChanges();
 
                 foreach (var parent in parents)
                 {
                     ctx.Users.Remove(parent);
                 }
 
+                var students = ctx.Users.OfType<StudentUser>();
+                report["Students"] = students.Count();
+
                 foreach (var student in students)
                 {
                     ctx.Users.Remove(student);
                 }
-
                 
                 ctx.SaveChanges();
             }

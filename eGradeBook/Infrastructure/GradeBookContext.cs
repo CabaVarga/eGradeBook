@@ -33,6 +33,7 @@ namespace eGradeBook.Infrastructure
         public DbSet<Grade> Grades { get; set; }
         public DbSet<FinalGrade> FinalGrades { get; set; }
         public DbSet<Teaching> TeachingAssignments { get; set; }
+        public DbSet<StudentParent> StudentParents { get; set; }
 
         // Additions for new schema
         public DbSet<Program> Programs { get; set; }

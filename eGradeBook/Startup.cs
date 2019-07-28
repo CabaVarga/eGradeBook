@@ -91,6 +91,7 @@ namespace eGradeBook
             container.RegisterType<IGenericRepository<Teaching>, GenericRepository<Teaching>>();
             container.RegisterType<IGenericRepository<Program>, GenericRepository<Program>>();
             container.RegisterType<IGenericRepository<Taking>, GenericRepository<Taking>>();
+            container.RegisterType<IGenericRepository<StudentParent>, GenericRepository<StudentParent>>();
 
             // --- Grading
             container.RegisterType<IGenericRepository<Grade>, GenericRepository<Grade>>();

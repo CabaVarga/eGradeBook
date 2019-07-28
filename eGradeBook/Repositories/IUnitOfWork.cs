@@ -21,6 +21,7 @@ namespace eGradeBook.Repositories
         IGenericRepository<Program> ProgramsRepository { get; }
         IGenericRepository<Taking> TakingsRepository { get; }
         IGenericRepository<FinalGrade> FinalGradesRepository { get; }
+        IGenericRepository<StudentParent> StudentParentsRepository { get; }
 
         void Save();
     }

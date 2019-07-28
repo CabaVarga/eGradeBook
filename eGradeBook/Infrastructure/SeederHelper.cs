@@ -146,8 +146,10 @@ namespace eGradeBook.Infrastructure
         // sometimes instead of new parent add an existing parent into a mix, like in 5% of the time?
         // not an easy task....
 
-        public static List<ParentUser> CreateRealisticParents(List<StudentUser> students)
+        public static List<StudentParent> CreateRealisticParents(List<StudentUser> students)
         {
+            List<StudentParent> studentParents = new List<StudentParent>();
+
             List<ParentUser> parents = new List<ParentUser>();
 
             // group students by lastname
@@ -159,8 +161,11 @@ namespace eGradeBook.Infrastructure
                 var parentsWithSameLastname = new List<ParentUser>();
 
                 // one possibility: they all have the same parents...
+
+                // --- Init father
                 var fatherOne = new ParentUser()
                 {
+                    Gender = "m",
                     FirstName = Randomize(maleNames),
                     LastName = random.Next(100) < 5 ? Randomize(lastNames) : sg.Key
                 };
@@ -169,8 +174,11 @@ namespace eGradeBook.Infrastructure
                 username = UserNameTakenCheck(username);
                 fatherOne.UserName = username;
 
+
+                // --- Init mother
                 var motherOne = new ParentUser()
                 {
+                    Gender = "f",
                     FirstName = Randomize(femaleNames),
                     LastName = random.Next(100) < 5 ? Randomize(lastNames) : sg.Key
                 };
@@ -182,8 +190,13 @@ namespace eGradeBook.Infrastructure
                 parentsWithSameLastname.Add(fatherOne);
                 parentsWithSameLastname.Add(motherOne);
                 
+
+                // --- at this point we have two entries
                 foreach(var s in sg)
                 {
+                    var studentParentFather = new StudentParent();
+                    var studentParentMother = new StudentParent();
+
                     // second: some of them have the same parents...
                     ParentUser father;
 
@@ -191,7 +204,9 @@ namespace eGradeBook.Infrastructure
                     {
                         father = parentsWithSameLastname.ElementAt(random.Next(parentsWithSameLastname.Count));
 
-                        father.Children.Add(s);
+                        studentParentFather.Parent = father;
+                        studentParentFather.Student = s;
+                        studentParents.Add(studentParentFather);
                     }
                     else
                     {
@@ -206,7 +221,10 @@ namespace eGradeBook.Infrastructure
                         username = UserNameTakenCheck(username);
                         father.UserName = username;
 
-                        father.Children.Add(s);
+                        studentParentFather.Parent = father;
+                        studentParentFather.Student = s;
+                        studentParents.Add(studentParentFather);
+
 
                         parentsWithSameLastname.Add(father);
                     }
@@ -219,7 +237,11 @@ namespace eGradeBook.Infrastructure
                     {
                         mother = parentsWithSameLastname.ElementAt(random.Next(parentsWithSameLastname.Count));
 
-                        mother.Children.Add(s);
+                        studentParentMother.Parent = mother;
+                        studentParentMother.Student = s;
+
+                        studentParents.Add(studentParentMother);
+
                     }
 
                     else
@@ -235,7 +257,9 @@ namespace eGradeBook.Infrastructure
                         username = UserNameTakenCheck(username);
                         mother.UserName = username;
 
-                        mother.Children.Add(s);
+                        studentParentMother.Parent = mother;
+                        studentParentMother.Student = s;
+                        studentParents.Add(studentParentMother);
 
                         parentsWithSameLastname.Add(mother);
                     }
@@ -252,7 +276,7 @@ namespace eGradeBook.Infrastructure
                 parents.AddRange(parentsWithSameLastname);
             }
 
-            return parents;
+            return studentParents;
         }
 
         public static List<Teaching> AssignTeaching(List<TeacherUser> teachers, List<Course> courses)

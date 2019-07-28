@@ -147,7 +147,9 @@ namespace eGradeBook.Infrastructure
                 context.SaveChanges();
             }
 
-            List<ParentUser> parents = SeederHelper.CreateRealisticParents(students);
+            List<StudentParent> studentParents = SeederHelper.CreateRealisticParents(students);
+
+            List<ParentUser> parents = studentParents.Select(sp => sp.Parent).Distinct().ToList();
 
             foreach (var p in parents)
             {
@@ -160,7 +162,8 @@ namespace eGradeBook.Infrastructure
                 context.SaveChanges();
             }
 
-
+            context.StudentParents.AddRange(studentParents);
+            context.SaveChanges();
 
 
             #region Teaching (assignments)

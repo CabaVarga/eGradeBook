@@ -10,7 +10,7 @@ namespace eGradeBook.Models
     {
         public StudentUser()
         {
-            this.Parents = new HashSet<ParentUser>();
+            this.StudentParents = new HashSet<StudentParent>();
         }
 
         public int? ClassRoomId { get; set; }
@@ -18,7 +18,9 @@ namespace eGradeBook.Models
         [ForeignKey("ClassRoomId")]
         public virtual SchoolClass SchoolClass { get; set; }
 
-        public virtual ICollection<ParentUser> Parents { get; set; }
+        // public virtual ICollection<ParentUser> Parents { get; set; }
+
+        public virtual ICollection<StudentParent> StudentParents { get; set; }
 
         public virtual ICollection<Taking> Advancements { get; set; }
     }

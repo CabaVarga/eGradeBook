@@ -177,6 +177,7 @@
     <Compile Include="Models\Dtos\Students\StudentParentsDto.cs" />
     <Compile Include="Models\Dtos\TeachingsByCoursesDto.cs" />
     <Compile Include="Models\Dtos\TeachingsByTeachersDto.cs" />
+    <Compile Include="Models\StudentParent.cs" />
     <Compile Include="Models\Taking.cs" />
     <Compile Include="Models\FinalGrade.cs" />
     <Compile Include="Models\Program.cs" />

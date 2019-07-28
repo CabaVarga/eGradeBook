@@ -174,7 +174,7 @@ namespace eGradeBook.Services
 
         public IEnumerable<GradeDto> GetAllGradesForParent(int parentId)
         {
-            var children = db.ParentsRepository.GetByID(parentId).Children;
+            var children = db.ParentsRepository.GetByID(parentId).StudentParents.Select(sp => sp.Student);
             var childrenIds = new List<int>();
 
             foreach (var c in children)
@@ -183,7 +183,7 @@ namespace eGradeBook.Services
             }
 
             // Hmm... i'm not quite it will work...
-            var grades = db.GradesRepository.Get(g => g.Advancement.Student.Parents.Any(p => p.Id == parentId))
+            var grades = db.GradesRepository.Get(g => g.Advancement.Student.StudentParents.Any(p => p.Parent.Id == parentId))
                 .Select(g =>
                 new GradeDto()
                 {

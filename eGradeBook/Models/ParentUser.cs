@@ -9,9 +9,11 @@ namespace eGradeBook.Models
     {
         public ParentUser()
         {
-            this.Children = new HashSet<StudentUser>();
+            this.StudentParents = new HashSet<StudentParent>();
         }
 
-        public virtual ICollection<StudentUser> Children { get; set; }
+        // public virtual ICollection<StudentUser> Children { get; set; }
+
+        public virtual ICollection<StudentParent> StudentParents { get; set; }
     }
 }
