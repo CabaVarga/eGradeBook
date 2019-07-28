@@ -25,7 +25,8 @@ namespace eGradeBook.Services
                 {
                     Name = t.FirstName + " " + t.LastName,
                     TeacherId = t.Id,
-                    Courses = t.Teachings.Select(tc => tc.Course.Name).ToList()
+                    Courses = t.Teachings.Select(tc => new TeacherDto.CourseList() { Id = tc.SubjectId, Name = tc.Course.Name }).ToList()
+//                    Courses = t.Teachings.Select(tc => tc.Course.Name).ToList()
                 });
         }
 
@@ -37,7 +38,8 @@ namespace eGradeBook.Services
                 {
                     Name = t.FirstName + " " + t.LastName,
                     TeacherId = t.Id,
-                    Courses = t.Teachings.Select(tc => tc.Course.Name).ToList()
+                    Courses = t.Teachings.Select(tc => new TeacherDto.CourseList() { Id = tc.SubjectId, Name = tc.Course.Name }).ToList()
+//                    Courses = t.Teachings.Select(tc => tc.Course.Name).ToList()
                 })
                 .FirstOrDefault();
         }

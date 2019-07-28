@@ -3,6 +3,7 @@ using eGradeBook.Repositories;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +17,21 @@ namespace eGradeBook.Providers
     public class CustomAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
         private UnityContainer container;
+        // private ILogger logger;
 
         public CustomAuthorizationServerProvider(UnityContainer container)
         {
             this.container = container;
+            // this.logger = logger;
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
+            // Cannot set in constructor -- of course I cant, for the object itself is not yet created?
+            // this.logger = container.Resolve<ILogger>();
+
+            // logger.Trace("Auth server constructed");
+
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
             IdentityUser<int, CustomUserLogin, CustomUserRole, CustomUserClaim> user = null;

@@ -162,6 +162,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\FinalGradesController.cs" />
     <Compile Include="Controllers\GradesController.cs" />
@@ -179,8 +180,10 @@
     <Compile Include="Models\ClassMasterUser.cs" />
     <Compile Include="Models\Dtos\CourseDto.cs" />
     <Compile Include="Models\Dtos\CoursesBySchoolClassesDto.cs" />
+    <Compile Include="Models\Dtos\Courses\CourseRegistrationDto.cs" />
     <Compile Include="Models\Dtos\FinalGrades\FinalGradeDto.cs" />
     <Compile Include="Models\Dtos\GradesByCourseDto.cs" />
+    <Compile Include="Models\Dtos\Logging\LogsDto.cs" />
     <Compile Include="Models\Dtos\Parents\ParentChildrenDto.cs" />
     <Compile Include="Models\Dtos\Parents\ParentDto.cs" />
     <Compile Include="Models\Dtos\ProgramsByCoursesDto.cs" />

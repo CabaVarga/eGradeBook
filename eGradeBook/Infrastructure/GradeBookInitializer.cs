@@ -1,6 +1,7 @@
 ﻿using eGradeBook.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,8 +13,11 @@ namespace eGradeBook.Infrastructure
 {
     public class GradeBookInitializer : DropCreateDatabaseAlways<GradeBookContext>
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         protected override void Seed(GradeBookContext context)
         {
+            logger.Info("Seeding began");
             UserManager<GradeBookUser, int> _userManager = 
                 new UserManager<GradeBookUser, int>(
                     new UserStore<GradeBookUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(context));
@@ -259,6 +263,7 @@ namespace eGradeBook.Infrastructure
 
 
             base.Seed(context);
+            logger.Info("Seeding ended");
         }
     }
 }
