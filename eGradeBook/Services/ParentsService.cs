@@ -94,6 +94,11 @@ namespace eGradeBook.Services
                 });
         }
 
+        public ParentDto GetParentById(int parentId)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public StudentParentsDto GetParentsForStudent(int studentId)
         {
             throw new System.NotImplementedException();

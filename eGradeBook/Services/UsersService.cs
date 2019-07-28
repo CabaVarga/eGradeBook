@@ -111,5 +111,10 @@ namespace eGradeBook.Services
 
             return await db.AuthRepository.RegisterClassMasterUser(user, userModel.Password);
         }
+
+        public int GetIdOfUser(string username)
+        {
+            return db.GradeBookUsersRepository.Get(u => u.UserName == username).Select(u => u.Id).FirstOrDefault();
+        }
     }
 }

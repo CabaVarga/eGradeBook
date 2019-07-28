@@ -18,6 +18,13 @@ namespace eGradeBook.Controllers
             this.service = service;
         }
 
+        [Route("{parentId:int}", Name = "GetParentById")]
+        [HttpGet]
+        public IHttpActionResult GetParentById(int parentId)
+        {
+            return Ok(service.GetParentById(parentId));
+        }
+
         [Route("")]
         [HttpGet]
         public IHttpActionResult GetAllParentsWithChildren()

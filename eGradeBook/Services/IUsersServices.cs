@@ -15,5 +15,7 @@ namespace eGradeBook.Services
         Task<IdentityResult> RegisterTeacher(UserDTO user);
         Task<IdentityResult> RegisterParent(UserDTO user);
         Task<IdentityResult> RegisterClassMaster(UserDTO user);
+
+        int GetIdOfUser(string username);
     }
 }

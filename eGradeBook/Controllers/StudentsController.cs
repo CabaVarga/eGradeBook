@@ -23,7 +23,7 @@ namespace eGradeBook.Controllers
             return Ok(service.GetAllStudentsDto());
         }
 
-        [Route("{studentId}")]
+        [Route("{studentId}", Name = "GetStudentById")]
         public IHttpActionResult GetStudentById(int studentId)
         {
             return Ok(service.GetStudentByIdDto(studentId));

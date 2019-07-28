@@ -14,6 +14,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using Unity;
 using Unity.Lifetime;
+using Unity.NLog;
 using Unity.WebApi;
 
 
@@ -72,6 +73,8 @@ namespace eGradeBook
 
             // register all your components with the container here
             // it is NOT necessary to register your controllers
+            container.AddNewExtension<NLogExtension>();
+
 
             // e.g. container.RegisterType<ITestService, TestService>();
             container.RegisterType<DbContext, GradeBookContext>(new HierarchicalLifetimeManager());

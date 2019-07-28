@@ -1,5 +1,6 @@
 ﻿using eGradeBook.Models.Dtos;
 using eGradeBook.Services;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,17 @@ namespace eGradeBook.Controllers
     [RoutePrefix("api/grades")]
     public class GradesController : ApiController
     {
+        // private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        private ILogger log;
         private IGradesService gradesService;
 
-        public GradesController(IGradesService gradesService)
+        public GradesController(IGradesService gradesService, ILogger log)
         {
             this.gradesService = gradesService;
+            this.log = log;
+
+            this.log.Log(LogLevel.Info, "Grades service created");
         }
 
         [Authorize(Roles = "teachers")]
@@ -81,6 +88,7 @@ namespace eGradeBook.Controllers
             [FromUri]int? semesterId = null, 
             [FromUri]int? classId = null)
         {
+            log.Trace("Tracer, is authenticated -- {0}", this.User.Identity.IsAuthenticated);
             return Ok(gradesService.GetGradesByParameters(studentId, gradeId, teacherId, courseId, semesterId, classId));
         }
 
