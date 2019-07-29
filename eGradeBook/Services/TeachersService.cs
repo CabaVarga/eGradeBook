@@ -11,10 +11,17 @@ namespace eGradeBook.Services
     public class TeachersService : ITeachersService
     {
         private IUnitOfWork db;
+        private ITeachingsService teachingsService;
 
-        public TeachersService(IUnitOfWork db)
+        public TeachersService(IUnitOfWork db, ITeachingsService teachingsService)
         {
             this.db = db;
+            this.teachingsService = teachingsService;
+        }
+
+        public void AssignCourseToTeacher(TeachingAssignmentDto assignment)
+        {
+            teachingsService.AssignTeacherToCourse(assignment.SubjectId, assignment.TeacherId);
         }
 
         public IEnumerable<TeacherDto> GetAllTeachersDtos()

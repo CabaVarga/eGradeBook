@@ -11,5 +11,7 @@ namespace eGradeBook.Services
     {
         IEnumerable<TeacherDto> GetAllTeachersDtos();
         TeacherDto GetTeacherByIdDto(int id);
+
+        void AssignCourseToTeacher(TeachingAssignmentDto assignment);
     }
 }

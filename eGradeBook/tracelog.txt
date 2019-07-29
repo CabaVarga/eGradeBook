@@ -1,8 +1,0 @@
-2019-07-28 16:35:59.4429|INFO|eGradeBook.Controllers.GradesController|Grades service created
-2019-07-28 16:35:59.5860|TRACE|eGradeBook.Controllers.GradesController|Tracer, is authenticated -- False
-2019-07-28 16:36:09.5025|INFO|eGradeBook.Controllers.GradesController|Grades service created
-2019-07-28 16:36:09.5535|TRACE|eGradeBook.Controllers.GradesController|Tracer, is authenticated -- False
-2019-07-28 16:36:33.8519|INFO|eGradeBook.Controllers.GradesController|Grades service created
-2019-07-28 16:36:33.9259|TRACE|eGradeBook.Controllers.GradesController|Tracer, is authenticated -- False
-2019-07-28 16:36:44.2515|INFO|eGradeBook.Controllers.GradesController|Grades service created
-2019-07-28 16:36:44.3005|TRACE|eGradeBook.Controllers.GradesController|Tracer, is authenticated -- False

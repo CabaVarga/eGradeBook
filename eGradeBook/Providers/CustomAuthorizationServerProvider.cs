@@ -17,20 +17,18 @@ namespace eGradeBook.Providers
     public class CustomAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
         private UnityContainer container;
-        // private ILogger logger;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         public CustomAuthorizationServerProvider(UnityContainer container)
         {
             this.container = container;
-            // this.logger = logger;
+            logger.Trace("Auth server constructed");
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             // Cannot set in constructor -- of course I cant, for the object itself is not yet created?
-            // this.logger = container.Resolve<ILogger>();
-
-            // logger.Trace("Auth server constructed");
+            logger.Trace("IP: {0}", context.Request.RemoteIpAddress);
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
