@@ -35,14 +35,14 @@ namespace eGradeBook.Infrastructure
         /// <param name="lowGrade">Starting school grade (default is 5)</param>
         /// <param name="highGrade">Ending school grade (default is 8)</param>
         /// <returns>A list of created school classes</returns>
-        public static List<SchoolClass> CreateSchoolClasses(int howManyPerGrade = 2, int lowGrade = 5, int highGrade = 8)
+        public static List<ClassRoom> CreateSchoolClasses(int howManyPerGrade = 2, int lowGrade = 5, int highGrade = 8)
         {
-            List<SchoolClass> classes = new List<SchoolClass>();
+            List<ClassRoom> classes = new List<ClassRoom>();
             for (int grade = lowGrade; grade <= highGrade; grade++)
             {
                 for (int cnt = 1; cnt <= howManyPerGrade; cnt++)
                 {
-                    var schoolClass = new SchoolClass()
+                    var schoolClass = new ClassRoom()
                     {
                         ClassGrade = grade,
                         Name = grade + "-" + cnt
@@ -86,7 +86,7 @@ namespace eGradeBook.Infrastructure
         /// <param name="classes">A list of classes where students should be assigned</param>
         /// <param name="minPerClass">The minimum number of students a class must have (default is 0)</param>
         /// <param name="maxPerClas">The maximum number of students a class can have (default is unlimited)</param>
-        public static void AssignStudentsToClasses(List<StudentUser> students, List<SchoolClass> classes, int minPerClass = 0, int maxPerClas = int.MaxValue)
+        public static void AssignStudentsToClasses(List<StudentUser> students, List<ClassRoom> classes, int minPerClass = 0, int maxPerClas = int.MaxValue)
         {
             int classCount = classes.Count();
 
@@ -307,7 +307,7 @@ namespace eGradeBook.Infrastructure
             return assignments;
         }
 
-        public static List<Program> AssignProgram(List<Teaching> teachings, List<SchoolClass> classes)
+        public static List<Program> AssignProgram(List<Teaching> teachings, List<ClassRoom> classes)
         {
             List<Program> programs = new List<Program>();
 

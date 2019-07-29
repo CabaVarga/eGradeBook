@@ -166,6 +166,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
+    <Compile Include="Controllers\ClassRoomsController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\FinalGradesController.cs" />
     <Compile Include="Controllers\GradesController.cs" />
@@ -181,7 +182,9 @@
     <Compile Include="Infrastructure\SeederHelper.cs" />
     <Compile Include="Models\AdminUser.cs" />
     <Compile Include="Models\ClassMasterUser.cs" />
-    <Compile Include="Models\Dtos\ClassRoomRegistrationDto.cs" />
+    <Compile Include="Models\Dtos\ClassRooms\ClassRoomDto.cs" />
+    <Compile Include="Models\Dtos\ClassRooms\ClassRoomEnrollStudentDto.cs" />
+    <Compile Include="Models\Dtos\ClassRooms\ClassRoomRegistrationDto.cs" />
     <Compile Include="Models\Dtos\CourseDto.cs" />
     <Compile Include="Models\Dtos\CoursesBySchoolClassesDto.cs" />
     <Compile Include="Models\Dtos\Courses\CourseRegistrationDto.cs" />
@@ -203,7 +206,7 @@
     <Compile Include="Models\Taking.cs" />
     <Compile Include="Models\FinalGrade.cs" />
     <Compile Include="Models\Program.cs" />
-    <Compile Include="Models\SchoolClass.cs" />
+    <Compile Include="Models\ClassRoom.cs" />
     <Compile Include="Models\Dtos\GradeDto.cs" />
     <Compile Include="Models\Dtos\UserDto.cs" />
     <Compile Include="Models\Grade.cs" />
@@ -224,10 +227,12 @@
     <Compile Include="Repositories\IGenericRepository.cs" />
     <Compile Include="Repositories\IUnitOfWork.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
+    <Compile Include="Services\ClassRoomsService.cs" />
     <Compile Include="Services\CoursesService.cs" />
     <Compile Include="Services\Exceptions\InvalidUserIdException.cs" />
     <Compile Include="Services\FinalGradesService.cs" />
     <Compile Include="Services\GradesService.cs" />
+    <Compile Include="Services\IClassRoomsService.cs" />
     <Compile Include="Services\ICoursesService.cs" />
     <Compile Include="Services\IFinalGradesService.cs" />
     <Compile Include="Services\IGradesService.cs" />

@@ -8,9 +8,9 @@ using System.Web;
 
 namespace eGradeBook.Models
 {
-    public class SchoolClass
+    public class ClassRoom
     {
-        public SchoolClass()
+        public ClassRoom()
         {
             this.Students = new HashSet<StudentUser>();
         }
@@ -33,5 +33,8 @@ namespace eGradeBook.Models
 
         [JsonIgnore]
         public virtual ICollection<StudentUser> Students { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<Program> Program { get; set; }
     }
 }

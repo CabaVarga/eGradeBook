@@ -91,7 +91,7 @@ namespace eGradeBook
 
             // --- Basic entities
             container.RegisterType<IGenericRepository<Course>, GenericRepository<Course>>();
-            container.RegisterType<IGenericRepository<SchoolClass>, GenericRepository<SchoolClass>>();
+            container.RegisterType<IGenericRepository<ClassRoom>, GenericRepository<ClassRoom>>();
 
             // --- Associations
             container.RegisterType<IGenericRepository<Teaching>, GenericRepository<Teaching>>();
@@ -112,6 +112,7 @@ namespace eGradeBook
             container.RegisterType<IParentsService, ParentsService>();
 
             container.RegisterType<ICoursesService, CoursesService>();
+            container.RegisterType<IClassRoomsService, ClassRoomsService>();
 
 
             container.RegisterType<ITeachingsService, TeachingsService>();

@@ -24,7 +24,7 @@ namespace eGradeBook.Services
         public void teacherclassroom()
         {
             TeacherUser teacher = new TeacherUser();
-            SchoolClass schoolClass = new SchoolClass();
+            ClassRoom schoolClass = new ClassRoom();
 
             // get to all classRooms!
 

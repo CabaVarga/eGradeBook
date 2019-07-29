@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web;
 using System.Web.Http;
 
@@ -69,6 +70,38 @@ namespace eGradeBook.Controllers
             }
 
             return Ok(logsDto);
-        }        
+        }
+        
+        [Route("logs/{logfile}")]
+        [HttpGet]
+        public HttpResponseMessage GetLogByFileName(string logfile)
+        {
+            string logsFolder = HttpContext.Current.Server.MapPath("~/logs");
+
+            var dirInfo = new DirectoryInfo(logsFolder);
+
+            var files = dirInfo.GetFiles($"{logfile}.log");
+
+            if (files.Count() != 1)
+            {
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            }
+
+            var path = files[0].FullName;
+
+            string data;
+
+            using (var reader = new StreamReader(path))
+            {
+                data = reader.ReadToEnd();
+            }
+
+
+            var response = new HttpResponseMessage(HttpStatusCode.OK);
+            var message = new StringContent(data, encoding: Encoding.UTF8, mediaType: "text/html");
+            response.Content = message;
+
+            return response;           
+        }
     }
 }

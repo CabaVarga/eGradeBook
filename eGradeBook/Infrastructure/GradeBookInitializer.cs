@@ -179,7 +179,7 @@ namespace eGradeBook.Infrastructure
             context.SaveChanges();
 
             #endregion
-            List<SchoolClass> classes = SeederHelper.CreateSchoolClasses(2, 5, 6);
+            List<ClassRoom> classes = SeederHelper.CreateSchoolClasses(2, 5, 6);
             context.ClassRooms.AddRange(classes);
 
             context.SaveChanges();

@@ -16,7 +16,7 @@ namespace eGradeBook.Models
         public int? ClassRoomId { get; set; }
 
         [ForeignKey("ClassRoomId")]
-        public virtual SchoolClass SchoolClass { get; set; }
+        public virtual ClassRoom SchoolClass { get; set; }
 
         // public virtual ICollection<ParentUser> Parents { get; set; }
 
