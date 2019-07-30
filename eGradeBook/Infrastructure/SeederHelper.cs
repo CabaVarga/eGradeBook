@@ -414,7 +414,7 @@ namespace eGradeBook.Infrastructure
 
                     var grade = new Grade()
                     {
-                        Advancement = taking,
+                        Taking = taking,
                         Assigned = date,
                         GradePoint = gradePoint,
                         SchoolTerm = semester

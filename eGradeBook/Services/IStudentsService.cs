@@ -11,13 +11,16 @@ namespace eGradeBook.Services
     {
         IEnumerable<StudentUser> GetStudentsByNameStartingWith(string start);
 
+        // This will have to be gone
         IEnumerable<StudentUser> GetAllStudents();
-
-        IEnumerable<StudentDto> GetAllStudentsDto();
-
-        StudentDto GetStudentByIdDto(int studentId);
 
         // Course GPA Dto GetGpaForStudentCourse(int studentId, int courseId);
         // Student Courses GPA (by course and total) GetGpaForStudent(int studentId)
+
+        // CRUD without the C
+        StudentDto GetStudentById(int studentId);
+        // IEnumerable<StudentDto> GetAllStudents();
+        StudentDto UpdateStudent(int studentId, StudentDto student);
+        StudentDto DeleteStudent(int studentId);
     }
 }

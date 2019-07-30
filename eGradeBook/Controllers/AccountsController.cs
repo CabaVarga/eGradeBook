@@ -14,11 +14,18 @@ using System.Web.Http.Description;
 
 namespace eGradeBook.Controllers
 {
+    /// <summary>
+    /// Web api controller for working with User Accounts
+    /// </summary>
     [RoutePrefix("api/accounts")]
     public class AccountsController : ApiController
     {
         private IUsersService service;
 
+        /// <summary>
+        /// Accounts Controller constructor
+        /// </summary>
+        /// <param name="userService"></param>
         public AccountsController(IUsersService userService)
         {
             this.service = userService;
@@ -160,6 +167,10 @@ namespace eGradeBook.Controllers
             });
         }
 
+        /// <summary>
+        /// Dispose method
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);

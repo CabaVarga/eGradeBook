@@ -17,6 +17,11 @@ namespace eGradeBook.Services
             this.db = db;
         }
 
+        public StudentDto DeleteStudent(int studentId)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<StudentUser> GetAllStudents()
         {
             throw new NotImplementedException();
@@ -34,6 +39,11 @@ namespace eGradeBook.Services
                     ClassRoomId = s.ClassRoomId
                 });
 
+        }
+
+        public StudentDto GetStudentById(int studentId)
+        {
+            throw new NotImplementedException();
         }
 
         public StudentDto GetStudentByIdDto(int studentId)
@@ -68,6 +78,11 @@ namespace eGradeBook.Services
             return db.StudentsRepository.Get(s => s.FirstName.ToLower().StartsWith(start));
 
             // of course we'd use a studentDto above, with FirstName, LastName, SchoolClass and Id.
+        }
+
+        public StudentDto UpdateStudent(int studentId, StudentDto student)
+        {
+            throw new NotImplementedException();
         }
     }
 }

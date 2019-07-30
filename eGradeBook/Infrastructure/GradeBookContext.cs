@@ -9,13 +9,25 @@ using System.Web;
 
 namespace eGradeBook.Infrastructure
 {
+    /// <summary>
+    /// The main entry in the Data Access layer.
+    /// Basically defining our database schema and mapping the domain model into the database and vice-versa
+    /// </summary>
     public class GradeBookContext : IdentityDbContext<GradeBookUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>
     {
+        /// <summary>
+        /// The constructor. Seeding is happening inside here
+        /// </summary>
         public GradeBookContext() : base("eGradeBookContext")
         {
             Database.SetInitializer<GradeBookContext>(new GradeBookInitializer());
         }
 
+        /// <summary>
+        /// Fluent API lives here. What can't be achieved with annotations (or through convention)
+        /// must be defined here.
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
@@ -28,15 +40,45 @@ namespace eGradeBook.Infrastructure
             modelBuilder.Entity<ClassMasterUser>().ToTable("ClassMasterUser");
         }
 
+        /// <summary>
+        /// Mapping the classrooms
+        /// </summary>
         public DbSet<ClassRoom> ClassRooms { get; set; }
+
+        /// <summary>
+        /// Mapping the courses
+        /// </summary>
         public DbSet<Course> Courses { get; set; }
+
+        /// <summary>
+        /// Mapping the grades
+        /// </summary>
         public DbSet<Grade> Grades { get; set; }
+
+        /// <summary>
+        /// Mapping the final grades
+        /// </summary>
         public DbSet<FinalGrade> FinalGrades { get; set; }
+
+        /// <summary>
+        /// Mapping the teacher - course relation
+        /// </summary>
         public DbSet<Teaching> TeachingAssignments { get; set; }
+
+        /// <summary>
+        /// Mapping the student -  parent relation 
+        /// </summary>
         public DbSet<StudentParent> StudentParents { get; set; }
 
         // Additions for new schema
+        /// <summary>
+        /// Mapping the classroom - course - teacher relation
+        /// </summary>
         public DbSet<Program> Programs { get; set; }
+
+        /// <summary>
+        /// Mapping the student - program relation. Base entity for grading.
+        /// </summary>
         public DbSet<Taking> Takings { get; set; }
     }
 }

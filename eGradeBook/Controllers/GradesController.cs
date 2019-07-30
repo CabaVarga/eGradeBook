@@ -11,6 +11,9 @@ using System.Web.Http;
 
 namespace eGradeBook.Controllers
 {
+    /// <summary>
+    /// Web api controller for working with grades
+    /// </summary>
     [RoutePrefix("api/grades")]
     public class GradesController : ApiController
     {
@@ -19,6 +22,11 @@ namespace eGradeBook.Controllers
         private ILogger log;
         private IGradesService gradesService;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="gradesService"></param>
+        /// <param name="log"></param>
         public GradesController(IGradesService gradesService, ILogger log)
         {
             this.gradesService = gradesService;
@@ -27,6 +35,16 @@ namespace eGradeBook.Controllers
             this.log.Log(LogLevel.Info, "Grades service created");
         }
 
+        /// <summary>
+        /// REST Endpoint for grade assignment
+        /// The current version is using URI parameters but a special structure would be more fitting.
+        /// </summary>
+        /// <param name="teacherId"></param>
+        /// <param name="studentId"></param>
+        /// <param name="subjectId"></param>
+        /// <param name="gradePoint"></param>
+        /// <param name="notes"></param>
+        /// <returns></returns>
         [Authorize(Roles = "teachers")]
         public GradeDto PostGrade(int teacherId, int studentId, int subjectId, int gradePoint, string notes = null)
         {
@@ -37,6 +55,12 @@ namespace eGradeBook.Controllers
             return gradesService.CreateGrade(teacherId, studentId, subjectId, gradePoint, notes);
         }
 
+        /// <summary>
+        /// Retrieve all grades.
+        /// It will first identify the user by role and id
+        /// The call the matching service method and return the list of grades
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         public IHttpActionResult GetGrades()
         {
@@ -73,12 +97,26 @@ namespace eGradeBook.Controllers
 
         }
 
+        /// <summary>
+        /// Created for testing purposes because the main endpoint is accessible only for authorized users
+        /// </summary>
+        /// <returns></returns>
         [Route("api/grades/forpublic")]
         public IHttpActionResult GetGradesForPublic()
         {
             return Ok(gradesService.GetGradesByCourses());
         }
 
+        /// <summary>
+        /// Retrieve grades by different criteria
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <param name="gradeId"></param>
+        /// <param name="teacherId"></param>
+        /// <param name="courseId"></param>
+        /// <param name="semesterId"></param>
+        /// <param name="classId"></param>
+        /// <returns></returns>
         [Route("query")]
         public IHttpActionResult GetGradesByParameters(
             [FromUri]int? studentId = null, 
@@ -92,6 +130,11 @@ namespace eGradeBook.Controllers
             return Ok(gradesService.GetGradesByParameters(studentId, gradeId, teacherId, courseId, semesterId, classId));
         }
 
+        /// <summary>
+        /// A short, temporary endpoint for some testing
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
         [Route("query2")]
         public IHttpActionResult GetGradesByParameters2([FromUri]int? studentId)
         {

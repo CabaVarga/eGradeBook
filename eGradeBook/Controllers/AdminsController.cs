@@ -1,4 +1,6 @@
-﻿using eGradeBook.Models.Dtos.Logging;
+﻿using eGradeBook.Models.Dtos.Admins;
+using eGradeBook.Models.Dtos.Logging;
+using eGradeBook.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,12 +10,31 @@ using System.Net.Http;
 using System.Text;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace eGradeBook.Controllers
 {
+    /// <summary>
+    /// Web api controller for working with Admins and for admin exclusive functionalities, like accessing log files, for example.
+    /// </summary>
     [RoutePrefix("api/admins")]
     public class AdminsController : ApiController
     {
+        private IAdminsService service;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="service"></param>
+        public AdminsController(IAdminsService service)
+        {
+            this.service = service;
+        }
+
+        /// <summary>
+        /// First version of working with log files. Needs to be deleted or at least renamed
+        /// </summary>
+        /// <returns></returns>
         // logging probably also has to be done through services...
         public IHttpActionResult GetLogfiles()
         {
@@ -43,6 +64,11 @@ namespace eGradeBook.Controllers
             return Ok();
         }
 
+
+        /// <summary>
+        /// Returns a list of accessible log files
+        /// </summary>
+        /// <returns>A Json object of type LogsDto</returns>
         [Route("logs")]
         [HttpGet]
         public IHttpActionResult GetListOfLogfiles()
@@ -72,6 +98,11 @@ namespace eGradeBook.Controllers
             return Ok(logsDto);
         }
         
+        /// <summary>
+        /// Open a log file for reading, as a text/plain resource
+        /// </summary>
+        /// <param name="logfile"></param>
+        /// <returns></returns>
         [Route("logs/{logfile}")]
         [HttpGet]
         public HttpResponseMessage GetLogByFileName(string logfile)
@@ -103,5 +134,40 @@ namespace eGradeBook.Controllers
 
             return response;           
         }
+
+
+
+
+        #region Update & Delete
+
+        /// <summary>
+        /// Update personal info for an admin user
+        /// </summary>
+        /// <param name="adminId"></param>
+        /// <param name="admin"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("{adminId}")]
+        [ResponseType(typeof(AdminDto))]
+        public IHttpActionResult PutUpdateAdmin(int adminId, AdminDto admin)
+        {
+            return Ok(service.UpdateAdmin(adminId, admin));
+        }
+
+        /// <summary>
+        /// Delete an admin user
+        /// </summary>
+        /// <param name="adminId"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("{parentId}")]
+        [ResponseType(typeof(AdminDto))]
+        public IHttpActionResult DeleteAdmin(int adminId)
+        {
+            return Ok(service.DeleteAdmin(adminId));
+        }
+
+        #endregion
     }
 }
+

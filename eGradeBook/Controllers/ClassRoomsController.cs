@@ -9,16 +9,30 @@ using System.Web.Http;
 
 namespace eGradeBook.Controllers
 {
+    /// <summary>
+    /// Web api controller for working with classrooms related data and relations
+    /// </summary>
     [RoutePrefix("api/classrooms")]
     public class ClassRoomsController : ApiController
     {
+        /// <summary>
+        /// Business logic
+        /// </summary>
         private IClassRoomsService service;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="service"></param>
         public ClassRoomsController(IClassRoomsService service)
         {
             this.service = service;
         }
 
+        /// <summary>
+        /// The R in CRUD, retrieve all classrooms
+        /// </summary>
+        /// <returns></returns>
         [Route("")]
         [HttpGet]
         public IHttpActionResult GetAllClassRooms()
@@ -26,6 +40,11 @@ namespace eGradeBook.Controllers
             return Ok(service.GetAllClassRooms());
         }
 
+        /// <summary>
+        /// Retrieve a classroom by the given Id
+        /// </summary>
+        /// <param name="classRoomId"></param>
+        /// <returns></returns>
         [Route("{classRoomId:int}")]
         [HttpGet]
         public IHttpActionResult GetClassRoomById(int classRoomId)
@@ -33,6 +52,12 @@ namespace eGradeBook.Controllers
             return Ok(service.GetClassRoomById(classRoomId));
         }
 
+        /// <summary>
+        /// Used to enroll a student in a given classroom
+        /// </summary>
+        /// <param name="classRoomId"></param>
+        /// <param name="enroll"></param>
+        /// <returns></returns>
         [Route("{classRoomId}/enrollments")]
         [HttpPost]
         public IHttpActionResult PostEnrollStudent(int classRoomId, ClassRoomEnrollStudentDto enroll)
@@ -45,6 +70,11 @@ namespace eGradeBook.Controllers
             return Ok(service.EnrollStudent(enroll));
         }
 
+        /// <summary>
+        /// Create a new classroom
+        /// </summary>
+        /// <param name="classRoom"></param>
+        /// <returns></returns>
         [Route("")]
         [HttpPost]
         public IHttpActionResult PostCreateClassRoom(ClassRoomRegistrationDto classRoom)

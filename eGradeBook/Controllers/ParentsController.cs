@@ -1,10 +1,12 @@
-﻿using eGradeBook.Services;
+﻿using eGradeBook.Models.Dtos.Parents;
+using eGradeBook.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace eGradeBook.Controllers
 {
@@ -52,5 +54,25 @@ namespace eGradeBook.Controllers
         {
             return Ok(service.GetParentsForStudents());
         }
+
+        #region Update & Delete
+
+        [HttpPut]
+        [Route("{parentId}")]
+        [ResponseType(typeof(ParentDto))]
+        public IHttpActionResult PutUpdateParent(int parentId, ParentDto parent)
+        {
+            return Ok(service.UpdateParent(parentId, parent));
+        }
+
+        [HttpDelete]
+        [Route("{parentId}")]
+        [ResponseType(typeof(ParentDto))]
+        public IHttpActionResult DeleteParent(int parentId)
+        {
+            return Ok(service.DeleteParent(parentId));
+        }
+
+        #endregion
     }
 }

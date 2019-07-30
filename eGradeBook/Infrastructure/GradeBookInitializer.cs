@@ -11,10 +11,17 @@ using System.Web;
 
 namespace eGradeBook.Infrastructure
 {
+    /// <summary>
+    /// Grade Book Initializer. The name tells it all.
+    /// </summary>
     public class GradeBookInitializer : DropCreateDatabaseAlways<GradeBookContext>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        /// <summary>
+        /// The main entry to the database seed. Needs a half day's work to clean up the code.
+        /// </summary>
+        /// <param name="context"></param>
         protected override void Seed(GradeBookContext context)
         {
             logger.Info("Seeding began");

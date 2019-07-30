@@ -8,20 +8,39 @@ using eGradeBook.Repositories;
 
 namespace eGradeBook.Services
 {
+    /// <summary>
+    /// The service layer for working with final grades
+    /// </summary>
     public class FinalGradesService : IFinalGradesService
     {
+        /// <summary>
+        /// We will be using the Unit of work as the repository layer orchestrator
+        /// </summary>
         private IUnitOfWork db;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="db"></param>
         public FinalGradesService(IUnitOfWork db)
         {
             this.db = db;
         }
 
+        /// <summary>
+        /// Retrieve all final grades and convert them to Dtos
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<FinalGradeDto> GetAllFinalGradesDto()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Retrieve all final grades for the given course
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <returns></returns>
         public IEnumerable<FinalGradeDto> GetAllFinalGradesForCourse(int courseId)
         {
             Course course = db.CoursesRepository.GetByID(courseId);
@@ -42,6 +61,11 @@ namespace eGradeBook.Services
                 });
         }
 
+        /// <summary>
+        /// Retrieve all final grades for the given student
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
         public IEnumerable<FinalGradeDto> GetAllFinalGradesForStudent(int studentId)
         {
             StudentUser student = db.StudentsRepository.GetByID(studentId);

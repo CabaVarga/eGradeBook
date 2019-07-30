@@ -10,21 +10,38 @@ using System.Security.Claims;
 
 namespace eGradeBook.Models
 {
+    /// <summary>
+    /// The blueprint for our user models.
+    /// Possible additions: phone number(s), address
+    /// </summary>
     public abstract class GradeBookUser : IdentityUser<int, CustomUserLogin, CustomUserRole, CustomUserClaim>
     {
-        // public override int Id { get; set; }
-
+        /// <summary>
+        /// First name of the user
+        /// </summary>
         [Required]
         [MaxLength(100)]
         public string FirstName { get; set; }
 
+        /// <summary>
+        /// Last name of the user
+        /// </summary>
         [Required]
         [MaxLength(100)]
         public string LastName { get; set; }
 
+        /// <summary>
+        /// The user's gender. The current "m" and "f" is very limited.
+        /// </summary>
         [MaxLength(1)]
+        [RegularExpression("m|f", ErrorMessage = "Acceptable values are \"m\" for Male and \"f\" for Female.")]
         public string Gender { get; set; }
 
+        /// <summary>
+        /// We will be probably using this later on the Front End
+        /// </summary>
+        /// <param name="manager"></param>
+        /// <returns></returns>
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<GradeBookUser, int> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

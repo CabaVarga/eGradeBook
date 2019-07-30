@@ -56,6 +56,11 @@ namespace eGradeBook.Services
             };
         }
 
+        public ParentDto DeleteParent(int parentId)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IEnumerable<StudentDto> GetAllChildren(int parentId)
         {
             ParentUser parent = db.ParentsRepository.Get(p => p.Id == parentId).FirstOrDefault();
@@ -74,6 +79,11 @@ namespace eGradeBook.Services
                 ClassRoomId = c.Student.SchoolClass.Id,
                 StudentId = c.Student.Id
             });
+        }
+
+        public IEnumerable<ParentDto> GetAllParents()
+        {
+            throw new System.NotImplementedException();
         }
 
         public IEnumerable<ParentChildrenDto> GetAllParentsWithTheirChildrent()
@@ -112,6 +122,11 @@ namespace eGradeBook.Services
                     Name = s.FirstName + " " + s.LastName,
                     Parents = s.StudentParents.Select(p => p.Parent.LastName + " " + p.Parent.FirstName).ToList()
                 });
+        }
+
+        public ParentDto UpdateParent(int parentId, ParentDto parent)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace eGradeBook.Controllers
 
         public IHttpActionResult GetAllStudents()
         {
-            return Ok(service.GetAllStudentsDto());
+            return Ok(service.GetAllStudents());
         }
 
         [HttpGet]
@@ -30,7 +30,7 @@ namespace eGradeBook.Controllers
         [Route("{studentId}", Name = "GetStudentById")]
         public IHttpActionResult GetStudentById(int studentId)
         {
-            return Ok(service.GetStudentByIdDto(studentId));
+            return Ok(service.GetStudentById(studentId));
         }
     }
 }

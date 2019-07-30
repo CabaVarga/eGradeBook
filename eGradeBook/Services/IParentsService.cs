@@ -13,10 +13,14 @@ namespace eGradeBook.Services
         IEnumerable<StudentDto> GetAllChildren(int parentId);
         ParentChildrenDto AddChild(int parentId, int studentId);
 
-        ParentDto GetParentById(int parentId);
-
         // THIS WILL GO TO STUDENTS BUT I WANT TO TEST OUT...
         IEnumerable<StudentParentsDto> GetParentsForStudents();
         StudentParentsDto GetParentsForStudent(int studentId);
+
+        // CRUD without the C
+        ParentDto GetParentById(int parentId);
+        IEnumerable<ParentDto> GetAllParents();
+        ParentDto UpdateParent(int parentId, ParentDto parent);
+        ParentDto DeleteParent(int parentId);
     }
 }
