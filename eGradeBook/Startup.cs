@@ -11,7 +11,6 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.DataHandler.Encoder;
 using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security.OAuth;
-using NLog;
 using Owin;
 using Unity;
 using Unity.Lifetime;
