@@ -12,7 +12,6 @@ using Microsoft.Owin.Security.DataHandler.Encoder;
 using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security.OAuth;
 using NLog;
-using NLog.Owin.Logging;
 using Owin;
 using Unity;
 using Unity.Lifetime;
@@ -28,8 +27,9 @@ namespace eGradeBook
     {
         public void Configuration(IAppBuilder app)
         {
+            app.Use<LoggingMiddleware>();
+
             var container = SetupUnity();
-            app.UseNLog();
             ConfigureOAuth(app, container);
 
             HttpConfiguration config = new HttpConfiguration();

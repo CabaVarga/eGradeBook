@@ -134,7 +134,7 @@ namespace eGradeBook.Infrastructure
                 context.SaveChanges();
 
                 CustomUserRole st = new CustomUserRole() { RoleId = studentRole.Id, UserId = s.Id };
-                Debug.WriteLine(s.FirstName + ", Id: " + s.Id);
+                // Debug.WriteLine(s.FirstName + ", Id: " + s.Id);
                 context.SaveChanges();
             }
 
@@ -147,7 +147,7 @@ namespace eGradeBook.Infrastructure
                 context.SaveChanges();
 
                 CustomUserRole st = new CustomUserRole() { RoleId = teacherRole.Id, UserId = t.Id };
-                Debug.WriteLine(t.FirstName + ", Id: " + t.Id);
+                // Debug.WriteLine(t.FirstName + ", Id: " + t.Id);
                 context.SaveChanges();
             }
 
@@ -162,7 +162,7 @@ namespace eGradeBook.Infrastructure
                 context.SaveChanges();
 
                 CustomUserRole st = new CustomUserRole() { RoleId = parentRole.Id, UserId = p.Id };
-                Debug.WriteLine(p.FirstName + ", Id: " + p.Id);
+                // Debug.WriteLine(p.FirstName + ", Id: " + p.Id);
                 context.SaveChanges();
             }
 
