@@ -35,9 +35,12 @@ namespace eGradeBook
             config.DependencyResolver = new UnityDependencyResolver(container);
             WebApiConfig.Register(config);
 
+            // This is the call to our swashbuckle config that needs to be called 
+            // SwaggerConfig.Register(config);
 
             // trebace i cors...
             app.UseWebApi(config);
+            SwaggerConfig.Register(config);
         }
 
         public void ConfigureOAuth(IAppBuilder app, UnityContainer container)

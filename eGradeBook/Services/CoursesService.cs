@@ -79,6 +79,7 @@ namespace eGradeBook.Services
 
             return deletedCourse;
         }
+
         public CourseDto CreateCourse(CourseDto course)
         {
             Course newCourse = new Course()
@@ -98,6 +99,7 @@ namespace eGradeBook.Services
 
             return courseDto;
         }
+
         public CourseDto DeleteCourse(CourseDto course)
         {
             throw new NotImplementedException();

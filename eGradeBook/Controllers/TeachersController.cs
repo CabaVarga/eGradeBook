@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace eGradeBook.Controllers
 {
@@ -30,6 +31,7 @@ namespace eGradeBook.Controllers
 
 
         [Route("{teacherId:int}")]
+        [ResponseType(typeof(TeacherDto))]
         [HttpGet]
         public IHttpActionResult GetTeacherById(int teacherId)
         {

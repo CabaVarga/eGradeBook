@@ -2,6 +2,7 @@
 using eGradeBook.Models.Dtos.Registration;
 using eGradeBook.Models.Dtos.Students;
 using eGradeBook.Services;
+using Swashbuckle.Swagger.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace eGradeBook.Controllers
 {
@@ -29,6 +31,7 @@ namespace eGradeBook.Controllers
         /// <param name="userModel">Dto object with username, first and last names and password.</param>
         /// <returns></returns>
         [AllowAnonymous]
+        [ResponseType(typeof(CreatedResourceDto))]
         [Route("register-admin")]
         public async Task<IHttpActionResult> RegisterAdmin(UserDTO userModel)
         {
