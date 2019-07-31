@@ -6,6 +6,10 @@ using System.Web;
 
 namespace eGradeBook.Infrastructure
 {
+    /// <summary>
+    /// A primitive randomizer implementation
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Deal<T> 
     {
         private List<T> _collection;
