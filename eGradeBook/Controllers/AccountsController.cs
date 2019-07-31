@@ -47,7 +47,7 @@ namespace eGradeBook.Controllers
         /// </summary>
         /// <param name="userModel">Dto object with username, first and last names and password.</param>
         /// <returns></returns>
-        [AllowAnonymous]
+        [Authorize(Roles = "admins")]
         [ResponseType(typeof(CreatedResourceDto))]
         [Route("register-admin")]
         public async Task<IHttpActionResult> RegisterAdmin(UserDTO userModel)

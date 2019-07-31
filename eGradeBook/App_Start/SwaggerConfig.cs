@@ -2,6 +2,7 @@ using System.Web.Http;
 using WebActivatorEx;
 using eGradeBook;
 using Swashbuckle.Application;
+using eGradeBook.SwaggerHelpers;
 
 // [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -61,23 +62,25 @@ namespace eGradeBook
                         //c.BasicAuth("basic")
                         //    .Description("Basic HTTP Authentication");
                         //
-						// NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
+                        // NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
                         //c.ApiKey("apiKey")
                         //    .Description("API Key Authentication")
                         //    .Name("apiKey")
                         //    .In("header");
-                        //
-                        //c.OAuth2("oauth2")
-                        //    .Description("OAuth2 Implicit Grant")
-                        //    .Flow("implicit")
-                        //    .AuthorizationUrl("http://petstore.swagger.wordnik.com/api/oauth/dialog")
-                        //    //.TokenUrl("https://tempuri.org/token")
-                        //    .Scopes(scopes =>
-                        //    {
-                        //        scopes.Add("read", "Read access to protected resources");
-                        //        scopes.Add("write", "Write access to protected resources");
-                        //    });
 
+                        c.OAuth2("oauth2")
+                            .Description("OAuth2 Password Grant")
+                            .Flow("password")
+                            //.AuthorizationUrl("http://petstore.swagger.wordnik.com/api/oauth/dialog")
+                            .TokenUrl("/token")
+                            .Scopes(scopes =>
+                            {
+                                scopes.Add("admins", "Read access to protected resources");
+                                scopes.Add("teachers", "Write access to protected resources");
+                            });
+
+                        c.OperationFilter<AssignOAuth2SecurityRequirements>();
+                        c.DocumentFilter<AuthTokenOperation>();
                         // Set this flag to omit descriptions for any actions decorated with the Obsolete attribute
                         //c.IgnoreObsoleteActions();
 
@@ -242,8 +245,10 @@ namespace eGradeBook
                         //    clientSecret: null,
                         //    realm: "test-realm",
                         //    appName: "Swagger UI"
-                        //    //additionalQueryStringParams: new Dictionary<string, string>() { { "foo", "bar" } }
+                        ////additionalQueryStringParams: new Dictionary<string, string>() { { "foo", "bar" } }
                         //);
+  
+                        c.EnableOAuth2Support("sampleapi", "sampleapi", "sampleapi");
 
                         // If your API supports ApiKey, you can override the default values.
                         // "apiKeyIn" can either be "query" or "header"
