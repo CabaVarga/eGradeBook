@@ -8,6 +8,10 @@ using System.Web.Http;
 
 namespace eGradeBook.Controllers
 {
+    /// <summary>
+    /// Web api for teaching assignments
+    /// NOTE: superfluous (obsolete). Functionality will be in api/teachers, api/courses
+    /// </summary>
     [RoutePrefix("api/teachings")]
     public class TeachingsController : ApiController
     {

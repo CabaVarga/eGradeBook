@@ -9,9 +9,17 @@ using System.Web.Http;
 
 namespace eGradeBook.Controllers
 {
+    /// <summary>
+    /// Web api controller for direct database manipulation
+    /// Deletions, insertions and the like
+    /// </summary>
     [RoutePrefix("api/hidden")]
     public class HiddenController : ApiController
     {
+        /// <summary>
+        /// Delete all data from the database
+        /// </summary>
+        /// <returns></returns>
         [Route("delete-all")]
         [HttpGet]
         public IHttpActionResult DeleteAllData()

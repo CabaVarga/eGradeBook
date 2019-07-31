@@ -9,15 +9,32 @@ using System.Linq.Expressions;
 
 namespace eGradeBook.Services
 {
+    /// <summary>
+    /// Service for everything grades related
+    /// </summary>
     public class GradesService : IGradesService
     {
         private IUnitOfWork db;
 
+        /// <summary>
+        /// Contructor
+        /// </summary>
+        /// <param name="db"></param>
         public GradesService(IUnitOfWork db)
         {
             this.db = db;
         }
 
+        /// <summary>
+        /// Basic grade assignment method, called from the controller.
+        /// Using a special dto with these values would be preferable.
+        /// </summary>
+        /// <param name="teacherId"></param>
+        /// <param name="studentId"></param>
+        /// <param name="subjectId"></param>
+        /// <param name="gradePoint"></param>
+        /// <param name="notes"></param>
+        /// <returns></returns>
         public GradeDto CreateGrade(int teacherId, int studentId, int subjectId, int gradePoint, string notes = null)
         {
             // Teacher Id must be same as the teacher that is accessing the system...
@@ -124,6 +141,10 @@ namespace eGradeBook.Services
             };
         }
 
+        /// <summary>
+        /// Retrieve all grades in the system
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<GradeDto> GetAllGrades()
         {
             // This is the most basic implementation, with every grade included, no ordering, no grouping..
@@ -140,6 +161,11 @@ namespace eGradeBook.Services
             return grades;
         }
 
+        /// <summary>
+        /// Retrieve all grades assigned by the given teacher
+        /// </summary>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
         public IEnumerable<GradeDto> GetAllGradesForTeacher(int teacherId)
         {
             var grades = db.GradesRepository.Get(
@@ -156,6 +182,11 @@ namespace eGradeBook.Services
             return grades;
         }
 
+        /// <summary>
+        /// Retrieve all grades for a given student
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
         public IEnumerable<GradeDto> GetAllGradesForStudent(int studentId)
         {
             var grades = db.GradesRepository.Get(
@@ -172,6 +203,12 @@ namespace eGradeBook.Services
             return grades;
         }
 
+        /// <summary>
+        /// Retrieve all grades for a given parent
+        /// It will call and retrieve grades for parent's children
+        /// </summary>
+        /// <param name="parentId"></param>
+        /// <returns></returns>
         public IEnumerable<GradeDto> GetAllGradesForParent(int parentId)
         {
             var children = db.ParentsRepository.GetByID(parentId).StudentParents.Select(sp => sp.Student);
@@ -196,6 +233,10 @@ namespace eGradeBook.Services
             return grades;
         }
 
+        /// <summary>
+        /// Retrieve all grades for a given course
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<GradeDto> GetGradesByCourses()
         {
             var grades = db.GradesRepository.Get().Select(g => new GradeDto()
@@ -210,6 +251,18 @@ namespace eGradeBook.Services
             return grades;
         }
 
+        /// <summary>
+        /// Retrieve grades by multiple parameters.
+        /// Specialized methods can call this method.
+        /// If the output format needs to be changed, we can supply a converter delegate, maybe?
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <param name="gradeId"></param>
+        /// <param name="teacherId"></param>
+        /// <param name="courseId"></param>
+        /// <param name="semesterId"></param>
+        /// <param name="classId"></param>
+        /// <returns></returns>
         public IEnumerable<GradeDto> GetGradesByParameters(int? studentId, int? gradeId, int? teacherId, int? courseId, int? semesterId, int? classId)
         {
             

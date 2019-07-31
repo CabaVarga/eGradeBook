@@ -112,6 +112,7 @@ namespace eGradeBook
             container.RegisterType<IStudentsService, StudentsService>();
             container.RegisterType<ITeachersService, TeachersService>();
             container.RegisterType<IParentsService, ParentsService>();
+            container.RegisterType<IAdminsService, AdminsService>();
 
             container.RegisterType<ICoursesService, CoursesService>();
             container.RegisterType<IClassRoomsService, ClassRoomsService>();

@@ -7,6 +7,9 @@ using System.Web;
 
 namespace eGradeBook.Services.Converters
 {
+    /// <summary>
+    /// Conversion for teahcer users 
+    /// </summary>
     public static class TeachersConverter
     {
         /// <summary>

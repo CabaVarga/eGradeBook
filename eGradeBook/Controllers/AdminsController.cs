@@ -135,7 +135,18 @@ namespace eGradeBook.Controllers
             return response;           
         }
 
-
+        /// <summary>
+        /// Get an admin user by Id
+        /// </summary>
+        /// <param name="adminId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{adminId}", Name = "GetAdminById")]
+        [ResponseType(typeof(AdminDto))]
+        public IHttpActionResult GetAdminById(int adminId)
+        {
+            return Ok(service.GetAdminById(adminId));
+        }
 
 
         #region Update & Delete
@@ -160,7 +171,7 @@ namespace eGradeBook.Controllers
         /// <param name="adminId"></param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("{parentId}")]
+        [Route("{adminId}")]
         [ResponseType(typeof(AdminDto))]
         public IHttpActionResult DeleteAdmin(int adminId)
         {

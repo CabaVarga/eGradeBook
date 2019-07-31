@@ -237,6 +237,7 @@
     <Compile Include="Repositories\IGenericRepository.cs" />
     <Compile Include="Repositories\IUnitOfWork.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
+    <Compile Include="Services\AdminsService.cs" />
     <Compile Include="Services\ClassRoomsService.cs" />
     <Compile Include="Services\Converters\AdminsConverter.cs" />
     <Compile Include="Services\Converters\ParentsConverter.cs" />

@@ -2,12 +2,14 @@
 using eGradeBook.Models.Dtos.Registration;
 using eGradeBook.Models.Dtos.Students;
 using eGradeBook.Services;
+using NLog;
 using Swashbuckle.Swagger.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -21,14 +23,22 @@ namespace eGradeBook.Controllers
     public class AccountsController : ApiController
     {
         private IUsersService service;
+        private ILogger logger;
+
+        // User data
+        private bool isAdmin;
+        private bool isAuthenticated;
+        private string userEmail;
+        private string userId;
 
         /// <summary>
         /// Accounts Controller constructor
         /// </summary>
         /// <param name="userService"></param>
-        public AccountsController(IUsersService userService)
+        public AccountsController(IUsersService userService, ILogger logger)
         {
             this.service = userService;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -54,13 +64,16 @@ namespace eGradeBook.Controllers
                 return BadRequest(ModelState);
             }
 
-            var userId = service.GetIdOfUser(userModel.UserName);
+            var createdId = service.GetIdOfUser(userModel.UserName);
 
-            var link = Url.Link("GetAdminById", new { adminId = userId });
+            var link = Url.Link("GetAdminById", new { adminId = createdId });
 
-            return CreatedAtRoute("GetAdminById", new { adminId = userId }, new CreatedResourceDto()
+            logger.Info("userid={0} action={1} result={2} status={3}",
+                userId, "RegisterAdmin", createdId, "success");
+
+            return CreatedAtRoute("GetAdminById", new { adminId = createdId }, new CreatedResourceDto()
             {
-                Id = userId,
+                Id = createdId,
                 Location = link,
                 Type = UserType.ADMIN
             });
@@ -176,5 +189,13 @@ namespace eGradeBook.Controllers
             base.Dispose(disposing);
         }
 
+
+        private void FetchUserData()
+        {
+            isAdmin = RequestContext.Principal.IsInRole("admins");
+            isAuthenticated = RequestContext.Principal.Identity.IsAuthenticated;
+            userEmail = ((ClaimsPrincipal)RequestContext.Principal).FindFirst(x => x.Type == ClaimTypes.Email)?.Value;
+            userId = ((ClaimsPrincipal)RequestContext.Principal).FindFirst(x => x.Type == "UserId")?.Value;
+        }
     }
 }

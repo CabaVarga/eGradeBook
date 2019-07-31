@@ -23,7 +23,7 @@ namespace eGradeBook.Services
                 .Select(g => new ProgramsByCoursesDto()
                 {
                     CourseName = g.Key.Name,
-                    SchoolClasses = g.Select(gs => gs.SchoolClass.Name).ToList()
+                    ClassRooms = g.Select(gs => gs.SchoolClass.Name).ToList()
                 });
         }
 

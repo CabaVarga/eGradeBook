@@ -41,6 +41,9 @@ namespace eGradeBook.Models
         /// </summary>
         public string Notes { get; set; }
 
+        /// <summary>
+        /// The date when the final grade was assigned
+        /// </summary>
         public DateTime Assigned { get; set; }
 
         /// <summary>

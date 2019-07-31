@@ -7,20 +7,75 @@ using System.Web;
 
 namespace eGradeBook.Services
 {
+    /// <summary>
+    /// Interface for parents service
+    /// </summary>
     public interface IParentsService
     {
+        /// <summary>
+        /// Get all parents with their children
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<ParentChildrenDto> GetAllParentsWithTheirChildrent();
+
+        /// <summary>
+        /// Get all children of a given parent
+        /// </summary>
+        /// <param name="parentId"></param>
+        /// <returns></returns>
         IEnumerable<StudentDto> GetAllChildren(int parentId);
+
+        /// <summary>
+        /// Connect a student with a parent
+        /// </summary>
+        /// <param name="parentId"></param>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
         ParentChildrenDto AddChild(int parentId, int studentId);
 
         // THIS WILL GO TO STUDENTS BUT I WANT TO TEST OUT...
+
+        /// <summary>
+        /// Get parents by students
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<StudentParentsDto> GetParentsForStudents();
+
+        /// <summary>
+        /// Get parents of a given student
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
         StudentParentsDto GetParentsForStudent(int studentId);
 
         // CRUD without the C
+
+        /// <summary>
+        /// Get parent by Id
+        /// </summary>
+        /// <param name="parentId"></param>
+        /// <returns></returns>
         ParentDto GetParentById(int parentId);
+
+        /// <summary>
+        /// Get all parent users
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<ParentDto> GetAllParents();
+
+        /// <summary>
+        /// Update the given parent
+        /// </summary>
+        /// <param name="parentId"></param>
+        /// <param name="parent"></param>
+        /// <returns></returns>
         ParentDto UpdateParent(int parentId, ParentDto parent);
+
+        /// <summary>
+        /// Delete a parent user from the system
+        /// </summary>
+        /// <param name="parentId"></param>
+        /// <returns></returns>
         ParentDto DeleteParent(int parentId);
     }
 }
