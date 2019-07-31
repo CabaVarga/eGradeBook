@@ -4,6 +4,7 @@ using eGradeBook.Repositories;
 using eGradeBook.Services.Converters;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -75,6 +76,11 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public IEnumerable<TeacherDto> GetAllTeachersDtos()
         {
+            // TODO Delete the exception test
+            int a = 23;
+            int b = 0;
+            int c = a / b;
+
             return db.TeachersRepository.Get()
                 .OfType<TeacherUser>()
                 .Select(t => new TeacherDto()

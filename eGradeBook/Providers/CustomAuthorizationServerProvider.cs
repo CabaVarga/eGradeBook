@@ -14,17 +14,29 @@ using Unity;
 
 namespace eGradeBook.Providers
 {
+    /// <summary>
+    /// Authorization server processing OAuth2 request for tokens
+    /// </summary>
     public class CustomAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
         private UnityContainer container;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        /// <summary>
+        /// Constructo
+        /// </summary>
+        /// <param name="container"></param>
         public CustomAuthorizationServerProvider(UnityContainer container)
         {
             this.container = container;
             logger.Trace("Auth server constructed");
         }
 
+        /// <summary>
+        /// Grant resource owner credentials 
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             // Cannot set in constructor -- of course I cant, for the object itself is not yet created?
@@ -54,12 +66,24 @@ namespace eGradeBook.Providers
             _repo.Dispose();
         }
 
+        /// <summary>
+        /// Validate client's authentication
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             context.Validated();
             return Task.FromResult<object>(null);
         }
 
+        /// <summary>
+        /// Fill the claims inside the token
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="user"></param>
+        /// <param name="roles"></param>
+        /// <returns></returns>
         private static ClaimsIdentity SetClaimsIdentity(OAuthGrantResourceOwnerCredentialsContext context, GradeBookUser user, IEnumerable<string> roles)
         {
             // Just for reference: context.Options.AuthenticationType

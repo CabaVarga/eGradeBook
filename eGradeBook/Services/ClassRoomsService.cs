@@ -8,15 +8,27 @@ using eGradeBook.Repositories;
 
 namespace eGradeBook.Services
 {
+    /// <summary>
+    /// Service for working with classroom entities and related tasks
+    /// </summary>
     public class ClassRoomsService : IClassRoomsService
     {
         private IUnitOfWork db;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="db"></param>
         public ClassRoomsService(IUnitOfWork db)
         {
             this.db = db;
         }
 
+        /// <summary>
+        /// Create classroom
+        /// </summary>
+        /// <param name="classRoom"></param>
+        /// <returns></returns>
         public ClassRoomDto CreateClassRoom(ClassRoomRegistrationDto classRoom)
         {
             ClassRoom newClassRoom = new ClassRoom()
@@ -38,6 +50,13 @@ namespace eGradeBook.Services
             return dto;
         }
 
+        /// <summary>
+        /// Enroll student in classroom
+        /// OPTIONS: enroll in classroom, enroll in program
+        /// TODO use converter for classroom
+        /// </summary>
+        /// <param name="enroll"></param>
+        /// <returns></returns>
         public ClassRoomDto EnrollStudent(ClassRoomEnrollStudentDto enroll)
         {
             // Check if classroom is ok
@@ -92,28 +111,23 @@ namespace eGradeBook.Services
                 .FirstOrDefault();
         }
 
+        /// <summary>
+        /// Return a list of all classrooms
+        /// TODO use converter for ClassRoomDto
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<ClassRoomDto> GetAllClassRooms()
         {
-            return db.ClassRoomsRepository.Get().Select(c => new ClassRoomDto()
-            {
-                ClassRoomId = c.Id,
-                Name = c.Name,
-                SchoolGrade = c.ClassGrade,
-                Students = c.Students?.Select(s => new ClassRoomDto.ClassRoomStudentDto()
-                {
-                    FullName = s.FirstName + " " + s.LastName,
-                    StudentId = s.Id
-                }).ToList(),
-                Program = c.Program?.Select(p => new ClassRoomDto.ClassRoomProgramDto()
-                {
-                    Course = p.Course.Name,
-                    Teacher = p.Teaching.Teacher.FirstName + " " + p.Teaching.Teacher.LastName,
-                    CourseId = p.CourseId,
-                    TeacherId = p.Teaching.TeacherId
-                }).ToList()
-            });
+            return db.ClassRoomsRepository.Get()
+                .Select(c => Converters.ClassRoomConverter.ClassRoomToClassRoomDto(c));
         }
 
+        /// <summary>
+        /// Retrieve a classroom by id
+        /// TODO use converter for ClassRoomDto
+        /// </summary>
+        /// <param name="classRoomId"></param>
+        /// <returns></returns>
         public ClassRoomDto GetClassRoomById(int classRoomId)
         {
             return db.ClassRoomsRepository.Get(cr => cr.Id == classRoomId)

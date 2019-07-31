@@ -8,20 +8,36 @@ using System.Web;
 
 namespace eGradeBook.Services
 {
+    /// <summary>
+    /// Service for working with courses and all tasks related to them
+    /// </summary>
     public class CoursesService : ICoursesService
     {
         private IUnitOfWork db;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="db"></param>
         public CoursesService(IUnitOfWork db)
         {
             this.db = db;
         }
 
+        /// <summary>
+        /// Get all courses
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Course> GetAllCourses()
         {
             return db.CoursesRepository.Get();
         }
 
+        /// <summary>
+        /// Get a course by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Course GetCourseById(int id)
         {
             Course course = db.CoursesRepository.GetByID(id);
@@ -34,11 +50,21 @@ namespace eGradeBook.Services
             return course;
         }
 
+        /// <summary>
+        /// Update course
+        /// </summary>
+        /// <param name="course"></param>
+        /// <returns></returns>
         public CourseDto UpdateCourse(CourseDto course)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Create a new course
+        /// </summary>
+        /// <param name="course"></param>
+        /// <returns></returns>
         public Course CreateCourse(Course course)
         {
             db.CoursesRepository.Insert(course);
@@ -47,6 +73,12 @@ namespace eGradeBook.Services
             return course;
         }
 
+        /// <summary>
+        /// Update course
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="course"></param>
+        /// <returns></returns>
         public Course UpdateCourse(int id, Course course)
         {
             Course courseUpdated = db.CoursesRepository.GetByID(id);
@@ -65,6 +97,11 @@ namespace eGradeBook.Services
             return courseUpdated;
         }
 
+        /// <summary>
+        /// Delete course
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Course DeleteCourse(int id)
         {
             Course deletedCourse = db.CoursesRepository.GetByID(id);
@@ -80,6 +117,11 @@ namespace eGradeBook.Services
             return deletedCourse;
         }
 
+        /// <summary>
+        /// Create course
+        /// </summary>
+        /// <param name="course"></param>
+        /// <returns></returns>
         public CourseDto CreateCourse(CourseDto course)
         {
             Course newCourse = new Course()
@@ -100,11 +142,21 @@ namespace eGradeBook.Services
             return courseDto;
         }
 
+        /// <summary>
+        /// Delete course
+        /// </summary>
+        /// <param name="course"></param>
+        /// <returns></returns>
         public CourseDto DeleteCourse(CourseDto course)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Assign teacher to course
+        /// </summary>
+        /// <param name="teacherId"></param>
+        /// <param name="courseId"></param>
         public void AssignTeacherToCourse(int teacherId, int courseId)
         {
             var user = db.TeachersRepository.GetByID(teacherId);
@@ -117,6 +169,11 @@ namespace eGradeBook.Services
             // ifnull also...
         }
 
+        /// <summary>
+        /// Remove teacher from course
+        /// </summary>
+        /// <param name="teacherId"></param>
+        /// <param name="courseId"></param>
         public void RemoveTeacherFromCourse(int teacherId, int courseId)
         {
             throw new NotImplementedException();

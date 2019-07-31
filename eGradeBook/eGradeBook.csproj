@@ -240,6 +240,7 @@
     <Compile Include="Services\AdminsService.cs" />
     <Compile Include="Services\ClassRoomsService.cs" />
     <Compile Include="Services\Converters\AdminsConverter.cs" />
+    <Compile Include="Services\Converters\ClassRoomConverter.cs" />
     <Compile Include="Services\Converters\ParentsConverter.cs" />
     <Compile Include="Services\Converters\StudentsConverter.cs" />
     <Compile Include="Services\Converters\TeachersConverter.cs" />
@@ -265,6 +266,8 @@
     <Compile Include="Services\TeachingsService.cs" />
     <Compile Include="Services\UsersService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\WebApi\CustomExceptionFilter.cs" />
+    <Compile Include="Utilities\WebApi\NLogExceptionLogger.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="NLog.config">

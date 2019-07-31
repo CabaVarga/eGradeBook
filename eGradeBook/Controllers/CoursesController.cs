@@ -10,21 +10,37 @@ using System.Web.Http;
 
 namespace eGradeBook.Controllers
 {
+    /// <summary>
+    /// Web api for working with Courses
+    /// </summary>
     [RoutePrefix("api/courses")]
     public class CoursesController : ApiController
     {
         private ICoursesService coursesService;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="service"></param>
         public CoursesController(ICoursesService service)
         {
             this.coursesService = service;
         }
 
+        /// <summary>
+        /// Get all courses
+        /// </summary>
+        /// <returns></returns>
         public IHttpActionResult GetAllCourses()
         {
             return Ok(coursesService.GetAllCourses());
         }
 
+        /// <summary>
+        /// Register a new course
+        /// </summary>
+        /// <param name="course"></param>
+        /// <returns></returns>
         [Authorize(Roles = "admins")]
         [Route("")]
         [HttpPost]

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using eGradeBook.Utilities.WebApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 
 namespace eGradeBook
 {
@@ -19,6 +21,12 @@ namespace eGradeBook
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            // Exception filter
+            config.Filters.Add(new CustomExceptionFilter());
+
+            // Exception logging
+            config.Services.Add(typeof(IExceptionLogger), new NLogExceptionLogger());
         }
     }
 }
