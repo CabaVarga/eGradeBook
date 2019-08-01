@@ -266,8 +266,11 @@
     <Compile Include="Services\TeachingsService.cs" />
     <Compile Include="Services\UsersService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="SwaggerHelpers\AssignOAuth2SecurityRequirements.cs" />
+    <Compile Include="SwaggerHelpers\AuthTokenOperation.cs" />
     <Compile Include="Utilities\WebApi\CustomExceptionFilter.cs" />
     <Compile Include="Utilities\WebApi\NLogExceptionLogger.cs" />
+    <Compile Include="Utilities\WebApi\ValidateModelAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="NLog.config">

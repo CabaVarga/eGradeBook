@@ -35,6 +35,7 @@ namespace eGradeBook.Controllers
         /// Accounts Controller constructor
         /// </summary>
         /// <param name="userService"></param>
+        /// <param name="logger"></param>
         public AccountsController(IUsersService userService, ILogger logger)
         {
             this.service = userService;
@@ -47,20 +48,16 @@ namespace eGradeBook.Controllers
         /// </summary>
         /// <param name="userModel">Dto object with username, first and last names and password.</param>
         /// <returns></returns>
-        [AllowAnonymous]
+        [Authorize(Roles = "admins")]
         [ResponseType(typeof(CreatedResourceDto))]
         [Route("register-admin")]
         public async Task<IHttpActionResult> RegisterAdmin(UserDTO userModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             var result = await service.RegisterAdmin(userModel);
 
             if (result == null)
             {
+                // Model state validation already went into validator, something else is the problem
                 return BadRequest(ModelState);
             }
 

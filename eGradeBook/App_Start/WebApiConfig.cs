@@ -22,6 +22,9 @@ namespace eGradeBook
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            // Validation filter
+            config.Filters.Add(new ValidateModelAttribute());
+
             // Exception filter
             config.Filters.Add(new CustomExceptionFilter());
 
