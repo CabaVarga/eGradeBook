@@ -270,6 +270,7 @@
     <Compile Include="SwaggerHelpers\AuthTokenOperation.cs" />
     <Compile Include="Utilities\WebApi\CustomExceptionFilter.cs" />
     <Compile Include="Utilities\WebApi\NLogExceptionLogger.cs" />
+    <Compile Include="Utilities\WebApi\ValidateModelAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="NLog.config">
