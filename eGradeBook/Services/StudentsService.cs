@@ -8,25 +8,46 @@ using eGradeBook.Repositories;
 
 namespace eGradeBook.Services
 {
+    /// <summary>
+    /// Service for working with students and related tasks
+    /// </summary>
     public class StudentsService : IStudentsService
     {
         private IUnitOfWork db;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="db"></param>
         public StudentsService(IUnitOfWork db)
         {
             this.db = db;
         }
 
+        /// <summary>
+        /// Delete a student from the system
+        /// NOTE: This should probably not be here but in accounts....
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
         public StudentDto DeleteStudent(int studentId)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Retrieve all students
+        /// </summary>
+        /// <returns>IEnumerable of StudentUser</returns>
         public IEnumerable<StudentUser> GetAllStudents()
         {
-            throw new NotImplementedException();
+            return db.StudentsRepository.Get();
         }
 
+        /// <summary>
+        /// Retrieve all students
+        /// </summary>
+        /// <returns>IEnumerable of StudentDto</returns>
         public IEnumerable<StudentDto> GetAllStudentsDto()
         {
             return db.StudentsRepository.Get()
@@ -41,11 +62,28 @@ namespace eGradeBook.Services
 
         }
 
+        /// <summary>
+        /// Retrieve a student by Id
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
         public StudentDto GetStudentById(int studentId)
         {
-            throw new NotImplementedException();
+            var student = db.StudentsRepository.Get(s => s.Id == studentId).FirstOrDefault();
+
+            if (student == null)
+            {
+                return null;
+            }
+
+            return Converters.StudentsConverter.StudentToStudentDto(student);
         }
 
+        /// <summary>
+        /// Retrieve a student by Id, another version
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
         public StudentDto GetStudentByIdDto(int studentId)
         {
             StudentUser student = db.StudentsRepository.Get(s => s.Id == studentId)
@@ -71,6 +109,11 @@ namespace eGradeBook.Services
             };
         }
 
+        /// <summary>
+        /// Retrieve students whose name starts with the provided string
+        /// </summary>
+        /// <param name="start"></param>
+        /// <returns></returns>
         public IEnumerable<StudentUser> GetStudentsByNameStartingWith(string start)
         {
             // as a query i'm not sure it will accept the tolower stuff
@@ -80,9 +123,29 @@ namespace eGradeBook.Services
             // of course we'd use a studentDto above, with FirstName, LastName, SchoolClass and Id.
         }
 
+        /// <summary>
+        /// Update student data
+        /// NOTE probably not here but in auth repository....
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <param name="student"></param>
+        /// <returns></returns>
         public StudentDto UpdateStudent(int studentId, StudentDto student)
         {
-            throw new NotImplementedException();
+            var updatedStudent = db.StudentsRepository.Get(s => s.Id == studentId).FirstOrDefault();
+
+            if (updatedStudent == null)
+            {
+                return null;
+            }
+
+            updatedStudent.FirstName = student.FirstName;
+            updatedStudent.LastName = student.LastName;
+
+            db.StudentsRepository.Update(updatedStudent);
+            db.Save();
+
+            return Converters.StudentsConverter.StudentToStudentDto(updatedStudent);
         }
     }
 }

@@ -7,6 +7,9 @@ using System.Web;
 
 namespace eGradeBook.Services.Converters
 {
+    /// <summary>
+    /// Converters for student users and their relations
+    /// </summary>
     public static class StudentsConverter
     {
         /// <summary>
@@ -14,7 +17,7 @@ namespace eGradeBook.Services.Converters
         /// </summary>
         /// <param name="student">A student (full) model</param>
         /// <returns>Student Dto object, ready for Json serialization</returns>
-        public static StudentDto TeacherToTeacherDto(StudentUser student)
+        public static StudentDto StudentToStudentDto(StudentUser student)
         {
             return new StudentDto()
             {

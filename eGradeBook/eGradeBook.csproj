@@ -190,6 +190,11 @@
     <Compile Include="Infrastructure\SeederHelper.cs" />
     <Compile Include="Models\AdminUser.cs" />
     <Compile Include="Models\ClassMasterUser.cs" />
+    <Compile Include="Models\Dtos\Accounts\AdminRegistrationDto.cs" />
+    <Compile Include="Models\Dtos\Accounts\ParentRegistrationDto.cs" />
+    <Compile Include="Models\Dtos\Accounts\StudentRegistrationDto.cs" />
+    <Compile Include="Models\Dtos\Accounts\TeacherRegistrationDto.cs" />
+    <Compile Include="Models\Dtos\Accounts\UserDataDto.cs" />
     <Compile Include="Models\Dtos\Admins\AdminDto.cs" />
     <Compile Include="Models\Dtos\ClassRooms\ClassRoomDto.cs" />
     <Compile Include="Models\Dtos\ClassRooms\ClassRoomEnrollStudentDto.cs" />
@@ -217,7 +222,7 @@
     <Compile Include="Models\Program.cs" />
     <Compile Include="Models\ClassRoom.cs" />
     <Compile Include="Models\Dtos\GradeDto.cs" />
-    <Compile Include="Models\Dtos\UserDto.cs" />
+    <Compile Include="Models\Dtos\Accounts\UserRegistrationDto.cs" />
     <Compile Include="Models\Grade.cs" />
     <Compile Include="Models\GradeBookUser.cs" />
     <Compile Include="Models\IdentityCustomization.cs" />
@@ -268,6 +273,9 @@
     <Compile Include="Startup.cs" />
     <Compile Include="SwaggerHelpers\AssignOAuth2SecurityRequirements.cs" />
     <Compile Include="SwaggerHelpers\AuthTokenOperation.cs" />
+    <Compile Include="Utilities\Exceptions\UserManagerNotCreatedException.cs" />
+    <Compile Include="Utilities\StructuredLogging\Where.cs" />
+    <Compile Include="Utilities\StructuredLogging\With.cs" />
     <Compile Include="Utilities\WebApi\CustomExceptionFilter.cs" />
     <Compile Include="Utilities\WebApi\NLogExceptionLogger.cs" />
     <Compile Include="Utilities\WebApi\ValidateModelAttribute.cs" />

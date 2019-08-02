@@ -3,7 +3,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -30,14 +32,23 @@ namespace eGradeBook.Infrastructure
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            try
+            {
+                modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<AdminUser>().ToTable("AdminUser");
-            modelBuilder.Entity<StudentUser>().ToTable("StudentUser");
-            modelBuilder.Entity<TeacherUser>().ToTable("TeacherUser");
-            modelBuilder.Entity<ParentUser>().ToTable("ParentUser");
-            modelBuilder.Entity<ClassMasterUser>().ToTable("ClassMasterUser");
+                base.OnModelCreating(modelBuilder);
+                modelBuilder.Entity<AdminUser>().ToTable("AdminUser");
+                modelBuilder.Entity<StudentUser>().ToTable("StudentUser");
+                modelBuilder.Entity<TeacherUser>().ToTable("TeacherUser");
+                modelBuilder.Entity<ParentUser>().ToTable("ParentUser");
+                modelBuilder.Entity<ClassMasterUser>().ToTable("ClassMasterUser");
+            }
+
+            catch (EntityException ex)
+            {
+                Debug.WriteLine("Database cannot be created.");
+                throw ex;
+            }
         }
 
         /// <summary>

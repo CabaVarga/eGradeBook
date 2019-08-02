@@ -16,8 +16,8 @@ namespace eGradeBook.Services.Converters
         /// Convert an admin model to admin dto
         /// </summary>
         /// <param name="admin">An admin (full) model</param>
-        /// <returns>Parent Dto object, ready for Json serialization</returns>
-        public static AdminDto ParentToParentDto(AdminUser admin)
+        /// <returns>Admin Dto object, ready for Json serialization</returns>
+        public static AdminDto AdminToAdminDto(AdminUser admin)
         {
             return new AdminDto()
             {

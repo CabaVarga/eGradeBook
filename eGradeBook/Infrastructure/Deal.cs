@@ -17,7 +17,11 @@ namespace eGradeBook.Infrastructure
         private List<T> _used;
         private Random _rnd;
 
-
+        /// <summary>
+        /// Contstructor
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <param name="seed"></param>
         public Deal(ICollection<T> collection, int seed = 100)
         {
             _collection = collection.ToList();
@@ -26,6 +30,10 @@ namespace eGradeBook.Infrastructure
             _rnd = new Random(seed);
         }
 
+        /// <summary>
+        /// Deal one entry from the collection
+        /// </summary>
+        /// <returns></returns>
         public T DealOne()
         {
             int cnt = _remaining.Count;

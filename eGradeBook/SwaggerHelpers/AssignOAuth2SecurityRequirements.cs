@@ -8,8 +8,17 @@ using System.Web.Http.Description;
 
 namespace eGradeBook.SwaggerHelpers
 {
+    /// <summary>
+    /// Swagger helper class
+    /// </summary>
     public class AssignOAuth2SecurityRequirements : IOperationFilter
     {
+        /// <summary>
+        /// Apply per operation
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="schemaRegistry"></param>
+        /// <param name="apiDescription"></param>
         public void Apply(Operation operation, SchemaRegistry schemaRegistry, ApiDescription apiDescription)
         {
             var actFilters = apiDescription.ActionDescriptor.GetFilterPipeline();

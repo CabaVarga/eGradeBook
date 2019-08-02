@@ -70,5 +70,7 @@ namespace eGradeBook.Repositories
         /// <param name="userId"></param>
         /// <returns></returns>
         Task<IList<string>> FindRoles(int userId);
+
+        IdentityResult DeleteUser(GradeBookUser user);
     }
 }

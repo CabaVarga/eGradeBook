@@ -9,9 +9,17 @@ namespace eGradeBook.SwaggerHelpers
 {
     // https://stackoverflow.com/questions/32164117/how-to-show-webapi-oauth-token-endpoint-in-swagger
 
-
+    /// <summary>
+    /// Document filter, add the Auth entry for token tasks
+    /// </summary>
     public class AuthTokenOperation : IDocumentFilter
     {
+        /// <summary>
+        /// Apply
+        /// </summary>
+        /// <param name="swaggerDoc"></param>
+        /// <param name="schemaRegistry"></param>
+        /// <param name="apiExplorer"></param>
         public void Apply(SwaggerDocument swaggerDoc, SchemaRegistry schemaRegistry, IApiExplorer apiExplorer)
         {
             swaggerDoc.paths.Add("/token", new PathItem

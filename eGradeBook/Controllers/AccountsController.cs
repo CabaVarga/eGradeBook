@@ -1,14 +1,8 @@
-﻿using eGradeBook.Models.Dtos;
+﻿using eGradeBook.Models.Dtos.Accounts;
 using eGradeBook.Models.Dtos.Registration;
-using eGradeBook.Models.Dtos.Students;
 using eGradeBook.Services;
+using eGradeBook.Utilities.StructuredLogging;
 using NLog;
-using Swashbuckle.Swagger.Annotations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -51,8 +45,24 @@ namespace eGradeBook.Controllers
         [Authorize(Roles = "admins")]
         [ResponseType(typeof(CreatedResourceDto))]
         [Route("register-admin")]
-        public async Task<IHttpActionResult> RegisterAdmin(UserDTO userModel)
+        public async Task<IHttpActionResult> RegisterAdmin(AdminRegistrationDto userModel)
         {
+            logger.Trace("layer={0} class={1} method={2} stage={3}", "api", "accounts", "registerAdmin", "init");
+            logger.Trace("Registration of new Admin user {@adminuser} initiated", userModel);
+
+            var whereAmI = new Where()
+            {
+                Layer = "Web api",
+                NameSpace = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Namespace,
+                ClassMethod = System.Reflection.MethodBase.GetCurrentMethod().Name,
+                ClassName = GetType().Name
+            };
+
+            logger.Trace("At {@whereAmI}", whereAmI);
+
+            // ("At {@where} user {@who} does {@what} with {@input}
+            // ("Who {@user} When {@timestamp} Where {@context} What {@command} Result{@exception}")
+
             var result = await service.RegisterAdmin(userModel);
 
             if (result == null)
@@ -64,6 +74,8 @@ namespace eGradeBook.Controllers
             var createdId = service.GetIdOfUser(userModel.UserName);
 
             var link = Url.Link("GetAdminById", new { adminId = createdId });
+
+            // If I want to get a user dto i need to make some changes
 
             logger.Info("userid={0} action={1} result={2} status={3}",
                 userId, "RegisterAdmin", createdId, "success");
@@ -77,20 +89,15 @@ namespace eGradeBook.Controllers
         }
 
         /// <summary>
-        /// Register a new admin. It can be done only by an admin. 
+        /// Register a new teacher. It can be done only by an admin. 
         /// Successful registration returns response payload describing and linking to the resource.
         /// </summary>
         /// <param name="userModel">Dto object with username, first and last names and password.</param>
         /// <returns></returns>
         [AllowAnonymous]
         [Route("register-teacher")]
-        public async Task<IHttpActionResult> RegisterTeacher(UserDTO userModel)
+        public async Task<IHttpActionResult> RegisterTeacher(TeacherRegistrationDto userModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             var result = await service.RegisterTeacher(userModel);
 
             if (result == null)
@@ -118,13 +125,8 @@ namespace eGradeBook.Controllers
         /// <returns></returns>
         [AllowAnonymous]
         [Route("register-student")]
-        public async Task<IHttpActionResult> RegisterStudent(UserDTO userModel)
+        public async Task<IHttpActionResult> RegisterStudent(StudentRegistrationDto userModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             var result = await service.RegisterStudent(userModel);
 
             if (result == null)
@@ -143,6 +145,7 @@ namespace eGradeBook.Controllers
                 Type = UserType.STUDENT
             });
         }
+
         /// <summary>
         /// Register a new parent. It can be done only by an admin. 
         /// Successful registration returns response payload describing and linking to the resource.
@@ -151,13 +154,8 @@ namespace eGradeBook.Controllers
         /// <returns></returns>
         [AllowAnonymous]
         [Route("register-parent")]
-        public async Task<IHttpActionResult> RegisterParent(UserDTO userModel)
+        public async Task<IHttpActionResult> RegisterParent(ParentRegistrationDto userModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             var result = await service.RegisterParent(userModel);
 
             if (result == null)
@@ -186,6 +184,29 @@ namespace eGradeBook.Controllers
             base.Dispose(disposing);
         }
 
+        /// <summary>
+        /// Delete user
+        /// NOTE Probably need different endpoints for different types of users
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IHttpActionResult DeleteUser(int id)
+        {
+            return Ok(service.DeleteUser(id));
+        }
+
+        /// <summary>
+        /// Retrieve info about the logged in user
+        /// </summary>
+        /// <returns></returns>
+        [Route("whoami")]
+        [ResponseType(typeof(UserDataDto))]
+        [HttpGet]
+        public IHttpActionResult GetWhoAmI()
+        {
+            FetchUserData();
+            return Ok(service.GetUserData(int.Parse(userId)));
+        }
 
         private void FetchUserData()
         {

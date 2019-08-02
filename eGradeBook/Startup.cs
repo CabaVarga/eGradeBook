@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.DataHandler.Encoder;
 using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security.OAuth;
+using NLog;
 using Owin;
 using Unity;
 using Unity.Lifetime;
@@ -22,8 +23,15 @@ using Unity.WebApi;
 
 namespace eGradeBook
 {
+    /// <summary>
+    /// Owin startup class
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Startup configuration
+        /// </summary>
+        /// <param name="app"></param>
         public void Configuration(IAppBuilder app)
         {
             app.Use<LoggingMiddleware>();
@@ -43,6 +51,11 @@ namespace eGradeBook
             SwaggerConfig.Register(config);
         }
 
+        /// <summary>
+        /// OAuth configuration
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="container"></param>
         public void ConfigureOAuth(IAppBuilder app, UnityContainer container)
         {
             string issuer = "http://localhost/";
@@ -72,6 +85,10 @@ namespace eGradeBook
             app.UseJwtBearerAuthentication(jwtBearerOptions);
         }
 
+        /// <summary>
+        /// Unity configuration
+        /// </summary>
+        /// <returns></returns>
         private UnityContainer SetupUnity()
         {
             var container = new UnityContainer().EnableDiagnostic();

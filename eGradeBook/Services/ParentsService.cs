@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace eGradeBook.Services
 {
+    /// <summary>
+    /// Service for working with parents and related tasks
+    /// </summary>
     public class ParentsService : IParentsService
     {
         private IUnitOfWork db;

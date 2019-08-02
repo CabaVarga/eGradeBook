@@ -7,6 +7,9 @@ using System.Web;
 
 namespace eGradeBook.Models
 {
+    /// <summary>
+    /// Taking model -- A student is taking a given program, a combination of classroom, course and teacher
+    /// </summary>
     public class Taking
     {
         public int Id { get; set; }

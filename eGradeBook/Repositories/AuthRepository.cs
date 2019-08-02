@@ -1,6 +1,7 @@
 ﻿using eGradeBook.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,6 +17,7 @@ namespace eGradeBook.Repositories
     public class AuthRepository : IAuthRepository, IDisposable
     {
         private UserManager<GradeBookUser, int> _userManager;
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Constructor, taking an existing DbContext derived object
@@ -36,6 +38,8 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<IdentityResult> RegisterAdminUser(AdminUser admin, string password)
         {
+            logger.Trace("layer={0} class={1} method={2} stage={3}", "repository", "auth", "registerAdminUser", "start");
+
             var result = await _userManager.CreateAsync(admin, password);
             _userManager.AddToRole(admin.Id, "admins");
             return result;
@@ -49,6 +53,8 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<IdentityResult> RegisterStudentUser(StudentUser student, string password)
         {
+            logger.Trace("layer={0} class={1} method={2} stage={3}", "repository", "auth", "registerStudentUser", "start");
+
             var result = await _userManager.CreateAsync(student, password);
             _userManager.AddToRole(student.Id, "students");
             return result;
@@ -62,6 +68,8 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<IdentityResult> RegisterTeacherUser(TeacherUser teacher, string password)
         {
+            logger.Trace("layer={0} class={1} method={2} stage={3}", "repository", "auth", "registerTeacherUser", "start");
+
             var result = await _userManager.CreateAsync(teacher, password);
             _userManager.AddToRole(teacher.Id, "teachers");
             return result;
@@ -75,6 +83,8 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<IdentityResult> RegisterParentUser(ParentUser parent, string password)
         {
+            logger.Trace("layer={0} class={1} method={2} stage={3}", "repository", "auth", "registerParentUser", "start");
+
             var result = await _userManager.CreateAsync(parent, password);
             _userManager.AddToRole(parent.Id, "parents");
             return result;
@@ -117,6 +127,15 @@ namespace eGradeBook.Repositories
             return await _userManager.GetRolesAsync(userId);
         }
         #endregion
+
+        public IdentityResult DeleteUser(GradeBookUser user)
+        {
+            logger.Trace("layer={0} class={1} method={2} stage={3}", "repository", "auth", "deleteUser", "start");
+
+            _userManager.RemoveFromRole(user.Id, "admins");
+            var deleted = _userManager.Delete(user);
+            return deleted;
+        }
 
         /// <summary>
         /// Hand written Dispose method

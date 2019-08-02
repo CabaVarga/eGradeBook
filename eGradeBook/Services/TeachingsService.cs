@@ -1,6 +1,7 @@
 ﻿using eGradeBook.Models;
 using eGradeBook.Models.Dtos;
 using eGradeBook.Repositories;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -13,10 +14,12 @@ namespace eGradeBook.Services
     public class TeachingsService : ITeachingsService
     {
         private IUnitOfWork db;
+        private ILogger logger;
 
-        public TeachingsService(IUnitOfWork db)
+        public TeachingsService(IUnitOfWork db, ILogger logger)
         {
             this.db = db;
+            this.logger = logger;
         }
 
         public Teaching AssignTeacherToCourse(int courseId, int teacherId)
@@ -58,6 +61,7 @@ namespace eGradeBook.Services
 
         public IEnumerable<TeachingsByCoursesDto> GetAllTeachingAssignmentsByCourses()
         {
+            logger.Info("Retrieving all teachings by course");
             var teachings = db.TeachingAssignmentsRepository.Get()
                 .GroupBy(ta => ta.Course)
                 .Select(ta => new TeachingsByCoursesDto()
@@ -71,6 +75,12 @@ namespace eGradeBook.Services
 
         public IEnumerable<TeachingsByTeachersDto> GetAllTeachingAssignmentsByTeachers()
         {
+            var mlcs = NLog.MappedDiagnosticsContext.GetNames().ToList();
+            var names = NLog.GlobalDiagnosticsContext.GetNames().ToList();
+            var mdlcs = NLog.MappedDiagnosticsLogicalContext.GetNames().ToList();
+
+            logger.Info("Retrieving all teachings by teachers");
+
             var teachings = db.TeachingAssignmentsRepository.Get()
                 .GroupBy(ta => ta.Teacher)
                 .Select(ta => new TeachingsByTeachersDto()

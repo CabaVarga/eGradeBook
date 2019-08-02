@@ -15,23 +15,36 @@ namespace eGradeBook.Providers
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="next"></param>
         public LoggingMiddleware(OwinMiddleware next) : base(next)
         {
         }
 
+        /// <summary>
+        /// Invoke method
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override async Task Invoke(IOwinContext context)
         {
+            MappedDiagnosticsLogicalContext.Set("RequestGuid", Guid.NewGuid().ToString());
+            MappedDiagnosticsContext.Set("RequestGuid", Guid.NewGuid().ToString());
+            GlobalDiagnosticsContext.Set("RequestGuid", Guid.NewGuid().ToString());
 
-            logger.Info("Request from ip={0} method={1} path={2} uri={3} pathbase={4}", 
+            logger.Info("layer={0} ip={1} method={2} path={3} uri={4} phase={5}",
+                "owin",
                 context.Request.RemoteIpAddress, 
                 context.Request.Method, 
                 context.Request.Path,
                 context.Request.Uri,
-                context.Request.PathBase);
+                "request");
 
             await Next.Invoke(context);
 
-            logger.Info("Response status={0}", context.Response.StatusCode);
+            logger.Info("layer={0} status={1} phase={2}", "owin", context.Response.StatusCode, "response");
         }
     }
 }

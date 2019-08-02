@@ -1,6 +1,10 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
@@ -15,6 +19,8 @@ namespace eGradeBook.Repositories
     {
         internal DbContext context;
         internal DbSet<TEntity> dbSet;
+
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Contructor. We are not accessing any of these directly, everything is going through the UnitOfWork and the Dependency Injector
@@ -33,7 +39,16 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public virtual TEntity GetByID(object id)
         {
-            return dbSet.Find(id);
+            try
+            {
+                logger.Trace("layer={0} class={1} method={2} stage={3} id={4} type={5}", "repository", "generic", "GetById", "init", id, typeof(TEntity).ToString());
+                return dbSet.Find(id);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "layer={0} class={1} method={2} stage={3}", "repository", "generic", "GetById", "failure");
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -67,26 +82,41 @@ namespace eGradeBook.Repositories
            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
            string includeProperties = "")
         {
-            IQueryable<TEntity> query = dbSet;
-
-            if (filter != null)
+            try
             {
-                query = query.Where(filter);
+                IQueryable<TEntity> query = dbSet;
+
+                if (filter != null)
+                {
+                    query = query.Where(filter);
+                }
+
+                foreach (var includeProperty in includeProperties.Split
+                    (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProperty);
+                }
+
+                if (orderBy != null)
+                {
+                    return orderBy(query).ToList();
+                }
+                else
+                {
+                    return query.ToList();
+                }
             }
 
-            foreach (var includeProperty in includeProperties.Split
-                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            catch (SqlException ex)
             {
-                query = query.Include(includeProperty);
+                Debug.WriteLine("Database cannot be accessed.");
+                throw ex;
             }
 
-            if (orderBy != null)
+            catch (EntityException ex)
             {
-                return orderBy(query).ToList();
-            }
-            else
-            {
-                return query.ToList();
+                Debug.WriteLine("Database cannot be accessed.");
+                throw ex;
             }
         }
 
