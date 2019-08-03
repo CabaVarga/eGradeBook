@@ -5,6 +5,7 @@ using System.Web;
 using eGradeBook.Models;
 using eGradeBook.Models.Dtos.Students;
 using eGradeBook.Repositories;
+using NLog;
 
 namespace eGradeBook.Services
 {
@@ -14,14 +15,35 @@ namespace eGradeBook.Services
     public class StudentsService : IStudentsService
     {
         private IUnitOfWork db;
+        private ILogger logger;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="db"></param>
-        public StudentsService(IUnitOfWork db)
+        public StudentsService(IUnitOfWork db, ILogger logger)
         {
             this.db = db;
+            this.logger = logger;
+        }
+
+        public void AssignCourseToStudent(StudentCourseDto course)
+        {
+            logger.Info("Service received request for assigning a course to a student {@course}", course);
+
+            StudentUser student = db.StudentsRepository.Get(s => s.Id == course.StudentId).FirstOrDefault();
+            Course theCourse = db.CoursesRepository.Get(c => c.Id == course.CourseId).FirstOrDefault();
+
+            Program program = db.ProgramsRepository.Get(p => p.Teaching.Course.Id == course.CourseId).FirstOrDefault();
+
+            Taking taking = new Taking()
+            {
+                Program = program,
+                Student = student
+            };
+
+            db.TakingsRepository.Insert(taking);
+            db.Save();
         }
 
         /// <summary>
@@ -32,6 +54,8 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public StudentDto DeleteStudent(int studentId)
         {
+            logger.Info("Service received request for deleting a student {studentId}", studentId);
+
             throw new NotImplementedException();
         }
 
@@ -41,6 +65,7 @@ namespace eGradeBook.Services
         /// <returns>IEnumerable of StudentUser</returns>
         public IEnumerable<StudentUser> GetAllStudents()
         {
+            logger.Info("Service received request for returning all students");
             return db.StudentsRepository.Get();
         }
 
@@ -50,6 +75,8 @@ namespace eGradeBook.Services
         /// <returns>IEnumerable of StudentDto</returns>
         public IEnumerable<StudentDto> GetAllStudentsDto()
         {
+            logger.Info("Service received request for returning all students");
+
             return db.StudentsRepository.Get()
                 .Select(s => new StudentDto()
                 {
@@ -63,12 +90,25 @@ namespace eGradeBook.Services
         }
 
         /// <summary>
+        /// Retrieve all students and their parents
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<StudentWithParentsDto> GetAllStudentsWithParents()
+        {
+            logger.Info("Service received request for returning all students with their parents");
+            return db.StudentsRepository.Get()
+                .Select(s => Converters.StudentsConverter.StudentToStudentWithParentsDto(s));
+        }
+
+        /// <summary>
         /// Retrieve a student by Id
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns></returns>
         public StudentDto GetStudentById(int studentId)
         {
+            logger.Info("Service received request for returning a student by Id {studentId}", studentId);
+
             var student = db.StudentsRepository.Get(s => s.Id == studentId).FirstOrDefault();
 
             if (student == null)
@@ -86,6 +126,8 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public StudentDto GetStudentByIdDto(int studentId)
         {
+            logger.Info("Service received request for returning a student by Id {studentId}", studentId);
+
             StudentUser student = db.StudentsRepository.Get(s => s.Id == studentId)
 //                .OfType<StudentUser>()
                 .FirstOrDefault();
@@ -110,17 +152,32 @@ namespace eGradeBook.Services
         }
 
         /// <summary>
-        /// Retrieve students whose name starts with the provided string
+        /// Retrieve students whose first name starts with the provided string
         /// </summary>
         /// <param name="start"></param>
         /// <returns></returns>
-        public IEnumerable<StudentUser> GetStudentsByNameStartingWith(string start)
+        public IEnumerable<StudentDto> GetStudentsByFirstNameStartingWith(string start)
         {
+            logger.Info("Service received request for returning students with First name starting with {start}", start);
             // as a query i'm not sure it will accept the tolower stuff
             // also not sure if it's case sensitive when searching the base..
-            return db.StudentsRepository.Get(s => s.FirstName.ToLower().StartsWith(start));
+            return db.StudentsRepository.Get(s => s.FirstName.ToLower().StartsWith(start))
+                .Select(s => Converters.StudentsConverter.StudentToStudentDto(s));
 
             // of course we'd use a studentDto above, with FirstName, LastName, SchoolClass and Id.
+        }
+
+        /// <summary>
+        /// Retrieve students whose last name starts with the provided string
+        /// </summary>
+        /// <param name="start"></param>
+        /// <returns></returns>
+        public IEnumerable<StudentDto> GetStudentsByLastNameStartingWith(string start)
+        {
+            logger.Info("Service received request for returning students with Last name starting with {start}", start);
+
+            return db.StudentsRepository.Get(s => s.LastName.ToLower().StartsWith(start))
+                .Select(s => Converters.StudentsConverter.StudentToStudentDto(s));
         }
 
         /// <summary>
@@ -132,6 +189,8 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public StudentDto UpdateStudent(int studentId, StudentDto student)
         {
+            logger.Info("Service received request for updating data for student {studentId} with data {@student}", studentId, student);
+
             var updatedStudent = db.StudentsRepository.Get(s => s.Id == studentId).FirstOrDefault();
 
             if (updatedStudent == null)

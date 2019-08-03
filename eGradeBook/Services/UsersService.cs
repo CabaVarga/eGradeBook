@@ -2,6 +2,7 @@
 using eGradeBook.Models.Dtos;
 using eGradeBook.Models.Dtos.Accounts;
 using eGradeBook.Repositories;
+using eGradeBook.Utilities.Common;
 using Microsoft.AspNet.Identity;
 using NLog;
 using System;
@@ -44,7 +45,7 @@ namespace eGradeBook.Services
 
             var clsrms = teacher.Teachings
                 .SelectMany(t => t.Programs)
-                .Select(g => g.SchoolClass.Name)
+                .Select(g => g.ClassRoom.Name)
                 .Distinct();
 
             // Piece of cake...
@@ -153,17 +154,9 @@ namespace eGradeBook.Services
             return await db.AuthRepository.RegisterClassMasterUser(user, userModel.Password);
         }
 
-        public GradeBookUser DeleteUser(int userId)
+        public async Task<IdentityResult> DeleteUser(int userId)
         {
-            GradeBookUser user = db.GradeBookUsersRepository.Get(u => u.Id == userId).FirstOrDefault();
-
-            if (user != null)
-            {
-                var deleted = db.AuthRepository.DeleteUser(user);
-                db.Save();
-            }
-
-            return user;
+            return await db.AuthRepository.DeleteUser(userId);
         }
 
         /// <summary>
@@ -195,19 +188,19 @@ namespace eGradeBook.Services
 
             if (user.GetType() == typeof(AdminUser))
             {
-                dataDto.Role = Role.ADMIN;
+                dataDto.Role = UserRole.ADMIN;
             }
             else if (user.GetType() == typeof(TeacherUser))
             {
-                dataDto.Role = Role.TEACHER;
+                dataDto.Role = UserRole.TEACHER;
             }
             else if (user.GetType() == typeof(StudentUser))
             {
-                dataDto.Role = Role.STUDENT;
+                dataDto.Role = UserRole.STUDENT;
             }
             else
             {
-                dataDto.Role = Role.PARENT;
+                dataDto.Role = UserRole.PARENT;
             }
 
             return dataDto;

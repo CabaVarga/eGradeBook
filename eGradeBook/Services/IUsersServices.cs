@@ -58,7 +58,7 @@ namespace eGradeBook.Services
 
 
 
-        GradeBookUser DeleteUser(int userId);
+        Task<IdentityResult> DeleteUser(int userId);
 
         UserDataDto GetUserData(int userId);
     }

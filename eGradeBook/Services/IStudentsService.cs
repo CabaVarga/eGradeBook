@@ -13,11 +13,18 @@ namespace eGradeBook.Services
     public interface IStudentsService
     {
         /// <summary>
-        /// Retrieve students by their name starting with
+        /// Retrieve students by their first name starting with
         /// </summary>
         /// <param name="start"></param>
         /// <returns></returns>
-        IEnumerable<StudentUser> GetStudentsByNameStartingWith(string start);
+        IEnumerable<StudentDto> GetStudentsByFirstNameStartingWith(string start);
+
+        /// <summary>
+        /// Retrieve students by their last name starting with
+        /// </summary>
+        /// <param name="start"></param>
+        /// <returns></returns>
+        IEnumerable<StudentDto> GetStudentsByLastNameStartingWith(string start);
 
         // This will have to be gone
         /// <summary>
@@ -59,6 +66,14 @@ namespace eGradeBook.Services
         /// Retrieve all students
         /// </summary>
         /// <returns></returns>
-        IEnumerable<StudentDto> GetAllStudentsDto()
+        IEnumerable<StudentDto> GetAllStudentsDto();
+
+        /// <summary>
+        /// Retrieve all students and their parents
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<StudentWithParentsDto> GetAllStudentsWithParents();
+
+        void AssignCourseToStudent(StudentCourseDto course);
     }
 }

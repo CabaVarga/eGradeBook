@@ -1,6 +1,7 @@
 ﻿using eGradeBook.Models.Dtos;
 using eGradeBook.Models.Dtos.Courses;
 using eGradeBook.Services;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,22 +18,26 @@ namespace eGradeBook.Controllers
     public class CoursesController : ApiController
     {
         private ICoursesService coursesService;
+        private ILogger logger;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="service"></param>
-        public CoursesController(ICoursesService service)
+        public CoursesController(ICoursesService service, ILogger logger)
         {
             this.coursesService = service;
+            this.logger = logger;
         }
 
         /// <summary>
         /// Get all courses
         /// </summary>
         /// <returns></returns>
+        [Route("")]
         public IHttpActionResult GetAllCourses()
         {
+            // TODO logging
             return Ok(coursesService.GetAllCourses());
         }
 
@@ -46,6 +51,7 @@ namespace eGradeBook.Controllers
         [HttpPost]
         public IHttpActionResult RegisterCourse(CourseDto course)
         {
+            // TODO logging
             var createdCourse = coursesService.CreateCourse(course);
 
             var link = Url.Route("DefaultApi", new { controller = "Courses", courseId = createdCourse.Id });

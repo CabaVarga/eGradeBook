@@ -22,6 +22,11 @@ namespace eGradeBook.Repositories
         IAuthRepository AuthRepository { get; }
 
         /// <summary>
+        /// Admins repository
+        /// </summary>
+        IGenericRepository<AdminUser> AdminsRepository { get; }
+
+        /// <summary>
         /// Teachers repository
         /// </summary>
         IGenericRepository<TeacherUser> TeachersRepository { get; }

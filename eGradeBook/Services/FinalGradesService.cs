@@ -5,6 +5,7 @@ using System.Web;
 using eGradeBook.Models;
 using eGradeBook.Models.Dtos.FinalGrades;
 using eGradeBook.Repositories;
+using NLog;
 
 namespace eGradeBook.Services
 {
@@ -17,14 +18,16 @@ namespace eGradeBook.Services
         /// We will be using the Unit of work as the repository layer orchestrator
         /// </summary>
         private IUnitOfWork db;
+        private ILogger logger;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="db"></param>
-        public FinalGradesService(IUnitOfWork db)
+        public FinalGradesService(IUnitOfWork db, ILogger logger)
         {
             this.db = db;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -55,7 +58,7 @@ namespace eGradeBook.Services
                 {
                     Student = fg.Taking.Student.FirstName + " " + fg.Taking.Student.LastName,
                     Subject = fg.Taking.Program.Course.Name,
-                    SchoolGrade = fg.Taking.Program.SchoolClass.ClassGrade,
+                    SchoolGrade = fg.Taking.Program.ClassRoom.ClassGrade,
                     Semester = fg.SchoolTerm,
                     FinalGrade = fg.GradePoint
                 });
@@ -82,7 +85,7 @@ namespace eGradeBook.Services
                 {
                     Student = fg.Taking.Student.FirstName + " " + fg.Taking.Student.LastName,
                     Subject = fg.Taking.Program.Course.Name,
-                    SchoolGrade = fg.Taking.Program.SchoolClass.ClassGrade,
+                    SchoolGrade = fg.Taking.Program.ClassRoom.ClassGrade,
                     Semester = fg.SchoolTerm,
                     FinalGrade = fg.GradePoint
                 });

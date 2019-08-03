@@ -40,7 +40,7 @@ namespace eGradeBook.Providers
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             // Cannot set in constructor -- of course I cant, for the object itself is not yet created?
-            logger.Trace("IP: {0}", context.Request.RemoteIpAddress);
+            logger.Trace("IP: {0} username={1}", context.Request.RemoteIpAddress, context.UserName);
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
@@ -53,6 +53,7 @@ namespace eGradeBook.Providers
 
             if (user == null)
             {
+                logger.Trace("username={0} and password combo is not valid", context.UserName);
                 context.SetError("invalid_grant", "The user name or password is incorrect");
                 context.Rejected();
                 return;

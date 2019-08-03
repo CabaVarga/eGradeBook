@@ -2,6 +2,7 @@
 using eGradeBook.Models.Dtos.Teachers;
 using eGradeBook.Repositories;
 using eGradeBook.Services.Converters;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,16 +18,18 @@ namespace eGradeBook.Services
     {
         private IUnitOfWork db;
         private ITeachingsService teachingsService;
+        private ILogger logger;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="db"></param>
         /// <param name="teachingsService"></param>
-        public TeachersService(IUnitOfWork db, ITeachingsService teachingsService)
+        public TeachersService(IUnitOfWork db, ITeachingsService teachingsService, ILogger logger)
         {
             this.db = db;
             this.teachingsService = teachingsService;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -35,6 +38,8 @@ namespace eGradeBook.Services
         /// <param name="assignment"></param>
         public void AssignCourseToTeacher(TeachingAssignmentDto assignment)
         {
+            logger.Info("Service received request for assigning a course to a teacher {@teachingAssignment}", assignment);
+
             teachingsService.AssignTeacherToCourse(assignment.SubjectId, assignment.TeacherId);
         }
 
@@ -45,6 +50,8 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public TeacherDto DeleteTeacher(int teacherId)
         {
+            logger.Info("Service received request for deleting a teacher {teacherId}", teacherId);
+
             TeacherUser deletedTeacher = db.TeachersRepository.Get(t => t.Id == teacherId).FirstOrDefault();
 
             if (deletedTeacher == null)
@@ -64,6 +71,8 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public IEnumerable<TeacherDto> GetAllTeachers()
         {
+            logger.Info("Service received request for retrieving all teachers");
+
             return db.TeachersRepository.Get()
                 // maybe won't work?
                 // also, without include it will take a number of roundtrips to the database...
@@ -76,10 +85,7 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public IEnumerable<TeacherDto> GetAllTeachersDtos()
         {
-            // TODO Delete the exception test
-            int a = 23;
-            int b = 0;
-            int c = a / b;
+            logger.Info("Service received request for retrieving all teachers");
 
             return db.TeachersRepository.Get()
                 .OfType<TeacherUser>()
@@ -99,6 +105,8 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public TeacherDto GetTeacherById(int teacherId)
         {
+            logger.Info("Service received request for retrieving teacher by Id {teacherId}", teacherId);
+
             var teacher = db.TeachersRepository.Get(t => t.Id == teacherId).FirstOrDefault();
             if (teacher == null)
             {
@@ -115,6 +123,7 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public TeacherDto GetTeacherByIdDto(int id)
         {
+            logger.Info("Service received request for retrieving teacher by Id {teacherId}", id);
             //            return db.TeachersRepository.Get(t => t.Id == id)
             //                .OfType<TeacherUser>()
             //                .Select(t => new TeacherDto()
@@ -149,6 +158,8 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public TeacherDto UpdateTeacher(int teacherId, TeacherDto teacher)
         {
+            logger.Info("Service received request for updating teacher {teacherId} with data {@teacher}", teacherId, teacher);
+
             throw new NotImplementedException();
         }
     }

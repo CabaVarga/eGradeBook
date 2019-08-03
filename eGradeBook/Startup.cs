@@ -46,9 +46,12 @@ namespace eGradeBook
             // This is the call to our swashbuckle config that needs to be called 
             // SwaggerConfig.Register(config);
 
+            // TODO plug Cors
             // trebace i cors...
             app.UseWebApi(config);
             SwaggerConfig.Register(config);
+
+            // app.Use<AttachUserDtoToRequestMiddleware?>
         }
 
         /// <summary>
@@ -104,6 +107,7 @@ namespace eGradeBook
 
             // --- Users
             container.RegisterType<IGenericRepository<GradeBookUser>, GenericRepository<GradeBookUser>>();
+            container.RegisterType<IGenericRepository<AdminUser>, GenericRepository<AdminUser>>();
             container.RegisterType<IGenericRepository<TeacherUser>, GenericRepository<TeacherUser>>();
             container.RegisterType<IGenericRepository<StudentUser>, GenericRepository<StudentUser>>();
             container.RegisterType<IGenericRepository<ParentUser>, GenericRepository<ParentUser>>();

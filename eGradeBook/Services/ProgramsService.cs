@@ -1,5 +1,6 @@
 ﻿using eGradeBook.Models.Dtos;
 using eGradeBook.Repositories;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,12 @@ namespace eGradeBook.Services
     public class ProgramsService : IProgramsService
     {
         private IUnitOfWork db;
+        private ILogger logger;
 
-        public ProgramsService(IUnitOfWork db)
+        public ProgramsService(IUnitOfWork db, ILogger logger)
         {
             this.db = db;
+            this.logger = logger;
         }
 
         public IEnumerable<ProgramsByCoursesDto> GetAllProgramsGroupedByCourses()
@@ -23,14 +26,14 @@ namespace eGradeBook.Services
                 .Select(g => new ProgramsByCoursesDto()
                 {
                     CourseName = g.Key.Name,
-                    ClassRooms = g.Select(gs => gs.SchoolClass.Name).ToList()
+                    ClassRooms = g.Select(gs => gs.ClassRoom.Name).ToList()
                 });
         }
 
         public IEnumerable<ProgramsBySchoolClassesDto> GetAllProgramsGroupedBySchoolClasses()
         {
             return db.ProgramsRepository.Get()
-                .GroupBy(p => p.SchoolClass)
+                .GroupBy(p => p.ClassRoom)
                 .Select(g => new ProgramsBySchoolClassesDto()
                 {
                     SchoolClass = g.Key.Name,

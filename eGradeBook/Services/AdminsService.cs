@@ -5,6 +5,7 @@ using System.Web;
 using eGradeBook.Models;
 using eGradeBook.Models.Dtos.Admins;
 using eGradeBook.Repositories;
+using NLog;
 
 namespace eGradeBook.Services
 {
@@ -14,14 +15,16 @@ namespace eGradeBook.Services
     public class AdminsService : IAdminsService
     {
         private IUnitOfWork db;
+        private ILogger logger;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="db"></param>
-        public AdminsService(IUnitOfWork db)
+        public AdminsService(IUnitOfWork db, ILogger logger)
         {
             this.db = db;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -58,7 +61,8 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public IEnumerable<AdminDto> GetAllAdmins()
         {
-            throw new NotImplementedException();
+            return db.AdminsRepository.Get()
+                .Select(a => Converters.AdminsConverter.AdminToAdminDto(a));
         }
 
         /// <summary>

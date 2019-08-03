@@ -2,6 +2,7 @@
 using eGradeBook.Models.Dtos;
 using eGradeBook.Repositories;
 using eGradeBook.Services.Exceptions;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +16,16 @@ namespace eGradeBook.Services
     public class GradesService : IGradesService
     {
         private IUnitOfWork db;
+        private ILogger logger;
 
         /// <summary>
         /// Contructor
         /// </summary>
         /// <param name="db"></param>
-        public GradesService(IUnitOfWork db)
+        public GradesService(IUnitOfWork db, ILogger logger)
         {
             this.db = db;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -110,7 +113,7 @@ namespace eGradeBook.Services
 
             var schoolClass = student.SchoolClass;
 
-            var program = db.ProgramsRepository.Get(p => p.SchoolClass == schoolClass && p.Teaching == assignment && p.Course == subject).FirstOrDefault();
+            var program = db.ProgramsRepository.Get(p => p.ClassRoom == schoolClass && p.Teaching == assignment && p.Course == subject).FirstOrDefault();
 
             // easy way, if null then bad for you. no helpful exception handling though...
             var taking = db.TakingsRepository.Get(t => t.Program.CourseId == subjectId && t.Program.Teaching.TeacherId == teacherId
@@ -268,7 +271,7 @@ namespace eGradeBook.Services
             
             Func<Grade, bool> filter =
                 g => studentId != null ? g.Taking.StudentId == studentId : true &&
-                    gradeId != null ? g.Taking.Program.SchoolClass.ClassGrade == gradeId : true &&
+                    gradeId != null ? g.Taking.Program.ClassRoom.ClassGrade == gradeId : true &&
                     teacherId != null ? g.Taking.Program.Teaching.TeacherId == teacherId : true &&
                     courseId != null ? g.Taking.Program.CourseId == courseId : true &&
                     semesterId != null ? g.SchoolTerm == semesterId : true &&
@@ -277,7 +280,7 @@ namespace eGradeBook.Services
             return db.GradesRepository.Get(
                 filter:
                 g => studentId != null ? g.Taking.StudentId == studentId : true &&
-                    gradeId != null ? g.Taking.Program.SchoolClass.ClassGrade == gradeId : true &&
+                    gradeId != null ? g.Taking.Program.ClassRoom.ClassGrade == gradeId : true &&
                     teacherId != null ? g.Taking.Program.Teaching.TeacherId == teacherId : true &&
                     courseId != null ? g.Taking.Program.CourseId == courseId : true &&
                     semesterId != null ? g.SchoolTerm == semesterId : true &&

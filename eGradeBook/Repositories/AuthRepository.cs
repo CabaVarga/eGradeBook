@@ -56,6 +56,17 @@ namespace eGradeBook.Repositories
             logger.Trace("layer={0} class={1} method={2} stage={3}", "repository", "auth", "registerStudentUser", "start");
 
             var result = await _userManager.CreateAsync(student, password);
+
+            // If assigning a role to an unsuccesful registration
+            // I would get an exception, without having information about the underlying cause
+            // Identity has some built-in model validation too
+            // I'm not using those
+            // But invalid naming is not handled in the model validator.
+            if (!result.Succeeded)
+            {
+                return result;
+            }
+
             _userManager.AddToRole(student.Id, "students");
             return result;
         }
@@ -128,12 +139,38 @@ namespace eGradeBook.Repositories
         }
         #endregion
 
-        public IdentityResult DeleteUser(GradeBookUser user)
+        /// <summary>
+        /// Delete a user from the system
+        /// </summary>
+        /// <param name="userId">The user id of the user we want to delete</param>
+        /// <returns></returns>
+        public async Task<IdentityResult> DeleteUser(int userId)
         {
             logger.Trace("layer={0} class={1} method={2} stage={3}", "repository", "auth", "deleteUser", "start");
 
-            _userManager.RemoveFromRole(user.Id, "admins");
-            var deleted = _userManager.Delete(user);
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                logger.Info("User {userId} not found and could not be deleted", userId);
+                var result = new IdentityResult(new string[] { "User not found" });
+                return result;
+            }
+
+            var roles = await _userManager.GetRolesAsync(user.Id);
+
+            var removedFromRoles = await _userManager.RemoveFromRolesAsync(user.Id, roles.ToArray());
+            
+            if (!removedFromRoles.Succeeded)
+            {
+                // Removal unsuccessful
+                // Log and return
+                logger.Info("Could not remove user {userId} from roles {roles}", userId, roles);
+                return removedFromRoles;
+            }
+
+            var deleted = await _userManager.DeleteAsync(user);
+
             return deleted;
         }
 

@@ -37,5 +37,11 @@ namespace eGradeBook.Services
         /// <param name="enroll"></param>
         /// <returns></returns>
         ClassRoomDto EnrollStudent(ClassRoomEnrollStudentDto enroll);
+
+        /// <summary>
+        /// Create a program associated with a classroom
+        /// </summary>
+        /// <param name="program"></param>
+        void CreateClassRoomProgram(ClassRoomProgramDto program);
     }
 }

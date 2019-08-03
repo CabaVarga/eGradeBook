@@ -102,6 +102,12 @@ namespace eGradeBook.Repositories
         public IGenericRepository<StudentParent> StudentParentsRepository { get; set; }
 
         /// <summary>
+        /// Admins repository
+        /// </summary>
+        [Dependency]
+        public IGenericRepository<AdminUser> AdminsRepository { get; set; }
+
+        /// <summary>
         /// Save all changes.
         /// </summary>
         public void Save()

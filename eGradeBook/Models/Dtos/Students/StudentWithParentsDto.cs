@@ -6,10 +6,20 @@ using System.Web;
 namespace eGradeBook.Models.Dtos.Students
 {
     /// <summary>
-    /// Data transfer object for Student users
-    /// NOTE: we will probably need more than one... with different properties.
+    /// Student with parents listed
     /// </summary>
-    public class StudentDto
+    public class StudentWithParentsDto : StudentDto
+    {
+        /// <summary>
+        /// The students' parents
+        /// </summary>
+        public IEnumerable<ParentsDto> Parents { get; set; }
+    }
+
+    /// <summary>
+    /// Parent dto without circular reference
+    /// </summary>
+    public class ParentsDto
     {
         /// <summary>
         /// First name
@@ -22,18 +32,8 @@ namespace eGradeBook.Models.Dtos.Students
         public string LastName { get; set; }
 
         /// <summary>
-        /// Class room
+        /// Parent Id
         /// </summary>
-        public string ClassRoom { get; set;}
-
-        /// <summary>
-        /// Student Id
-        /// </summary>
-        public int StudentId { get; set; }
-
-        /// <summary>
-        /// Class room Id
-        /// </summary>
-        public int? ClassRoomId { get; set; }
+        public int ParentId { get; set; }
     }
 }

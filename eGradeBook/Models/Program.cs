@@ -36,7 +36,7 @@ namespace eGradeBook.Models
 
         [Required]
         [ForeignKey("SchoolClassId")]
-        public virtual ClassRoom SchoolClass { get; set; }
+        public virtual ClassRoom ClassRoom { get; set; }
 
         public ICollection<StudentUser> Students { get; set; }
     }

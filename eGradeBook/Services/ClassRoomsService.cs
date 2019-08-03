@@ -5,6 +5,7 @@ using System.Web;
 using eGradeBook.Models;
 using eGradeBook.Models.Dtos.ClassRooms;
 using eGradeBook.Repositories;
+using NLog;
 
 namespace eGradeBook.Services
 {
@@ -14,14 +15,16 @@ namespace eGradeBook.Services
     public class ClassRoomsService : IClassRoomsService
     {
         private IUnitOfWork db;
+        private ILogger logger;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="db"></param>
-        public ClassRoomsService(IUnitOfWork db)
+        public ClassRoomsService(IUnitOfWork db, ILogger logger)
         {
             this.db = db;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -48,6 +51,52 @@ namespace eGradeBook.Services
             };
 
             return dto;
+        }
+
+        public void CreateClassRoomProgram(ClassRoomProgramDto program)
+        {
+            ClassRoom classRoom = db.ClassRoomsRepository.Get(c => c.Id == program.ClassRoomId).FirstOrDefault();
+
+            if (classRoom == null)
+            {
+                // I can throw an exception and process it in the handler at the api level
+                return;
+            }
+
+            Course course = db.CoursesRepository.Get(c => c.Id == program.CourseId).FirstOrDefault();
+
+            if (course == null)
+            {
+                return;
+            }
+
+            TeacherUser teacher = db.TeachersRepository.Get(t => t.Id == program.TeacherId).FirstOrDefault();
+
+            if (teacher == null)
+            {
+                return;
+            }
+
+            Teaching teaching = db.TeachingAssignmentsRepository.Get(ta => ta.SubjectId == program.CourseId && ta.TeacherId == program.TeacherId).FirstOrDefault();
+
+            if (teaching == null)
+            {
+                // this is the special case
+                // every id is ok but the teacher does not teach the course
+                // if we went directly, we would not know if the problem is with one of the id's or their combo...
+                return;
+            }
+
+            Program newProgram = new Program()
+            {
+                Course = course,
+                ClassRoom = classRoom,
+                Teaching = teaching,
+                WeeklyFund = program.WeeklyHours
+            };
+
+            db.ProgramsRepository.Insert(newProgram);
+            db.Save();
         }
 
         /// <summary>

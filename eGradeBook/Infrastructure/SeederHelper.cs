@@ -1,4 +1,5 @@
 ﻿using eGradeBook.Models;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,8 @@ namespace eGradeBook.Infrastructure
 {
     public static class SeederHelper
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         public static List<string> maleNames;
         public static List<string> femaleNames;
         public static List<string> lastNames;
@@ -279,6 +282,13 @@ namespace eGradeBook.Infrastructure
             return studentParents;
         }
 
+
+        /// <summary>
+        /// Assign courses to teachers
+        /// </summary>
+        /// <param name="teachers">List of teachers</param>
+        /// <param name="courses">List of courses</param>
+        /// <returns></returns>
         public static List<Teaching> AssignTeaching(List<TeacherUser> teachers, List<Course> courses)
         {
             // This also can't be completely random... if someone teaches math, the weight for teaching another math or physics is greater...
@@ -307,53 +317,81 @@ namespace eGradeBook.Infrastructure
             return assignments;
         }
 
+        /// <summary>
+        /// Create programs (teacher, course and classroom) for every classroom
+        /// </summary>
+        /// <param name="teachings">List of course and teacher combos</param>
+        /// <param name="classes">List of classrooms</param>
+        /// <returns></returns>
         public static List<Program> AssignProgram(List<Teaching> teachings, List<ClassRoom> classes)
         {
             List<Program> programs = new List<Program>();
 
-            // we need the subjects...
+            // as long as we are dealing with both course and teaching connected.
+            // TODO change this
+            // we need the courses...
             var courses = teachings.Select(t => t.Course).Distinct();
 
+            // For each classroom
             foreach (var c in classes)
             {
-                // for every SchoolClass
-                foreach (var s in courses)
+                // Build the program...
+                // for every course
+                foreach (var course in courses)
                 {
-                    // 0. The random element. 10% chance of skipping the course
-                    if (random.Next(100) < 10)
+                    try
                     {
-                        continue;
+                        // 0. The random element. 10% chance of skipping the course
+                        if (random.Next(100) < 10)
+                        {
+                            continue;
+                        }
+
+                        // 1. assign course.
+
+                        // 2. find teachers teaching the course and assign one of them.
+                        var teachers = teachings.Where(t => t.Course.Id == course.Id).Select(t => t.Teacher);
+
+                        int teachersPerCourse = teachings.Where(t => t.Course.Id == course.Id).Count();
+
+                        if (teachersPerCourse == 0)
+                        {
+                            throw new Exception("There are no assigned teachers for the course");
+                        }
+
+                        // In case of multiple teachers teaching the same course
+                        // We need to pick one of them, randomly
+                        int theRandom = random.Next(teachersPerCourse);
+
+                        var program = new Program()
+                        {
+                            ClassRoom = c,
+                            // TODO we will not attach both course and teaching
+                            // only the teaching
+                            Course = course,
+                            Teaching = teachings.Where(t => t.Course.Id == course.Id).ElementAt(theRandom),
+                            WeeklyFund = random.Next(1, 6)
+                        };
+
+                        programs.Add(program);
                     }
-
-                    // 1. assign course.
-
-                    // 2. find teachers teaching the course and assign one of them.
-                    var teachers = teachings.Where(t => t.Course.Id == c.Id).Select(t => t.Teacher);
-
-                    int teachersPerCourse = teachings.Where(t => t.Course.Id == c.Id).Count();
-
-                    if (teachersPerCourse == 0)
+                    catch (Exception ex)
                     {
-                        throw new Exception("There are no assigned teachers for the course");
+                        logger.Debug(ex, "We have found the culprit!");
+                        throw ex;
                     }
-
-                    int theRandom = random.Next(teachersPerCourse);
-
-                    var program = new Program()
-                    {
-                        SchoolClass = c,
-                        Course = s,
-                        Teaching = teachings.Where(t => t.Course.Id == c.Id).ElementAt(theRandom),
-                        WeeklyFund = random.Next(1, 6)
-                    };
-
-                    programs.Add(program);                    
                 }
             }
 
             return programs;
         }
 
+        /// <summary>
+        /// Assign program items (courses of one class) to students
+        /// </summary>
+        /// <param name="students">List of students</param>
+        /// <param name="programs">List of program items</param>
+        /// <returns></returns>
         public static List<Taking> AssignTakings(List<StudentUser> students, List<Program> programs)
         {
             List<Taking> takings = new List<Taking>();
@@ -361,7 +399,7 @@ namespace eGradeBook.Infrastructure
             // for each student find the relevant programs...
             foreach(var s in students)
             {
-                var programsCanTake = programs.Where(p => p.SchoolClass == s.SchoolClass);
+                var programsCanTake = programs.Where(p => p.ClassRoom == s.SchoolClass);
 
                 // how many are there?
                 int programsCount = programsCanTake.Count();

@@ -1,6 +1,7 @@
 ﻿using eGradeBook.Models;
 using eGradeBook.Models.Dtos;
 using eGradeBook.Repositories;
+using Microsoft.Owin.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,16 @@ namespace eGradeBook.Services
     public class CoursesService : ICoursesService
     {
         private IUnitOfWork db;
+        private ILogger logger;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="db"></param>
-        public CoursesService(IUnitOfWork db)
+        public CoursesService(IUnitOfWork db, ILogger logger)
         {
             this.db = db;
+            this.logger = logger;
         }
 
         /// <summary>

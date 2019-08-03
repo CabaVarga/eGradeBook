@@ -36,6 +36,7 @@ namespace eGradeBook.Controllers
         /// </summary>
         /// <returns></returns>
         // logging probably also has to be done through services...
+        [Route("logging-structure")]
         public IHttpActionResult GetLogfiles()
         {
             string logsFolder = HttpContext.Current.Server.MapPath("~/logs");
@@ -146,6 +147,14 @@ namespace eGradeBook.Controllers
         public IHttpActionResult GetAdminById(int adminId)
         {
             return Ok(service.GetAdminById(adminId));
+        }
+
+        [HttpGet]
+        [Route("")]
+        [ResponseType(typeof(IEnumerable<AdminDto>))]
+        public IHttpActionResult GetAdmins()
+        {
+            return Ok(service.GetAllAdmins());
         }
 
 

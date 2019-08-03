@@ -2,6 +2,7 @@
 using eGradeBook.Models.Dtos.Parents;
 using eGradeBook.Models.Dtos.Students;
 using eGradeBook.Repositories;
+using NLog;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,10 +14,12 @@ namespace eGradeBook.Services
     public class ParentsService : IParentsService
     {
         private IUnitOfWork db;
+        private ILogger logger;
 
-        public ParentsService(IUnitOfWork db)
+        public ParentsService(IUnitOfWork db, ILogger logger)
         {
             this.db = db;
+            this.logger = logger;
         }
 
         public ParentChildrenDto AddChild(int parentId, int studentId)
@@ -86,7 +89,8 @@ namespace eGradeBook.Services
 
         public IEnumerable<ParentDto> GetAllParents()
         {
-            throw new System.NotImplementedException();
+            return db.ParentsRepository.Get()
+                .Select(p => Converters.ParentsConverter.ParentToParentDto(p));
         }
 
         public IEnumerable<ParentChildrenDto> GetAllParentsWithTheirChildrent()

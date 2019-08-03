@@ -26,6 +26,203 @@ namespace eGradeBook.Infrastructure
         /// <param name="context"></param>
         protected override void Seed(GradeBookContext context)
         {
+            logger.Info("Seeding started");
+
+            SeedByAlgorithm(context);
+
+            base.Seed(context);
+            logger.Info("Seeding ended");
+        }
+
+        private void SeedByAlgorithm(GradeBookContext context)
+        {
+            try
+            {
+                logger.Info("Seeding began");
+                UserManager<GradeBookUser, int> _userManager =
+                    new UserManager<GradeBookUser, int>(
+                        new UserStore<GradeBookUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(context));
+
+                RoleManager<CustomRole, int> _roleManager =
+                    new RoleManager<CustomRole, int>(new RoleStore<CustomRole, int, CustomUserRole>(context));
+
+                #region Roles
+                CustomRole adminRole = new CustomRole() { Name = "admins" };
+                CustomRole studentRole = new CustomRole() { Name = "students" };
+                CustomRole teacherRole = new CustomRole() { Name = "teachers" };
+                CustomRole parentRole = new CustomRole() { Name = "parents" };
+
+                _roleManager.Create(adminRole);
+                _roleManager.Create(studentRole);
+                _roleManager.Create(teacherRole);
+                _roleManager.Create(parentRole);
+                #endregion
+
+                logger.Info("Roles created");
+
+                #region Admins
+                AdminUser admin_pera = new AdminUser() { UserName = "peraperic", FirstName = "Pera", LastName = "Peric" };
+                AdminUser admin_milan = new AdminUser() { UserName = "milanmilic", FirstName = "Milan", LastName = "Milic" };
+
+                _userManager.Create(admin_pera, "password");
+                _userManager.Create(admin_milan, "password");
+
+                _userManager.AddToRole(admin_pera.Id, "admins");
+                _userManager.AddToRole(admin_milan.Id, "admins");
+                #endregion
+
+                logger.Info("Admins created");
+
+                #region Courses, FOR NOW LET's use these
+                List<Course> courses = new List<Course>();
+                courses.Add(new Course() { Name = "Mathematics", ColloqialName = "Matis" });
+                courses.Add(new Course() { Name = "Chemistry", ColloqialName = "Hemija" });
+                courses.Add(new Course() { Name = "Biology", ColloqialName = "Biologija" });
+                courses.Add(new Course() { Name = "Informatics", ColloqialName = "Informatika" });
+                courses.Add(new Course() { Name = "German", ColloqialName = "Nemacki" });
+                courses.Add(new Course() { Name = "History", ColloqialName = "Istorija" });
+                courses.Add(new Course() { Name = "English", ColloqialName = "Engleski" });
+
+                context.Courses.AddRange(courses);
+
+                context.SaveChanges();
+                #endregion
+
+                logger.Info("Courses cretated");
+
+                #region Students
+
+                List<StudentUser> students = SeederHelper.CreateStudents(20);
+
+                foreach (var s in students)
+                {
+                    context.Users.Add(s);
+                    context.SaveChanges();
+
+                    CustomUserRole st = new CustomUserRole() { RoleId = studentRole.Id, UserId = s.Id };
+                    context.SaveChanges();
+                }
+
+                #endregion
+
+                logger.Info("Students created");
+
+                #region Teachers
+                List<TeacherUser> teachers = SeederHelper.CreateTeachers(10);
+
+                foreach (var t in teachers)
+                {
+                    context.Users.Add(t);
+                    context.SaveChanges();
+
+                    CustomUserRole st = new CustomUserRole() { RoleId = teacherRole.Id, UserId = t.Id };
+                    context.SaveChanges();
+                }
+                #endregion
+
+                logger.Info("Teachers created");
+
+                #region Parents
+                List<StudentParent> studentParents = SeederHelper.CreateRealisticParents(students);
+
+                List<ParentUser> parents = studentParents.Select(sp => sp.Parent).Distinct().ToList();
+
+                foreach (var p in parents)
+                {
+                    context.Users.Add(p);
+
+                    context.SaveChanges();
+
+                    CustomUserRole st = new CustomUserRole() { RoleId = parentRole.Id, UserId = p.Id };
+                    context.SaveChanges();
+                }
+
+                context.StudentParents.AddRange(studentParents);
+                context.SaveChanges();
+                #endregion
+
+                logger.Info("Parents created");
+
+                #region Teaching (assignments)
+
+                // --- Teaching assignments *** This one could have been added to curriculum....
+                List<Teaching> teachings = SeederHelper.AssignTeaching(teachers, courses);
+
+                context.TeachingAssignments.AddRange(teachings);
+                context.SaveChanges();
+
+                #endregion
+
+                logger.Info("Teaching assignments created");
+
+                #region Classrooms
+                List<ClassRoom> classes = SeederHelper.CreateSchoolClasses(2, 5, 6);
+                context.ClassRooms.AddRange(classes);
+
+                context.SaveChanges();
+
+                #endregion
+
+                logger.Info("Classrooms created");
+
+                #region Student enrollments, Programs
+                SeederHelper.AssignStudentsToClasses(students, classes, 2);
+                context.SaveChanges();
+
+                logger.Info("Students assigned to classrooms");
+
+                List<Program> programs = SeederHelper.AssignProgram(teachings, classes);
+                context.Programs.AddRange(programs);
+
+                logger.Info("Students assigned to takings");
+
+                context.SaveChanges();
+                #endregion
+
+                logger.Info("Students enrolled, programs created");
+
+                #region Learning (student learning a subject)
+
+                List<Taking> takings = SeederHelper.AssignTakings(students, programs);
+                context.Takings.AddRange(takings);
+                context.SaveChanges();
+                #endregion
+
+                logger.Info("Takings creadte");
+
+                #region Grades 
+                List<Grade> grades = SeederHelper.AssignGrades(takings, new DateTime(2018, 9, 1), new DateTime(2018, 12, 31), 1, 2, 5);
+                context.Grades.AddRange(grades);
+                context.SaveChanges();
+                #endregion
+
+                logger.Info("Grades assigned");
+
+                #region Final Grades
+                List<FinalGrade> finalGrades = SeederHelper.AssignFinalGrades(takings, new DateTime(2018, 9, 1), new DateTime(2018, 12, 31), 1);
+                context.FinalGrades.AddRange(finalGrades);
+                context.SaveChanges();
+
+                #endregion
+
+                logger.Info("Final grades assigned");
+            }
+
+            catch (SqlException ex)
+            {
+                Debug.WriteLine("Database cannot be accessed.");
+                throw ex;
+            }
+
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Seeding the database failed");
+                throw ex;
+            }
+        }
+
+        private void SeedByHand(GradeBookContext context)
+        {
             try
             {
                 logger.Info("Seeding began");
@@ -285,10 +482,6 @@ namespace eGradeBook.Infrastructure
                 Debug.WriteLine("Seeding the database failed");
                 throw ex;
             }
-
-
-            base.Seed(context);
-            logger.Info("Seeding ended");
         }
     }
 }

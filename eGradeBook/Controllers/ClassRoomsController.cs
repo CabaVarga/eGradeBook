@@ -81,5 +81,20 @@ namespace eGradeBook.Controllers
         {
             return Ok(service.CreateClassRoom(classRoom));
         }
+
+        /// <summary>
+        /// Create a new program entry associated with the given classroom
+        /// </summary>
+        /// <param name="classRoomId">Class room Id</param>
+        /// <param name="program">Class room program dto</param>
+        /// <returns></returns>
+        [Route("{classRoomId:int}/programs")]
+        [HttpPost]
+        public IHttpActionResult PostCreateProgramOfClassRoom(int classRoomId, ClassRoomProgramDto program)
+        {
+            service.CreateClassRoomProgram(program);
+
+            return Ok();
+        }
     }
 }

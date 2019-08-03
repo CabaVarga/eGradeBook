@@ -198,6 +198,7 @@
     <Compile Include="Models\Dtos\Admins\AdminDto.cs" />
     <Compile Include="Models\Dtos\ClassRooms\ClassRoomDto.cs" />
     <Compile Include="Models\Dtos\ClassRooms\ClassRoomEnrollStudentDto.cs" />
+    <Compile Include="Models\Dtos\ClassRooms\ClassRoomProgramDto.cs" />
     <Compile Include="Models\Dtos\ClassRooms\ClassRoomRegistrationDto.cs" />
     <Compile Include="Models\Dtos\CourseDto.cs" />
     <Compile Include="Models\Dtos\CoursesBySchoolClassesDto.cs" />
@@ -211,8 +212,10 @@
     <Compile Include="Models\Dtos\ProgramsBySchoolClassesDto.cs" />
     <Compile Include="Models\Dtos\Registration\CreatedResourceDto.cs" />
     <Compile Include="Models\Dtos\SchoolClassesByCourses.cs" />
+    <Compile Include="Models\Dtos\Students\StudentCourseDto.cs" />
     <Compile Include="Models\Dtos\Students\StudentDto.cs" />
     <Compile Include="Models\Dtos\Students\StudentParentsDto.cs" />
+    <Compile Include="Models\Dtos\Students\StudentWithParentsDto.cs" />
     <Compile Include="Models\Dtos\Teachers\TeachingAssignmentDto.cs" />
     <Compile Include="Models\Dtos\TeachingsByCoursesDto.cs" />
     <Compile Include="Models\Dtos\TeachingsByTeachersDto.cs" />
@@ -273,11 +276,15 @@
     <Compile Include="Startup.cs" />
     <Compile Include="SwaggerHelpers\AssignOAuth2SecurityRequirements.cs" />
     <Compile Include="SwaggerHelpers\AuthTokenOperation.cs" />
+    <Compile Include="Utilities\Common\UserRole.cs" />
     <Compile Include="Utilities\Exceptions\UserManagerNotCreatedException.cs" />
     <Compile Include="Utilities\StructuredLogging\Where.cs" />
     <Compile Include="Utilities\StructuredLogging\With.cs" />
     <Compile Include="Utilities\WebApi\CustomExceptionFilter.cs" />
+    <Compile Include="Utilities\WebApi\IdentityHelper.cs" />
+    <Compile Include="Utilities\WebApi\LoggedInUser.cs" />
     <Compile Include="Utilities\WebApi\NLogExceptionLogger.cs" />
+    <Compile Include="Utilities\WebApi\RequestUserData.cs" />
     <Compile Include="Utilities\WebApi\ValidateModelAttribute.cs" />
   </ItemGroup>
   <ItemGroup>

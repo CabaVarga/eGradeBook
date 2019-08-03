@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using eGradeBook.Utilities.Common;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
@@ -26,27 +27,6 @@ namespace eGradeBook.Models.Dtos.Registration
         /// Type of user
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public UserType Type { get; set; }
+        public UserRole UserRole { get; set; }
     }
-
-    /// <summary>
-    /// Used to categorize user
-    /// </summary>
-    public enum UserType {
-        /// <summary>
-        /// An admin user
-        /// </summary>
-        ADMIN,
-        /// <summary>
-        /// A teacher user
-        /// </summary>
-        TEACHER,
-        /// <summary>
-        /// A student user
-        /// </summary>
-        STUDENT,
-        /// <summary>
-        /// A parent user
-        /// </summary>
-        PARENT }
 }

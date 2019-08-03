@@ -28,5 +28,28 @@ namespace eGradeBook.Services.Converters
                 ClassRoomId = student.ClassRoomId
             };
         }
+
+        /// <summary>
+        /// Convert a student model to student with parents dto
+        /// </summary>
+        /// <param name="student">A student (full) model</param>
+        /// <returns>Student Dto object, ready for Json serialization</returns>
+        public static StudentWithParentsDto StudentToStudentWithParentsDto(StudentUser student)
+        {
+            return new StudentWithParentsDto()
+            {
+                StudentId = student.Id,
+                FirstName = student.FirstName,
+                LastName = student.LastName,
+                ClassRoom = student.SchoolClass.Name,
+                ClassRoomId = student.ClassRoomId,
+                Parents = student.StudentParents.Select(sp => new ParentsDto()
+                {
+                    FirstName = sp.Parent.FirstName,
+                    LastName = sp.Parent.LastName,
+                    ParentId = sp.ParentId
+                })
+            };
+        }
     }
 }

@@ -30,17 +30,12 @@ namespace eGradeBook.Utilities.WebApi
             var exceptionType = actionExecutedContext.Exception.GetType();
 
             if (exceptionType == typeof(UnauthorizedAccessException))
-
             {
-
                 message = "Access to the Web API is not authorized.";
-
                 status = HttpStatusCode.Unauthorized;
-
             }
 
             else if (exceptionType == typeof(DivideByZeroException))
-
             {
                 var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
                 {
@@ -48,31 +43,18 @@ namespace eGradeBook.Utilities.WebApi
                     ReasonPhrase = "ItemNotFound"
                 };
 
-
-
-
                 throw new HttpResponseException(resp);
-
             }
-
             else
-
             {
-
                 message = "Not found.";
-
                 status = HttpStatusCode.NotFound;
-
             }
 
             actionExecutedContext.Response = new HttpResponseMessage()
-
             {
-
                 Content = new StringContent(message, System.Text.Encoding.UTF8, "text/plain"),
-
                 StatusCode = status
-
             };
 
             base.OnException(actionExecutedContext);
@@ -94,43 +76,25 @@ namespace eGradeBook.Utilities.WebApi
             var exceptionType = actionExecutedContext.Exception.GetType();
 
             if (exceptionType == typeof(UnauthorizedAccessException))
-
             {
-
                 message = "Access to the Web API is not authorized.";
-
                 status = HttpStatusCode.Unauthorized;
-
             }
-
             else if (exceptionType == typeof(DivideByZeroException))
-
             {
-
                 message = "Internal Server Error. Division by zero happened....";
-
                 status = HttpStatusCode.InternalServerError;
-
             }
-
             else
-
             {
-
                 message = "Not found.";
-
                 status = HttpStatusCode.NotFound;
-
             }
 
             actionExecutedContext.Response = new HttpResponseMessage()
-
             {
-
                 Content = new StringContent(message, System.Text.Encoding.UTF8, "text/plain"),
-
                 StatusCode = status
-
             };
 
             return base.OnExceptionAsync(actionExecutedContext, cancellationToken);

@@ -71,6 +71,11 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         Task<IList<string>> FindRoles(int userId);
 
-        IdentityResult DeleteUser(GradeBookUser user);
+        /// <summary>
+        /// Delete a user from the system
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        Task<IdentityResult> DeleteUser(int userId);
     }
 }

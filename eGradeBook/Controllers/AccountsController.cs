@@ -1,7 +1,9 @@
 ﻿using eGradeBook.Models.Dtos.Accounts;
 using eGradeBook.Models.Dtos.Registration;
 using eGradeBook.Services;
+using eGradeBook.Utilities.Common;
 using eGradeBook.Utilities.StructuredLogging;
+using eGradeBook.Utilities.WebApi;
 using NLog;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -18,12 +20,6 @@ namespace eGradeBook.Controllers
     {
         private IUsersService service;
         private ILogger logger;
-
-        // User data
-        private bool isAdmin;
-        private bool isAuthenticated;
-        private string userEmail;
-        private string userId;
 
         /// <summary>
         /// Accounts Controller constructor
@@ -47,7 +43,7 @@ namespace eGradeBook.Controllers
         [Route("register-admin")]
         public async Task<IHttpActionResult> RegisterAdmin(AdminRegistrationDto userModel)
         {
-            logger.Trace("layer={0} class={1} method={2} stage={3}", "api", "accounts", "registerAdmin", "init");
+            logger.Trace("layer={0} class={1} method={2} stage={3}", "api", "accounts", "registerAdmin", "start");
             logger.Trace("Registration of new Admin user {@adminuser} initiated", userModel);
 
             var whereAmI = new Where()
@@ -76,15 +72,16 @@ namespace eGradeBook.Controllers
             var link = Url.Link("GetAdminById", new { adminId = createdId });
 
             // If I want to get a user dto i need to make some changes
+            var data = IdentityHelper.FetchUserData(RequestContext);
 
             logger.Info("userid={0} action={1} result={2} status={3}",
-                userId, "RegisterAdmin", createdId, "success");
+                data.UserId, "RegisterAdmin", createdId, "success");
 
             return CreatedAtRoute("GetAdminById", new { adminId = createdId }, new CreatedResourceDto()
             {
                 Id = createdId,
                 Location = link,
-                Type = UserType.ADMIN
+                UserRole = UserRole.ADMIN
             });
         }
 
@@ -98,6 +95,15 @@ namespace eGradeBook.Controllers
         [Route("register-teacher")]
         public async Task<IHttpActionResult> RegisterTeacher(TeacherRegistrationDto userModel)
         {
+            var data = IdentityHelper.FetchUserData(RequestContext);
+
+            logger.Trace("layer={0} class={1} method={2} stage={3}", "api", "accounts", "registerTeacher", "start");
+            logger.Trace("Registration of new Teacher user {@teacheruser} by {@loggedUser}", userModel, new
+            {
+                UserId = data.UserId,
+                UserRole = data.UserRole
+            });
+
             var result = await service.RegisterTeacher(userModel);
 
             if (result == null)
@@ -113,7 +119,7 @@ namespace eGradeBook.Controllers
             {
                 Id = userId,
                 Location = link,
-                Type = UserType.TEACHER
+                UserRole = UserRole.TEACHER
             });
         }
 
@@ -129,9 +135,16 @@ namespace eGradeBook.Controllers
         {
             var result = await service.RegisterStudent(userModel);
 
+
             if (result == null)
             {
                 return BadRequest(ModelState);
+            }
+
+            // Had to change auth repo implementation
+            if (!result.Succeeded)
+            {
+                logger.Error("Student registration failed {errors}", result.Errors);
             }
 
             var userId = service.GetIdOfUser(userModel.UserName);
@@ -142,7 +155,7 @@ namespace eGradeBook.Controllers
             {
                 Id = userId,
                 Location = link,
-                Type = UserType.STUDENT
+                UserRole = UserRole.STUDENT
             });
         }
 
@@ -156,6 +169,11 @@ namespace eGradeBook.Controllers
         [Route("register-parent")]
         public async Task<IHttpActionResult> RegisterParent(ParentRegistrationDto userModel)
         {
+            // Authentication and authorization data about logged in user
+            var userData = IdentityHelper.FetchUserData(RequestContext);
+
+            logger.Info("User {@user} is attempting to register a parent {@parent}", userData, userModel);
+
             var result = await service.RegisterParent(userModel);
 
             if (result == null)
@@ -171,7 +189,7 @@ namespace eGradeBook.Controllers
             {
                 Id = userId,
                 Location = link,
-                Type = UserType.PARENT
+                UserRole = UserRole.PARENT
             });
         }
 
@@ -190,9 +208,28 @@ namespace eGradeBook.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IHttpActionResult DeleteUser(int id)
+        public async Task<IHttpActionResult> DeleteUser(int id)
         {
-            return Ok(service.DeleteUser(id));
+            var currentUser = IdentityHelper.FetchUserData(RequestContext);
+            var current = IdentityHelper.GetLoggedInUser(currentUser);
+
+            logger.Trace("Removal of user {userId} initiated by {@loggedUser}", id, current); 
+
+            var result = await service.DeleteUser(id);
+
+            if (result == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // Had to change auth repo implementation
+            if (!result.Succeeded)
+            {
+                logger.Error("User removal failed {errors}", result.Errors);
+                return InternalServerError();
+            }
+
+            return Ok();
         }
 
         /// <summary>
@@ -204,16 +241,16 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetWhoAmI()
         {
-            FetchUserData();
-            return Ok(service.GetUserData(int.Parse(userId)));
-        }
+            var userData = IdentityHelper.FetchUserData(RequestContext);
 
-        private void FetchUserData()
-        {
-            isAdmin = RequestContext.Principal.IsInRole("admins");
-            isAuthenticated = RequestContext.Principal.Identity.IsAuthenticated;
-            userEmail = ((ClaimsPrincipal)RequestContext.Principal).FindFirst(x => x.Type == ClaimTypes.Email)?.Value;
-            userId = ((ClaimsPrincipal)RequestContext.Principal).FindFirst(x => x.Type == "UserId")?.Value;
+            if (userData.UserId == null)
+            {
+                return NotFound();
+            }
+
+            int myId = (int)userData.UserId;
+
+            return Ok(service.GetUserData(myId));
         }
     }
 }
