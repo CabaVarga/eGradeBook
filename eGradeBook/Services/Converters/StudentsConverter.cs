@@ -24,7 +24,7 @@ namespace eGradeBook.Services.Converters
                 StudentId = student.Id,
                 FirstName = student.FirstName,
                 LastName = student.LastName,
-                ClassRoom = student.SchoolClass.Name,
+                ClassRoom = student.ClassRoom.Name,
                 ClassRoomId = student.ClassRoomId
             };
         }
@@ -41,7 +41,7 @@ namespace eGradeBook.Services.Converters
                 StudentId = student.Id,
                 FirstName = student.FirstName,
                 LastName = student.LastName,
-                ClassRoom = student.SchoolClass.Name,
+                ClassRoom = student.ClassRoom.Name,
                 ClassRoomId = student.ClassRoomId,
                 Parents = student.StudentParents.Select(sp => new ParentsDto()
                 {

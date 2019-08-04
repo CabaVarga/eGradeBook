@@ -1,4 +1,5 @@
 ﻿using eGradeBook.Models.Dtos;
+using eGradeBook.Models.Dtos.Grades;
 using eGradeBook.Services;
 using NLog;
 using System;

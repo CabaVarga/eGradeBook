@@ -5,15 +5,23 @@ using System.Web;
 
 namespace eGradeBook.Models
 {
+    /// <summary>
+    /// Parent of a student of the school
+    /// </summary>
     public class ParentUser : GradeBookUser
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ParentUser()
         {
             this.StudentParents = new HashSet<StudentParent>();
         }
 
-        // public virtual ICollection<StudentUser> Children { get; set; }
-
+        /// <summary>
+        /// A gerund, association between students and parents
+        /// TODO add the key to be directly accessible
+        /// </summary>
         public virtual ICollection<StudentParent> StudentParents { get; set; }
     }
 }

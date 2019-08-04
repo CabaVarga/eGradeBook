@@ -7,6 +7,9 @@ using System.Web;
 
 namespace eGradeBook.Services.Converters
 {
+    /// <summary>
+    /// Converter for Parent entities
+    /// </summary>
     public static class ParentsConverter
     {
         /// <summary>

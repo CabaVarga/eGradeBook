@@ -200,7 +200,7 @@
     <Compile Include="Models\Dtos\ClassRooms\ClassRoomEnrollStudentDto.cs" />
     <Compile Include="Models\Dtos\ClassRooms\ClassRoomProgramDto.cs" />
     <Compile Include="Models\Dtos\ClassRooms\ClassRoomRegistrationDto.cs" />
-    <Compile Include="Models\Dtos\CourseDto.cs" />
+    <Compile Include="Models\Dtos\Courses\CourseDto.cs" />
     <Compile Include="Models\Dtos\CoursesBySchoolClassesDto.cs" />
     <Compile Include="Models\Dtos\Courses\CourseRegistrationDto.cs" />
     <Compile Include="Models\Dtos\FinalGrades\FinalGradeDto.cs" />
@@ -211,7 +211,7 @@
     <Compile Include="Models\Dtos\ProgramsByCoursesDto.cs" />
     <Compile Include="Models\Dtos\ProgramsBySchoolClassesDto.cs" />
     <Compile Include="Models\Dtos\Registration\CreatedResourceDto.cs" />
-    <Compile Include="Models\Dtos\SchoolClassesByCourses.cs" />
+    <Compile Include="Models\Dtos\ClassRoomsByCourses.cs" />
     <Compile Include="Models\Dtos\Students\StudentCourseDto.cs" />
     <Compile Include="Models\Dtos\Students\StudentDto.cs" />
     <Compile Include="Models\Dtos\Students\StudentParentsDto.cs" />
@@ -224,7 +224,7 @@
     <Compile Include="Models\FinalGrade.cs" />
     <Compile Include="Models\Program.cs" />
     <Compile Include="Models\ClassRoom.cs" />
-    <Compile Include="Models\Dtos\GradeDto.cs" />
+    <Compile Include="Models\Dtos\Grades\GradeDto.cs" />
     <Compile Include="Models\Dtos\Accounts\UserRegistrationDto.cs" />
     <Compile Include="Models\Grade.cs" />
     <Compile Include="Models\GradeBookUser.cs" />
@@ -249,6 +249,9 @@
     <Compile Include="Services\ClassRoomsService.cs" />
     <Compile Include="Services\Converters\AdminsConverter.cs" />
     <Compile Include="Services\Converters\ClassRoomConverter.cs" />
+    <Compile Include="Services\Converters\CoursesConverter.cs" />
+    <Compile Include="Services\Converters\FinalGradesConverter.cs" />
+    <Compile Include="Services\Converters\GradesConverter.cs" />
     <Compile Include="Services\Converters\ParentsConverter.cs" />
     <Compile Include="Services\Converters\StudentsConverter.cs" />
     <Compile Include="Services\Converters\TeachersConverter.cs" />

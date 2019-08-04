@@ -6,18 +6,20 @@ using System.Web;
 namespace eGradeBook.Models.Dtos
 {
     /// <summary>
-    /// Teachers grouped by courses they teach
+    /// ClassRooms grouped by courses being taught in them
     /// </summary>
-    public class TeachingsByCoursesDto
+    public class ClassRoomsByCourses
     {
         /// <summary>
-        /// Course, only the name -- suboptimal
+        /// The course
         /// </summary>
         public string Course { get; set; }
 
+        // This is same as programs by .. only without the details....
+
         /// <summary>
-        /// List of teachers full name
+        /// ClassRooms
         /// </summary>
-        public ICollection<string> Teachers { get; set; }
+        public ICollection<string> ClassRooms { get; set; }
     }
 }

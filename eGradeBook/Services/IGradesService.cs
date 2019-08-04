@@ -1,4 +1,5 @@
 ﻿using eGradeBook.Models.Dtos;
+using eGradeBook.Models.Dtos.Grades;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace eGradeBook.Models.Dtos
+namespace eGradeBook.Models.Dtos.Grades
 {
     /// <summary>
     /// Dto for grades, limited for now

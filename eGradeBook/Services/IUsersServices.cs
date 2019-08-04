@@ -51,15 +51,25 @@ namespace eGradeBook.Services
 
         /// <summary>
         /// Get an id for a username
+        /// NOTE heavily used in Accounts controller
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
         int GetIdOfUser(string username);
 
 
-
+        /// <summary>
+        /// Delete a user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         Task<IdentityResult> DeleteUser(int userId);
 
+        /// <summary>
+        /// Used by the Who Am I and Who Is in the accounts / users controller
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         UserDataDto GetUserData(int userId);
     }
 }

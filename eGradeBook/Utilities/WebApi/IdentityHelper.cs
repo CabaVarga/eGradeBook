@@ -80,5 +80,22 @@ namespace eGradeBook.Utilities.WebApi
                 UserRole = userData.UserRole
             };
         }
+
+        /// <summary>
+        /// Get Logged in user with id and role directly from Context
+        /// Used when we are not needing every information
+        /// </summary>
+        /// <param name="requestContext"></param>
+        /// <returns></returns>
+        public static LoggedInUser GetLoggedInUser(HttpRequestContext requestContext)
+        {
+            var userData = FetchUserData(requestContext);
+
+            return new LoggedInUser()
+            {
+                UserId = userData.UserId,
+                UserRole = userData.UserRole
+            };
+        }
     }
 }

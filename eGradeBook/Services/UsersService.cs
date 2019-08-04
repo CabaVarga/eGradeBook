@@ -58,7 +58,7 @@ namespace eGradeBook.Services
 
             // From classroom:
 
-            var tchrs = schoolClass.Students.SelectMany(s => s.Advancements)
+            var tchrs = schoolClass.Students.SelectMany(s => s.Takings)
                 .Select(t => t.Program)
                 .Select(g => g.Teaching)
                 .Select(tc => tc.Teacher)

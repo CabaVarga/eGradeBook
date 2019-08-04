@@ -149,6 +149,10 @@ namespace eGradeBook.Controllers
             return Ok(service.GetAdminById(adminId));
         }
 
+        /// <summary>
+        /// Get all Admin users
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("")]
         [ResponseType(typeof(IEnumerable<AdminDto>))]

@@ -7,6 +7,7 @@ namespace eGradeBook.Models.Dtos
 {
     /// <summary>
     /// List courses by classrooms
+    /// NOTE the pair dto is ClassRoomsByCourses
     /// </summary>
     public class CoursesBySchoolClassesDto
     {

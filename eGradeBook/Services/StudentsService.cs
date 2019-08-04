@@ -82,7 +82,7 @@ namespace eGradeBook.Services
                 {
                     FirstName = s.FirstName,
                     LastName = s.LastName,
-                    ClassRoom = s.SchoolClass.Name,
+                    ClassRoom = s.ClassRoom.Name,
                     StudentId = s.Id,
                     ClassRoomId = s.ClassRoomId
                 });
@@ -146,8 +146,8 @@ namespace eGradeBook.Services
                 FirstName = student.FirstName,
                 LastName = student.LastName,
                 StudentId = student.Id,
-                ClassRoom = student.SchoolClass?.Name,
-                ClassRoomId = student.SchoolClass?.Id
+                ClassRoom = student.ClassRoom?.Name,
+                ClassRoomId = student.ClassRoom?.Id
             };
         }
 

@@ -8,8 +8,15 @@ using eGradeBook.SwaggerHelpers;
 
 namespace eGradeBook
 {
+    /// <summary>
+    /// Swagger configuration file
+    /// </summary>
     public class SwaggerConfig
     {
+        /// <summary>
+        /// Register swagger
+        /// </summary>
+        /// <param name="config"></param>
         public static void Register(HttpConfiguration config)
         {
             var thisAssembly = typeof(SwaggerConfig).Assembly;

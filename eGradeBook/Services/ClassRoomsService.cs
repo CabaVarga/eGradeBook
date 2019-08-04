@@ -5,6 +5,7 @@ using System.Web;
 using eGradeBook.Models;
 using eGradeBook.Models.Dtos.ClassRooms;
 using eGradeBook.Repositories;
+using eGradeBook.Services.Converters;
 using NLog;
 
 namespace eGradeBook.Services
@@ -21,6 +22,7 @@ namespace eGradeBook.Services
         /// Constructor
         /// </summary>
         /// <param name="db"></param>
+        /// <param name="logger"></param>
         public ClassRoomsService(IUnitOfWork db, ILogger logger)
         {
             this.db = db;
@@ -34,6 +36,8 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public ClassRoomDto CreateClassRoom(ClassRoomRegistrationDto classRoom)
         {
+            logger.Trace("Service received classroom creation request {classRoomData}", classRoom);
+
             ClassRoom newClassRoom = new ClassRoom()
             {
                 Name = classRoom.Name,
@@ -53,8 +57,16 @@ namespace eGradeBook.Services
             return dto;
         }
 
+        /// <summary>
+        /// Create classRoom program item.
+        /// Every classRoom has a program consisting of courses taught by one teacher per course.
+        /// </summary>
+        /// <param name="program"></param>
         public void CreateClassRoomProgram(ClassRoomProgramDto program)
         {
+            logger.Trace("Service received request for classroom program creation {programData}", program);
+
+            // I see. Manual setup.
             ClassRoom classRoom = db.ClassRoomsRepository.Get(c => c.Id == program.ClassRoomId).FirstOrDefault();
 
             if (classRoom == null)
@@ -92,11 +104,33 @@ namespace eGradeBook.Services
                 Course = course,
                 ClassRoom = classRoom,
                 Teaching = teaching,
-                WeeklyFund = program.WeeklyHours
+                WeeklyHours = program.WeeklyHours
             };
 
             db.ProgramsRepository.Insert(newProgram);
             db.Save();
+        }
+
+        /// <summary>
+        /// Delete a classroom
+        /// </summary>
+        /// <param name="classRoomId"></param>
+        /// <returns></returns>
+        public ClassRoomDto DeleteClassRoom(int classRoomId)
+        {
+            logger.Trace("Service received a request to delete classroom {classRoomId}", classRoomId);
+
+            ClassRoom classRoom = db.ClassRoomsRepository.GetByID(classRoomId);
+
+            if (classRoom == null)
+            {
+                return null;
+            }
+
+            db.ClassRoomsRepository.Delete(classRoom);
+            db.Save();
+
+            return ClassRoomConverter.ClassRoomToClassRoomDto(classRoom);
         }
 
         /// <summary>
@@ -144,6 +178,8 @@ namespace eGradeBook.Services
 
             db.Save();
 
+            // This is only the classroom with the list of enrolled students
+            // no courses.
             return db.ClassRoomsRepository.Get(c => c.Id == classRoom.Id)
                 .Select(cr => new ClassRoomDto()
                 {
@@ -179,26 +215,40 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public ClassRoomDto GetClassRoomById(int classRoomId)
         {
-            return db.ClassRoomsRepository.Get(cr => cr.Id == classRoomId)
-                .Select(c => new ClassRoomDto()
-                {
-                    ClassRoomId = c.Id,
-                    Name = c.Name,
-                    SchoolGrade = c.ClassGrade,
-                    Students = c.Students?.Select(s => new ClassRoomDto.ClassRoomStudentDto()
-                    {
-                        FullName = s.FirstName + " " + s.LastName,
-                        StudentId = s.Id
-                    }).ToList(),
-                    Program = c.Program?.Select(p => new ClassRoomDto.ClassRoomProgramDto()
-                    {
-                        Course = p.Course.Name,
-                        Teacher = p.Teaching.Teacher.FirstName + " " + p.Teaching.Teacher.LastName,
-                        CourseId = p.CourseId,
-                        TeacherId = p.Teaching.TeacherId
-                    }).ToList()
-                })
-                .FirstOrDefault();               
+            logger.Trace("Service received request to return classroom by Id {classRoomId}", classRoomId);
+            var classRoom = db.ClassRoomsRepository.GetByID(classRoomId);
+
+            if (classRoom == null)
+            {
+                return null;
+            }
+
+            return ClassRoomConverter.ClassRoomToClassRoomDto(classRoom);
+        }
+
+        /// <summary>
+        /// Update classroom data
+        /// </summary>
+        /// <param name="classRoomId"></param>
+        /// <param name="classRoom"></param>
+        /// <returns></returns>
+        public ClassRoomDto UpdateClassRoom(int classRoomId, ClassRoomDto classRoom)
+        {
+            logger.Trace("Service received a request to update classroom Id {classRoomId} with data {classRoomData}", classRoomId, classRoom);
+            ClassRoom updatedClassRoom = db.ClassRoomsRepository.GetByID(classRoomId);
+
+            if (updatedClassRoom == null)
+            {
+                return null;
+            }
+
+            updatedClassRoom.ClassGrade = classRoom.SchoolGrade;
+            updatedClassRoom.Name = classRoom.Name;
+
+            db.ClassRoomsRepository.Update(updatedClassRoom);
+            db.Save();
+
+            return ClassRoomConverter.ClassRoomToClassRoomDto(updatedClassRoom);
         }
     }
 }

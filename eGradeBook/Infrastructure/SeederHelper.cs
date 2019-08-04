@@ -95,7 +95,7 @@ namespace eGradeBook.Infrastructure
 
             foreach(var s in students)
             {
-                s.SchoolClass = classes.ElementAt(random.Next(classCount));
+                s.ClassRoom = classes.ElementAt(random.Next(classCount));
             }
 
             // What about context save? we'll see if it works...
@@ -370,7 +370,7 @@ namespace eGradeBook.Infrastructure
                             // only the teaching
                             Course = course,
                             Teaching = teachings.Where(t => t.Course.Id == course.Id).ElementAt(theRandom),
-                            WeeklyFund = random.Next(1, 6)
+                            WeeklyHours = random.Next(1, 6)
                         };
 
                         programs.Add(program);
@@ -399,7 +399,7 @@ namespace eGradeBook.Infrastructure
             // for each student find the relevant programs...
             foreach(var s in students)
             {
-                var programsCanTake = programs.Where(p => p.ClassRoom == s.SchoolClass);
+                var programsCanTake = programs.Where(p => p.ClassRoom == s.ClassRoom);
 
                 // how many are there?
                 int programsCount = programsCanTake.Count();

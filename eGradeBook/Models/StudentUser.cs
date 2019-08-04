@@ -6,22 +6,43 @@ using System.Web;
 
 namespace eGradeBook.Models
 {
+    /// <summary>
+    /// A student of the school
+    /// </summary>
     public class StudentUser : GradeBookUser
     {
+        /// <summary>
+        /// Constructor
+        /// NOTE After some reading I'm not sure that this is a good practice
+        /// </summary>
         public StudentUser()
         {
             this.StudentParents = new HashSet<StudentParent>();
         }
 
+        /// <summary>
+        /// Which classroom is the student enrolled in?
+        /// Not a Requested property because we can define a student and enroll in a class later.
+        /// Perhaps. Probably not :(
+        /// </summary>
         public int? ClassRoomId { get; set; }
 
+        /// <summary>
+        /// The ClassRoom the Student is enrolled in
+        /// NOTE in a more ideal solution this would be an associative relation
+        /// </summary>
         [ForeignKey("ClassRoomId")]
-        public virtual ClassRoom SchoolClass { get; set; }
+        public virtual ClassRoom ClassRoom { get; set; }
 
-        // public virtual ICollection<ParentUser> Parents { get; set; }
-
+        /// <summary>
+        /// Associative class between Students and their parents
+        /// NOTE Enables later improvements like a defined relation between a Guardian and a student...
+        /// </summary>
         public virtual ICollection<StudentParent> StudentParents { get; set; }
 
-        public virtual ICollection<Taking> Advancements { get; set; }
+        /// <summary>
+        /// What courses does the student take?
+        /// </summary>
+        public virtual ICollection<Taking> Takings { get; set; }
     }
 }

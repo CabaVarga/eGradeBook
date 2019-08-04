@@ -2532,3 +2532,416 @@
 { "time": "2019-08-03 16:18:56.6726", "level": "TRACE", "message": "layer=repository class=auth method=deleteUser stage=start" }
 { "time": "2019-08-03 16:18:56.7466", "level": "ERROR", "message": "DELETE http:\/\/localhost:50663\/api\/Accounts\/3" }
 { "time": "2019-08-03 16:18:56.7556", "level": "INFO", "message": "layer=owin status=404 phase=response" }
+{ "time": "2019-08-03 17:01:17.1089", "level": "TRACE", "message": "Auth server constructed" }
+{ "time": "2019-08-03 17:01:17.3929", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/ uri=http:\/\/localhost:50663\/ phase=request" }
+{ "time": "2019-08-03 17:01:19.2720", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/ uri=http:\/\/localhost:50663\/ phase=request" }
+{ "time": "2019-08-03 17:01:19.3250", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:19.3590", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.0527", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/index uri=http:\/\/localhost:50663\/swagger\/ui\/index phase=request" }
+{ "time": "2019-08-03 17:01:32.1607", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.1717", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/reset-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/reset-css phase=request" }
+{ "time": "2019-08-03 17:01:32.1717", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/object-assign-pollyfill-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/object-assign-pollyfill-js phase=request" }
+{ "time": "2019-08-03 17:01:32.1717", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-slideto-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-slideto-min-js phase=request" }
+{ "time": "2019-08-03 17:01:32.2017", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.2087", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-1-8-0-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-1-8-0-min-js phase=request" }
+{ "time": "2019-08-03 17:01:32.2087", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.2187", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.1717", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/screen-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/screen-css phase=request" }
+{ "time": "2019-08-03 17:01:32.2187", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/typography-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/typography-css phase=request" }
+{ "time": "2019-08-03 17:01:32.2347", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.2347", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-wiggle-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-wiggle-min-js phase=request" }
+{ "time": "2019-08-03 17:01:32.2347", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/handlebars-4-0-5-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/handlebars-4-0-5-js phase=request" }
+{ "time": "2019-08-03 17:01:32.2647", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.2697", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.2887", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.2997", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/lodash-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/lodash-min-js phase=request" }
+{ "time": "2019-08-03 17:01:32.2997", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.2697", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-ba-bbq-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-ba-bbq-min-js phase=request" }
+{ "time": "2019-08-03 17:01:32.3287", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/backbone-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/backbone-min-js phase=request" }
+{ "time": "2019-08-03 17:01:32.3287", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/swagger-ui-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/swagger-ui-min-js phase=request" }
+{ "time": "2019-08-03 17:01:32.3637", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.3837", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.4057", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.4057", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.4057", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jsoneditor-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jsoneditor-min-js phase=request" }
+{ "time": "2019-08-03 17:01:32.4237", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/marked-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/marked-js phase=request" }
+{ "time": "2019-08-03 17:01:32.4237", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/swagger-oauth-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/swagger-oauth-js phase=request" }
+{ "time": "2019-08-03 17:01:32.4417", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.4417", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/images\/logo_small-png uri=http:\/\/localhost:50663\/swagger\/ui\/images\/logo_small-png phase=request" }
+{ "time": "2019-08-03 17:01:32.4557", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.3637", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/highlight-9-1-0-pack_extended-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/highlight-9-1-0-pack_extended-js phase=request" }
+{ "time": "2019-08-03 17:01:32.3927", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/highlight-9-1-0-pack-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/highlight-9-1-0-pack-js phase=request" }
+{ "time": "2019-08-03 17:01:32.4557", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.4697", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.4837", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.4837", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.7648", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/print-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/print-css phase=request" }
+{ "time": "2019-08-03 17:01:32.7648", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:32.9238", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/docs\/v1 uri=http:\/\/localhost:50663\/swagger\/docs\/v1 phase=request" }
+{ "time": "2019-08-03 17:01:33.3318", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:37.7030", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/images\/explorer_icons-png uri=http:\/\/localhost:50663\/swagger\/ui\/images\/explorer_icons-png phase=request" }
+{ "time": "2019-08-03 17:01:37.7030", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/images\/throbber-gif uri=http:\/\/localhost:50663\/swagger\/ui\/images\/throbber-gif phase=request" }
+{ "time": "2019-08-03 17:01:37.7650", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:37.7750", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:01:39.6702", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/api\/teachers uri=http:\/\/localhost:50663\/api\/teachers phase=request" }
+{ "time": "2019-08-03 17:01:39.9202", "level": "INFO", "message": "Service received request for retrieving all teachers" }
+{ "time": "2019-08-03 17:01:43.8684", "level": "INFO", "message": "Seeding started" }
+{ "time": "2019-08-03 17:01:43.8914", "level": "INFO", "message": "Seeding began" }
+{ "time": "2019-08-03 17:01:44.9285", "level": "INFO", "message": "Roles created" }
+{ "time": "2019-08-03 17:01:45.4935", "level": "INFO", "message": "Admins created" }
+{ "time": "2019-08-03 17:01:45.5135", "level": "INFO", "message": "Courses cretated" }
+{ "time": "2019-08-03 17:01:45.6075", "level": "INFO", "message": "Students created" }
+{ "time": "2019-08-03 17:01:45.6625", "level": "INFO", "message": "Teachers created" }
+{ "time": "2019-08-03 17:01:45.8685", "level": "INFO", "message": "Parents created" }
+{ "time": "2019-08-03 17:01:45.8975", "level": "INFO", "message": "Teaching assignments created" }
+{ "time": "2019-08-03 17:01:45.9185", "level": "INFO", "message": "Classrooms created" }
+{ "time": "2019-08-03 17:01:45.9415", "level": "INFO", "message": "Students assigned to classrooms" }
+{ "time": "2019-08-03 17:01:45.9595", "level": "INFO", "message": "Students assigned to takings" }
+{ "time": "2019-08-03 17:01:45.9825", "level": "INFO", "message": "Students enrolled, programs created" }
+{ "time": "2019-08-03 17:01:46.0855", "level": "INFO", "message": "Takings creadte" }
+{ "time": "2019-08-03 17:01:46.2605", "level": "INFO", "message": "Grades assigned" }
+{ "time": "2019-08-03 17:01:46.3215", "level": "INFO", "message": "Final grades assigned" }
+{ "time": "2019-08-03 17:01:46.3215", "level": "INFO", "message": "Seeding ended" }
+{ "time": "2019-08-03 17:01:46.4815", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:02:26.6988", "level": "INFO", "message": "layer=owin ip=::1 method=POST path=\/api\/courses uri=http:\/\/localhost:50663\/api\/courses phase=request" }
+{ "time": "2019-08-03 17:02:26.7258", "level": "ERROR", "message": "POST http:\/\/localhost:50663\/api\/courses" }
+{ "time": "2019-08-03 17:02:26.8118", "level": "INFO", "message": "layer=owin status=500 phase=response" }
+{ "time": "2019-08-03 17:03:55.8399", "level": "TRACE", "message": "Auth server constructed" }
+{ "time": "2019-08-03 17:03:56.1680", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/ uri=http:\/\/localhost:50663\/ phase=request" }
+{ "time": "2019-08-03 17:03:58.3681", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/ uri=http:\/\/localhost:50663\/ phase=request" }
+{ "time": "2019-08-03 17:03:58.4211", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:03:58.5041", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.2085", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/index uri=http:\/\/localhost:50663\/swagger\/ui\/index phase=request" }
+{ "time": "2019-08-03 17:04:05.3015", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.3175", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/reset-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/reset-css phase=request" }
+{ "time": "2019-08-03 17:04:05.3175", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-1-8-0-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-1-8-0-min-js phase=request" }
+{ "time": "2019-08-03 17:04:05.3175", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/typography-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/typography-css phase=request" }
+{ "time": "2019-08-03 17:04:05.3175", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/screen-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/screen-css phase=request" }
+{ "time": "2019-08-03 17:04:05.3375", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-slideto-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-slideto-min-js phase=request" }
+{ "time": "2019-08-03 17:04:05.3505", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.3375", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.3505", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/object-assign-pollyfill-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/object-assign-pollyfill-js phase=request" }
+{ "time": "2019-08-03 17:04:05.3665", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.3665", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.3865", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.4015", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-wiggle-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-wiggle-min-js phase=request" }
+{ "time": "2019-08-03 17:04:05.3865", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-ba-bbq-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-ba-bbq-min-js phase=request" }
+{ "time": "2019-08-03 17:04:05.4135", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/backbone-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/backbone-min-js phase=request" }
+{ "time": "2019-08-03 17:04:05.4365", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.3505", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.4365", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.4495", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.4495", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/swagger-ui-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/swagger-ui-min-js phase=request" }
+{ "time": "2019-08-03 17:04:05.4675", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/handlebars-4-0-5-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/handlebars-4-0-5-js phase=request" }
+{ "time": "2019-08-03 17:04:05.4775", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/highlight-9-1-0-pack_extended-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/highlight-9-1-0-pack_extended-js phase=request" }
+{ "time": "2019-08-03 17:04:05.4135", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/lodash-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/lodash-min-js phase=request" }
+{ "time": "2019-08-03 17:04:05.4675", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/highlight-9-1-0-pack-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/highlight-9-1-0-pack-js phase=request" }
+{ "time": "2019-08-03 17:04:05.4915", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.4915", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jsoneditor-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jsoneditor-min-js phase=request" }
+{ "time": "2019-08-03 17:04:05.5085", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.5225", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.5085", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.5225", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.5445", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/swagger-oauth-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/swagger-oauth-js phase=request" }
+{ "time": "2019-08-03 17:04:05.4915", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.5555", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/images\/logo_small-png uri=http:\/\/localhost:50663\/swagger\/ui\/images\/logo_small-png phase=request" }
+{ "time": "2019-08-03 17:04:05.5555", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.5735", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/marked-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/marked-js phase=request" }
+{ "time": "2019-08-03 17:04:05.5735", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.6015", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.6635", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/print-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/print-css phase=request" }
+{ "time": "2019-08-03 17:04:05.6825", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:05.8205", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/docs\/v1 uri=http:\/\/localhost:50663\/swagger\/docs\/v1 phase=request" }
+{ "time": "2019-08-03 17:04:06.2335", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:08.9917", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/images\/explorer_icons-png uri=http:\/\/localhost:50663\/swagger\/ui\/images\/explorer_icons-png phase=request" }
+{ "time": "2019-08-03 17:04:08.9917", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/images\/throbber-gif uri=http:\/\/localhost:50663\/swagger\/ui\/images\/throbber-gif phase=request" }
+{ "time": "2019-08-03 17:04:09.0367", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:09.0367", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:04:10.2388", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/api\/courses uri=http:\/\/localhost:50663\/api\/courses phase=request" }
+{ "time": "2019-08-03 17:04:10.4128", "level": "ERROR", "message": "GET http:\/\/localhost:50663\/api\/courses" }
+{ "time": "2019-08-03 17:04:10.4408", "level": "INFO", "message": "layer=owin status=500 phase=response" }
+{ "time": "2019-08-03 17:04:43.4017", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/api\/accounts\/whoami uri=http:\/\/localhost:50663\/api\/accounts\/whoami phase=request" }
+{ "time": "2019-08-03 17:04:43.4697", "level": "TRACE", "message": "layer=repository class=generic method=GetById stage=init id=0 type=eGradeBook.Models.GradeBookUser" }
+{ "time": "2019-08-03 17:04:47.6719", "level": "INFO", "message": "Seeding started" }
+{ "time": "2019-08-03 17:04:47.6719", "level": "INFO", "message": "Seeding began" }
+{ "time": "2019-08-03 17:04:48.7480", "level": "INFO", "message": "Roles created" }
+{ "time": "2019-08-03 17:04:49.3570", "level": "INFO", "message": "Admins created" }
+{ "time": "2019-08-03 17:04:49.3960", "level": "INFO", "message": "Courses cretated" }
+{ "time": "2019-08-03 17:04:49.4910", "level": "INFO", "message": "Students created" }
+{ "time": "2019-08-03 17:04:49.5460", "level": "INFO", "message": "Teachers created" }
+{ "time": "2019-08-03 17:04:49.7460", "level": "INFO", "message": "Parents created" }
+{ "time": "2019-08-03 17:04:49.7740", "level": "INFO", "message": "Teaching assignments created" }
+{ "time": "2019-08-03 17:04:49.7940", "level": "INFO", "message": "Classrooms created" }
+{ "time": "2019-08-03 17:04:49.8180", "level": "INFO", "message": "Students assigned to classrooms" }
+{ "time": "2019-08-03 17:04:49.8410", "level": "INFO", "message": "Students assigned to takings" }
+{ "time": "2019-08-03 17:04:49.8920", "level": "INFO", "message": "Students enrolled, programs created" }
+{ "time": "2019-08-03 17:04:49.9580", "level": "INFO", "message": "Takings creadte" }
+{ "time": "2019-08-03 17:04:50.1170", "level": "INFO", "message": "Grades assigned" }
+{ "time": "2019-08-03 17:04:50.1890", "level": "INFO", "message": "Final grades assigned" }
+{ "time": "2019-08-03 17:04:50.1890", "level": "INFO", "message": "Seeding ended" }
+{ "time": "2019-08-03 17:04:50.2521", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:24.7979", "level": "TRACE", "message": "Auth server constructed" }
+{ "time": "2019-08-03 17:07:25.0829", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/ uri=http:\/\/localhost:50663\/ phase=request" }
+{ "time": "2019-08-03 17:07:26.9340", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/ uri=http:\/\/localhost:50663\/ phase=request" }
+{ "time": "2019-08-03 17:07:26.9700", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:27.0030", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.0086", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/index uri=http:\/\/localhost:50663\/swagger\/ui\/index phase=request" }
+{ "time": "2019-08-03 17:07:38.1147", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.1327", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/reset-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/reset-css phase=request" }
+{ "time": "2019-08-03 17:07:38.1367", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/screen-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/screen-css phase=request" }
+{ "time": "2019-08-03 17:07:38.1367", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-1-8-0-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-1-8-0-min-js phase=request" }
+{ "time": "2019-08-03 17:07:38.1367", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-slideto-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-slideto-min-js phase=request" }
+{ "time": "2019-08-03 17:07:38.1547", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.1747", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/object-assign-pollyfill-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/object-assign-pollyfill-js phase=request" }
+{ "time": "2019-08-03 17:07:38.1747", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.1837", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.2017", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-wiggle-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-wiggle-min-js phase=request" }
+{ "time": "2019-08-03 17:07:38.1747", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/typography-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/typography-css phase=request" }
+{ "time": "2019-08-03 17:07:38.2237", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.2397", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-ba-bbq-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-ba-bbq-min-js phase=request" }
+{ "time": "2019-08-03 17:07:38.1837", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.3037", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/handlebars-4-0-5-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/handlebars-4-0-5-js phase=request" }
+{ "time": "2019-08-03 17:07:38.3107", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/backbone-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/backbone-min-js phase=request" }
+{ "time": "2019-08-03 17:07:38.3107", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.3107", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.3337", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.3557", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/lodash-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/lodash-min-js phase=request" }
+{ "time": "2019-08-03 17:07:38.3557", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.3437", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.3817", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/swagger-ui-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/swagger-ui-min-js phase=request" }
+{ "time": "2019-08-03 17:07:38.3937", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/highlight-9-1-0-pack-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/highlight-9-1-0-pack-js phase=request" }
+{ "time": "2019-08-03 17:07:38.4237", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/marked-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/marked-js phase=request" }
+{ "time": "2019-08-03 17:07:38.4347", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.4237", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/highlight-9-1-0-pack_extended-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/highlight-9-1-0-pack_extended-js phase=request" }
+{ "time": "2019-08-03 17:07:38.4607", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jsoneditor-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jsoneditor-min-js phase=request" }
+{ "time": "2019-08-03 17:07:38.4787", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.4787", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.4787", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.5237", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/swagger-oauth-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/swagger-oauth-js phase=request" }
+{ "time": "2019-08-03 17:07:38.5257", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.5257", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.5457", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/images\/logo_small-png uri=http:\/\/localhost:50663\/swagger\/ui\/images\/logo_small-png phase=request" }
+{ "time": "2019-08-03 17:07:38.5457", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:38.5757", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:39.2347", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/print-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/print-css phase=request" }
+{ "time": "2019-08-03 17:07:39.2507", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:39.4047", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/docs\/v1 uri=http:\/\/localhost:50663\/swagger\/docs\/v1 phase=request" }
+{ "time": "2019-08-03 17:07:39.8147", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:50.0173", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/images\/explorer_icons-png uri=http:\/\/localhost:50663\/swagger\/ui\/images\/explorer_icons-png phase=request" }
+{ "time": "2019-08-03 17:07:50.0173", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/images\/throbber-gif uri=http:\/\/localhost:50663\/swagger\/ui\/images\/throbber-gif phase=request" }
+{ "time": "2019-08-03 17:07:50.0483", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:50.0653", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:07:51.8184", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/api\/teachings\/by-teachers uri=http:\/\/localhost:50663\/api\/teachings\/by-teachers phase=request" }
+{ "time": "2019-08-03 17:07:52.0274", "level": "INFO", "message": "Retrieving all teachings by teachers" }
+{ "time": "2019-08-03 17:07:56.3657", "level": "INFO", "message": "Seeding started" }
+{ "time": "2019-08-03 17:07:56.3987", "level": "INFO", "message": "Seeding began" }
+{ "time": "2019-08-03 17:07:57.4728", "level": "INFO", "message": "Roles created" }
+{ "time": "2019-08-03 17:07:58.0498", "level": "INFO", "message": "Admins created" }
+{ "time": "2019-08-03 17:07:58.0688", "level": "INFO", "message": "Courses cretated" }
+{ "time": "2019-08-03 17:07:58.1578", "level": "INFO", "message": "Students created" }
+{ "time": "2019-08-03 17:07:58.2078", "level": "INFO", "message": "Teachers created" }
+{ "time": "2019-08-03 17:07:58.3838", "level": "INFO", "message": "Parents created" }
+{ "time": "2019-08-03 17:07:58.4148", "level": "INFO", "message": "Teaching assignments created" }
+{ "time": "2019-08-03 17:07:58.4348", "level": "INFO", "message": "Classrooms created" }
+{ "time": "2019-08-03 17:07:58.4588", "level": "INFO", "message": "Students assigned to classrooms" }
+{ "time": "2019-08-03 17:07:58.4768", "level": "INFO", "message": "Students assigned to takings" }
+{ "time": "2019-08-03 17:07:58.4988", "level": "INFO", "message": "Students enrolled, programs created" }
+{ "time": "2019-08-03 17:07:58.5678", "level": "INFO", "message": "Takings creadte" }
+{ "time": "2019-08-03 17:07:58.7328", "level": "INFO", "message": "Grades assigned" }
+{ "time": "2019-08-03 17:07:58.7958", "level": "INFO", "message": "Final grades assigned" }
+{ "time": "2019-08-03 17:07:58.7958", "level": "INFO", "message": "Seeding ended" }
+{ "time": "2019-08-03 17:07:58.9518", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:08:06.5403", "level": "INFO", "message": "layer=owin ip=::1 method=POST path=\/api\/courses uri=http:\/\/localhost:50663\/api\/courses phase=request" }
+{ "time": "2019-08-03 17:08:06.5623", "level": "INFO", "message": "layer=owin status=401 phase=response" }
+{ "time": "2019-08-03 17:08:17.5089", "level": "INFO", "message": "layer=owin ip=::1 method=POST path=\/token uri=http:\/\/localhost:50663\/token phase=request" }
+{ "time": "2019-08-03 17:08:17.5449", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-03 17:08:17.5449", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/docs\/v1 uri=http:\/\/localhost:50663\/swagger\/docs\/v1 phase=request" }
+{ "time": "2019-08-03 17:08:17.6359", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:08:17.6879", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:08:18.1119", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/docs\/v1 uri=http:\/\/localhost:50663\/swagger\/docs\/v1 phase=request" }
+{ "time": "2019-08-03 17:08:18.2559", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:08:35.1939", "level": "INFO", "message": "layer=owin ip=::1 method=POST path=\/api\/courses uri=http:\/\/localhost:50663\/api\/courses phase=request" }
+{ "time": "2019-08-03 17:08:35.2699", "level": "INFO", "message": "User {\"UserId\":1, \"UserRole\":\"admin\"} is initiating a Course registration {\"Id\":0, \"Name\":\"BioInformatics\", \"ColloqialName\":\"Bio\"}" }
+{ "time": "2019-08-03 17:08:35.2989", "level": "INFO", "message": "Course 8 created at route \"\\\/api\\\/Courses?courseId=8\"" }
+{ "time": "2019-08-03 17:08:35.3109", "level": "INFO", "message": "layer=owin status=201 phase=response" }
+{ "time": "2019-08-03 17:08:57.9982", "level": "INFO", "message": "layer=owin ip=::1 method=POST path=\/api\/courses uri=http:\/\/localhost:50663\/api\/courses phase=request" }
+{ "time": "2019-08-03 17:08:58.0232", "level": "INFO", "message": "User {\"UserId\":1, \"UserRole\":\"admin\"} is initiating a Course registration {\"Id\":0, \"Name\":\"Applied Mathematics\", \"ColloqialName\":\"AP Math\"}" }
+{ "time": "2019-08-03 17:08:58.0562", "level": "INFO", "message": "Course 9 created at route \"\\\/api\\\/Courses?courseId=9\"" }
+{ "time": "2019-08-03 17:08:58.0562", "level": "INFO", "message": "layer=owin status=201 phase=response" }
+{ "time": "2019-08-03 17:09:02.2545", "level": "INFO", "message": "layer=owin ip=::1 method=POST path=\/api\/courses uri=http:\/\/localhost:50663\/api\/courses phase=request" }
+{ "time": "2019-08-03 17:09:02.2715", "level": "INFO", "message": "User {\"UserId\":1, \"UserRole\":\"admin\"} is initiating a Course registration {\"Id\":0, \"Name\":\"Applied Mathematics\", \"ColloqialName\":\"AP Math\"}" }
+{ "time": "2019-08-03 17:13:19.4242", "level": "ERROR", "message": "POST http:\/\/localhost:50663\/api\/courses" }
+{ "time": "2019-08-03 17:13:19.4462", "level": "INFO", "message": "layer=owin status=404 phase=response" }
+{ "time": "2019-08-03 17:16:23.4167", "level": "INFO", "message": "layer=owin ip=::1 method=POST path=\/api\/courses uri=http:\/\/localhost:50663\/api\/courses phase=request" }
+{ "time": "2019-08-03 17:16:23.4447", "level": "INFO", "message": "User {\"UserId\":1, \"UserRole\":\"admin\"} is initiating a Course registration {\"Id\":0, \"Name\":\"Applied Mathematics\", \"ColloqialName\":\"AP Math\"}" }
+{ "time": "2019-08-03 17:16:26.2179", "level": "ERROR", "message": "POST http:\/\/localhost:50663\/api\/courses" }
+{ "time": "2019-08-03 17:17:43.1913", "level": "INFO", "message": "layer=owin status=404 phase=response" }
+{ "time": "2019-08-03 17:17:50.6307", "level": "INFO", "message": "layer=owin ip=::1 method=POST path=\/api\/courses uri=http:\/\/localhost:50663\/api\/courses phase=request" }
+{ "time": "2019-08-03 17:17:50.6467", "level": "INFO", "message": "User {\"UserId\":1, \"UserRole\":\"admin\"} is initiating a Course registration {\"Id\":0, \"Name\":\"Applied Mathematics\", \"ColloqialName\":\"AP Math\"}" }
+{ "time": "2019-08-03 17:19:03.5289", "level": "ERROR", "message": "POST http:\/\/localhost:50663\/api\/courses" }
+{ "time": "2019-08-03 17:19:10.0292", "level": "INFO", "message": "layer=owin status=404 phase=response" }
+{ "time": "2019-08-03 17:23:40.2277", "level": "TRACE", "message": "Auth server constructed" }
+{ "time": "2019-08-03 17:23:40.6047", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/ uri=http:\/\/localhost:50663\/ phase=request" }
+{ "time": "2019-08-03 17:23:42.9348", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/ uri=http:\/\/localhost:50663\/ phase=request" }
+{ "time": "2019-08-03 17:23:43.0108", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:43.0488", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.4474", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/index uri=http:\/\/localhost:50663\/swagger\/ui\/index phase=request" }
+{ "time": "2019-08-03 17:23:52.5414", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.5764", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/reset-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/reset-css phase=request" }
+{ "time": "2019-08-03 17:23:52.5804", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/typography-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/typography-css phase=request" }
+{ "time": "2019-08-03 17:23:52.5804", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/object-assign-pollyfill-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/object-assign-pollyfill-js phase=request" }
+{ "time": "2019-08-03 17:23:52.6004", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.5804", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/screen-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/screen-css phase=request" }
+{ "time": "2019-08-03 17:23:52.6004", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-1-8-0-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-1-8-0-min-js phase=request" }
+{ "time": "2019-08-03 17:23:52.6164", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-slideto-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-slideto-min-js phase=request" }
+{ "time": "2019-08-03 17:23:52.6164", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.6364", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.6164", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.6574", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.6574", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-wiggle-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-wiggle-min-js phase=request" }
+{ "time": "2019-08-03 17:23:52.6754", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/lodash-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/lodash-min-js phase=request" }
+{ "time": "2019-08-03 17:23:52.6754", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-ba-bbq-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-ba-bbq-min-js phase=request" }
+{ "time": "2019-08-03 17:23:52.6924", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/handlebars-4-0-5-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/handlebars-4-0-5-js phase=request" }
+{ "time": "2019-08-03 17:23:52.6464", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.7054", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/swagger-ui-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/swagger-ui-min-js phase=request" }
+{ "time": "2019-08-03 17:23:52.6924", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.7244", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.7244", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.7494", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.7504", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/marked-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/marked-js phase=request" }
+{ "time": "2019-08-03 17:23:52.7724", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/highlight-9-1-0-pack-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/highlight-9-1-0-pack-js phase=request" }
+{ "time": "2019-08-03 17:23:52.7504", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/backbone-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/backbone-min-js phase=request" }
+{ "time": "2019-08-03 17:23:52.7054", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.8004", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/swagger-oauth-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/swagger-oauth-js phase=request" }
+{ "time": "2019-08-03 17:23:52.7834", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jsoneditor-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jsoneditor-min-js phase=request" }
+{ "time": "2019-08-03 17:23:52.8004", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.8134", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.8134", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.8364", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.8364", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/highlight-9-1-0-pack_extended-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/highlight-9-1-0-pack_extended-js phase=request" }
+{ "time": "2019-08-03 17:23:52.8584", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.8684", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/images\/logo_small-png uri=http:\/\/localhost:50663\/swagger\/ui\/images\/logo_small-png phase=request" }
+{ "time": "2019-08-03 17:23:52.9404", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:52.9664", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/print-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/print-css phase=request" }
+{ "time": "2019-08-03 17:23:52.9664", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:53.0214", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:53.1224", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/docs\/v1 uri=http:\/\/localhost:50663\/swagger\/docs\/v1 phase=request" }
+{ "time": "2019-08-03 17:23:53.5434", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:58.8867", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/images\/explorer_icons-png uri=http:\/\/localhost:50663\/swagger\/ui\/images\/explorer_icons-png phase=request" }
+{ "time": "2019-08-03 17:23:58.8867", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/images\/throbber-gif uri=http:\/\/localhost:50663\/swagger\/ui\/images\/throbber-gif phase=request" }
+{ "time": "2019-08-03 17:23:58.9198", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:23:58.9298", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:24:00.3478", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/api\/courses uri=http:\/\/localhost:50663\/api\/courses phase=request" }
+{ "time": "2019-08-03 17:24:05.7201", "level": "INFO", "message": "Seeding started" }
+{ "time": "2019-08-03 17:24:05.7321", "level": "INFO", "message": "Seeding began" }
+{ "time": "2019-08-03 17:24:06.9422", "level": "INFO", "message": "Roles created" }
+{ "time": "2019-08-03 17:24:07.6092", "level": "INFO", "message": "Admins created" }
+{ "time": "2019-08-03 17:24:07.6292", "level": "INFO", "message": "Courses cretated" }
+{ "time": "2019-08-03 17:24:07.7303", "level": "INFO", "message": "Students created" }
+{ "time": "2019-08-03 17:24:07.7893", "level": "INFO", "message": "Teachers created" }
+{ "time": "2019-08-03 17:24:08.1013", "level": "INFO", "message": "Parents created" }
+{ "time": "2019-08-03 17:24:08.1313", "level": "INFO", "message": "Teaching assignments created" }
+{ "time": "2019-08-03 17:24:08.1523", "level": "INFO", "message": "Classrooms created" }
+{ "time": "2019-08-03 17:24:08.1823", "level": "INFO", "message": "Students assigned to classrooms" }
+{ "time": "2019-08-03 17:24:08.2003", "level": "INFO", "message": "Students assigned to takings" }
+{ "time": "2019-08-03 17:24:08.2243", "level": "INFO", "message": "Students enrolled, programs created" }
+{ "time": "2019-08-03 17:24:08.2813", "level": "INFO", "message": "Takings creadte" }
+{ "time": "2019-08-03 17:24:08.7353", "level": "INFO", "message": "Grades assigned" }
+{ "time": "2019-08-03 17:24:08.8023", "level": "INFO", "message": "Final grades assigned" }
+{ "time": "2019-08-03 17:24:08.8113", "level": "INFO", "message": "Seeding ended" }
+{ "time": "2019-08-03 17:24:08.8673", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:24:23.5712", "level": "INFO", "message": "layer=owin ip=::1 method=POST path=\/token uri=http:\/\/localhost:50663\/token phase=request" }
+{ "time": "2019-08-03 17:24:23.6062", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-03 17:24:23.6182", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/docs\/v1 uri=http:\/\/localhost:50663\/swagger\/docs\/v1 phase=request" }
+{ "time": "2019-08-03 17:24:23.6822", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:24:23.7562", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:24:24.1312", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/docs\/v1 uri=http:\/\/localhost:50663\/swagger\/docs\/v1 phase=request" }
+{ "time": "2019-08-03 17:24:24.2422", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 17:24:28.1134", "level": "INFO", "message": "layer=owin ip=::1 method=POST path=\/api\/courses uri=http:\/\/localhost:50663\/api\/courses phase=request" }
+{ "time": "2019-08-03 17:24:28.2004", "level": "INFO", "message": "User {\"UserId\":1, \"UserRole\":\"admin\"} is initiating a Course registration {\"Id\":0, \"Name\":\"string\", \"ColloqialName\":\"string\"}" }
+{ "time": "2019-08-03 17:24:28.2344", "level": "INFO", "message": "Course 8 created at route \"\\\/api\\\/Courses?courseId=8\"" }
+{ "time": "2019-08-03 17:24:28.2514", "level": "INFO", "message": "layer=owin status=201 phase=response" }
+{ "time": "2019-08-03 17:24:30.0405", "level": "INFO", "message": "layer=owin ip=::1 method=POST path=\/api\/courses uri=http:\/\/localhost:50663\/api\/courses phase=request" }
+{ "time": "2019-08-03 17:24:30.0525", "level": "INFO", "message": "User {\"UserId\":1, \"UserRole\":\"admin\"} is initiating a Course registration {\"Id\":0, \"Name\":\"string\", \"ColloqialName\":\"string\"}" }
+{ "time": "2019-08-03 17:24:35.4038", "level": "ERROR", "message": "POST http:\/\/localhost:50663\/api\/courses" }
+{ "time": "2019-08-03 17:24:39.5111", "level": "INFO", "message": "layer=owin status=404 phase=response" }
+{ "time": "2019-08-03 19:00:54.8722", "level": "TRACE", "message": "Auth server constructed" }
+{ "time": "2019-08-03 19:00:55.2272", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/ uri=http:\/\/localhost:50663\/ phase=request" }
+{ "time": "2019-08-03 19:00:57.3664", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/ uri=http:\/\/localhost:50663\/ phase=request" }
+{ "time": "2019-08-03 19:00:57.4044", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:00:57.5194", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:00:59.6765", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/index uri=http:\/\/localhost:50663\/swagger\/ui\/index phase=request" }
+{ "time": "2019-08-03 19:00:59.8035", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:00:59.8155", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/reset-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/reset-css phase=request" }
+{ "time": "2019-08-03 19:00:59.8155", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/object-assign-pollyfill-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/object-assign-pollyfill-js phase=request" }
+{ "time": "2019-08-03 19:00:59.8275", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/screen-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/screen-css phase=request" }
+{ "time": "2019-08-03 19:00:59.8275", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-slideto-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-slideto-min-js phase=request" }
+{ "time": "2019-08-03 19:00:59.8475", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-1-8-0-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-1-8-0-min-js phase=request" }
+{ "time": "2019-08-03 19:00:59.8475", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:00:59.8615", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:00:59.8615", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/typography-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/typography-css phase=request" }
+{ "time": "2019-08-03 19:00:59.8795", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:00:59.8795", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:00:59.8935", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:00:59.9035", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-wiggle-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-wiggle-min-js phase=request" }
+{ "time": "2019-08-03 19:00:59.9035", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:00:59.9265", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/lodash-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/lodash-min-js phase=request" }
+{ "time": "2019-08-03 19:00:59.9265", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/handlebars-4-0-5-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/handlebars-4-0-5-js phase=request" }
+{ "time": "2019-08-03 19:00:59.9265", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jquery-ba-bbq-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jquery-ba-bbq-min-js phase=request" }
+{ "time": "2019-08-03 19:00:59.9515", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:00:59.9515", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/swagger-ui-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/swagger-ui-min-js phase=request" }
+{ "time": "2019-08-03 19:00:59.9735", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:01:00.0075", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/backbone-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/backbone-min-js phase=request" }
+{ "time": "2019-08-03 19:01:00.0315", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:01:00.0235", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:01:00.0465", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/highlight-9-1-0-pack-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/highlight-9-1-0-pack-js phase=request" }
+{ "time": "2019-08-03 19:01:00.0465", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:01:00.0585", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:01:00.0585", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/jsoneditor-min-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/jsoneditor-min-js phase=request" }
+{ "time": "2019-08-03 19:01:00.0795", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/highlight-9-1-0-pack_extended-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/highlight-9-1-0-pack_extended-js phase=request" }
+{ "time": "2019-08-03 19:01:00.0585", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/marked-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/marked-js phase=request" }
+{ "time": "2019-08-03 19:01:00.0795", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:01:00.0925", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:01:00.1095", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/images\/logo_small-png uri=http:\/\/localhost:50663\/swagger\/ui\/images\/logo_small-png phase=request" }
+{ "time": "2019-08-03 19:01:00.0925", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/lib\/swagger-oauth-js uri=http:\/\/localhost:50663\/swagger\/ui\/lib\/swagger-oauth-js phase=request" }
+{ "time": "2019-08-03 19:01:00.1095", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:01:00.1325", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:01:00.1545", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:01:00.1865", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:01:00.6805", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/css\/print-css uri=http:\/\/localhost:50663\/swagger\/ui\/css\/print-css phase=request" }
+{ "time": "2019-08-03 19:01:00.6945", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:01:00.8426", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/docs\/v1 uri=http:\/\/localhost:50663\/swagger\/docs\/v1 phase=request" }
+{ "time": "2019-08-03 19:01:01.2606", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:01:05.5348", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/images\/explorer_icons-png uri=http:\/\/localhost:50663\/swagger\/ui\/images\/explorer_icons-png phase=request" }
+{ "time": "2019-08-03 19:01:05.5348", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/swagger\/ui\/images\/throbber-gif uri=http:\/\/localhost:50663\/swagger\/ui\/images\/throbber-gif phase=request" }
+{ "time": "2019-08-03 19:01:05.5598", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:01:05.5748", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:01:06.7009", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/api\/teachings\/by-teachers uri=http:\/\/localhost:50663\/api\/teachings\/by-teachers phase=request" }
+{ "time": "2019-08-03 19:01:06.9399", "level": "INFO", "message": "Retrieving all teachings by teachers" }
+{ "time": "2019-08-03 19:01:06.9399", "level": "TRACE", "message": "\"eGradeBook.Models.Teaching\" repository Get request with filter NULL, orderBy NULL and include \"\"" }
+{ "time": "2019-08-03 19:01:12.6892", "level": "INFO", "message": "Seeding started" }
+{ "time": "2019-08-03 19:01:12.7032", "level": "INFO", "message": "Seeding began" }
+{ "time": "2019-08-03 19:01:13.7543", "level": "INFO", "message": "Roles created" }
+{ "time": "2019-08-03 19:01:14.3743", "level": "INFO", "message": "Admins created" }
+{ "time": "2019-08-03 19:01:14.3953", "level": "INFO", "message": "Courses cretated" }
+{ "time": "2019-08-03 19:01:14.5043", "level": "INFO", "message": "Students created" }
+{ "time": "2019-08-03 19:01:14.5643", "level": "INFO", "message": "Teachers created" }
+{ "time": "2019-08-03 19:01:14.7974", "level": "INFO", "message": "Parents created" }
+{ "time": "2019-08-03 19:01:14.8464", "level": "INFO", "message": "Teaching assignments created" }
+{ "time": "2019-08-03 19:01:14.8824", "level": "INFO", "message": "Classrooms created" }
+{ "time": "2019-08-03 19:01:14.9074", "level": "INFO", "message": "Students assigned to classrooms" }
+{ "time": "2019-08-03 19:01:14.9254", "level": "INFO", "message": "Students assigned to takings" }
+{ "time": "2019-08-03 19:01:14.9504", "level": "INFO", "message": "Students enrolled, programs created" }
+{ "time": "2019-08-03 19:01:15.0084", "level": "INFO", "message": "Takings creadte" }
+{ "time": "2019-08-03 19:01:15.1644", "level": "INFO", "message": "Grades assigned" }
+{ "time": "2019-08-03 19:01:15.2364", "level": "INFO", "message": "Final grades assigned" }
+{ "time": "2019-08-03 19:01:15.2454", "level": "INFO", "message": "Seeding ended" }
+{ "time": "2019-08-03 19:01:15.4244", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:01:30.6863", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/api\/parents uri=http:\/\/localhost:50663\/api\/parents phase=request" }
+{ "time": "2019-08-03 19:01:30.7013", "level": "TRACE", "message": "\"eGradeBook.Models.ParentUser\" repository Get request with filter NULL, orderBy NULL and include \"\"" }
+{ "time": "2019-08-03 19:01:31.0743", "level": "INFO", "message": "layer=owin status=200 phase=response" }
+{ "time": "2019-08-03 19:01:56.9308", "level": "INFO", "message": "layer=owin ip=::1 method=GET path=\/api\/grades\/query uri=http:\/\/localhost:50663\/api\/grades\/query?studentId=3 phase=request" }
+{ "time": "2019-08-03 19:01:56.9518", "level": "INFO", "message": "Grades service created" }
+{ "time": "2019-08-03 19:01:57.0338", "level": "TRACE", "message": "Tracer, is authenticated -- False" }
+{ "time": "2019-08-03 19:01:57.0338", "level": "TRACE", "message": "\"eGradeBook.Models.Grade\" repository Get request with filter g => IIF((value(eGradeBook.Services.GradesService+<>c__DisplayClass9_0).studentId != null), (Convert(g.Taking.StudentId) == value(eGradeBook.Services.GradesService+<>c__DisplayClass9_0).studentId), IIF((True AndAlso (value(eGradeBook.Services.GradesService+<>c__DisplayClass9_0).gradeId != null)), (Convert(g.Taking.Program.ClassRoom.ClassGrade) == value(eGradeBook.Services.GradesService+<>c__DisplayClass9_0).gradeId), IIF((True AndAlso (value(eGradeBook.Services.GradesService+<>c__DisplayClass9_0).teacherId != null)), (Convert(g.Taking.Program.Teaching.TeacherId) == value(eGradeBook.Services.GradesService+<>c__DisplayClass9_0).teacherId), IIF((True AndAlso (value(eGradeBook.Services.GradesService+<>c__DisplayClass9_0).courseId != null)), (Convert(g.Taking.Program.CourseId) == value(eGradeBook.Services.GradesService+<>c__DisplayClass9_0).courseId), IIF((True AndAlso (value(eGradeBook.Services.GradesService+<>c__DisplayClass9_0).semesterId != null)), (Convert(g.SchoolTerm) == value(eGradeBook.Services.GradesService+<>c__DisplayClass9_0).semesterId), IIF((True AndAlso (value(eGradeBook.Services.GradesService+<>c__DisplayClass9_0).classId != null)), (Convert(g.Taking.Program.SchoolClassId) == value(eGradeBook.Services.GradesService+<>c__DisplayClass9_0).classId), True)))))), orderBy NULL and include \"\"" }
+{ "time": "2019-08-03 19:01:57.4098", "level": "INFO", "message": "layer=owin status=200 phase=response" }

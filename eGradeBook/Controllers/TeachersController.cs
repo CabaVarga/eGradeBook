@@ -1,5 +1,6 @@
 ﻿using eGradeBook.Models.Dtos.Teachers;
 using eGradeBook.Services;
+using eGradeBook.Utilities.WebApi;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -28,11 +29,16 @@ namespace eGradeBook.Controllers
         /// </summary>
         /// <returns>A Json array of Teacher Dtos</returns>
         [Route("")]
-        [ResponseType(typeof(TeacherDto))]
+        [ResponseType(typeof(IEnumerable<TeacherDto>))]
         [HttpGet]
         public IHttpActionResult GetAllTeachers()
         {
-            return Ok(teachersService.GetAllTeachersDtos());
+            var user = IdentityHelper.GetLoggedInUser(RequestContext);
+            logger.Info("User {@userData} is requesting a list of all teacher", user);
+
+            var teachers = teachersService.GetAllTeachersDtos();
+
+            return Ok(teachers);
         }
 
         /// <summary>
@@ -45,7 +51,17 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetTeacherById(int teacherId)
         {
-            return Ok(teachersService.GetTeacherByIdDto(teacherId));
+            var user = IdentityHelper.GetLoggedInUser(RequestContext);
+            logger.Info("User {@userData} is requesting a teacher by Id {teacherId}", user, teacherId);
+
+            var teacher = teachersService.GetTeacherByIdDto(teacherId);
+
+            if (teacher == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(teacher);
         }
 
         /// <summary>
@@ -59,12 +75,18 @@ namespace eGradeBook.Controllers
         [HttpPost]
         public IHttpActionResult PostAssignCourseToTeacher(int teacherId, TeachingAssignmentDto assignment)
         {
+            var user = IdentityHelper.GetLoggedInUser(RequestContext);
+            logger.Info("User {@userData} is requesting a teaching assignment creation {assignmentData}", user, assignment);
+
             if (assignment.TeacherId != teacherId)
             {
-                logger.Error("Teacher identities do not match at teaching assignment creation command.");
+                logger.Error("Provided Teacher identity does not match the assignment values.");
                 return BadRequest("Teacher identities do not match.");
             }
 
+            // I'm not sure how to handle these cases
+            // Maybe Mladen's solution can help? Probably not...
+            // Read up again about the subject...
             teachersService.AssignCourseToTeacher(assignment);
             logger.Info("Teaching assignment successfully created.");
             return Ok();
@@ -78,6 +100,7 @@ namespace eGradeBook.Controllers
 
         /// <summary>
         /// Update personal data for given teacher.
+        /// NOTE this will go to account!
         /// </summary>
         /// <param name="teacherId">Id of teacher</param>
         /// <param name="teacher">Json object of type Teacher Dto</param>
@@ -100,6 +123,7 @@ namespace eGradeBook.Controllers
 
         /// <summary>
         /// Delete a teacher with a given Id
+        /// NOTE this will go to account!
         /// </summary>
         /// <param name="teacherId"></param>
         /// <returns>A Json object of type Teacher Dto for the deleted teacher</returns>

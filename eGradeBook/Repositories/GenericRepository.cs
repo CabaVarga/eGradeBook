@@ -41,12 +41,12 @@ namespace eGradeBook.Repositories
         {
             try
             {
-                logger.Trace("layer={0} class={1} method={2} stage={3} id={4} type={5}", "repository", "generic", "GetById", "init", id, typeof(TEntity).ToString());
+                logger.Trace("{type} repository Get entity by Id {id}", typeof(TEntity).FullName, id);
                 return dbSet.Find(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "layer={0} class={1} method={2} stage={3}", "repository", "generic", "GetById", "failure");
+                logger.Error(ex, "Get by Id for Id {id} failed", id);
                 throw ex;
             }
         }
@@ -57,6 +57,8 @@ namespace eGradeBook.Repositories
         /// <param name="entity"></param>
         public virtual void Insert(TEntity entity)
         {
+            logger.Trace("{type} repository Insert new entity", typeof(TEntity).FullName);
+
             dbSet.Add(entity);
         }
 
@@ -66,6 +68,8 @@ namespace eGradeBook.Repositories
         /// <param name="id"></param>
         public virtual void Delete(object id)
         {
+            logger.Trace("{type} repository Delete Id {id}", typeof(TEntity).FullName, id);
+
             TEntity entityToDelete = dbSet.Find(id);
             Delete(entityToDelete);
         }
@@ -82,6 +86,8 @@ namespace eGradeBook.Repositories
            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
            string includeProperties = "")
         {
+            logger.Trace("{type} repository Get request with filter {filter}, orderBy {orderBy} and include {includeProperties}", 
+                typeof(TEntity).FullName, filter.ToString(), orderBy, includeProperties);
             try
             {
                 IQueryable<TEntity> query = dbSet;

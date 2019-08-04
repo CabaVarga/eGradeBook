@@ -1,5 +1,6 @@
 ﻿using eGradeBook.Models;
 using eGradeBook.Models.Dtos;
+using eGradeBook.Models.Dtos.Grades;
 using eGradeBook.Repositories;
 using eGradeBook.Services.Exceptions;
 using NLog;
@@ -111,7 +112,7 @@ namespace eGradeBook.Services
             // we need 3. program
             // based on the above 3 we can finally get the taking..
 
-            var schoolClass = student.SchoolClass;
+            var schoolClass = student.ClassRoom;
 
             var program = db.ProgramsRepository.Get(p => p.ClassRoom == schoolClass && p.Teaching == assignment && p.Course == subject).FirstOrDefault();
 
@@ -275,7 +276,7 @@ namespace eGradeBook.Services
                     teacherId != null ? g.Taking.Program.Teaching.TeacherId == teacherId : true &&
                     courseId != null ? g.Taking.Program.CourseId == courseId : true &&
                     semesterId != null ? g.SchoolTerm == semesterId : true &&
-                    classId != null ? g.Taking.Program.SchoolClassId == classId : true;
+                    classId != null ? g.Taking.Program.ClassRoomId == classId : true;
 
             return db.GradesRepository.Get(
                 filter:
@@ -284,7 +285,7 @@ namespace eGradeBook.Services
                     teacherId != null ? g.Taking.Program.Teaching.TeacherId == teacherId : true &&
                     courseId != null ? g.Taking.Program.CourseId == courseId : true &&
                     semesterId != null ? g.SchoolTerm == semesterId : true &&
-                    classId != null ? g.Taking.Program.SchoolClassId == classId : true)
+                    classId != null ? g.Taking.Program.ClassRoomId == classId : true)
                     .Select(g => new GradeDto()
                     {
                         StudentName = g.Taking.Student.FirstName + " " + g.Taking.Student.LastName,

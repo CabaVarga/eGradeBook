@@ -1,5 +1,6 @@
 ﻿using eGradeBook.Models;
 using eGradeBook.Models.Dtos;
+using eGradeBook.Models.Dtos.Courses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,6 +63,19 @@ namespace eGradeBook.Services
         /// <param name="course"></param>
         /// <returns></returns>
         CourseDto CreateCourse(CourseDto course);
+
+        /// <summary>
+        /// Get all Courses as Dtos
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<CourseDto> GetAllCoursesDto();
+
+        /// <summary>
+        /// Get a Course Dto by Id
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <returns></returns>
+        CourseDto GetCourseDtoById(int courseId);
 
         /// <summary>
         /// Update a course

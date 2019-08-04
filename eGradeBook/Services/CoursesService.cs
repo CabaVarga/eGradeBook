@@ -1,7 +1,9 @@
 ﻿using eGradeBook.Models;
 using eGradeBook.Models.Dtos;
+using eGradeBook.Models.Dtos.Courses;
 using eGradeBook.Repositories;
-using Microsoft.Owin.Logging;
+using eGradeBook.Services.Converters;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +27,19 @@ namespace eGradeBook.Services
         {
             this.db = db;
             this.logger = logger;
+        }
+
+        /// <summary>
+        /// Create a new course
+        /// </summary>
+        /// <param name="course"></param>
+        /// <returns></returns>
+        public Course CreateCourse(Course course)
+        {
+            db.CoursesRepository.Insert(course);
+            db.Save();
+
+            return course;
         }
 
         /// <summary>
@@ -56,29 +71,6 @@ namespace eGradeBook.Services
         /// <summary>
         /// Update course
         /// </summary>
-        /// <param name="course"></param>
-        /// <returns></returns>
-        public CourseDto UpdateCourse(CourseDto course)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Create a new course
-        /// </summary>
-        /// <param name="course"></param>
-        /// <returns></returns>
-        public Course CreateCourse(Course course)
-        {
-            db.CoursesRepository.Insert(course);
-            db.Save();
-
-            return course;
-        }
-
-        /// <summary>
-        /// Update course
-        /// </summary>
         /// <param name="id"></param>
         /// <param name="course"></param>
         /// <returns></returns>
@@ -99,7 +91,6 @@ namespace eGradeBook.Services
 
             return courseUpdated;
         }
-
         /// <summary>
         /// Delete course
         /// </summary>
@@ -119,7 +110,6 @@ namespace eGradeBook.Services
 
             return deletedCourse;
         }
-
         /// <summary>
         /// Create course
         /// </summary>
@@ -127,12 +117,16 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public CourseDto CreateCourse(CourseDto course)
         {
+            logger.Info("Service received request for Course {@courseData} creation", course);
+
             Course newCourse = new Course()
             {
                 Name = course.Name,
                 ColloqialName = course.ColloqialName
             };
 
+            // NOTE Should I inspect beforehand or just shoot
+            // and handle error in case of unsuccessful insertion
             CreateCourse(newCourse);
 
             CourseDto courseDto = new CourseDto()
@@ -142,6 +136,7 @@ namespace eGradeBook.Services
                 Id = newCourse.Id
             };
 
+            logger.Info("Course creation succesful");
             return courseDto;
         }
 
@@ -155,6 +150,15 @@ namespace eGradeBook.Services
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Update course
+        /// </summary>
+        /// <param name="course"></param>
+        /// <returns></returns>
+        public CourseDto UpdateCourse(CourseDto course)
+        {
+            throw new NotImplementedException();
+        }
         /// <summary>
         /// Assign teacher to course
         /// </summary>
@@ -180,6 +184,35 @@ namespace eGradeBook.Services
         public void RemoveTeacherFromCourse(int teacherId, int courseId)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Retrieve all courses and return them as CourseDtos
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<CourseDto> GetAllCoursesDto()
+        {
+            logger.Trace("Service received a request to return all courses as dtos");
+            return db.CoursesRepository.Get()
+                .Select(c => CoursesConverter.CourseToCourseDto(c));
+        }
+
+        /// <summary>
+        /// Retrieve a course by Id
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <returns></returns>
+        public CourseDto GetCourseDtoById(int courseId)
+        {
+            logger.Trace("Service received a request to a course by Id {courseId}", courseId);
+            var course = db.CoursesRepository.GetByID(courseId);
+
+            if (course == null)
+            {
+                return null;
+            }
+
+            return CoursesConverter.CourseToCourseDto(course);
         }
     }
 }

@@ -74,6 +74,16 @@ namespace eGradeBook.Services
         /// <returns></returns>
         IEnumerable<StudentWithParentsDto> GetAllStudentsWithParents();
 
+        /// <summary>
+        /// Assign a course to a student
+        /// NOTE I think I added this in a hurry.
+        /// Need to rethink this implementation... on the other hand, maybe it's enough?
+        /// We already know the classRoom and who teaches the course in the classroom...
+        /// Is the void an ok return type?
+        /// Probably a Full student dto
+        /// Or at least student + courses list would be maybe better?
+        /// </summary>
+        /// <param name="course"></param>
         void AssignCourseToStudent(StudentCourseDto course);
     }
 }

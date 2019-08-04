@@ -32,6 +32,21 @@ namespace eGradeBook.Services
         IEnumerable<ClassRoomDto> GetAllClassRooms();
 
         /// <summary>
+        /// Update class room data
+        /// </summary>
+        /// <param name="classRoomId"></param>
+        /// <param name="classRoom"></param>
+        /// <returns></returns>
+        ClassRoomDto UpdateClassRoom(int classRoomId, ClassRoomDto classRoom);
+
+        /// <summary>
+        /// Delete classroom
+        /// </summary>
+        /// <param name="classRoomId"></param>
+        /// <returns></returns>
+        ClassRoomDto DeleteClassRoom(int classRoomId);
+
+        /// <summary>
         /// Enroll the given student in the given classroom
         /// </summary>
         /// <param name="enroll"></param>
