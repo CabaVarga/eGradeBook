@@ -86,8 +86,9 @@ namespace eGradeBook.Repositories
            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
            string includeProperties = "")
         {
-            logger.Trace("{type} repository Get request with filter {filter}, orderBy {orderBy} and include {includeProperties}", 
-                typeof(TEntity).FullName, filter.ToString(), orderBy, includeProperties);
+            // logger.Trace("{type} repository Get request with filter {filter}, orderBy {orderBy} and include {includeProperties}", 
+            logger.Trace("{type} repository Get request with filter and all", typeof(TEntity).FullName);
+
             try
             {
                 IQueryable<TEntity> query = dbSet;

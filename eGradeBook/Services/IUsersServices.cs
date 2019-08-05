@@ -1,5 +1,9 @@
 ﻿using eGradeBook.Models;
 using eGradeBook.Models.Dtos.Accounts;
+using eGradeBook.Models.Dtos.Admins;
+using eGradeBook.Models.Dtos.Parents;
+using eGradeBook.Models.Dtos.Students;
+using eGradeBook.Models.Dtos.Teachers;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -71,5 +75,17 @@ namespace eGradeBook.Services
         /// <param name="userId"></param>
         /// <returns></returns>
         UserDataDto GetUserData(int userId);
+
+        /// <summary>
+        /// Update admin user
+        /// NOTE It is maybe better if the update and delete are attached to the endpoints....
+        /// NOTE Even the registration is a bit in the wrong place..
+        /// </summary>
+        /// <param name="adminUpdate"></param>
+        /// <returns></returns>
+        Task<AdminDto> UpdateAdmin(AdminUpdateDto adminUpdate);
+        Task<TeacherDto> UpdateTeacher(TeacherUpdateDto teacherUpdate);
+        Task<StudentDto> UpdateStudent(StudentUpdateDto studentUpdate);
+        Task<ParentDto> UpdateParent(ParentUpdateDto parentUpdate);
     }
 }

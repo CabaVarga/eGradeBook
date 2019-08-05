@@ -25,6 +25,7 @@ namespace eGradeBook.Controllers
         /// Constructor
         /// </summary>
         /// <param name="service"></param>
+        /// <param name="logger"></param>
         public StudentsController(IStudentsService service, ILogger logger)
         {
             this.service = service;
@@ -116,6 +117,17 @@ namespace eGradeBook.Controllers
             return Ok(service.GetAllStudentsWithParents());
         }
 
+
+        /// <summary>
+        /// Assign a course to the student.
+        /// NOTE: the implementation will check if the course is assignable to the student.
+        /// 1) You cannot assign the same course twice
+        /// 2) The course must be in the classroom's program
+        /// 3) The course will be teached by the assigned teacher for the classroom
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <param name="course"></param>
+        /// <returns></returns>
         [Route("{studentId}/courses")]
         [HttpPost]
         public IHttpActionResult PostAssignCourseToStudent(int studentId, StudentCourseDto course)

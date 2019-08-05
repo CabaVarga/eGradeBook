@@ -78,14 +78,7 @@ namespace eGradeBook.Services
             logger.Info("Service received request for returning all students");
 
             return db.StudentsRepository.Get()
-                .Select(s => new StudentDto()
-                {
-                    FirstName = s.FirstName,
-                    LastName = s.LastName,
-                    ClassRoom = s.ClassRoom.Name,
-                    StudentId = s.Id,
-                    ClassRoomId = s.ClassRoomId
-                });
+                .Select(s => Converters.StudentsConverter.StudentToStudentDto(s));
 
         }
 

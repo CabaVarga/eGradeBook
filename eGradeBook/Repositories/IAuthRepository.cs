@@ -77,5 +77,9 @@ namespace eGradeBook.Repositories
         /// <param name="userId"></param>
         /// <returns></returns>
         Task<IdentityResult> DeleteUser(int userId);
+
+        Task<IdentityResult> UpdateUser(GradeBookUser user);
+
+        Task<GradeBookUser> FindUserByUserName(string userName);
     }
 }

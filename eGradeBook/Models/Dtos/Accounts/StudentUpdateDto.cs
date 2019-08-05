@@ -6,9 +6,9 @@ using System.Web;
 namespace eGradeBook.Models.Dtos.Accounts
 {
     /// <summary>
-    /// Registration data structure for Student users
+    /// Update personal details of student user
     /// </summary>
-    public class StudentRegistrationDto : UserRegistrationDto
+    public class StudentUpdateDto : UserUpdateDto
     {
         /// <summary>
         /// Place of birth. Examples: Novi Sad, Belgrade, Becej

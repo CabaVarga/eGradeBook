@@ -16,7 +16,7 @@ namespace eGradeBook.Infrastructure
     /// <summary>
     /// Grade Book Initializer. The name tells it all.
     /// </summary>
-    public class GradeBookInitializer : DropCreateDatabaseAlways<GradeBookContext>
+    public class GradeBookInitializer : DropCreateDatabaseIfModelChanges<GradeBookContext>
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 

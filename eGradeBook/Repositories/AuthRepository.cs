@@ -38,9 +38,15 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<IdentityResult> RegisterAdminUser(AdminUser admin, string password)
         {
-            logger.Trace("layer={0} class={1} method={2} stage={3}", "repository", "auth", "registerAdminUser", "start");
-
+            logger.Trace("AuthRepository received a request for an admin user {adminUsername} registration", admin.UserName);
+            
             var result = await _userManager.CreateAsync(admin, password);
+
+            if (!result.Succeeded)
+            {
+                return result;
+            }
+
             _userManager.AddToRole(admin.Id, "admins");
             return result;
         }
@@ -53,7 +59,7 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<IdentityResult> RegisterStudentUser(StudentUser student, string password)
         {
-            logger.Trace("layer={0} class={1} method={2} stage={3}", "repository", "auth", "registerStudentUser", "start");
+            logger.Trace("AuthRepository received a request for a student user {studentUsername} registration", student.UserName);
 
             var result = await _userManager.CreateAsync(student, password);
 
@@ -79,7 +85,7 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<IdentityResult> RegisterTeacherUser(TeacherUser teacher, string password)
         {
-            logger.Trace("layer={0} class={1} method={2} stage={3}", "repository", "auth", "registerTeacherUser", "start");
+            logger.Trace("AuthRepository received a request for a teacher user {teacherUsername} registration", teacher.UserName);
 
             var result = await _userManager.CreateAsync(teacher, password);
             _userManager.AddToRole(teacher.Id, "teachers");
@@ -94,7 +100,7 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<IdentityResult> RegisterParentUser(ParentUser parent, string password)
         {
-            logger.Trace("layer={0} class={1} method={2} stage={3}", "repository", "auth", "registerParentUser", "start");
+            logger.Trace("AuthRepository received a request for a parent user {parentUsername} registration", parent.UserName);
 
             var result = await _userManager.CreateAsync(parent, password);
             _userManager.AddToRole(parent.Id, "parents");
@@ -124,7 +130,23 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<GradeBookUser> FindUser(string userName, string password)
         {
+            logger.Trace("AuthRepository received a request for finding a user by username {username} and password", userName);
+
             GradeBookUser user = await _userManager.FindAsync(userName, password);
+            return user;
+        }
+
+        /// <summary>
+        /// Find user by provided username
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public async Task<GradeBookUser> FindUserByUserName(string userName)
+        {
+            logger.Trace("AuthRepository received a request for finding a user by username {username}", userName);
+
+            GradeBookUser user = await _userManager.FindByNameAsync(userName);
+
             return user;
         }
 
@@ -135,8 +157,30 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<IList<string>> FindRoles(int userId)
         {
+            logger.Trace("AuthRepository find roles for {userId}", userId);
+
             return await _userManager.GetRolesAsync(userId);
         }
+        #endregion
+
+        #region Update users
+        /// <summary>
+        /// Common user update method,
+        /// will not work for special properties!
+        /// It IS working, after all.
+        /// Only you need special Dto for controller and service, to update the special properties!
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public async Task<IdentityResult> UpdateUser(GradeBookUser user)
+        {
+            // NOTE this will not work for concrete users
+            // It will only update the common properties, not the special ones....
+            var result = await _userManager.UpdateAsync(user);
+
+            return result;
+        }
+
         #endregion
 
         /// <summary>
@@ -146,7 +190,7 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<IdentityResult> DeleteUser(int userId)
         {
-            logger.Trace("layer={0} class={1} method={2} stage={3}", "repository", "auth", "deleteUser", "start");
+            logger.Trace("AuthRepository delete user {userId}", userId);
 
             var user = await _userManager.FindByIdAsync(userId);
 

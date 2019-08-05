@@ -1,6 +1,8 @@
 ﻿using NLog;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -24,7 +26,40 @@ namespace eGradeBook.Utilities.WebApi
         /// <param name="context"></param>
         public override void Log(ExceptionLoggerContext context)
         {
-            Nlog.Log(LogLevel.Error, context.Exception, RequestToString(context.Request));
+            var ex = context.Exception;
+            string enumerate = String.Empty;
+            foreach (DictionaryEntry d in ex.Data)
+            {
+                Debug.WriteLine("Key" + d.Key);
+                Debug.WriteLine("Value" + d.Value);
+                // var type = ex.Data[d].GetType();
+
+                // var typeIsEnum = type as IEnumerable<string>;
+
+                //var valueSave = d.Value.GetType();
+
+
+                //var typeIsStringArray = d.Value as System.String[];
+             
+                //if (true) // valueSave is IEnumerable<string>)
+                //{
+                //    foreach (var el in typeIsStringArray)
+                //    {
+                //        enumerate += el + " | ";
+                //    }
+                //    Debug.WriteLine(enumerate);
+                //    enumerate = string.Empty;
+                //}
+            }
+
+            var exData = new
+            {
+                TargetSite = ex.TargetSite,
+                Message = ex.Message,
+                Source = ex.Source
+            };
+
+            Nlog.Log(LogLevel.Error, context.Exception, RequestToString(context.Request) + "{exData}", exData);
         }
 
         /// <summary>

@@ -20,6 +20,9 @@ namespace eGradeBook.Models
             this.StudentParents = new HashSet<StudentParent>();
         }
 
+        public string PlaceOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+
         /// <summary>
         /// Which classroom is the student enrolled in?
         /// Not a Requested property because we can define a student and enroll in a class later.

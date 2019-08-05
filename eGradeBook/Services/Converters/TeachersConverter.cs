@@ -30,5 +30,112 @@ namespace eGradeBook.Services.Converters
                 }).ToList()
             };
         }
+
+        /// <summary>
+        /// Convert a teacher model to an extended data structure
+        /// With a list of classrooms and courses
+        /// and a list of courses and classrooms
+        /// </summary>
+        /// <param name="teacher"></param>
+        /// <returns></returns>
+        public static TeacherExtendedDto TeacherToTeacherExtendedDto(TeacherUser teacher)
+        {
+            TeacherExtendedDto teacherData = new TeacherExtendedDto()
+            {
+                TeacherId = teacher.Id,
+                FirstName = teacher.FirstName,
+                LastName = teacher.LastName,
+                ClassRooms = teacher.Teachings
+                    .SelectMany(t => t.Programs).GroupBy(p => p.ClassRoom)
+                    .Select(g => new TeacherExtendedDto.ClassRoomCoursesDto()
+                {
+                    ClassRoomId = g.Key.Id,
+                    ClassRoomName = g.Key.Name,
+                    Grade = g.Key.ClassGrade,
+                    Courses = g.Select(prog => new TeacherExtendedDto.ClassRoomCoursesDto.InnerCourseDto()
+                    {
+                        CourseId = prog.Course.Id,
+                        CourseName = prog.Course.Name,
+                        WeeklyHours = prog.WeeklyHours
+                    }).ToList()
+                }).ToList(),
+                // No groupings or selectmanys?? and still working...
+                Courses = teacher.Teachings
+                    .Select(g => new TeacherExtendedDto.CourseClassRoomDto()
+                {
+                    CourseId = g.Course.Id,
+                    CourseName = g.Course.Name,
+                    ClassRooms = g.Programs.Select(p => new TeacherExtendedDto.CourseClassRoomDto.InnerClassRoomDto()
+                    {
+                        ClassRoomId = p.ClassRoom.Id,
+                        ClassRoomName = p.ClassRoom.Name,
+                        Grade = p.ClassRoom.ClassGrade,
+                        WeeklyHours = p.WeeklyHours
+                    }).ToList()
+                }).ToList()
+            };
+
+            return teacherData;
+        }
+
+        /// <summary>
+        /// Convert a teacher model to an extended data structure
+        /// With a list of classrooms and courses
+        /// and a list of courses and classrooms
+        /// EXTRA and with a list of students nested inside...
+        /// </summary>
+        /// <param name="teacher"></param>
+        /// <returns></returns>
+        public static TeacherExtendedEvenMoreDto TeacherToTeacherEvenMoreExtendedDto(TeacherUser teacher)
+        {
+            TeacherExtendedEvenMoreDto teacherData = new TeacherExtendedEvenMoreDto()
+            {
+                TeacherId = teacher.Id,
+                FirstName = teacher.FirstName,
+                LastName = teacher.LastName,
+                ClassRooms = teacher.Teachings
+                    .SelectMany(t => t.Programs).GroupBy(p => p.ClassRoom)
+                    .Select(g => new TeacherExtendedEvenMoreDto.ClassRoomCoursesDto()
+                    {
+                        ClassRoomId = g.Key.Id,
+                        ClassRoomName = g.Key.Name,
+                        Grade = g.Key.ClassGrade,
+                        Courses = g.Select(prog => new TeacherExtendedEvenMoreDto.ClassRoomCoursesDto.InnerCourseDto()
+                        {
+                            CourseId = prog.Course.Id,
+                            CourseName = prog.Course.Name,
+                            WeeklyHours = prog.WeeklyHours,
+                            Students = prog.Students.Select(s => new TeacherExtendedEvenMoreDto.ClassRoomCoursesDto.InnerCourseDto.StudentDto()
+                            {
+                                StudentId = s.Student.Id,
+                                FirstName = s.Student.FirstName,
+                                LastName = s.Student.LastName
+                            })
+                        }).ToList()
+                    }).ToList(),
+                // No groupings or selectmanys?? and still working...
+                Courses = teacher.Teachings
+                    .Select(g => new TeacherExtendedEvenMoreDto.CourseClassRoomDto()
+                    {
+                        CourseId = g.Course.Id,
+                        CourseName = g.Course.Name,
+                        ClassRooms = g.Programs.Select(p => new TeacherExtendedEvenMoreDto.CourseClassRoomDto.InnerClassRoomDto()
+                        {
+                            ClassRoomId = p.ClassRoom.Id,
+                            ClassRoomName = p.ClassRoom.Name,
+                            Grade = p.ClassRoom.ClassGrade,
+                            WeeklyHours = p.WeeklyHours,
+                            Students = p.Students.Select(s => new TeacherExtendedEvenMoreDto.CourseClassRoomDto.InnerClassRoomDto.StudentDto()
+                            {
+                                StudentId = s.Student.Id,
+                                FirstName = s.Student.FirstName,
+                                LastName = s.Student.LastName
+                            })
+                        }).ToList()
+                    }).ToList()
+            };
+
+            return teacherData;
+        }
     }
 }

@@ -93,11 +93,10 @@ namespace eGradeBook.Services
                 {
                     Name = t.FirstName + " " + t.LastName,
                     TeacherId = t.Id,
-                    Courses = t.Teachings.Select(tc => new TeacherDto.CourseList() { Id = tc.SubjectId, Name = tc.Course.Name }).ToList()
+                    Courses = t.Teachings.Select(tc => new TeacherDto.CourseList() { Id = tc.CourseId, Name = tc.Course.Name }).ToList()
 //                    Courses = t.Teachings.Select(tc => tc.Course.Name).ToList()
                 });
         }
-
         /// <summary>
         /// Retrieve a teacher by Id
         /// </summary>
@@ -142,7 +141,7 @@ namespace eGradeBook.Services
             {
                 Name = t.FirstName + " " + t.LastName,
                 TeacherId = t.Id,
-                Courses = t.Teachings.Select(tc => new TeacherDto.CourseList() { Id = tc.SubjectId, Name = tc.Course.Name }).ToList()
+                Courses = t.Teachings.Select(tc => new TeacherDto.CourseList() { Id = tc.CourseId, Name = tc.Course.Name }).ToList()
                 //                    Courses = t.Teachings.Select(tc => tc.Course.Name).ToList()
             };
 
@@ -161,6 +160,165 @@ namespace eGradeBook.Services
             logger.Info("Service received request for updating teacher {teacherId} with data {@teacher}", teacherId, teacher);
 
             throw new NotImplementedException();
+        }
+
+        public TeacherExtendedDto GetExtendedDataForTeacher(int teacherId)
+        {
+            TeacherUser teacher = db.TeachersRepository.Get(t => t.Id == teacherId).FirstOrDefault();
+
+            if (teacher == null)
+            {
+                return null;
+            }
+
+            //TeacherExtendedDto teacherData = new TeacherExtendedDto()
+            //{
+            //    TeacherId = teacher.Id,
+            //    FirstName = teacher.FirstName,
+            //    LastName = teacher.LastName,
+            //    ClassRooms = teacher.Teachings
+            //        .SelectMany(t => t.Programs).GroupBy(p => p.ClassRoom)
+            //        .Select(g => new TeacherExtendedDto.ClassRoomCoursesDto()
+            //    {
+            //        ClassRoomId = g.Key.Id,
+            //        ClassRoomName = g.Key.Name,
+            //        Grade = g.Key.ClassGrade,
+            //        Courses = g.Select(prog => new TeacherExtendedDto.ClassRoomCoursesDto.InnerCourseDto()
+            //        {
+            //            CourseId = prog.Course.Id,
+            //            CourseName = prog.Course.Name,
+            //            WeeklyHours = prog.WeeklyHours
+            //        }).ToList()
+            //    }).ToList(),
+            //    // No groupings or selectmanys?? and still working...
+            //    Courses = teacher.Teachings
+            //        .Select(g => new TeacherExtendedDto.CourseClassRoomDto()
+            //        {
+            //            CourseId = g.Course.Id,
+            //            CourseName = g.Course.Name,
+            //            ClassRooms = g.Programs.Select(p => new TeacherExtendedDto.CourseClassRoomDto.InnerClassRoomDto()
+            //            {
+            //                ClassRoomId = p.ClassRoom.Id,
+            //                ClassRoomName = p.ClassRoom.Name,
+            //                Grade = p.ClassRoom.ClassGrade,
+            //                WeeklyHours = p.WeeklyHours
+            //            }).ToList()
+            //        }).ToList()
+            //};
+
+            // IZ NEKOG RAZLOGA OVO SAD RADI....
+
+            // TODO sledece probati: ClassRoom -> Course -> Students?
+
+            TeacherExtendedDto teacherData = new TeacherExtendedDto()
+            {
+                TeacherId = teacher.Id,
+                FirstName = teacher.FirstName,
+                LastName = teacher.LastName,
+                ClassRooms = teacher.Teachings
+                .SelectMany(t => t.Programs).GroupBy(p => p.ClassRoom)
+                .Select(g => new TeacherExtendedDto.ClassRoomCoursesDto()
+                {
+                    ClassRoomId = g.Key.Id,
+                    ClassRoomName = g.Key.Name,
+                    Grade = g.Key.ClassGrade,
+                    Courses = g.Select(prog => new TeacherExtendedDto.ClassRoomCoursesDto.InnerCourseDto()
+                    {
+                        CourseId = prog.Course.Id,
+                        CourseName = prog.Course.Name,
+                        WeeklyHours = prog.WeeklyHours
+                    }).ToList()
+                }).ToList(),
+                // No groupings or selectmanys?? and still working...
+                Courses = teacher.Teachings
+                .Select(g => new TeacherExtendedDto.CourseClassRoomDto()
+                {
+                CourseId = g.Course.Id,
+                CourseName = g.Course.Name,
+                ClassRooms = g.Programs.Select(p => new TeacherExtendedDto.CourseClassRoomDto.InnerClassRoomDto()
+                {
+                ClassRoomId = p.ClassRoom.Id,
+                ClassRoomName = p.ClassRoom.Name,
+                Grade = p.ClassRoom.ClassGrade,
+                WeeklyHours = p.WeeklyHours
+                }).ToList()
+                }).ToList()
+            };
+
+            return teacherData;
+        }
+
+        public object GetClassRoomsForTeacher(int teacherId)
+        {
+            //return db.TeachersRepository.Get(t => t.Id == teacherId)
+            //    .Select(t => new
+            //    {
+            //        TeacherId = t.Id,
+            //        FName = t.FirstName,
+            //        LName = t.LastName,
+            //        ClassRooms = t.Teachings.SelectMany(ts => ts.Programs).Select(p => new
+            //        {
+            //            ClassRoomId = p.ClassRoom.Id,
+            //            ClassRoomName = p.ClassRoom.Name
+            //        })
+            //    });
+
+            return db.TeachersRepository.Get(t => t.Id == teacherId)
+    .Select(t => new
+    {
+        TeacherId = t.Id,
+        FName = t.FirstName,
+        LName = t.LastName,
+        ClassRooms = t.Teachings.GroupBy(ts => ts.Programs).Select(p => new
+        {
+            ClassRoom = p.Key.Select(k => new { k.ClassRoom.Id, k.ClassRoom.Name })
+        })
+    });
+        }
+
+        public object GetCoursesForTeacher(int teacherId)
+        {
+            var teacher = db.TeachersRepository.Get(filter: t => t.Id == teacherId, includeProperties : "Teachings,Teachings.Programs,Teachings.Programs.Students").FirstOrDefault();
+
+            return Converters.TeachersConverter.TeacherToTeacherEvenMoreExtendedDto(teacher);
+        }
+
+        public object GetClassRoomsCoursesForTeacher(int teacherId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object GetCoursesClassRoomsForTeacher(int teacherId)
+        {
+            // experiments
+            // I dont need everything to check out if something is ok...
+            var teacher = db.TeachersRepository.Get(tr => tr.Id == teacherId).FirstOrDefault();
+
+            var programsGrouped = teacher.Teachings.SelectMany(t => t.Programs).GroupBy(p => p.ClassRoom);
+
+            // Ok ovo vraca spisak odeljenja
+            var classrooms = programsGrouped.Select(g => new
+            {
+                ClassRoomId = g.Key.Id,
+                ClassName = g.Key.Name
+            });
+
+            // da probam opet -- izgleda da je ovo to...
+            var classroomsAndCourses = programsGrouped.Select(g => new
+            {
+                ClassRoomId = g.Key.Id,
+                ClassName = g.Key.Name,
+                Courses = g.Select(prog => new
+                {
+                    CourseId = prog.Course.Id,
+                    CourseName = prog.Course.Name,
+                    TeacherId = prog.Teaching.TeacherId,
+                    TeacherName = prog.Teaching.Teacher.FirstName
+                })
+            });
+
+
+            return null;
         }
     }
 }

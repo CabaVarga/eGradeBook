@@ -1,7 +1,12 @@
 ﻿using eGradeBook.Models;
 using eGradeBook.Models.Dtos;
 using eGradeBook.Models.Dtos.Accounts;
+using eGradeBook.Models.Dtos.Admins;
+using eGradeBook.Models.Dtos.Parents;
+using eGradeBook.Models.Dtos.Students;
+using eGradeBook.Models.Dtos.Teachers;
 using eGradeBook.Repositories;
+using eGradeBook.Services.Exceptions;
 using eGradeBook.Utilities.Common;
 using Microsoft.AspNet.Identity;
 using NLog;
@@ -25,48 +30,12 @@ namespace eGradeBook.Services
         /// Constructor
         /// </summary>
         /// <param name="unitOfWork"></param>
+        /// <param name="logger"></param>
         public UsersService(IUnitOfWork unitOfWork, ILogger logger)
         {
             db = unitOfWork;
             this.logger = logger;
         }
-
-        // DELETE START
-
-        /// <summary>
-        /// Temporary method for functionality testing
-        /// </summary>
-        public void teacherclassroom()
-        {
-            TeacherUser teacher = new TeacherUser();
-            ClassRoom schoolClass = new ClassRoom();
-
-            // get to all classRooms!
-
-            var clsrms = teacher.Teachings
-                .SelectMany(t => t.Programs)
-                .Select(g => g.ClassRoom.Name)
-                .Distinct();
-
-            // Piece of cake...
-
-            var stdtns = teacher.Teachings
-                .SelectMany(t => t.Programs)
-                .SelectMany(g => g.Students)
-                .Select(s => s.UserName)
-                .Distinct();
-
-            // From classroom:
-
-            var tchrs = schoolClass.Students.SelectMany(s => s.Takings)
-                .Select(t => t.Program)
-                .Select(g => g.Teaching)
-                .Select(tc => tc.Teacher)
-                .Distinct();
-        }
-
-
-        // DELETE END
 
         /// <summary>
         /// Register an admin
@@ -83,24 +52,19 @@ namespace eGradeBook.Services
                 LastName = userModel.LastName
             };
 
-            return await db.AuthRepository.RegisterAdminUser(user, userModel.Password);
-        }
+            // Instead of directly returning, process the IdentityResult value here
+            // Return AdminDto if successfull, not an IdentityResult...
+            // So no 201 but 200 if Ok...
+            var result = await db.AuthRepository.RegisterAdminUser(user, userModel.Password);
 
-        /// <summary>
-        /// Register a student
-        /// </summary>
-        /// <param name="userModel"></param>
-        /// <returns></returns>
-        public async Task<IdentityResult> RegisterStudent(StudentRegistrationDto userModel)
-        {
-            StudentUser user = new StudentUser
+            if (!result.Succeeded)
             {
-                UserName = userModel.UserName,
-                FirstName = userModel.FirstName,
-                LastName = userModel.LastName
-            };
+                var ex = new UserRegistrationException(result.Errors.ToArray());
+                ex.Data.Add("IdentityResultErrors", result.Errors.ToArray());
+                throw ex;
+            }
 
-            return await db.AuthRepository.RegisterStudentUser(user, userModel.Password);
+            return null;
         }
 
         /// <summary>
@@ -120,6 +84,24 @@ namespace eGradeBook.Services
             return await db.AuthRepository.RegisterTeacherUser(user, userModel.Password);
         }
 
+        /// <summary>
+        /// Register a student
+        /// </summary>
+        /// <param name="userModel"></param>
+        /// <returns></returns>
+        public async Task<IdentityResult> RegisterStudent(StudentRegistrationDto userModel)
+        {
+            StudentUser user = new StudentUser
+            {
+                UserName = userModel.UserName,
+                FirstName = userModel.FirstName,
+                LastName = userModel.LastName,
+                PlaceOfBirth = userModel.PlaceOfBirth,
+                DateOfBirth = userModel.DateOfBirth
+            };
+
+            return await db.AuthRepository.RegisterStudentUser(user, userModel.Password);
+        }
         /// <summary>
         /// Register a parent
         /// </summary>
@@ -154,11 +136,87 @@ namespace eGradeBook.Services
             return await db.AuthRepository.RegisterClassMasterUser(user, userModel.Password);
         }
 
+        /// <summary>
+        /// Update admin
+        /// </summary>
+        /// <param name="adminUpdate"></param>
+        /// <returns></returns>
+        public async Task<AdminDto> UpdateAdmin(AdminUpdateDto adminUpdate)
+        {
+            // NOTE big problem
+            // Identity is accepting a GradeBookUser.
+            // Lets try giving a AdminUser....
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Update teacher
+        /// </summary>
+        /// <param name="teacherUpdate"></param>
+        /// <returns></returns>
+        public async Task<TeacherDto> UpdateTeacher(TeacherUpdateDto teacherUpdate)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Update student
+        /// </summary>
+        /// <param name="studentUpdate"></param>
+        /// <returns></returns>
+        public async Task<StudentDto> UpdateStudent(StudentUpdateDto studentUpdate)
+        {
+            // I will probably have to fetch the user,
+            // update some fields
+            // send it back to identity...
+
+            var student = db.StudentsRepository.Get(s => s.Id == studentUpdate.Id).FirstOrDefault();
+
+            if (student == null)
+            {
+                return null;
+            }
+
+            student.UserName = studentUpdate.UserName;
+            student.FirstName = studentUpdate.FirstName;
+            student.LastName = studentUpdate.LastName;
+            student.PlaceOfBirth = studentUpdate.PlaceOfBirth;
+            student.DateOfBirth = studentUpdate.DateOfBirth;
+
+            var result = await db.AuthRepository.UpdateUser(student);
+
+            if (!result.Succeeded)
+            {
+                return null;
+            }
+
+            var updatedStudent = await db.AuthRepository.FindUserByUserName(studentUpdate.UserName);
+
+            return Converters.StudentsConverter.StudentToStudentDto(updatedStudent as StudentUser);
+
+        }
+
+        /// <summary>
+        /// Update parent
+        /// </summary>
+        /// <param name="parentUpdate"></param>
+        /// <returns></returns>
+        public async Task<ParentDto> UpdateParent(ParentUpdateDto parentUpdate)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Delete user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public async Task<IdentityResult> DeleteUser(int userId)
         {
             return await db.AuthRepository.DeleteUser(userId);
         }
 
+        #region Helpers
         /// <summary>
         /// Get an id of a user with a given username
         /// </summary>
@@ -169,6 +227,11 @@ namespace eGradeBook.Services
             return db.GradeBookUsersRepository.Get(u => u.UserName == username).Select(u => u.Id).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Used by the WhoAmI and WhoIs endpoints
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public UserDataDto GetUserData(int userId)
         {
             GradeBookUser user = db.GradeBookUsersRepository.GetByID(userId);
@@ -186,24 +249,25 @@ namespace eGradeBook.Services
                 LastName = user.LastName
             };
 
-            if (user.GetType() == typeof(AdminUser))
+            if (user is AdminUser)
             {
                 dataDto.Role = UserRole.ADMIN;
             }
-            else if (user.GetType() == typeof(TeacherUser))
+            else if (user is TeacherUser)
             {
                 dataDto.Role = UserRole.TEACHER;
             }
-            else if (user.GetType() == typeof(StudentUser))
+            else if (user is StudentUser)
             {
                 dataDto.Role = UserRole.STUDENT;
             }
-            else
+            else if (user is ParentUser)
             {
                 dataDto.Role = UserRole.PARENT;
             }
 
             return dataDto;
         }
+        #endregion
     }
 }

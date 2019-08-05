@@ -143,7 +143,43 @@ namespace eGradeBook.Controllers
             // catch exception: here or at some central place?
         }
 
+        [Route("{teacherId}/extended")]
+        [HttpGet]
+        public IHttpActionResult GetTeacherExtendedData(int teacherId)
+        {
+            return Ok(teachersService.GetExtendedDataForTeacher(teacherId));
+        }
+
         // TODO Crud for admin, student and parent
         // TODO Prepare methods in services
+
+
+        [Route("{teacherId}/courses")]
+        [HttpGet]
+        public IHttpActionResult GetCoursesForTeacher(int teacherId)
+        {
+            return Ok(teachersService.GetCoursesForTeacher(teacherId));
+        }
+
+        [Route("{teacherId}/courses-and-classrooms")]
+        [HttpGet]
+        public IHttpActionResult GetCoursesClassroomsForTeacher(int teacherId)
+        {
+            return Ok(teachersService.GetCoursesClassRoomsForTeacher(teacherId));
+        }
+
+        [Route("{teacherId}/classrooms")]
+        [HttpGet]
+        public IHttpActionResult GetClassroomsForTeacher(int teacherId)
+        {
+            return Ok(teachersService.GetClassRoomsForTeacher(teacherId));
+        }
+
+        [Route("{teacherId}/classrooms-and-courses")]
+        [HttpGet]
+        public IHttpActionResult GetClassroomsCoursesForTeacher(int teacherId)
+        {
+            return Ok(teachersService.GetClassRoomsCoursesForTeacher(teacherId));
+        }
     }
 }

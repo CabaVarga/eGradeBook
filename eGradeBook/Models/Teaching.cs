@@ -15,13 +15,13 @@ namespace eGradeBook.Models
         public int TeacherId { get; set; }
 
         [Index("IX_Teacher_Subject", IsUnique = true, Order = 2)]
-        public int SubjectId { get; set; }
+        public int CourseId { get; set; }
 
         [ForeignKey("TeacherId")]
         [Required]
         public virtual TeacherUser Teacher { get; set; }
 
-        [ForeignKey("SubjectId")]
+        [ForeignKey("CourseId")]
         [Required]
         public virtual Course Course { get; set; }
 

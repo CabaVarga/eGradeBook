@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -17,12 +18,15 @@ namespace eGradeBook.Utilities.WebApi
     /// </summary>
     public class CustomExceptionFilter : ExceptionFilterAttribute
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// On exception method
         /// </summary>
         /// <param name="actionExecutedContext"></param>
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {
+            logger.Info("On exception entered.");
             HttpStatusCode status = HttpStatusCode.InternalServerError;
 
             String message = String.Empty;
@@ -31,12 +35,16 @@ namespace eGradeBook.Utilities.WebApi
 
             if (exceptionType == typeof(UnauthorizedAccessException))
             {
+                logger.Info("Exception is of type UnauthorizedAccessException");
+
                 message = "Access to the Web API is not authorized.";
                 status = HttpStatusCode.Unauthorized;
             }
 
             else if (exceptionType == typeof(DivideByZeroException))
             {
+                logger.Info("Exception is of type DivideByZeroException");
+
                 var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
                 {
                     Content = new StringContent("Internal Server Error. Division by zero happened...."),
@@ -69,6 +77,7 @@ namespace eGradeBook.Utilities.WebApi
         /// <returns></returns>
         public override Task OnExceptionAsync(HttpActionExecutedContext actionExecutedContext, CancellationToken cancellationToken)
         {
+            logger.Info("ASYNC On exception entered.");
             HttpStatusCode status = HttpStatusCode.InternalServerError;
 
             String message = String.Empty;
@@ -77,6 +86,8 @@ namespace eGradeBook.Utilities.WebApi
 
             if (exceptionType == typeof(UnauthorizedAccessException))
             {
+                logger.Info("ASYNC: Exception is of type UnauthorizedAccessException");
+
                 message = "Access to the Web API is not authorized.";
                 status = HttpStatusCode.Unauthorized;
             }
@@ -87,6 +98,8 @@ namespace eGradeBook.Utilities.WebApi
             }
             else
             {
+                logger.Info("ASYNC: Generic exception...");
+
                 message = "Not found.";
                 status = HttpStatusCode.NotFound;
             }

@@ -2,6 +2,7 @@
 using eGradeBook.Models.Dtos;
 using eGradeBook.Models.Dtos.Grades;
 using eGradeBook.Repositories;
+using eGradeBook.Services.Converters;
 using eGradeBook.Services.Exceptions;
 using NLog;
 using System;
@@ -23,6 +24,7 @@ namespace eGradeBook.Services
         /// Contructor
         /// </summary>
         /// <param name="db"></param>
+        /// <param name="logger"></param>
         public GradesService(IUnitOfWork db, ILogger logger)
         {
             this.db = db;
@@ -99,7 +101,7 @@ namespace eGradeBook.Services
             }
 
             // check if teacher teaches the subject
-            var assignment = db.TeachingAssignmentsRepository.Get(filter: a => a.SubjectId == subjectId && a.TeacherId == teacherId).FirstOrDefault();
+            var assignment = db.TeachingAssignmentsRepository.Get(filter: a => a.CourseId == subjectId && a.TeacherId == teacherId).FirstOrDefault();
 
             if (assignment == null)
             {
@@ -139,7 +141,7 @@ namespace eGradeBook.Services
             return new GradeDto()
             {
                 GradePoint = gradePoint,
-                Subject = subject.Name,
+                Course = subject.Name,
                 StudentName = student.FirstName + " " + student.LastName,
                 TeacherName = teacherMaybe.FirstName + " " + teacherMaybe.LastName
             };
@@ -153,14 +155,7 @@ namespace eGradeBook.Services
         {
             // This is the most basic implementation, with every grade included, no ordering, no grouping..
             var grades = db.GradesRepository.Get()
-                .Select(g =>
-                new GradeDto()
-                {
-                    GradePoint = g.GradePoint,
-                    Subject = g.Taking.Program.Teaching.Course.Name,
-                    StudentName = g.Taking.Student.FirstName + " " + g.Taking.Student.LastName,
-                    TeacherName = g.Taking.Program.Teaching.Teacher.FirstName + " " + g.Taking.Program.Teaching.Teacher.LastName
-                });
+                .Select(g => GradesConverter.GradeToGradeDto(g));
 
             return grades;
         }
@@ -174,14 +169,7 @@ namespace eGradeBook.Services
         {
             var grades = db.GradesRepository.Get(
                 filter: g => g.Taking.Program.Teaching.TeacherId == teacherId)
-                .Select(g =>
-                new GradeDto()
-                {
-                    GradePoint = g.GradePoint,
-                    Subject = g.Taking.Program.Teaching.Course.Name,
-                    StudentName = g.Taking.Student.FirstName + " " + g.Taking.Student.LastName,
-                    TeacherName = g.Taking.Program.Teaching.Teacher.FirstName + " " + g.Taking.Program.Teaching.Teacher.LastName
-                });
+                .Select(g => GradesConverter.GradeToGradeDto(g));
 
             return grades;
         }
@@ -195,14 +183,7 @@ namespace eGradeBook.Services
         {
             var grades = db.GradesRepository.Get(
                 filter: g => g.Taking.StudentId == studentId)
-                .Select(g =>
-                new GradeDto()
-                {
-                    GradePoint = g.GradePoint,
-                    Subject = g.Taking.Program.Teaching.Course.Name,
-                    StudentName = g.Taking.Student.FirstName + " " + g.Taking.Student.LastName,
-                    TeacherName = g.Taking.Program.Teaching.Teacher.FirstName + " " + g.Taking.Program.Teaching.Teacher.LastName
-                });
+                .Select(g => GradesConverter.GradeToGradeDto(g));
 
             return grades;
         }
@@ -225,14 +206,7 @@ namespace eGradeBook.Services
 
             // Hmm... i'm not quite it will work...
             var grades = db.GradesRepository.Get(g => g.Taking.Student.StudentParents.Any(p => p.Parent.Id == parentId))
-                .Select(g =>
-                new GradeDto()
-                {
-                    GradePoint = g.GradePoint,
-                    Subject = g.Taking.Program.Teaching.Course.Name,
-                    StudentName = g.Taking.Student.FirstName + " " + g.Taking.Student.LastName,
-                    TeacherName = g.Taking.Program.Teaching.Teacher.FirstName + " " + g.Taking.Program.Teaching.Teacher.LastName
-                });
+                .Select(g => GradesConverter.GradeToGradeDto(g));
 
             return grades;
         }
@@ -243,13 +217,7 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public IEnumerable<GradeDto> GetGradesByCourses()
         {
-            var grades = db.GradesRepository.Get().Select(g => new GradeDto()
-            {
-                GradePoint = g.GradePoint,
-                StudentName = g.Taking.Student.FirstName + " " + g.Taking.Student.LastName,
-                Subject = g.Taking.Program.Course.Name,
-                TeacherName = g.Taking.Program.Teaching.Teacher.FirstName + " " + g.Taking.Program.Teaching.Teacher.LastName
-            });
+            var grades = db.GradesRepository.Get().Select(g => GradesConverter.GradeToGradeDto(g));
 
 
             return grades;
@@ -280,19 +248,13 @@ namespace eGradeBook.Services
 
             return db.GradesRepository.Get(
                 filter:
-                g => studentId != null ? g.Taking.StudentId == studentId : true &&
-                    gradeId != null ? g.Taking.Program.ClassRoom.ClassGrade == gradeId : true &&
-                    teacherId != null ? g.Taking.Program.Teaching.TeacherId == teacherId : true &&
-                    courseId != null ? g.Taking.Program.CourseId == courseId : true &&
-                    semesterId != null ? g.SchoolTerm == semesterId : true &&
-                    classId != null ? g.Taking.Program.ClassRoomId == classId : true)
-                    .Select(g => new GradeDto()
-                    {
-                        StudentName = g.Taking.Student.FirstName + " " + g.Taking.Student.LastName,
-                        Subject = g.Taking.Program.Course.Name,
-                        GradePoint = g.GradePoint,
-                        TeacherName = g.Taking.Program.Teaching.Teacher.FirstName + " " + g.Taking.Program.Teaching.Teacher.LastName
-                    });
+                g => (studentId != null ? g.Taking.StudentId == studentId : true) &&
+                    (gradeId != null ? g.Taking.Program.ClassRoom.ClassGrade == gradeId : true) &&
+                    (teacherId != null ? g.Taking.Program.Teaching.TeacherId == teacherId : true) &&
+                    (courseId != null ? g.Taking.Program.CourseId == courseId : true) &&
+                    (semesterId != null ? g.SchoolTerm == semesterId : true) &&
+                    (classId != null ? g.Taking.Program.ClassRoomId == classId : true))
+                    .Select(g => GradesConverter.GradeToGradeDto(g));
 
         }
     }

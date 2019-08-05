@@ -24,7 +24,9 @@ namespace eGradeBook.Services.Converters
                 StudentId = student.Id,
                 FirstName = student.FirstName,
                 LastName = student.LastName,
-                ClassRoom = student.ClassRoom.Name,
+                PlaceOfBirth = student.PlaceOfBirth,
+                DateOfBirth = student.DateOfBirth,
+                ClassRoom = student.ClassRoom?.Name,
                 ClassRoomId = student.ClassRoomId
             };
         }

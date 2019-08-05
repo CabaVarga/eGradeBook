@@ -89,7 +89,7 @@ namespace eGradeBook.Services
                 return;
             }
 
-            Teaching teaching = db.TeachingAssignmentsRepository.Get(ta => ta.SubjectId == program.CourseId && ta.TeacherId == program.TeacherId).FirstOrDefault();
+            Teaching teaching = db.TeachingAssignmentsRepository.Get(ta => ta.CourseId == program.CourseId && ta.TeacherId == program.TeacherId).FirstOrDefault();
 
             if (teaching == null)
             {

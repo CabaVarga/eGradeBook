@@ -60,5 +60,14 @@ namespace eGradeBook.Services
         /// <param name="teacherId"></param>
         /// <returns></returns>
         TeacherDto DeleteTeacher(int teacherId);
+
+        TeacherExtendedDto GetExtendedDataForTeacher(int teacherId);
+
+        // MUST TEST THESE
+
+        object GetClassRoomsForTeacher(int teacherId);
+        object GetCoursesForTeacher(int teacherId);
+        object GetClassRoomsCoursesForTeacher(int teacherId);
+        object GetCoursesClassRoomsForTeacher(int teacherId);
     }
 }

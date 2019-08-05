@@ -22,6 +22,16 @@ namespace eGradeBook.Models.Dtos.Students
         public string LastName { get; set; }
 
         /// <summary>
+        /// Place of birth
+        /// </summary>
+        public string PlaceOfBirth { get; set; }
+
+        /// <summary>
+        /// Date of birth
+        /// </summary>
+        public DateTime? DateOfBirth { get; set; }
+
+        /// <summary>
         /// Class room
         /// </summary>
         public string ClassRoom { get; set;}
