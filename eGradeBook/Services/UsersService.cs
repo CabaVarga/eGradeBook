@@ -2,10 +2,12 @@
 using eGradeBook.Models.Dtos;
 using eGradeBook.Models.Dtos.Accounts;
 using eGradeBook.Models.Dtos.Admins;
+using eGradeBook.Models.Dtos.ClassMasters;
 using eGradeBook.Models.Dtos.Parents;
 using eGradeBook.Models.Dtos.Students;
 using eGradeBook.Models.Dtos.Teachers;
 using eGradeBook.Repositories;
+using eGradeBook.Services.Converters;
 using eGradeBook.Services.Exceptions;
 using eGradeBook.Utilities.Common;
 using Microsoft.AspNet.Identity;
@@ -24,17 +26,15 @@ namespace eGradeBook.Services
     public class UsersService : IUsersService
     {
         private IUnitOfWork db;
-        private ILogger logger;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="unitOfWork"></param>
-        /// <param name="logger"></param>
-        public UsersService(IUnitOfWork unitOfWork, ILogger logger)
+        public UsersService(IUnitOfWork unitOfWork)
         {
             db = unitOfWork;
-            this.logger = logger;
         }
 
         /// <summary>
@@ -42,19 +42,12 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="userModel"></param>
         /// <returns></returns>
-        public async Task<IdentityResult> RegisterAdmin(AdminRegistrationDto userModel)
+        public async Task<AdminDto> RegisterAdmin(AdminRegistrationDto userModel)
         {
             logger.Trace("layer={0} class={1} method={2} stage={3}", "service", "users", "registerAdmin", "init");
-            AdminUser user = new AdminUser
-            {
-                UserName = userModel.UserName,
-                FirstName = userModel.FirstName,
-                LastName = userModel.LastName
-            };
 
-            // Instead of directly returning, process the IdentityResult value here
-            // Return AdminDto if successfull, not an IdentityResult...
-            // So no 201 but 200 if Ok...
+            AdminUser user = Converters.AdminsConverter.AdminRegistrationDtoToAdmin(userModel);
+
             var result = await db.AuthRepository.RegisterAdminUser(user, userModel.Password);
 
             if (!result.Succeeded)
@@ -64,7 +57,9 @@ namespace eGradeBook.Services
                 throw ex;
             }
 
-            return null;
+            user = await db.AuthRepository.FindUserByUserName(userModel.UserName) as AdminUser;
+
+            return Converters.AdminsConverter.AdminToAdminDto(user);
         }
 
         /// <summary>
@@ -72,16 +67,22 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="userModel"></param>
         /// <returns></returns>
-        public async Task<IdentityResult> RegisterTeacher(TeacherRegistrationDto userModel)
+        public async Task<TeacherDto> RegisterTeacher(TeacherRegistrationDto userModel)
         {
-            TeacherUser user = new TeacherUser
-            {
-                UserName = userModel.UserName,
-                FirstName = userModel.FirstName,
-                LastName = userModel.LastName
-            };
+            TeacherUser user = TeachersConverter.TeacherRegistrationDtoToTeacher(userModel);
 
-            return await db.AuthRepository.RegisterTeacherUser(user, userModel.Password);
+            var result = await db.AuthRepository.RegisterTeacherUser(user, userModel.Password);
+
+            if (!result.Succeeded)
+            {
+                var ex = new UserRegistrationException(result.Errors.ToArray());
+                ex.Data.Add("IdentityResultErrors", result.Errors.ToArray());
+                throw ex;
+            }
+
+            user = await db.AuthRepository.FindUserByUserName(userModel.UserName) as TeacherUser;
+
+            return TeachersConverter.TeacherToTeacherDto(user);
         }
 
         /// <summary>
@@ -89,51 +90,44 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="userModel"></param>
         /// <returns></returns>
-        public async Task<IdentityResult> RegisterStudent(StudentRegistrationDto userModel)
+        public async Task<StudentDto> RegisterStudent(StudentRegistrationDto userModel)
         {
-            StudentUser user = new StudentUser
-            {
-                UserName = userModel.UserName,
-                FirstName = userModel.FirstName,
-                LastName = userModel.LastName,
-                PlaceOfBirth = userModel.PlaceOfBirth,
-                DateOfBirth = userModel.DateOfBirth
-            };
+            StudentUser user = StudentsConverter.StudentRegistrationDtoToStudent(userModel);
 
-            return await db.AuthRepository.RegisterStudentUser(user, userModel.Password);
+            var result = await db.AuthRepository.RegisterStudentUser(user, userModel.Password);
+
+            if (!result.Succeeded)
+            {
+                var ex = new UserRegistrationException(result.Errors.ToArray());
+                ex.Data.Add("IdentityResultErrors", result.Errors.ToArray());
+                throw ex;
+            }
+
+            user = await db.AuthRepository.FindUserByUserName(userModel.UserName) as StudentUser;
+
+            return StudentsConverter.StudentToStudentDto(user);
         }
         /// <summary>
         /// Register a parent
         /// </summary>
         /// <param name="userModel"></param>
         /// <returns></returns>
-        public async Task<IdentityResult> RegisterParent(ParentRegistrationDto userModel)
+        public async Task<ParentDto> RegisterParent(ParentRegistrationDto userModel)
         {
-            ParentUser user = new ParentUser
+            ParentUser user = ParentsConverter.ParentRegistrationDtoToParent(userModel);
+
+            var result = await db.AuthRepository.RegisterParentUser(user, userModel.Password);
+
+            if (!result.Succeeded)
             {
-                UserName = userModel.UserName,
-                FirstName = userModel.FirstName,
-                LastName = userModel.LastName
-            };
+                var ex = new UserRegistrationException(result.Errors.ToArray());
+                ex.Data.Add("IdentityResultErrors", result.Errors.ToArray());
+                throw ex;
+            }
 
-            return await db.AuthRepository.RegisterParentUser(user, userModel.Password);
-        }
+            user = await db.AuthRepository.FindUserByUserName(userModel.UserName) as ParentUser;
 
-        /// <summary>
-        /// Register a class master
-        /// </summary>
-        /// <param name="userModel"></param>
-        /// <returns></returns>
-        public async Task<IdentityResult> RegisterClassMaster(UserRegistrationDto userModel)
-        {
-            ClassMasterUser user = new ClassMasterUser
-            {
-                UserName = userModel.UserName,
-                FirstName = userModel.FirstName,
-                LastName = userModel.LastName
-            };
-
-            return await db.AuthRepository.RegisterClassMasterUser(user, userModel.Password);
+            return ParentsConverter.ParentToParentDto(user);
         }
 
         /// <summary>
@@ -143,10 +137,29 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public async Task<AdminDto> UpdateAdmin(AdminUpdateDto adminUpdate)
         {
-            // NOTE big problem
-            // Identity is accepting a GradeBookUser.
-            // Lets try giving a AdminUser....
-            throw new NotImplementedException();
+            AdminUser user = db.AdminsRepository.Get(a => a.Id == adminUpdate.Id).FirstOrDefault();
+
+            if (user == null)
+            {
+                // 404, Not found.
+                // No reason for an exception I think
+                return null;
+            }
+
+            AdminsConverter.UpdateAdminsPersonalData(user, adminUpdate);
+
+            var result = await db.AuthRepository.UpdateUser(user);
+
+            if (!result.Succeeded)
+            {
+                var ex = new UserUpdateException(result.Errors.ToArray());
+                ex.Data.Add("IdentityResultErrors", result.Errors.ToArray());
+                throw ex;
+            }
+
+            var updatedUser = db.AdminsRepository.Get(a => a.Id == adminUpdate.Id).FirstOrDefault();
+
+            return AdminsConverter.AdminToAdminDto(updatedUser);
         }
 
         /// <summary>
@@ -156,7 +169,29 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public async Task<TeacherDto> UpdateTeacher(TeacherUpdateDto teacherUpdate)
         {
-            throw new NotImplementedException();
+            TeacherUser user = db.TeachersRepository.Get(a => a.Id == teacherUpdate.Id).FirstOrDefault();
+
+            if (user == null)
+            {
+                // 404, Not found.
+                // No reason for an exception I think
+                return null;
+            }
+
+            TeachersConverter.UpdateTeachersPersonalData(user, teacherUpdate);
+
+            var result = await db.AuthRepository.UpdateUser(user);
+
+            if (!result.Succeeded)
+            {
+                var ex = new UserUpdateException(result.Errors.ToArray());
+                ex.Data.Add("IdentityResultErrors", result.Errors.ToArray());
+                throw ex;
+            }
+
+            var updatedUser = db.TeachersRepository.Get(a => a.Id == teacherUpdate.Id).FirstOrDefault();
+
+            return TeachersConverter.TeacherToTeacherDto(updatedUser);
         }
 
         /// <summary>
@@ -166,34 +201,29 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public async Task<StudentDto> UpdateStudent(StudentUpdateDto studentUpdate)
         {
-            // I will probably have to fetch the user,
-            // update some fields
-            // send it back to identity...
+            StudentUser user = db.StudentsRepository.Get(a => a.Id == studentUpdate.Id).FirstOrDefault();
 
-            var student = db.StudentsRepository.Get(s => s.Id == studentUpdate.Id).FirstOrDefault();
-
-            if (student == null)
+            if (user == null)
             {
+                // 404, Not found.
+                // No reason for an exception I think
                 return null;
             }
 
-            student.UserName = studentUpdate.UserName;
-            student.FirstName = studentUpdate.FirstName;
-            student.LastName = studentUpdate.LastName;
-            student.PlaceOfBirth = studentUpdate.PlaceOfBirth;
-            student.DateOfBirth = studentUpdate.DateOfBirth;
+            StudentsConverter.UpdateStudentsPersonalData(user, studentUpdate);
 
-            var result = await db.AuthRepository.UpdateUser(student);
+            var result = await db.AuthRepository.UpdateUser(user);
 
             if (!result.Succeeded)
             {
-                return null;
+                var ex = new UserUpdateException(result.Errors.ToArray());
+                ex.Data.Add("IdentityResultErrors", result.Errors.ToArray());
+                throw ex;
             }
 
-            var updatedStudent = await db.AuthRepository.FindUserByUserName(studentUpdate.UserName);
+            var updatedUser = db.StudentsRepository.Get(a => a.Id == studentUpdate.Id).FirstOrDefault();
 
-            return Converters.StudentsConverter.StudentToStudentDto(updatedStudent as StudentUser);
-
+            return StudentsConverter.StudentToStudentDto(updatedUser);
         }
 
         /// <summary>
@@ -203,7 +233,29 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public async Task<ParentDto> UpdateParent(ParentUpdateDto parentUpdate)
         {
-            throw new NotImplementedException();
+            ParentUser user = db.ParentsRepository.Get(a => a.Id == parentUpdate.Id).FirstOrDefault();
+
+            if (user == null)
+            {
+                // 404, Not found.
+                // No reason for an exception I think
+                return null;
+            }
+
+            ParentsConverter.UpdateParentsPersonalData(user, parentUpdate);
+
+            var result = await db.AuthRepository.UpdateUser(user);
+
+            if (!result.Succeeded)
+            {
+                var ex = new UserUpdateException(result.Errors.ToArray());
+                ex.Data.Add("IdentityResultErrors", result.Errors.ToArray());
+                throw ex;
+            }
+
+            var updatedUser = db.ParentsRepository.Get(a => a.Id == parentUpdate.Id).FirstOrDefault();
+
+            return ParentsConverter.ParentToParentDto(updatedUser);
         }
 
         /// <summary>

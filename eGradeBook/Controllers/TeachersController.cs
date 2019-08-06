@@ -16,12 +16,11 @@ namespace eGradeBook.Controllers
     public class TeachersController : ApiController
     {
         private ITeachersService teachersService;
-        private ILogger logger;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public TeachersController(ITeachersService service, ILogger logger)
+        public TeachersController(ITeachersService service)
         {
             this.teachersService = service;
-            this.logger = logger;
         }
 
         /// <summary>
@@ -46,7 +45,7 @@ namespace eGradeBook.Controllers
         /// </summary>
         /// <param name="teacherId"></param>
         /// <returns>A Json object of the Teacher Dto</returns>
-        [Route("{teacherId:int}")]
+        [Route("{teacherId:int}", Name = "GetTeacherById")]
         [ResponseType(typeof(TeacherDto))]
         [HttpGet]
         public IHttpActionResult GetTeacherById(int teacherId)
@@ -143,8 +142,14 @@ namespace eGradeBook.Controllers
             // catch exception: here or at some central place?
         }
 
+        /// <summary>
+        /// Return a list of courses with the classrooms and a list of classrooms with the courses
+        /// </summary>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
         [Route("{teacherId}/extended")]
         [HttpGet]
+        [ResponseType(typeof(TeacherExtendedDto))]
         public IHttpActionResult GetTeacherExtendedData(int teacherId)
         {
             return Ok(teachersService.GetExtendedDataForTeacher(teacherId));

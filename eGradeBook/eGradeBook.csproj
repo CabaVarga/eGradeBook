@@ -202,6 +202,7 @@
     <Compile Include="Models\Dtos\Accounts\UserUpdateDto.cs" />
     <Compile Include="Models\Dtos\Admins\AdminDto.cs" />
     <Compile Include="Models\Dtos\Accounts\AdminUpdateDto.cs" />
+    <Compile Include="Models\Dtos\ClassMasters\ClassMasterDto.cs" />
     <Compile Include="Models\Dtos\ClassRooms\ClassRoomDto.cs" />
     <Compile Include="Models\Dtos\ClassRooms\ClassRoomEnrollStudentDto.cs" />
     <Compile Include="Models\Dtos\ClassRooms\ClassRoomProgramDto.cs" />
@@ -266,6 +267,7 @@
     <Compile Include="Services\CoursesService.cs" />
     <Compile Include="Services\Exceptions\InvalidUserIdException.cs" />
     <Compile Include="Services\Exceptions\UserRegistrationException.cs" />
+    <Compile Include="Services\Exceptions\UserUpdateException.cs" />
     <Compile Include="Services\FinalGradesService.cs" />
     <Compile Include="Services\GradesService.cs" />
     <Compile Include="Services\IAdminsService.cs" />

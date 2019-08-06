@@ -10,5 +10,8 @@ namespace eGradeBook.Models.Dtos.Accounts
     /// </summary>
     public class TeacherUpdateDto : UserUpdateDto
     {
+        public string Title { get; set; }
+
+        public string Degree { get; set; }
     }
 }

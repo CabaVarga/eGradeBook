@@ -9,6 +9,7 @@ using eGradeBook.Utilities.Common;
 using eGradeBook.Utilities.StructuredLogging;
 using eGradeBook.Utilities.WebApi;
 using NLog;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -24,70 +25,39 @@ namespace eGradeBook.Controllers
     public class AccountsController : ApiController
     {
         private IUsersService service;
-        private ILogger logger;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Accounts Controller constructor
         /// </summary>
         /// <param name="userService"></param>
-        /// <param name="logger"></param>
-        public AccountsController(IUsersService userService, ILogger logger)
+        public AccountsController(IUsersService userService)
         {
             this.service = userService;
-            this.logger = logger;
         }
 
         #region Registrations
 
         /// <summary>
         /// Register a new Admin
+        /// NOTE I need to return a full AdminDto at creation, the current solution is not good.
         /// </summary>
-        /// <param name="userModel">Dto object with username, first and last names and password.</param>
+        /// <param name="userModel">Dto object with account and personal details.</param>
         /// <returns>CreatedResourceDto payload describing and linking to the resource</returns>
-        [ResponseType(typeof(CreatedResourceDto))]
+        [ResponseType(typeof(AdminDto))]
         [Authorize(Roles = "admins")]
         [Route("register-admin")]
         public async Task<IHttpActionResult> RegisterAdmin(AdminRegistrationDto userModel)
         {
-            logger.Trace("Registration of new Admin user {@adminuser} initiated", userModel);
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
-            var whereAmI = new Where()
-            {
-                Layer = "Web api",
-                NameSpace = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Namespace,
-                ClassMethod = System.Reflection.MethodBase.GetCurrentMethod().Name,
-                ClassName = GetType().Name
-            };
-
-            logger.Trace("At {@whereAmI}", whereAmI);
-
-            // ("At {@where} user {@who} does {@what} with {@input}
-            // ("Who {@user} When {@timestamp} Where {@context} What {@command} Result{@exception}")
+            logger.Info("Register Admin {@adminReg} by {@userData}", userModel, userData);
 
             var result = await service.RegisterAdmin(userModel);
 
-            if (result == null)
-            {
-                // Model state validation already went into validator, something else is the problem
-                return BadRequest(ModelState);
-            }
+            logger.Info("Created Admin {@userId}", result.Id);
 
-            var createdId = service.GetIdOfUser(userModel.UserName);
-
-            var link = Url.Link("GetAdminById", new { adminId = createdId });
-
-            // If I want to get a user dto i need to make some changes
-            var data = IdentityHelper.FetchUserData(RequestContext);
-
-            logger.Info("userid={0} action={1} result={2} status={3}",
-                data.UserId, "RegisterAdmin", createdId, "success");
-
-            return CreatedAtRoute("GetAdminById", new { adminId = createdId }, new CreatedResourceDto()
-            {
-                Id = createdId,
-                Location = link,
-                UserRole = UserRole.ADMIN
-            });
+            return CreatedAtRoute("GetAdminById", new { adminId = result.Id }, result);
         }
 
         /// <summary>
@@ -101,25 +71,13 @@ namespace eGradeBook.Controllers
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
-            logger.Trace("Registration of new Teacher user {@teacheruser} by {@loggedUser}", userModel, userData);
+            logger.Trace("Register Teacher {@teacherReg} by {@userData}", userModel, userData);
 
             var result = await service.RegisterTeacher(userModel);
 
-            if (result == null)
-            {
-                return BadRequest(ModelState);
-            }
+            logger.Info("Created Teacher {@userId}", result.TeacherId);
 
-            var userId = service.GetIdOfUser(userModel.UserName);
-
-            var link = Url.Link("GetTeacherById", new { teacherId = userId });
-
-            return CreatedAtRoute("GetTeacherById", new { teacherId = userId }, new CreatedResourceDto()
-            {
-                Id = userId,
-                Location = link,
-                UserRole = UserRole.TEACHER
-            });
+            return CreatedAtRoute("GetTeacherById", new { teacherId = result.TeacherId }, result);
         }
 
         /// <summary>
@@ -131,29 +89,15 @@ namespace eGradeBook.Controllers
         [Authorize(Roles = "admins")]
         public async Task<IHttpActionResult> RegisterStudent(StudentRegistrationDto userModel)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Register Student {@studentReg} by {@userData}", userModel, userData);
+
             var result = await service.RegisterStudent(userModel);
 
-            if (result == null)
-            {
-                return BadRequest(ModelState);
-            }
+            logger.Info("Created Student {@userId}", result.StudentId);
 
-            // Had to change auth repo implementation
-            if (!result.Succeeded)
-            {
-                logger.Error("Student registration failed {errors}", result.Errors);
-            }
-
-            var userId = service.GetIdOfUser(userModel.UserName);
-
-            var link = Url.Link("GetStudentById", new { studentId = userId });
-
-            return CreatedAtRoute("GetStudentById", new { studentId = userId }, new CreatedResourceDto()
-            {
-                Id = userId,
-                Location = link,
-                UserRole = UserRole.STUDENT
-            });
+            return CreatedAtRoute("GetStudentById", new { studentId = result.StudentId }, result);
         }
 
         /// <summary>
@@ -165,28 +109,15 @@ namespace eGradeBook.Controllers
         [Authorize(Roles = "admins")]
         public async Task<IHttpActionResult> RegisterParent(ParentRegistrationDto userModel)
         {
-            // Authentication and authorization data about logged in user
-            var user = IdentityHelper.FetchUserData(RequestContext);
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
-            logger.Info("User {@userData} is attempting to register a parent {@parent}", user, userModel);
+            logger.Info("Register Parent {@parentReg} by {@userData}", userModel, userData);
 
             var result = await service.RegisterParent(userModel);
 
-            if (result == null)
-            {
-                return BadRequest(ModelState);
-            }
+            logger.Info("Created Parent {@userId}", result.Id);
 
-            var userId = service.GetIdOfUser(userModel.UserName);
-
-            var link = Url.Link("GetParentById", new { parentId = userId });
-
-            return CreatedAtRoute("GetParentById", new { parentId = userId }, new CreatedResourceDto()
-            {
-                Id = userId,
-                Location = link,
-                UserRole = UserRole.PARENT
-            });
+            return CreatedAtRoute("GetParentById", new { parentId = result.Id }, result);
         }
 
         #endregion
@@ -204,9 +135,9 @@ namespace eGradeBook.Controllers
         [Authorize(Roles = "admins")]
         public async Task<IHttpActionResult> UpdateAdmin([FromUri] int adminId, [FromBody] AdminUpdateDto adminUpdate)
         {
-            var user = IdentityHelper.GetLoggedInUser(RequestContext);
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
-            logger.Info("User {@userData} requesting an Admin {adminId} update {@adminData}", user, adminId, adminUpdate);
+            logger.Info("Update Admin {@adminReg} by {@userData}", adminUpdate, userData);
 
             if (adminId != adminUpdate.Id)
             {
@@ -236,9 +167,9 @@ namespace eGradeBook.Controllers
         [Authorize(Roles = "admins")]
         public async Task<IHttpActionResult> UpdateTeacher([FromUri] int teacherId, [FromBody] TeacherUpdateDto teacherUpdate)
         {
-            var user = IdentityHelper.GetLoggedInUser(RequestContext);
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
-            logger.Info("User {@userData} requesting a Teacher {teacherId} update {@teacherData}", user, teacherId, teacherUpdate);
+            logger.Info("Update Teacher {@teacherReg} by {@userData}", teacherUpdate, userData);
 
             if (teacherId != teacherUpdate.Id)
             {
@@ -268,9 +199,9 @@ namespace eGradeBook.Controllers
         [Authorize(Roles = "admins")]
         public async Task<IHttpActionResult> UpdateStudent([FromUri] int studentId, [FromBody] StudentUpdateDto studentUpdate)
         {
-            var user = IdentityHelper.GetLoggedInUser(RequestContext);
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
-            logger.Info("User {@userData} requesting a Student {studentId} update {@studentData}", user, studentId, studentUpdate);
+            logger.Info("Update Student {@studentReg} by {@userData}", studentUpdate, userData);
 
             if (studentId != studentUpdate.Id)
             {
@@ -301,9 +232,9 @@ namespace eGradeBook.Controllers
         [Authorize(Roles = "admins")]
         public async Task<IHttpActionResult> UpdateParent([FromUri] int parentId, [FromBody] ParentUpdateDto parentUpdate)
         {
-            var user = IdentityHelper.GetLoggedInUser(RequestContext);
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
-            logger.Info("User {@userData} requesting a Parent {parentId} update {@parentData}", user, parentId, parentUpdate);
+            logger.Info("Update Parent {@parentReg} by {@userData}", parentUpdate, userData);
 
             if (parentId != parentUpdate.Id)
             {
@@ -328,10 +259,9 @@ namespace eGradeBook.Controllers
         [Authorize(Roles = "admins")]
         public async Task<IHttpActionResult> DeleteUser(int id)
         {
-            var currentUser = IdentityHelper.FetchUserData(RequestContext);
-            var current = IdentityHelper.GetLoggedInUser(currentUser);
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
-            logger.Trace("Removal of user {userId} initiated by {@loggedUser}", id, current);
+            logger.Trace("Delete User {@userId} by {@userData}", id, userData);
 
             var result = await service.DeleteUser(id);
 

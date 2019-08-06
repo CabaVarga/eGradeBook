@@ -1,4 +1,5 @@
 ﻿using eGradeBook.Models;
+using eGradeBook.Models.Dtos.Accounts;
 using eGradeBook.Models.Dtos.Parents;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,45 @@ namespace eGradeBook.Services.Converters
             return new ParentDto()
             {
                 Id = parent.Id,
-                FullName = parent.FirstName + " " + parent.LastName
+                FirstName = parent.FirstName,
+                LastName = parent.LastName,
+                Gender = parent.Gender,
+                Email = parent.Email,
+                PhoneNumber = parent.PhoneNumber,
+
+            };
+        }
+
+        /// <summary>
+        /// Update full entity from dto before sending to the storage
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="dto"></param>
+        public static void UpdateParentsPersonalData(ParentUser user, ParentUpdateDto dto)
+        {
+            user.UserName = dto.UserName;
+            user.FirstName = dto.FirstName;
+            user.LastName = dto.LastName;
+            user.Gender = dto.Gender;
+            user.Email = dto.Email;
+            user.PhoneNumber = dto.PhoneNumber;
+        }
+
+        /// <summary>
+        /// Registration dto to full entity
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public static ParentUser ParentRegistrationDtoToParent(ParentRegistrationDto dto)
+        {
+            return new ParentUser()
+            {
+                UserName = dto.UserName,
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Gender = dto.Gender,
+                Email = dto.Email,
+                PhoneNumber = dto.PhoneNumber
             };
         }
     }

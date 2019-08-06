@@ -15,16 +15,15 @@ namespace eGradeBook.Services
     public class AdminsService : IAdminsService
     {
         private IUnitOfWork db;
-        private ILogger logger;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="db"></param>
-        public AdminsService(IUnitOfWork db, ILogger logger)
+        public AdminsService(IUnitOfWork db)
         {
             this.db = db;
-            this.logger = logger;
         }
 
         /// <summary>
@@ -45,12 +44,7 @@ namespace eGradeBook.Services
         public AdminDto GetAdminById(int adminId)
         {
             AdminDto admin = db.GradeBookUsersRepository.Get(u => u.Id == adminId).OfType<AdminUser>()
-                .Select(a => new AdminDto()
-                {
-                    Id = a.Id,
-                    FullName = a.FirstName + " " + a.LastName
-                })
-                .FirstOrDefault();
+                .Select(a => Converters.AdminsConverter.AdminToAdminDto(a)).FirstOrDefault();
 
             return admin;
         }

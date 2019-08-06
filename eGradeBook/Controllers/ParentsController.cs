@@ -1,5 +1,6 @@
 ﻿using eGradeBook.Models.Dtos.Parents;
 using eGradeBook.Services;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace eGradeBook.Controllers
     public class ParentsController : ApiController
     {
         private IParentsService service;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Constructor

@@ -36,6 +36,19 @@ namespace eGradeBook.Models.Dtos.Accounts
         [Required]
         public string LastName { get; set; }
 
+        /// <summary>
+        /// The user's gender.
+        /// </summary>
+        [Required]
+        [MaxLength(1)]
+        [RegularExpression("m|f", ErrorMessage = "Acceptable values are \"m\" for Male and \"f\" for Female.")]
+        [Display(Name = "Gender")]
+        public string Gender { get; set; }
+
+        public string Email { get; set; }
+
+        public string PhoneNumber { get; set; }
+
 
     }
 }

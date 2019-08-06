@@ -1,6 +1,7 @@
 ﻿using eGradeBook.Models.Dtos.Admins;
 using eGradeBook.Models.Dtos.Logging;
 using eGradeBook.Services;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,6 +22,7 @@ namespace eGradeBook.Controllers
     public class AdminsController : ApiController
     {
         private IAdminsService service;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Constructor
@@ -190,6 +192,25 @@ namespace eGradeBook.Controllers
         {
             return Ok(service.DeleteAdmin(adminId));
         }
+
+        #endregion
+
+        #region Reports
+        // Number of courses, link to courses
+        // Number of teacher, link to teachers
+        // Teachers not teaching any course, number, link to each
+        // Courses not beign taught by any teacher, number, link to each
+        // Number of classrooms, link to classrooms
+        // Classrooms with no program
+        // Courses not in a program --> through teaching not in a program or directly?
+        // Number of students, link to students
+        // Students not enrolled in a classroom, link to them
+        // Number of students by classroom
+        // Students enrolled in a classroom not taking any offered course
+        // For students in a classroom : courses offererd, courses taken
+        // Students without parents, parents without children
+        // (1) IMPLEMENT FIRST: Teachings without program.
+
 
         #endregion
     }

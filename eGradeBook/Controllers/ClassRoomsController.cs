@@ -1,5 +1,6 @@
 ﻿using eGradeBook.Models.Dtos.ClassRooms;
 using eGradeBook.Services;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace eGradeBook.Controllers
         /// Business logic
         /// </summary>
         private IClassRoomsService service;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Constructor

@@ -20,7 +20,7 @@ namespace eGradeBook.Controllers
     {
         // private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        private ILogger log;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         private IGradesService gradesService;
 
         /// <summary>
@@ -28,12 +28,9 @@ namespace eGradeBook.Controllers
         /// </summary>
         /// <param name="gradesService"></param>
         /// <param name="log"></param>
-        public GradesController(IGradesService gradesService, ILogger log)
+        public GradesController(IGradesService gradesService)
         {
             this.gradesService = gradesService;
-            this.log = log;
-
-            this.log.Log(LogLevel.Info, "Grades service created");
         }
 
         /// <summary>
@@ -127,7 +124,7 @@ namespace eGradeBook.Controllers
             [FromUri]int? semesterId = null, 
             [FromUri]int? classId = null)
         {
-            log.Trace("Tracer, is authenticated -- {0}", this.User.Identity.IsAuthenticated);
+            logger.Trace("Tracer, is authenticated -- {0}", this.User.Identity.IsAuthenticated);
             return Ok(gradesService.GetGradesByParameters(studentId, gradeId, teacherId, courseId, semesterId, classId));
         }
 

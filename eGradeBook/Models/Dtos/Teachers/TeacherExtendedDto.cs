@@ -11,6 +11,9 @@ namespace eGradeBook.Models.Dtos.Teachers
     /// </summary>
     public class TeacherExtendedDto
     {
+        /// <summary>
+        /// The collection of courses and the classrooms they are taught in
+        /// </summary>
         public class CourseClassRoomDto
         {
             public class InnerClassRoomDto
@@ -27,6 +30,9 @@ namespace eGradeBook.Models.Dtos.Teachers
             public ICollection<InnerClassRoomDto> ClassRooms { get; set; }
         }
 
+        /// <summary>
+        /// The collection of classrooms where the teacher is teaching and the courses taught
+        /// </summary>
         public class ClassRoomCoursesDto
         {
             public class InnerCourseDto
@@ -43,11 +49,29 @@ namespace eGradeBook.Models.Dtos.Teachers
             public ICollection<InnerCourseDto> Courses { get; set; }
         }
 
+        /// <summary>
+        /// Teacher Id
+        /// </summary>
         public int TeacherId { get; set; }
+
+        /// <summary>
+        /// Teachers first name
+        /// </summary>
         public string FirstName { get; set; }
+
+        /// <summary>
+        /// Teachers last name
+        /// </summary>
         public string LastName { get; set; }
 
+        /// <summary>
+        /// The collection of courses and the classrooms they are taught in
+        /// </summary>
         public ICollection<CourseClassRoomDto> Courses { get; set; }
+
+        /// <summary>
+        /// The collection of classrooms where the teacher is teaching and the courses taught
+        /// </summary>
         public ICollection<ClassRoomCoursesDto> ClassRooms { get; set; }
     }
 }

@@ -20,7 +20,14 @@ namespace eGradeBook.Models
             this.StudentParents = new HashSet<StudentParent>();
         }
 
+        /// <summary>
+        /// The students place of birth
+        /// </summary>
         public string PlaceOfBirth { get; set; }
+
+        /// <summary>
+        /// The students date of birth
+        /// </summary>
         public DateTime? DateOfBirth { get; set; }
 
         /// <summary>

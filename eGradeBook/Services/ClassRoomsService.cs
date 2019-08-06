@@ -16,17 +16,16 @@ namespace eGradeBook.Services
     public class ClassRoomsService : IClassRoomsService
     {
         private IUnitOfWork db;
-        private ILogger logger;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="db"></param>
         /// <param name="logger"></param>
-        public ClassRoomsService(IUnitOfWork db, ILogger logger)
+        public ClassRoomsService(IUnitOfWork db)
         {
             this.db = db;
-            this.logger = logger;
         }
 
         /// <summary>

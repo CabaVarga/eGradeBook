@@ -1,4 +1,5 @@
 ﻿using eGradeBook.Services;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace eGradeBook.Controllers
     public class TeachingsController : ApiController
     {
         private ITeachingsService teachings;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         public TeachingsController(ITeachingsService teachings)
         {

@@ -1,4 +1,5 @@
 ﻿using eGradeBook.Services;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace eGradeBook.Controllers
         /// The service for business logic
         /// </summary>
         private IFinalGradesService service;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// The controller constructor

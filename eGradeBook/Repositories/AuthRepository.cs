@@ -38,7 +38,7 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<IdentityResult> RegisterAdminUser(AdminUser admin, string password)
         {
-            logger.Trace("AuthRepository received a request for an admin user {adminUsername} registration", admin.UserName);
+            logger.Trace("Register Admin {@userName}", admin.UserName);
             
             var result = await _userManager.CreateAsync(admin, password);
 
@@ -59,21 +59,18 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<IdentityResult> RegisterStudentUser(StudentUser student, string password)
         {
-            logger.Trace("AuthRepository received a request for a student user {studentUsername} registration", student.UserName);
+            logger.Trace("Register Student {@userName}", student.UserName);
 
             var result = await _userManager.CreateAsync(student, password);
 
-            // If assigning a role to an unsuccesful registration
-            // I would get an exception, without having information about the underlying cause
-            // Identity has some built-in model validation too
-            // I'm not using those
-            // But invalid naming is not handled in the model validator.
             if (!result.Succeeded)
             {
                 return result;
             }
 
+            // Two different tasks. Further logic required because I cant just send back not created!
             _userManager.AddToRole(student.Id, "students");
+
             return result;
         }
 
@@ -85,9 +82,15 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<IdentityResult> RegisterTeacherUser(TeacherUser teacher, string password)
         {
-            logger.Trace("AuthRepository received a request for a teacher user {teacherUsername} registration", teacher.UserName);
+            logger.Trace("Register Teacher {@userName}", teacher.UserName);
 
             var result = await _userManager.CreateAsync(teacher, password);
+
+            if (!result.Succeeded)
+            {
+                return result;
+            }
+
             _userManager.AddToRole(teacher.Id, "teachers");
             return result;
         }
@@ -100,9 +103,15 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<IdentityResult> RegisterParentUser(ParentUser parent, string password)
         {
-            logger.Trace("AuthRepository received a request for a parent user {parentUsername} registration", parent.UserName);
+            logger.Trace("Register Parent {@userName}", parent.UserName);
 
             var result = await _userManager.CreateAsync(parent, password);
+
+            if (!result.Succeeded)
+            {
+                return result;
+            }
+
             _userManager.AddToRole(parent.Id, "parents");
             return result;
         }
@@ -130,7 +139,7 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<GradeBookUser> FindUser(string userName, string password)
         {
-            logger.Trace("AuthRepository received a request for finding a user by username {username} and password", userName);
+            logger.Trace("Find User {@userName}", userName);
 
             GradeBookUser user = await _userManager.FindAsync(userName, password);
             return user;
@@ -143,7 +152,7 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<GradeBookUser> FindUserByUserName(string userName)
         {
-            logger.Trace("AuthRepository received a request for finding a user by username {username}", userName);
+            logger.Trace("Find User {@userName}", userName);
 
             GradeBookUser user = await _userManager.FindByNameAsync(userName);
 
@@ -157,7 +166,7 @@ namespace eGradeBook.Repositories
         /// <returns></returns>
         public async Task<IList<string>> FindRoles(int userId)
         {
-            logger.Trace("AuthRepository find roles for {userId}", userId);
+            logger.Trace("Find Roles for {@userId}}", userId);
 
             return await _userManager.GetRolesAsync(userId);
         }
@@ -176,6 +185,7 @@ namespace eGradeBook.Repositories
         {
             // NOTE this will not work for concrete users
             // It will only update the common properties, not the special ones....
+            // UPDATE It is working, indeed
             var result = await _userManager.UpdateAsync(user);
 
             return result;

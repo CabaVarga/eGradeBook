@@ -16,8 +16,28 @@ namespace eGradeBook.Models.Dtos.Admins
         public int Id { get; set; }
 
         /// <summary>
-        /// Full name -- First name + space + Last name
+        /// First name
         /// </summary>
-        public string FullName { get; set; }
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// Last name
+        /// </summary>
+        public string LastName { get; set; }
+
+        /// <summary>
+        /// Gender
+        /// </summary>
+        public string Gender { get; set; }
+
+        /// <summary>
+        /// E-mail address
+        /// </summary>
+        public string Email { get; set; }
+
+        /// <summary>
+        /// Phone number
+        /// </summary>
+        public string Phone { get; set; }
     }
 }

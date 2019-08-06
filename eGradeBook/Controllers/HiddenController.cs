@@ -75,6 +75,8 @@ namespace eGradeBook.Controllers
                 {
                     ctx.Users.Remove(student);
                 }
+
+                // TODO remove ClassRooms, Programs, Teachings, Courses and Teachers
                 
                 ctx.SaveChanges();
             }

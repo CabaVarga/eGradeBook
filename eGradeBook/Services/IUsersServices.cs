@@ -23,35 +23,28 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        Task<IdentityResult> RegisterAdmin(AdminRegistrationDto user);
+        Task<AdminDto> RegisterAdmin(AdminRegistrationDto user);
 
         /// <summary>
         /// Register student
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        Task<IdentityResult> RegisterStudent(StudentRegistrationDto user);
+        Task<StudentDto> RegisterStudent(StudentRegistrationDto user);
 
         /// <summary>
         /// Register teacher
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        Task<IdentityResult> RegisterTeacher(TeacherRegistrationDto user);
+        Task<TeacherDto> RegisterTeacher(TeacherRegistrationDto user);
 
         /// <summary>
         /// Register parent
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        Task<IdentityResult> RegisterParent(ParentRegistrationDto user);
-
-        /// <summary>
-        /// Register class master
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        Task<IdentityResult> RegisterClassMaster(UserRegistrationDto user);
+        Task<ParentDto> RegisterParent(ParentRegistrationDto user);
 
         /// <summary>
         /// Get an id for a username
@@ -60,7 +53,6 @@ namespace eGradeBook.Services
         /// <param name="username"></param>
         /// <returns></returns>
         int GetIdOfUser(string username);
-
 
         /// <summary>
         /// Delete a user

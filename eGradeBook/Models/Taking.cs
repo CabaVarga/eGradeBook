@@ -12,23 +12,46 @@ namespace eGradeBook.Models
     /// </summary>
     public class Taking
     {
+        /// <summary>
+        /// Id
+        /// </summary>
         public int Id { get; set; }
 
+        /// <summary>
+        /// The programs Id
+        /// NOTE Program is teacher + course + classroom
+        /// </summary>
         [Index("IX_Student_Program", IsUnique = true, Order = 1)]
         public int ProgramId { get; set; }
 
+        /// <summary>
+        /// The students Id
+        /// </summary>
         [Index("IX_Student_Program", IsUnique = true, Order = 2)]
         public int StudentId { get; set; }
 
+        /// <summary>
+        /// The program in the relation
+        /// </summary>
         [Required]
         [ForeignKey("ProgramId")]
         public virtual Program Program { get; set; }
 
+        /// <summary>
+        /// The student in the relation
+        /// </summary>
         [Required]
         [ForeignKey("StudentId")]
         public virtual StudentUser Student { get; set; }
 
+        /// <summary>
+        /// Grades for the current course
+        /// </summary>
         public virtual ICollection<Grade> Grades { get; set; }
+
+        /// <summary>
+        /// Final grades for the current course
+        /// </summary>
         public virtual ICollection<FinalGrade> FinalGrades { get; set; }
     }
 }

@@ -19,17 +19,15 @@ namespace eGradeBook.Controllers
     public class StudentsController : ApiController
     {
         private IStudentsService service;
-        private ILogger logger;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="service"></param>
-        /// <param name="logger"></param>
-        public StudentsController(IStudentsService service, ILogger logger)
+        public StudentsController(IStudentsService service)
         {
             this.service = service;
-            this.logger = logger;
         }
 
         /// <summary>
