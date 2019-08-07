@@ -6,6 +6,7 @@ using eGradeBook.Models.Dtos.Takings;
 using eGradeBook.Models.Dtos.Teachings;
 using eGradeBook.Repositories;
 using eGradeBook.Services.Converters;
+using eGradeBook.Services.Exceptions;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -21,24 +22,29 @@ namespace eGradeBook.Services
     {
         private IUnitOfWork db;
         private ILogger logger;
-        private ITakingsService takingsService;
-        private IProgramsService programsService;
-        private ITeachingsService teachingsService;
+        private Lazy<IStudentsService> studentsService;
+        private Lazy<ITakingsService> takingsService;
+        private Lazy<IProgramsService> programsService;
+        private Lazy<ITeachingsService> teachingsService;
+        private Lazy<ITeachersService> teachersService;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="db"></param>
-        public CoursesService(IUnitOfWork db, ILogger logger, 
-            ITakingsService takingsService, 
-            IProgramsService programsService,
-            ITeachingsService teachingsService)
+        public CoursesService(IUnitOfWork db, ILogger logger,
+            Lazy<IStudentsService> studentsService,
+            Lazy<ITakingsService> takingsService,
+            Lazy<IProgramsService> programsService,
+            Lazy<ITeachingsService> teachingsService,
+            Lazy<ITeachersService> teachersService)
         {
             this.db = db;
             this.logger = logger;
             this.takingsService = takingsService;
             this.programsService = programsService;
             this.teachingsService = teachingsService;
+            this.teachersService = teachersService;
         }
 
         #region FULL CRUD
@@ -76,7 +82,10 @@ namespace eGradeBook.Services
 
             if (course == null)
             {
-                return null;
+                logger.Info("Course {@courseId} not found", id);
+                var ex = new CourseNotFoundException(string.Format("Course {0} not found", id));
+                ex.Data.Add("courseId", id);
+                throw ex;
             }
 
             return course;
@@ -176,11 +185,16 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public CourseDto UpdateCourse(CourseDto course)
         {
-            throw new NotImplementedException();
+            Course updatedCourse = GetCourseById(course.Id);
+
+            updatedCourse.Name = course.Name;
+            updatedCourse.ColloqialName = course.ColloqialName;
+
+            db.CoursesRepository.Update(updatedCourse);
+            db.Save();
+
+            return CoursesConverter.CourseToCourseDto(updatedCourse);
         }
-
-
-
 
         /// <summary>
         /// Retrieve all courses and return them as CourseDtos
@@ -214,24 +228,22 @@ namespace eGradeBook.Services
 
         #region Teachings
 
+        /// <summary>
+        /// Get teaching assignment
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
         public TeachingDto GetTeaching(int courseId, int teacherId)
         {
             // I probably dont need these. Just return null if there's no teaching
             Course course = db.CoursesRepository.GetByID(courseId);
 
-            if (course == null)
-            {
-                return null;
-            }
-
-            TeacherUser teacher = db.TeachersRepository.Get(t => t.Id == teacherId).FirstOrDefault();
-
-            if (teacher == null)
-            {
-                return null;
-            }
-
-            Teaching teaching = db.TeachingAssignmentsRepository.Get(t => t.CourseId== courseId && t.TeacherId == teacherId).FirstOrDefault();
+            // No null check here, because the teachers service takes care of that...!
+            TeacherUser teacher = teachersService.Value.GetTeacherById(teacherId);
+            
+            // Probably teaching will get Course and TeacherUser, so failure will be there!
+            Teaching teaching = teachingsService.Value.GetTeaching(courseId, teacherId);
 
             if (teaching == null)
             {
@@ -241,31 +253,32 @@ namespace eGradeBook.Services
             return TeachingsConverter.TeachingToTeachingDto(teaching);
         }
 
+        /// <summary>
+        /// Get all teachings and return them as dtos
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <returns></returns>
         public IEnumerable<TeachingDto> GetAllTeachings(int courseId)
         {
+            Course course = GetCourseById(courseId);
+
             var teachings = db.TeachingAssignmentsRepository.Get(t => t.CourseId == courseId)
                 .Select(t => Converters.TeachingsConverter.TeachingToTeachingDto(t));
 
             return teachings;
         }
 
+        /// <summary>
+        /// This should be the default entry for teaching assignments
+        /// </summary>
+        /// <param name="teaching"></param>
+        /// <returns></returns>
         public TeachingDto CreateTeachingAssignment(TeachingDto teaching)
         {
-            //Course course = db.CoursesRepository.GetByID(teaching.CourseId);
+            Course course = GetCourseById(teaching.CourseId);
 
-            //if (course == null)
-            //{
-            //    return null;
-            //}
+            TeacherUser teacher = teachersService.Value.GetTeacherById(teaching.TeacherId);
 
-            //TeacherUser teacher = db.TeachersRepository.Get(t => t.Id == teaching.TeacherId).FirstOrDefault();
-
-            //if (teacher == null)
-            //{
-            //    return null;
-            //}
-
-            // OK.
             // Without teacher & user 
             //      1) required must be withheld
             //      2) if teacher or course id is not valid, there will be a foreign key violation
@@ -273,8 +286,8 @@ namespace eGradeBook.Services
 
             Teaching newTeaching = new Teaching()
             {
-                CourseId = teaching.CourseId,
-                TeacherId = teaching.TeacherId
+                Course = course,
+                Teacher = teacher
             };
 
             db.TeachingAssignmentsRepository.Insert(newTeaching);
@@ -283,11 +296,21 @@ namespace eGradeBook.Services
             return TeachingsConverter.TeachingToTeachingDto(newTeaching);
         }
 
+        /// <summary>
+        /// Delete a teaching assignment
+        /// </summary>
+        /// <param name="teaching"></param>
+        /// <returns></returns>
         public TeachingDto DeleteTeachingAssignment(TeachingDto teaching)
         {
-            Teaching deletedTeaching = db.TeachingAssignmentsRepository.Get(t => t.CourseId == teaching.CourseId && t.TeacherId == teaching.TeacherId).FirstOrDefault();
-            var dto = TeachingsConverter.TeachingToTeachingDto(deletedTeaching);
+
+            Teaching deletedTeaching = teachingsService.Value.DeleteTeaching(teaching);
+
             db.TeachingAssignmentsRepository.Delete(deletedTeaching);
+            db.Save();
+
+            var dto = TeachingsConverter.TeachingToTeachingDto(deletedTeaching);
+
             return dto;
         }
 
@@ -320,11 +343,15 @@ namespace eGradeBook.Services
         #endregion
 
         #region Programs
-
+        /// <summary>
+        /// Get all programs for course and teacher
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
         public IEnumerable<ProgramDto> GetAllPrograms(int courseId, int teacherId)
         {
-            var programs = db.ProgramsRepository
-                .Get(p => p.Teaching.CourseId == courseId && p.Teaching.TeacherId == teacherId)
+            var programs = programsService.Value.GetAllProgramsForTeaching(courseId, teacherId)
                 .Select(p => Converters.ProgramsConverter.ProgramToProgramDto(p));
 
             return programs;
@@ -332,28 +359,28 @@ namespace eGradeBook.Services
 
         public ProgramDto GetProgram(int courseId, int teacherId, int classRoomId)
         {
-            Program program = programsService.GetProgram(courseId, teacherId, classRoomId);
+            Program program = programsService.Value.GetProgram(courseId, teacherId, classRoomId);
 
             return Converters.ProgramsConverter.ProgramToProgramDto(program);
         }
 
         public ProgramDto CreateProgram(ProgramDto program)
         {
-            Program newProgram = programsService.CreateProgram(program);
+            Program newProgram = programsService.Value.CreateProgram(program);
 
             return Converters.ProgramsConverter.ProgramToProgramDto(newProgram);
         }
 
         public ProgramDto UpdateProgram(ProgramDto program)
         {
-            Program updatedProgram = programsService.UpdateProgram(program);
+            Program updatedProgram = programsService.Value.UpdateProgram(program);
 
             return Converters.ProgramsConverter.ProgramToProgramDto(updatedProgram);
         }
 
         public ProgramDto DeleteProgram(ProgramDto program)
         {
-            Program deletedProgram = programsService.DeleteProgram(program);
+            Program deletedProgram = programsService.Value.DeleteProgram(program);
 
             return Converters.ProgramsConverter.ProgramToProgramDto(deletedProgram);
         }
@@ -372,21 +399,26 @@ namespace eGradeBook.Services
 
         public TakingDto GetTaking(int courseId, int teacherId, int classRoomId, int studentId)
         {
-            var taking = takingsService.GetTaking(courseId, teacherId, classRoomId, studentId);
+            var taking = takingsService.Value.GetTaking(courseId, teacherId, classRoomId, studentId);
 
             return TakingsConverter.TakingToTakingDto(taking);
         }
 
         public TakingDto CreateTaking(TakingDto taking)
         {
-            Taking newTaking = takingsService.CreateTaking(taking);
+            Taking newTaking = takingsService.Value.CreateTaking(taking);
+
+            if (newTaking == null)
+            {
+                return null;
+            }
 
             return Converters.TakingsConverter.TakingToTakingDto(newTaking);
         }
 
         public TakingDto DeleteTaking(TakingDto taking)
         {
-            var deletedTaking = takingsService.DeleteTaking(taking);
+            var deletedTaking = takingsService.Value.DeleteTaking(taking);
 
             return TakingsConverter.TakingToTakingDto(deletedTaking);
         }

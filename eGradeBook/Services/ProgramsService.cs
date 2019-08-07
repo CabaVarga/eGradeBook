@@ -1,6 +1,7 @@
 ﻿using eGradeBook.Models;
 using eGradeBook.Models.Dtos;
 using eGradeBook.Models.Dtos.Programs;
+using eGradeBook.Models.Dtos.Teachings;
 using eGradeBook.Repositories;
 using NLog;
 using System;
@@ -67,7 +68,7 @@ namespace eGradeBook.Services
         {
             return db.ProgramsRepository.Get(p =>
                     p.ClassRoomId == classRoomId &&
-                    p.CourseId == courseId &&
+                    p.Teaching.CourseId == courseId &&
                     p.Teaching.TeacherId == teacherId)
                 .FirstOrDefault();
         }
@@ -132,6 +133,18 @@ namespace eGradeBook.Services
             db.Save();
 
             return program;
+        }
+
+        public IEnumerable<Program> GetAllProgramsForTeaching(TeachingDto teachingDto)
+        {
+            return GetAllProgramsForTeaching(teachingDto.CourseId, teachingDto.TeacherId);
+        }
+
+        public IEnumerable<Program> GetAllProgramsForTeaching(int courseId, int teacherId)
+        {
+            Teaching teaching = teachingsService.GetTeaching(courseId, teacherId);
+
+            return db.ProgramsRepository.Get(p => p.Teaching.CourseId == courseId && p.Teaching.TeacherId == teacherId);
         }
     }
 }

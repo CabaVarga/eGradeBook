@@ -1,6 +1,7 @@
 ﻿using eGradeBook.Models;
 using eGradeBook.Models.Dtos;
 using eGradeBook.Models.Dtos.Programs;
+using eGradeBook.Models.Dtos.Teachings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,10 @@ namespace eGradeBook.Services
 
         Program GetProgram(ProgramDto programDto);
         Program GetProgram(int courseId, int teacherId, int classRoomId);
+
+        // Eh, also for teacher etc... where will it end?
+        IEnumerable<Program> GetAllProgramsForTeaching(TeachingDto teachingDto);
+        IEnumerable<Program> GetAllProgramsForTeaching(int courseId, int teacherId);
 
         Program DeleteProgram(ProgramDto programDto);
         Program DeleteProgram(int courseId, int teacherId, int classRoomId);

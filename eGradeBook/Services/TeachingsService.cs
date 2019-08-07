@@ -17,11 +17,17 @@ namespace eGradeBook.Services
     {
         private IUnitOfWork db;
         private ILogger logger;
+        private Lazy<ITeachersService> teachersService;
+        private Lazy<ICoursesService> coursesService;
 
-        public TeachingsService(IUnitOfWork db, ILogger logger)
+        public TeachingsService(IUnitOfWork db, ILogger logger, 
+            Lazy<ITeachersService> teachersService,
+            Lazy<ICoursesService> coursesService)
         {
             this.db = db;
             this.logger = logger;
+            this.teachersService = teachersService;
+            this.coursesService = coursesService;
         }
 
         public Teaching CreateTeaching(TeachingDto teachingDto)
@@ -51,16 +57,43 @@ namespace eGradeBook.Services
             return GetTeaching(teachingDto.CourseId, teachingDto.TeacherId);
         }
 
+
         public Teaching GetTeaching(int courseId, int teacherId)
         {
-            return db.TeachingAssignmentsRepository.Get(ta => ta.CourseId == courseId && ta.TeacherId == teacherId).FirstOrDefault();
+            Course course = coursesService.Value.GetCourseById(courseId);
+
+            TeacherUser teacherUser = teachersService.Value.GetTeacherById(teacherId);
+
+            var teaching = db.TeachingAssignmentsRepository.Get(ta => ta.CourseId == courseId && ta.TeacherId == teacherId).FirstOrDefault();
+
+            if (teaching == null)
+            {
+                logger.Info("Teaching not found for course {@courseId} and teacher {@teacherId}", courseId, teacherId);
+                var ex = new TeachingNotFoundException(string.Format("Teaching not found for course {0} and teacher {1}", courseId, teacherId));
+                ex.Data.Add("teacherId", teacherId);
+                ex.Data.Add("courseId", courseId);
+                throw ex;
+            }
+
+            return teaching;
         }
 
+        /// <summary>
+        /// Delete teaching
+        /// </summary>
+        /// <param name="teachingDto"></param>
+        /// <returns></returns>
         public Teaching DeleteTeaching(TeachingDto teachingDto)
         {
             return DeleteTeaching(teachingDto.CourseId, teachingDto.TeacherId);
         }
 
+        /// <summary>
+        /// Delete teaching
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
         public Teaching DeleteTeaching(int courseId, int teacherId)
         {
             Teaching teaching = GetTeaching(courseId, teacherId);
@@ -71,6 +104,13 @@ namespace eGradeBook.Services
             return teaching;
         }
 
+        /// <summary>
+        /// Assign teacher to course
+        /// NOTE another, better way (if) is using the POST to create teaching...
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
         public Teaching AssignTeacherToCourse(int courseId, int teacherId)
         {
             var course = db.CoursesRepository.GetByID(courseId);
@@ -107,6 +147,11 @@ namespace eGradeBook.Services
                 return null;
             }
         }
+
+        /// <summary>
+        /// This is a reporting tool
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<TeachingsByCoursesDto> GetAllTeachingAssignmentsByCourses()
         {
             logger.Info("Retrieving all teachings by course");
@@ -121,6 +166,10 @@ namespace eGradeBook.Services
             return teachings;
         }
 
+        /// <summary>
+        /// Also a reporting tool
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<TeachingsByTeachersDto> GetAllTeachingAssignmentsByTeachers()
         {
             var mlcs = NLog.MappedDiagnosticsContext.GetNames().ToList();
@@ -140,6 +189,15 @@ namespace eGradeBook.Services
 
             return teachings;
         }
+
+        /// <summary>
+        /// Remove teacher from course
+        /// NOTE better use DELETE to courses/{courseId}/teachers/{teachersId}
+        /// it is more RESTful
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
         public Teaching RemoveTeacherFromCourse(int courseId, int teacherId)
         {
             // 4 errors:
@@ -196,6 +254,25 @@ namespace eGradeBook.Services
             }
 
             return null;
+        }
+
+        public IEnumerable<Teaching> GetAllTeachings()
+        {
+            return db.TeachingAssignmentsRepository.Get();
+        }
+
+        public IEnumerable<Teaching> GetAllTeachingsForCourse(int courseId)
+        {
+            Course course = coursesService.Value.GetCourseById(courseId);
+
+            return db.TeachingAssignmentsRepository.Get(ta => ta.CourseId == courseId);
+        }
+
+        public IEnumerable<Teaching> GetAllTeachingsForTeacher(int teacherId)
+        {
+            TeacherUser teacher = teachersService.Value.GetTeacherById(teacherId);
+
+            return db.TeachingAssignmentsRepository.Get(ta => ta.TeacherId == teacherId);
         }
     }
 }

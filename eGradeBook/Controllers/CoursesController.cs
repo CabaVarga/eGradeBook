@@ -1,6 +1,7 @@
 ﻿using eGradeBook.Models.Dtos;
 using eGradeBook.Models.Dtos.Courses;
 using eGradeBook.Models.Dtos.Programs;
+using eGradeBook.Models.Dtos.Takings;
 using eGradeBook.Models.Dtos.Teachings;
 using eGradeBook.Services;
 using eGradeBook.Utilities.WebApi;
@@ -168,7 +169,32 @@ namespace eGradeBook.Controllers
         #endregion
 
         #region Takings
+        [Route("{courseId}/teachers/{teacherId}/classrooms/{classRoomId}/students")]
+        [HttpGet]
+        public IHttpActionResult GetStudentsTakings(int courseId, int teacherId, int classRoomId)
+        {
+            logger.Info("Get students taking course {@courseId} with teacher {@teacherId} in classroom {@classRoomId}", courseId, teacherId, classRoomId);
 
+            return Ok(service.GetAllTakings(courseId, teacherId, classRoomId));
+        }
+
+        [Route("{courseId}/teachers/{teacherId}/classrooms/{classRoomId}/students/{studentId}")]
+        [HttpGet]
+        public IHttpActionResult GetStudentTaking(int courseId, int teacherId, int classRoomId, int studentId)
+        {
+            logger.Info("Get student {@studentId} taking course {@courseId} with teacher {@teacherId} in classroom {@classRoomId}", studentId, courseId, teacherId, classRoomId);
+
+            return Ok(service.GetTaking(courseId, teacherId, classRoomId, studentId));
+        }
+
+        [Route("{courseId}/teachers/{teacherId}/classrooms/{classRoomId}/students")]
+        [HttpPost]
+        public IHttpActionResult CreateStudentTaking(TakingDto taking)
+        {
+            logger.Info("Create new taking from {@takingData}", taking);
+
+            return Ok(service.CreateTaking(taking));
+        }
         #endregion
     }
 }

@@ -273,6 +273,7 @@
     <Compile Include="Services\CoursesService.cs" />
     <Compile Include="Services\Exceptions\CourseNotFoundException.cs" />
     <Compile Include="Services\Exceptions\InvalidUserIdException.cs" />
+    <Compile Include="Services\Exceptions\TakingNotFoundException.cs" />
     <Compile Include="Services\Exceptions\TeacherNotFoundException.cs" />
     <Compile Include="Services\Exceptions\TeachingCannotBeRemovedException.cs" />
     <Compile Include="Services\Exceptions\TeachingNotFoundException.cs" />

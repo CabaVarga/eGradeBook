@@ -12,6 +12,9 @@ namespace eGradeBook.Services
     /// </summary>
     public interface ITeachersService
     {
+        #region Full CRUD --- well, only R, even that incomplete...
+        TeacherUser GetTeacherById(int teacherId);
+        #endregion
         // These will must go
         /// <summary>
         /// Retrieve all teachers
@@ -33,13 +36,6 @@ namespace eGradeBook.Services
         void AssignCourseToTeacher(TeachingAssignmentDto assignment);
 
         // CRUD without the C
-        /// <summary>
-        /// Retrieve a teacher by Id
-        /// </summary>
-        /// <param name="teacherId"></param>
-        /// <returns></returns>
-        TeacherDto GetTeacherById(int teacherId);
-
         /// <summary>
         /// Retrieve all teachers
         /// </summary>

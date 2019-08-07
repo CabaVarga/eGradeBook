@@ -1,4 +1,5 @@
 ﻿using eGradeBook.Models;
+using eGradeBook.Models.Dtos.Programs;
 using eGradeBook.Models.Dtos.Takings;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,10 @@ namespace eGradeBook.Services
         Taking CreateTaking(int courseId, int teacherId, int classRoomId, int studentId);
         Taking GetTaking(TakingDto takingDto);
         Taking GetTaking(int courseId, int teacherId, int classRoomId, int studentId);
+        IEnumerable<Taking> GetAllTakings();
+        IEnumerable<Taking> GetAllTakingsForProgram(ProgramDto programDto);
+        IEnumerable<Taking> GetAllTakingsForProgram(int courseId, int teacherId, int classRoomId);
+        IEnumerable<Taking> GetAllTakingsForStudent(int studentId);
         Taking DeleteTaking(TakingDto takingDto);
         Taking DeleteTaking(int courseId, int teacherId, int classRoomId, int studentId);
         #endregion

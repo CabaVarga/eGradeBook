@@ -1620,3 +1620,915 @@ The statement has been terminated.
    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
    at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/07 22:05:02.671|Error|10|80000058-0000-f800-b63f-84710c7967bb|POST http://localhost:50663/api/courses/5/teachers/22/classrooms/2/students|System.NullReferenceException: Object reference not set to an instance of an object.
+   at eGradeBook.Services.Converters.TakingsConverter.TakingToTakingDto(Taking taking) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\Converters\TakingsConverter.cs:line 14
+   at eGradeBook.Services.CoursesService.CreateTaking(TakingDto taking) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\CoursesService.cs:line 384
+   at eGradeBook.Controllers.CoursesController.CreateStudentTaking(TakingDto taking) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\CoursesController.cs:line 196
+   at lambda_method(Closure , Object , Object[] )
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass6_2.<GetExecutor>b__2(Object instance, Object[] methodParameters)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<ExecuteActionFilterAsyncCore>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/07 22:05:58.460|Error|10|80000059-0000-f800-b63f-84710c7967bb|POST http://localhost:50663/api/courses/5/teachers/22/classrooms/2/students|System.NullReferenceException: Object reference not set to an instance of an object.
+   at eGradeBook.Services.Converters.TakingsConverter.TakingToTakingDto(Taking taking) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\Converters\TakingsConverter.cs:line 14
+   at eGradeBook.Services.CoursesService.CreateTaking(TakingDto taking) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\CoursesService.cs:line 384
+   at eGradeBook.Controllers.CoursesController.CreateStudentTaking(TakingDto taking) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\CoursesController.cs:line 196
+   at lambda_method(Closure , Object , Object[] )
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass6_2.<GetExecutor>b__2(Object instance, Object[] methodParameters)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<ExecuteActionFilterAsyncCore>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/07 22:50:13.617|Error|7|8000004f-0000-ff00-b63f-84710c7967bb|GET http://localhost:50663/api/courses|System.InvalidOperationException: An error occurred when trying to create a controller of type 'CoursesController'. Make sure that the controller has a parameterless public constructor. ---> Unity.ResolutionFailedException: Circular reference for Type: eGradeBook.Services.TeachingsService, Name: 
+_____________________________________________________
+Exception occurred while:
+    for parameter:  teachingsService
+   on constructor:  TeachersService(IUnitOfWork db, ITeachingsService teachingsService, ILogger logger)
+        mapped to:  ITeachersService
+    for parameter:  teachersService
+   on constructor:  TeachingsService(IUnitOfWork db, ILogger logger, ITeachersService teachersService, ICoursesService coursesService)
+        mapped to:  ITeachingsService
+    for parameter:  teachingsService
+   on constructor:  ProgramsService(IUnitOfWork db, ILogger logger, ITeachingsService teachingsService)
+        mapped to:  IProgramsService
+    for parameter:  programsService
+   on constructor:  TakingsService(IUnitOfWork db, IProgramsService programsService)
+        mapped to:  ITakingsService
+    for parameter:  takingsService
+   on constructor:  CoursesService(IUnitOfWork db, ILogger logger, ITakingsService takingsService, IProgramsService programsService, ITeachingsService teachingsService, ITeachersService teachersService)
+        mapped to:  ICoursesService
+    for parameter:  service
+   on constructor:  CoursesController(ICoursesService service)
+
+• while resolving:  CoursesController
+ ---> System.InvalidOperationException: Circular reference for Type: eGradeBook.Services.TeachingsService, Name:  ---> Unity.Exceptions.CircularDependencyException: Circular reference: Type: eGradeBook.Services.TeachingsService, Name: 
+   --- End of inner exception stack trace ---
+   at Unity.UnityContainer.<ContextValidatingExecutePlan>g__GetPerResolveValue|123_0(IntPtr parent, Type registrationType, String name)
+   at Unity.UnityContainer.<ContextValidatingExecutePlan>g__GetPerResolveValue|123_0(IntPtr parent, Type registrationType, String name)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ExecuteValidatingPlan(BuilderContext& context)
+   --- End of inner exception stack trace ---
+   at Unity.UnityContainer.ExecuteValidatingPlan(BuilderContext& context)
+   at Unity.UnityContainer.Unity.IUnityContainer.Resolve(Type type, String name, ResolverOverride[] overrides)
+   at Unity.UnityContainerExtensions.Resolve(IUnityContainer container, Type t, ResolverOverride[] overrides)
+   at Unity.WebApi.UnityDependencyScope.GetService(Type serviceType)
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.GetInstanceOrActivator(HttpRequestMessage request, Type controllerType, Func`1& activator)
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   --- End of inner exception stack trace ---
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   at System.Web.Http.Controllers.HttpControllerDescriptor.CreateController(HttpRequestMessage request)
+   at System.Web.Http.Dispatcher.HttpControllerDispatcher.<SendAsync>d__15.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/07 22:51:30.919|Error|10|80000014-0002-fd00-b63f-84710c7967bb|GET http://localhost:50663/api/courses|System.InvalidOperationException: An error occurred when trying to create a controller of type 'CoursesController'. Make sure that the controller has a parameterless public constructor. ---> Unity.ResolutionFailedException: Circular reference for Type: eGradeBook.Services.TeachingsService, Name: 
+_____________________________________________________
+Exception occurred while:
+    for parameter:  teachingsService
+   on constructor:  TeachersService(IUnitOfWork db, ITeachingsService teachingsService, ILogger logger)
+        mapped to:  ITeachersService
+    for parameter:  teachersService
+   on constructor:  TeachingsService(IUnitOfWork db, ILogger logger, ITeachersService teachersService, ICoursesService coursesService)
+        mapped to:  ITeachingsService
+    for parameter:  teachingsService
+   on constructor:  ProgramsService(IUnitOfWork db, ILogger logger, ITeachingsService teachingsService)
+        mapped to:  IProgramsService
+    for parameter:  programsService
+   on constructor:  TakingsService(IUnitOfWork db, IProgramsService programsService)
+        mapped to:  ITakingsService
+    for parameter:  takingsService
+   on constructor:  CoursesService(IUnitOfWork db, ILogger logger, ITakingsService takingsService, IProgramsService programsService, ITeachingsService teachingsService, ITeachersService teachersService)
+        mapped to:  ICoursesService
+    for parameter:  service
+   on constructor:  CoursesController(ICoursesService service)
+
+• while resolving:  CoursesController
+ ---> System.InvalidOperationException: Circular reference for Type: eGradeBook.Services.TeachingsService, Name:  ---> Unity.Exceptions.CircularDependencyException: Circular reference: Type: eGradeBook.Services.TeachingsService, Name: 
+   --- End of inner exception stack trace ---
+   at Unity.UnityContainer.<ContextValidatingExecutePlan>g__GetPerResolveValue|123_0(IntPtr parent, Type registrationType, String name)
+   at Unity.UnityContainer.<ContextValidatingExecutePlan>g__GetPerResolveValue|123_0(IntPtr parent, Type registrationType, String name)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ExecuteValidatingPlan(BuilderContext& context)
+   --- End of inner exception stack trace ---
+   at Unity.UnityContainer.ExecuteValidatingPlan(BuilderContext& context)
+   at Unity.UnityContainer.Unity.IUnityContainer.Resolve(Type type, String name, ResolverOverride[] overrides)
+   at Unity.UnityContainerExtensions.Resolve(IUnityContainer container, Type t, ResolverOverride[] overrides)
+   at Unity.WebApi.UnityDependencyScope.GetService(Type serviceType)
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.GetInstanceOrActivator(HttpRequestMessage request, Type controllerType, Func`1& activator)
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   --- End of inner exception stack trace ---
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   at System.Web.Http.Controllers.HttpControllerDescriptor.CreateController(HttpRequestMessage request)
+   at System.Web.Http.Dispatcher.HttpControllerDispatcher.<SendAsync>d__15.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/07 23:05:45.649|Error|10|80000058-0000-ff00-b63f-84710c7967bb|GET http://localhost:50663/api/courses|System.InvalidOperationException: An error occurred when trying to create a controller of type 'CoursesController'. Make sure that the controller has a parameterless public constructor. ---> Unity.ResolutionFailedException: Circular reference for Type: eGradeBook.Services.TeachingsService, Name: 
+_____________________________________________________
+Exception occurred while:
+    for parameter:  teachingsService
+   on constructor:  TeachersService(IUnitOfWork db, ITeachingsService teachingsService, ILogger logger)
+        mapped to:  ITeachersService
+    for parameter:  teachersService
+   on constructor:  TeachingsService(IUnitOfWork db, ILogger logger, ITeachersService teachersService, ICoursesService coursesService)
+        mapped to:  ITeachingsService
+    for parameter:  teachingsService
+   on constructor:  ProgramsService(IUnitOfWork db, ILogger logger, ITeachingsService teachingsService)
+        mapped to:  IProgramsService
+    for parameter:  programsService
+   on constructor:  TakingsService(IUnitOfWork db, IProgramsService programsService)
+        mapped to:  ITakingsService
+    for parameter:  takingsService
+   on constructor:  CoursesService(IUnitOfWork db, ILogger logger, ITakingsService takingsService, IProgramsService programsService, ITeachingsService teachingsService, ITeachersService teachersService)
+        mapped to:  ICoursesService
+    for parameter:  service
+   on constructor:  CoursesController(ICoursesService service)
+
+• while resolving:  CoursesController
+ ---> System.InvalidOperationException: Circular reference for Type: eGradeBook.Services.TeachingsService, Name:  ---> Unity.Exceptions.CircularDependencyException: Circular reference: Type: eGradeBook.Services.TeachingsService, Name: 
+   --- End of inner exception stack trace ---
+   at Unity.UnityContainer.<ContextValidatingExecutePlan>g__GetPerResolveValue|123_0(IntPtr parent, Type registrationType, String name)
+   at Unity.UnityContainer.<ContextValidatingExecutePlan>g__GetPerResolveValue|123_0(IntPtr parent, Type registrationType, String name)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ExecuteValidatingPlan(BuilderContext& context)
+   --- End of inner exception stack trace ---
+   at Unity.UnityContainer.ExecuteValidatingPlan(BuilderContext& context)
+   at Unity.UnityContainer.Unity.IUnityContainer.Resolve(Type type, String name, ResolverOverride[] overrides)
+   at Unity.UnityContainerExtensions.Resolve(IUnityContainer container, Type t, ResolverOverride[] overrides)
+   at Unity.WebApi.UnityDependencyScope.GetService(Type serviceType)
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.GetInstanceOrActivator(HttpRequestMessage request, Type controllerType, Func`1& activator)
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   --- End of inner exception stack trace ---
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   at System.Web.Http.Controllers.HttpControllerDescriptor.CreateController(HttpRequestMessage request)
+   at System.Web.Http.Dispatcher.HttpControllerDispatcher.<SendAsync>d__15.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/07 23:17:44.887|Error|10|80000061-0000-ff00-b63f-84710c7967bb|GET http://localhost:50663/api/courses|System.InvalidOperationException: An error occurred when trying to create a controller of type 'CoursesController'. Make sure that the controller has a parameterless public constructor. ---> Unity.ResolutionFailedException: Circular reference for Type: eGradeBook.Services.TeachingsService, Name: 
+_____________________________________________________
+Exception occurred while:
+    for parameter:  teachingsService
+   on constructor:  TeachersService(IUnitOfWork db, ITeachingsService teachingsService, ILogger logger)
+        mapped to:  ITeachersService
+    for parameter:  teachersService
+   on constructor:  TeachingsService(IUnitOfWork db, ILogger logger, ITeachersService teachersService, ICoursesService coursesService)
+        mapped to:  ITeachingsService
+    for parameter:  teachingsService
+   on constructor:  ProgramsService(IUnitOfWork db, ILogger logger, ITeachingsService teachingsService)
+        mapped to:  IProgramsService
+    for parameter:  programsService
+   on constructor:  TakingsService(IUnitOfWork db, IProgramsService programsService)
+        mapped to:  ITakingsService
+    for parameter:  takingsService
+   on constructor:  CoursesService(IUnitOfWork db, ILogger logger, ITakingsService takingsService, IProgramsService programsService, ITeachingsService teachingsService, ITeachersService teachersService)
+        mapped to:  ICoursesService
+    for parameter:  service
+   on constructor:  CoursesController(ICoursesService service)
+
+• while resolving:  CoursesController
+ ---> System.InvalidOperationException: Circular reference for Type: eGradeBook.Services.TeachingsService, Name:  ---> Unity.Exceptions.CircularDependencyException: Circular reference: Type: eGradeBook.Services.TeachingsService, Name: 
+   --- End of inner exception stack trace ---
+   at Unity.UnityContainer.<ContextValidatingExecutePlan>g__GetPerResolveValue|123_0(IntPtr parent, Type registrationType, String name)
+   at Unity.UnityContainer.<ContextValidatingExecutePlan>g__GetPerResolveValue|123_0(IntPtr parent, Type registrationType, String name)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ExecuteValidatingPlan(BuilderContext& context)
+   --- End of inner exception stack trace ---
+   at Unity.UnityContainer.ExecuteValidatingPlan(BuilderContext& context)
+   at Unity.UnityContainer.Unity.IUnityContainer.Resolve(Type type, String name, ResolverOverride[] overrides)
+   at Unity.UnityContainerExtensions.Resolve(IUnityContainer container, Type t, ResolverOverride[] overrides)
+   at Unity.WebApi.UnityDependencyScope.GetService(Type serviceType)
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.GetInstanceOrActivator(HttpRequestMessage request, Type controllerType, Func`1& activator)
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   --- End of inner exception stack trace ---
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   at System.Web.Http.Controllers.HttpControllerDescriptor.CreateController(HttpRequestMessage request)
+   at System.Web.Http.Dispatcher.HttpControllerDispatcher.<SendAsync>d__15.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/07 23:21:26.048|Error|8|80000028-0001-fc00-b63f-84710c7967bb|GET http://localhost:50663/api/courses|System.InvalidOperationException: An error occurred when trying to create a controller of type 'CoursesController'. Make sure that the controller has a parameterless public constructor. ---> Unity.ResolutionFailedException: Value cannot be null.
+Parameter name: container
+_____________________________________________________
+Exception occurred while:
+    for parameter:  teachingsService
+   on constructor:  TeachersService(IUnitOfWork db, ITeachingsService teachingsService, ILogger logger)
+        mapped to:  ITeachersService
+    for parameter:  teachersService
+   on constructor:  TeachingsService(IUnitOfWork db, ILogger logger, ITeachersService teachersService, ICoursesService coursesService)
+        mapped to:  ITeachingsService
+    for parameter:  teachingsService
+   on constructor:  ProgramsService(IUnitOfWork db, ILogger logger, ITeachingsService teachingsService)
+        mapped to:  IProgramsService
+    for parameter:  programsService
+   on constructor:  TakingsService(IUnitOfWork db, IProgramsService programsService)
+        mapped to:  ITakingsService
+    for parameter:  takingsService
+   on constructor:  CoursesService(IUnitOfWork db, ILogger logger, ITakingsService takingsService, IProgramsService programsService, ITeachingsService teachingsService, ITeachersService teachersService)
+        mapped to:  ICoursesService
+    for parameter:  service
+   on constructor:  CoursesController(ICoursesService service)
+
+• while resolving:  CoursesController
+ ---> System.ArgumentNullException: Value cannot be null.
+Parameter name: container
+   at Unity.Lifetime.HierarchicalLifetimeManager.SynchronizedGetValue(ILifetimeContainer container)
+   at Unity.Lifetime.SynchronizedLifetimeManager.GetValue(ILifetimeContainer container)
+   at Unity.UnityContainer.<ContextValidatingExecutePlan>g__GetPerResolveValue|123_0(IntPtr parent, Type registrationType, String name)
+   at Unity.UnityContainer.<ContextValidatingExecutePlan>g__GetPerResolveValue|123_0(IntPtr parent, Type registrationType, String name)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ExecuteValidatingPlan(BuilderContext& context)
+   --- End of inner exception stack trace ---
+   at Unity.UnityContainer.ExecuteValidatingPlan(BuilderContext& context)
+   at Unity.UnityContainer.Unity.IUnityContainer.Resolve(Type type, String name, ResolverOverride[] overrides)
+   at Unity.UnityContainerExtensions.Resolve(IUnityContainer container, Type t, ResolverOverride[] overrides)
+   at Unity.WebApi.UnityDependencyScope.GetService(Type serviceType)
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.GetInstanceOrActivator(HttpRequestMessage request, Type controllerType, Func`1& activator)
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   --- End of inner exception stack trace ---
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   at System.Web.Http.Controllers.HttpControllerDescriptor.CreateController(HttpRequestMessage request)
+   at System.Web.Http.Dispatcher.HttpControllerDispatcher.<SendAsync>d__15.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/07 23:36:08.267|Error|22|80000067-0000-ff00-b63f-84710c7967bb|GET http://localhost:50663/api/courses|System.InvalidOperationException: An error occurred when trying to create a controller of type 'CoursesController'. Make sure that the controller has a parameterless public constructor. ---> Unity.ResolutionFailedException: Circular reference for Type: eGradeBook.Services.TeachingsService, Name: 
+_____________________________________________________
+Exception occurred while:
+    for parameter:  teachingsService
+   on constructor:  TeachersService(IUnitOfWork db, ITeachingsService teachingsService, ILogger logger)
+        mapped to:  ITeachersService
+    for parameter:  teachersService
+   on constructor:  TeachingsService(IUnitOfWork db, ILogger logger, ITeachersService teachersService, ICoursesService coursesService)
+        mapped to:  ITeachingsService
+    for parameter:  teachingsService
+   on constructor:  ProgramsService(IUnitOfWork db, ILogger logger, ITeachingsService teachingsService)
+        mapped to:  IProgramsService
+    for parameter:  programsService
+   on constructor:  TakingsService(IUnitOfWork db, IProgramsService programsService)
+        mapped to:  ITakingsService
+    for parameter:  takingsService
+   on constructor:  CoursesService(IUnitOfWork db, ILogger logger, ITakingsService takingsService, IProgramsService programsService, ITeachingsService teachingsService, ITeachersService teachersService)
+        mapped to:  ICoursesService
+    for parameter:  service
+   on constructor:  CoursesController(ICoursesService service)
+
+• while resolving:  CoursesController
+ ---> System.InvalidOperationException: Circular reference for Type: eGradeBook.Services.TeachingsService, Name:  ---> Unity.Exceptions.CircularDependencyException: Circular reference: Type: eGradeBook.Services.TeachingsService, Name: 
+   --- End of inner exception stack trace ---
+   at Unity.UnityContainer.<ContextValidatingExecutePlan>g__GetPerResolveValue|123_0(IntPtr parent, Type registrationType, String name)
+   at Unity.UnityContainer.<ContextValidatingExecutePlan>g__GetPerResolveValue|123_0(IntPtr parent, Type registrationType, String name)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass15_0.<GetPerResolveDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass15_0.<GetPerResolveDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass15_0.<GetPerResolveDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass15_0.<GetPerResolveDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass15_0.<GetPerResolveDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ExecuteValidatingPlan(BuilderContext& context)
+   --- End of inner exception stack trace ---
+   at Unity.UnityContainer.ExecuteValidatingPlan(BuilderContext& context)
+   at Unity.UnityContainer.Unity.IUnityContainer.Resolve(Type type, String name, ResolverOverride[] overrides)
+   at Unity.UnityContainerExtensions.Resolve(IUnityContainer container, Type t, ResolverOverride[] overrides)
+   at Unity.WebApi.UnityDependencyScope.GetService(Type serviceType)
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.GetInstanceOrActivator(HttpRequestMessage request, Type controllerType, Func`1& activator)
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   --- End of inner exception stack trace ---
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   at System.Web.Http.Controllers.HttpControllerDescriptor.CreateController(HttpRequestMessage request)
+   at System.Web.Http.Dispatcher.HttpControllerDispatcher.<SendAsync>d__15.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/07 23:43:49.128|Error|7|8000007e-0000-f800-b63f-84710c7967bb|GET http://localhost:50663/api/courses|System.InvalidOperationException: An error occurred when trying to create a controller of type 'CoursesController'. Make sure that the controller has a parameterless public constructor. ---> Unity.ResolutionFailedException: Circular reference for Type: eGradeBook.Services.TeachingsService, Name: 
+_____________________________________________________
+Exception occurred while:
+    for parameter:  teachingsService
+   on constructor:  TeachersService(IUnitOfWork db, ITeachingsService teachingsService, ILogger logger)
+        mapped to:  ITeachersService
+    for parameter:  teachersService
+   on constructor:  TeachingsService(IUnitOfWork db, ILogger logger, ITeachersService teachersService, ICoursesService coursesService)
+        mapped to:  ITeachingsService
+    for parameter:  teachingsService
+   on constructor:  ProgramsService(IUnitOfWork db, ILogger logger, ITeachingsService teachingsService)
+        mapped to:  IProgramsService
+    for parameter:  programsService
+   on constructor:  TakingsService(IUnitOfWork db, IProgramsService programsService)
+        mapped to:  ITakingsService
+    for parameter:  takingsService
+   on constructor:  CoursesService(IUnitOfWork db, ILogger logger, ITakingsService takingsService, IProgramsService programsService, ITeachingsService teachingsService, ITeachersService teachersService)
+        mapped to:  ICoursesService
+    for parameter:  service
+   on constructor:  CoursesController(ICoursesService service)
+
+• while resolving:  CoursesController
+ ---> System.InvalidOperationException: Circular reference for Type: eGradeBook.Services.TeachingsService, Name:  ---> Unity.Exceptions.CircularDependencyException: Circular reference: Type: eGradeBook.Services.TeachingsService, Name: 
+   --- End of inner exception stack trace ---
+   at Unity.UnityContainer.<ContextValidatingExecutePlan>g__GetPerResolveValue|123_0(IntPtr parent, Type registrationType, String name)
+   at Unity.UnityContainer.<ContextValidatingExecutePlan>g__GetPerResolveValue|123_0(IntPtr parent, Type registrationType, String name)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ContextValidatingExecutePlan(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass1_0.<CreateDiagnosticParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorDiagnostic.<>c__DisplayClass14_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass111_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.ExecuteValidatingPlan(BuilderContext& context)
+   --- End of inner exception stack trace ---
+   at Unity.UnityContainer.ExecuteValidatingPlan(BuilderContext& context)
+   at Unity.UnityContainer.Unity.IUnityContainer.Resolve(Type type, String name, ResolverOverride[] overrides)
+   at Unity.UnityContainerExtensions.Resolve(IUnityContainer container, Type t, ResolverOverride[] overrides)
+   at Unity.WebApi.UnityDependencyScope.GetService(Type serviceType)
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.GetInstanceOrActivator(HttpRequestMessage request, Type controllerType, Func`1& activator)
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   --- End of inner exception stack trace ---
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   at System.Web.Http.Controllers.HttpControllerDescriptor.CreateController(HttpRequestMessage request)
+   at System.Web.Http.Dispatcher.HttpControllerDispatcher.<SendAsync>d__15.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/08 00:42:43.851|Error|9|80000080-0000-ff00-b63f-84710c7967bb|GET http://localhost:50663/api/courses/9/teachers/24|eGradeBook.Services.Exceptions.CourseNotFoundException: Course 9 not found
+   at eGradeBook.Services.CoursesService.GetCourseById(Int32 id) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\CoursesService.cs:line 86
+   at eGradeBook.Services.TeachingsService.GetTeaching(Int32 courseId, Int32 teacherId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\TeachingsService.cs:line 63
+   at eGradeBook.Services.CoursesService.GetTeaching(Int32 courseId, Int32 teacherId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\CoursesService.cs:line 239
+   at eGradeBook.Controllers.CoursesController.GetTeachingAssignments(Int32 courseId, Int32 teacherId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\CoursesController.cs:line 117
+   at lambda_method(Closure , Object , Object[] )
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass6_2.<GetExecutor>b__2(Object instance, Object[] methodParameters)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<ExecuteActionFilterAsyncCore>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() courseId: 9;MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/08 00:43:08.223|Error|9|80000082-0000-ff00-b63f-84710c7967bb|GET http://localhost:50663/api/courses/7/teachers/24|eGradeBook.Services.Exceptions.TeachingNotFoundException: Teaching not found for course 7 and teacher 24
+   at eGradeBook.Services.TeachingsService.GetTeaching(Int32 courseId, Int32 teacherId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\TeachingsService.cs:line 75
+   at eGradeBook.Services.CoursesService.GetTeaching(Int32 courseId, Int32 teacherId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\CoursesService.cs:line 239
+   at eGradeBook.Controllers.CoursesController.GetTeachingAssignments(Int32 courseId, Int32 teacherId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\CoursesController.cs:line 117
+   at lambda_method(Closure , Object , Object[] )
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass6_2.<GetExecutor>b__2(Object instance, Object[] methodParameters)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<ExecuteActionFilterAsyncCore>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() teacherId: 24;courseId: 7;MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/08 01:35:43.270|Error|10|80000063-0000-f700-b63f-84710c7967bb|GET http://localhost:50663/api/courses/1/teachers/12/classrooms/4/students/8|System.NullReferenceException: Object reference not set to an instance of an object.
+   at eGradeBook.Services.Converters.TakingsConverter.TakingToTakingDto(Taking taking) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\Converters\TakingsConverter.cs:line 14
+   at eGradeBook.Services.CoursesService.GetTaking(Int32 courseId, Int32 teacherId, Int32 classRoomId, Int32 studentId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\CoursesService.cs:line 404
+   at eGradeBook.Controllers.CoursesController.GetStudentTaking(Int32 courseId, Int32 teacherId, Int32 classRoomId, Int32 studentId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\CoursesController.cs:line 187
+   at lambda_method(Closure , Object , Object[] )
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass6_2.<GetExecutor>b__2(Object instance, Object[] methodParameters)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<ExecuteActionFilterAsyncCore>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/08 01:36:23.964|Error|12|8000001a-0001-fd00-b63f-84710c7967bb|GET http://localhost:50663/api/courses/1/teachers/12/classrooms/4/students/8|System.NullReferenceException: Object reference not set to an instance of an object.
+   at eGradeBook.Services.Converters.TakingsConverter.TakingToTakingDto(Taking taking) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\Converters\TakingsConverter.cs:line 14
+   at eGradeBook.Services.CoursesService.GetTaking(Int32 courseId, Int32 teacherId, Int32 classRoomId, Int32 studentId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\CoursesService.cs:line 404
+   at eGradeBook.Controllers.CoursesController.GetStudentTaking(Int32 courseId, Int32 teacherId, Int32 classRoomId, Int32 studentId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\CoursesController.cs:line 187
+   at lambda_method(Closure , Object , Object[] )
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass6_2.<GetExecutor>b__2(Object instance, Object[] methodParameters)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<ExecuteActionFilterAsyncCore>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]

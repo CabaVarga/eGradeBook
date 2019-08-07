@@ -2,6 +2,7 @@
 using eGradeBook.Models.Dtos.Teachers;
 using eGradeBook.Repositories;
 using eGradeBook.Services.Converters;
+using eGradeBook.Services.Exceptions;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -17,18 +18,19 @@ namespace eGradeBook.Services
     public class TeachersService : ITeachersService
     {
         private IUnitOfWork db;
-        private ITeachingsService teachingsService;
         private ILogger logger;
+        private Lazy<ITeachingsService> teachingsService;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="db"></param>
         /// <param name="teachingsService"></param>
-        public TeachersService(IUnitOfWork db, ITeachingsService teachingsService, ILogger logger)
+        public TeachersService(IUnitOfWork db, 
+            Lazy<ITeachingsService> teachingsService, 
+            ILogger logger)
         {
             this.db = db;
-            this.teachingsService = teachingsService;
             this.logger = logger;
         }
 
@@ -39,8 +41,10 @@ namespace eGradeBook.Services
         public void AssignCourseToTeacher(TeachingAssignmentDto assignment)
         {
             logger.Info("Service received request for assigning a course to a teacher {@teachingAssignment}", assignment);
-
-            teachingsService.AssignTeacherToCourse(assignment.SubjectId, assignment.TeacherId);
+            // but again ... course --> teaching. teaching --> course...
+            // Or another service that will reference everything but is not referenced by anything?
+            // SHAT!!!
+            // teachingsService.AssignTeacherToCourse(assignment.SubjectId, assignment.TeacherId);
         }
 
         /// <summary>
@@ -96,23 +100,6 @@ namespace eGradeBook.Services
                     Courses = t.Teachings.Select(tc => new TeacherDto.CourseList() { Id = tc.CourseId, Name = tc.Course.Name }).ToList()
 //                    Courses = t.Teachings.Select(tc => tc.Course.Name).ToList()
                 });
-        }
-        /// <summary>
-        /// Retrieve a teacher by Id
-        /// </summary>
-        /// <param name="teacherId"></param>
-        /// <returns></returns>
-        public TeacherDto GetTeacherById(int teacherId)
-        {
-            logger.Info("Service received request for retrieving teacher by Id {teacherId}", teacherId);
-
-            var teacher = db.TeachersRepository.Get(t => t.Id == teacherId).FirstOrDefault();
-            if (teacher == null)
-            {
-                return null;
-            }
-
-            return TeachersConverter.TeacherToTeacherDto(teacher);
         }
 
         /// <summary>
@@ -319,6 +306,26 @@ namespace eGradeBook.Services
 
 
             return null;
+        }
+
+        /// <summary>
+        /// Get a teacher by Id
+        /// </summary>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
+        public TeacherUser GetTeacherById(int teacherId)
+        {
+            TeacherUser teacher = db.TeachersRepository.Get(t => t.Id == teacherId).FirstOrDefault();
+
+            if (teacher == null)
+            {
+                logger.Info("Teacher {@teacherId} not found", teacherId);
+                var ex = new TeacherNotFoundException(string.Format("Teacher {0} not found", teacherId));
+                ex.Data.Add("teacherId", teacherId);
+                throw ex;
+            }
+
+            return teacher;
         }
     }
 }

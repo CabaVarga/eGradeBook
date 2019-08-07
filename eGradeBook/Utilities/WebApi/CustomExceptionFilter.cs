@@ -127,10 +127,49 @@ namespace eGradeBook.Utilities.WebApi
                 throw new HttpResponseException(resp);
             }
 
+            else if (exceptionType == typeof(TeacherNotFoundException))
+            {
+                var ex = actionExecutedContext.Exception as TeacherNotFoundException;
+
+                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Teacher with Id {0} not found", ex.Data["teacherId"])),
+                    ReasonPhrase = "Not Found"
+                };
+
+                throw new HttpResponseException(resp);
+            }
+
+            else if (exceptionType == typeof(CourseNotFoundException))
+            {
+                var ex = actionExecutedContext.Exception as CourseNotFoundException;
+
+                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Course with Id {0} not found", ex.Data["courseId"])),
+                    ReasonPhrase = "Not Found"
+                };
+
+                throw new HttpResponseException(resp);
+            }
+
+            else if (exceptionType == typeof(TeachingNotFoundException))
+            {
+                var ex = actionExecutedContext.Exception as TeachingNotFoundException;
+
+                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Teacher with Id {0} is not teaching the course {1}", ex.Data["teacherId"], ex.Data["courseId"])),
+                    ReasonPhrase = "Not Found"
+                };
+
+                throw new HttpResponseException(resp);
+            }
+
             else
             {
-                message = "Not found.";
-                status = HttpStatusCode.NotFound;
+                message = "Internal server error";
+                status = HttpStatusCode.InternalServerError;
             }
 
             actionExecutedContext.Response = new HttpResponseMessage()

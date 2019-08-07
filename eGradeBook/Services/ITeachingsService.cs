@@ -22,6 +22,11 @@ namespace eGradeBook.Services
         Teaching CreateTeaching(int courseId, int teacherId);
         Teaching GetTeaching(TeachingDto teachingDto);
         Teaching GetTeaching(int courseId, int teacherId);
+
+        IEnumerable<Teaching> GetAllTeachings();
+        IEnumerable<Teaching> GetAllTeachingsForCourse(int courseId);
+        IEnumerable<Teaching> GetAllTeachingsForTeacher(int teacherId);
+
         Teaching DeleteTeaching(TeachingDto teachingDto);
         Teaching DeleteTeaching(int courseId, int teacherId);
         #endregion
