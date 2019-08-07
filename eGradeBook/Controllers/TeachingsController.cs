@@ -1,4 +1,5 @@
-﻿using eGradeBook.Services;
+﻿using eGradeBook.Models.Dtos.Teachers;
+using eGradeBook.Services;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,15 @@ namespace eGradeBook.Controllers
         public IHttpActionResult GetTeachingAssignmentsByCourses()
         {
             return Ok(teachings.GetAllTeachingAssignmentsByCourses());
+        }
+
+        [Route("remove-assignment")]
+        [HttpPut]
+        public IHttpActionResult RemoveTeachingAssignment(TeachingAssignmentDto assignment)
+        {
+            teachings.RemoveTeacherFromCourse(assignment.SubjectId, assignment.TeacherId);
+
+            return Ok();
         }
     }
 }

@@ -1,6 +1,9 @@
 ﻿using eGradeBook.Models;
 using eGradeBook.Models.Dtos;
 using eGradeBook.Models.Dtos.Courses;
+using eGradeBook.Models.Dtos.Programs;
+using eGradeBook.Models.Dtos.Takings;
+using eGradeBook.Models.Dtos.Teachings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,6 +80,7 @@ namespace eGradeBook.Services
         /// <returns></returns>
         CourseDto GetCourseDtoById(int courseId);
 
+        
         /// <summary>
         /// Update a course
         /// </summary>
@@ -90,6 +94,13 @@ namespace eGradeBook.Services
         /// <param name="course"></param>
         /// <returns></returns>
         CourseDto DeleteCourse(CourseDto course);
+
+        #region Teaching -- a course + teacher association
+        TeachingDto GetTeaching(int courseId, int teacherId);
+        IEnumerable<TeachingDto> GetAllTeachings(int courseId);
+
+        TeachingDto CreateTeachingAssignment(TeachingDto teaching);
+        TeachingDto DeleteTeachingAssignment(TeachingDto teaching);
 
         // Assign and remove teacher
         /// <summary>
@@ -105,7 +116,27 @@ namespace eGradeBook.Services
         /// <param name="teacherId"></param>
         /// <param name="courseId"></param>
         void RemoveTeacherFromCourse(int teacherId, int courseId);
+        #endregion
+
 
         // TODO remove full models, add Dtos
+        // For creation and everything else, it can work as simply adding the resource (teacher, classroom and weekly hours, etc.. )
+
+        #region Programs -- a Teaching (course and teacher) + ClassRoom association
+        IEnumerable<ProgramDto> GetAllPrograms(int courseId, int teacherId);
+        ProgramDto GetProgram(int courseId, int teacherId, int classRoomId);
+
+        ProgramDto CreateProgram(ProgramDto program);
+        ProgramDto UpdateProgram(ProgramDto program); // only the weekly hours can be updated...
+        ProgramDto DeleteProgram(ProgramDto program);
+        #endregion
+
+        #region Takings -- A Program (course, teacher and classroom) + student association
+        IEnumerable<TakingDto> GetAllTakings(int courseId, int teacherId, int classRoomId);
+        TakingDto GetTaking(int courseId, int teacherId, int classRoomId, int studentId);
+
+        TakingDto CreateTaking(TakingDto taking);
+        TakingDto DeleteTaking(TakingDto taking);
+        #endregion
     }
 }

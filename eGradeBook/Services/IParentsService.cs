@@ -62,20 +62,5 @@ namespace eGradeBook.Services
         /// </summary>
         /// <returns></returns>
         IEnumerable<ParentDto> GetAllParents();
-
-        /// <summary>
-        /// Update the given parent
-        /// </summary>
-        /// <param name="parentId"></param>
-        /// <param name="parent"></param>
-        /// <returns></returns>
-        ParentDto UpdateParent(int parentId, ParentDto parent);
-
-        /// <summary>
-        /// Delete a parent user from the system
-        /// </summary>
-        /// <param name="parentId"></param>
-        /// <returns></returns>
-        ParentDto DeleteParent(int parentId);
     }
 }

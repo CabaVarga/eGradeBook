@@ -16,10 +16,12 @@ namespace eGradeBook.Models.Dtos
         /// </summary>
         public string Teacher { get; set; }
 
+        public int TeacherId { get; set; }
+
         /// <summary>
         /// Courses
         /// NOTE only strings, this is not optimal
         /// </summary>
-        public ICollection<string> Courses { get; set; }
+        public ICollection<object> Courses { get; set; }
     }
 }

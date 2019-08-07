@@ -1,8 +1,11 @@
 ﻿using eGradeBook.Models.Dtos;
 using eGradeBook.Models.Dtos.Courses;
+using eGradeBook.Models.Dtos.Programs;
+using eGradeBook.Models.Dtos.Teachings;
 using eGradeBook.Services;
 using eGradeBook.Utilities.WebApi;
 using NLog;
+using System;
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -15,7 +18,7 @@ namespace eGradeBook.Controllers
     [RoutePrefix("api/courses")]
     public class CoursesController : ApiController
     {
-        private ICoursesService coursesService;
+        private ICoursesService service;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
@@ -25,7 +28,7 @@ namespace eGradeBook.Controllers
         /// <param name="logger"></param>
         public CoursesController(ICoursesService service)
         {
-            this.coursesService = service;
+            this.service = service;
     }
 
         /// <summary>
@@ -40,7 +43,7 @@ namespace eGradeBook.Controllers
             var user = IdentityHelper.GetLoggedInUser(RequestContext);
             logger.Info("User {@userData} is requesting a list of all courses", user);
 
-            var courses = coursesService.GetAllCoursesDto();
+            var courses = service.GetAllCoursesDto();
 
             // TODO this is not right
             if (courses == null)
@@ -64,7 +67,7 @@ namespace eGradeBook.Controllers
             var user = IdentityHelper.GetLoggedInUser(RequestContext);
             logger.Info("User {@userData} is requesting a course by Id {courseId}", user, courseId);
 
-            var course = coursesService.GetCourseDtoById(courseId);
+            var course = service.GetCourseDtoById(courseId);
 
             if (course == null)
             {
@@ -88,7 +91,7 @@ namespace eGradeBook.Controllers
             logger.Info("User {@userData} is initiating a Course registration {@courseData}", user, course);
 
             // TODO logging
-            var createdCourse = coursesService.CreateCourse(course);
+            var createdCourse = service.CreateCourse(course);
 
             var link = Url.Route("DefaultApi", new { controller = "Courses", courseId = createdCourse.Id });
 
@@ -97,5 +100,75 @@ namespace eGradeBook.Controllers
             // TODO ERROR HANDLING
             return CreatedAtRoute("DefaultApi", new { controller = "Courses", courseId = createdCourse.Id }, createdCourse);
         }
+
+        #region Teachings
+        [Route("{courseId}/teachers")]
+        [HttpGet]
+        public IHttpActionResult GetTeachingAssignments(int courseId)
+        {
+            return Ok(service.GetAllTeachings(courseId));
+        }
+
+        [Route("{courseId}/teachers/{teacherId}")]
+        [HttpGet]
+        public IHttpActionResult GetTeachingAssignments(int courseId, int teacherId)
+        {
+            return Ok(service.GetTeaching(courseId, teacherId));
+        }
+
+        [Route("{courseId}/teachers")]
+        [HttpPost]
+        public IHttpActionResult CreateTeachingAssignment(int courseId, TeachingDto teaching)
+        {
+            return Ok(service.CreateTeachingAssignment(teaching));
+        }
+        #endregion
+
+        #region Programs
+        [Route("{courseId}/teachers/{teacherId}/classrooms")]
+        [HttpGet]
+        public IHttpActionResult GetAllClassRoomsPrograms(int courseId, int teacherId)
+        {
+            logger.Info("Get all programs for course {@courseId} and teacher {@teacherId}", courseId, teacherId);
+
+            return Ok(service.GetAllPrograms(courseId, teacherId));
+        }
+
+        [Route("{courseId}/teachers/{teacherId}/classrooms/{classRoomId}")]
+        [HttpGet]
+        public IHttpActionResult GetClassRoomProgram(int courseId, int teacherId, int classRoomId)
+        {
+            logger.Info("Get program for course {@courseId} teacher {@teacherId} and classRoom {@classRoomId}", courseId, teacherId, classRoomId);
+
+            return Ok(service.GetProgram(courseId, teacherId, classRoomId));
+        }
+
+        [Route("{courseId}/teachers/{teacherId}/classrooms")]
+        [HttpPost]
+        public IHttpActionResult CreateClassRoomProgram(ProgramDto dto)
+        {
+            logger.Info("Create Program {@programData}", dto);
+
+            ProgramDto createdProgram = service.CreateProgram(dto);
+
+            var link = Url.Route("DefaultApi", new
+            {
+                controller = "GetClassRoomProgram",
+                courseId = createdProgram.CourseId,
+                teacherId = createdProgram.TeacherId,
+                classRoomId = createdProgram.ClassRoomId
+            });
+
+            Uri.TryCreate(link, UriKind.Absolute, out Uri uri);
+
+            logger.Info("Program {@programId} created at route {@route}", createdProgram.ClassRoomId, link);
+
+            return Created(uri, createdProgram); 
+        }
+        #endregion
+
+        #region Takings
+
+        #endregion
     }
 }

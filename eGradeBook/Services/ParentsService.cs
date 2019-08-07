@@ -2,6 +2,7 @@
 using eGradeBook.Models.Dtos.Parents;
 using eGradeBook.Models.Dtos.Students;
 using eGradeBook.Repositories;
+using eGradeBook.Services.Converters;
 using NLog;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +15,27 @@ namespace eGradeBook.Services
     public class ParentsService : IParentsService
     {
         private IUnitOfWork db;
-        private ILogger logger;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public ParentsService(IUnitOfWork db, ILogger logger)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="db"></param>
+        public ParentsService(IUnitOfWork db)
         {
             this.db = db;
-            this.logger = logger;
         }
 
+        /// <summary>
+        /// Add a student to the parent as a child
+        /// </summary>
+        /// <param name="parentId"></param>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
         public ParentChildrenDto AddChild(int parentId, int studentId)
         {
+            logger.Info("Make {@userId} parent of {@userId}", parentId, studentId);
+
             ParentUser parent = db.ParentsRepository.Get(p => p.Id == parentId).FirstOrDefault();
 
             if (parent == null)
@@ -47,6 +59,8 @@ namespace eGradeBook.Services
             db.StudentParentsRepository.Insert(sp);            
             db.Save();
 
+            // What even to return???
+
             return new ParentChildrenDto()
             {
                 Name = parent.FirstName + " " + parent.LastName,
@@ -60,11 +74,6 @@ namespace eGradeBook.Services
                     StudentId = c.Student.Id
                 }).ToList()
             };
-        }
-
-        public ParentDto DeleteParent(int parentId)
-        {
-            throw new System.NotImplementedException();
         }
 
         public IEnumerable<StudentDto> GetAllChildren(int parentId)
@@ -111,16 +120,40 @@ namespace eGradeBook.Services
                 });
         }
 
+        /// <summary>
+        /// Get a parent by Id
+        /// </summary>
+        /// <param name="parentId"></param>
+        /// <returns></returns>
         public ParentDto GetParentById(int parentId)
         {
-            throw new System.NotImplementedException();
+            var parent = db.ParentsRepository.Get(p => p.Id == parentId).FirstOrDefault();
+
+            if (parent == null)
+            {
+                // Not exception but return NotFound from controller.
+                return null;
+            }
+
+            return ParentsConverter.ParentToParentDto(parent);
         }
 
+        /// <summary>
+        /// Probably should by in Student? I cannot decide...
+        /// Most probably not even an independent method... or API
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
         public StudentParentsDto GetParentsForStudent(int studentId)
         {
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// This was only a test method
+        /// TODO delete
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<StudentParentsDto> GetParentsForStudents()
         {
             return db.StudentsRepository.Get()
@@ -129,11 +162,6 @@ namespace eGradeBook.Services
                     Name = s.FirstName + " " + s.LastName,
                     Parents = s.StudentParents.Select(p => p.Parent.LastName + " " + p.Parent.FirstName).ToList()
                 });
-        }
-
-        public ParentDto UpdateParent(int parentId, ParentDto parent)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

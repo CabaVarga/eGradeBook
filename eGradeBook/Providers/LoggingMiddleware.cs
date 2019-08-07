@@ -53,7 +53,11 @@ namespace eGradeBook.Providers
                 ResourceURI = context.Request.Uri
             };
 
-            logger.Trace("HttpRequest {requestData}", requestData);
+            if (!context.Request.Path.ToString().Contains("swagger"))
+            {
+                logger.Trace("HttpRequest {requestData}", requestData);
+            }
+
             stopWatch.Start();
 
             await Next.Invoke(context);
@@ -68,7 +72,10 @@ namespace eGradeBook.Providers
                 ProcessingTime = miliseconds
             };
 
-            logger.Trace("HttpResponse {responseData}", responseData);
+            if (!context.Request.Path.ToString().Contains("swagger"))
+            {
+                logger.Trace("HttpResponse {responseData}", responseData);
+            }
         }
     }
 }

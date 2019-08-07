@@ -1,4 +1,6 @@
-﻿using eGradeBook.Models.Dtos;
+﻿using eGradeBook.Models;
+using eGradeBook.Models.Dtos;
+using eGradeBook.Models.Dtos.Programs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,23 @@ namespace eGradeBook.Services
     /// </summary>
     public interface IProgramsService
     {
+        #region Full CRUD
+        // Using the program fetching from multiple places, I need these things in one place!
+        // Course service may be the entry but the conversion will take place here...
+        // But if CreateProgram is using get Teaching, then I will not convert programDto to teachingDto
+        // So i need Ids.
+        Program CreateProgram(ProgramDto programDto);
+        Program CreateProgram(int courseId, int teacherId, int classRoomId, int weeklyHours);
+
+        Program UpdateProgram(ProgramDto programDto);
+        Program UpdateProgram(int courseId, int teacherId, int classRoomId, int weeklyHours);
+
+        Program GetProgram(ProgramDto programDto);
+        Program GetProgram(int courseId, int teacherId, int classRoomId);
+
+        Program DeleteProgram(ProgramDto programDto);
+        Program DeleteProgram(int courseId, int teacherId, int classRoomId);
+        #endregion
         /// <summary>
         /// Get all programs, group them by courses
         /// </summary>

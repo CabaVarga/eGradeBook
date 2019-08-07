@@ -1,5 +1,6 @@
 ﻿using eGradeBook.Models;
 using eGradeBook.Models.Dtos;
+using eGradeBook.Models.Dtos.Teachings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,14 @@ namespace eGradeBook.Services
     /// </summary>
     public interface ITeachingsService
     {
+        #region Full CRUD
+        Teaching CreateTeaching(TeachingDto teachingDto);
+        Teaching CreateTeaching(int courseId, int teacherId);
+        Teaching GetTeaching(TeachingDto teachingDto);
+        Teaching GetTeaching(int courseId, int teacherId);
+        Teaching DeleteTeaching(TeachingDto teachingDto);
+        Teaching DeleteTeaching(int courseId, int teacherId);
+        #endregion
         /// <summary>
         /// Retrieve a list of teaching assignments grouped by courses
         /// </summary>

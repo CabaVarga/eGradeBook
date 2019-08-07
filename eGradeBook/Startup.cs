@@ -138,9 +138,9 @@ namespace eGradeBook
             container.RegisterType<ICoursesService, CoursesService>();
             container.RegisterType<IClassRoomsService, ClassRoomsService>();
 
-
             container.RegisterType<ITeachingsService, TeachingsService>();
             container.RegisterType<IProgramsService, ProgramsService>();
+            container.RegisterType<ITakingsService, TakingsService>();
 
             container.RegisterType<IGradesService, GradesService>();
             container.RegisterType<IFinalGradesService, FinalGradesService>();

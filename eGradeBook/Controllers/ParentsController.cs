@@ -35,6 +35,7 @@ namespace eGradeBook.Controllers
         /// <param name="parentId"></param>
         /// <returns></returns>
         [Route("{parentId:int}", Name = "GetParentById")]
+        [ResponseType(typeof(ParentDto))]
         [HttpGet]
         public IHttpActionResult GetParentById(int parentId)
         {
@@ -92,34 +93,8 @@ namespace eGradeBook.Controllers
 
         #region Update & Delete
 
-        /// <summary>
-        /// Update the given Parents' data
-        /// NOTE move to accounts controller
-        /// </summary>
-        /// <param name="parentId"></param>
-        /// <param name="parent"></param>
-        /// <returns></returns>
-        [HttpPut]
-        [Route("{parentId}")]
-        [ResponseType(typeof(ParentDto))]
-        public IHttpActionResult PutUpdateParent(int parentId, ParentDto parent)
-        {
-            return Ok(service.UpdateParent(parentId, parent));
-        }
 
-        /// <summary>
-        /// Delete the given parent user
-        /// NOTE move to accounts controller
-        /// </summary>
-        /// <param name="parentId"></param>
-        /// <returns></returns>
-        [HttpDelete]
-        [Route("{parentId}")]
-        [ResponseType(typeof(ParentDto))]
-        public IHttpActionResult DeleteParent(int parentId)
-        {
-            return Ok(service.DeleteParent(parentId));
-        }
+
 
         #endregion
     }

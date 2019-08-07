@@ -34,14 +34,14 @@ namespace eGradeBook.Models
         /// The teacher in the relation
         /// </summary>
         [ForeignKey("TeacherId")]
-        [Required]
+        // [Required]
         public virtual TeacherUser Teacher { get; set; }
 
         /// <summary>
         /// The course in the relation
         /// </summary>
         [ForeignKey("CourseId")]
-        [Required]
+        // [Required]
         public virtual Course Course { get; set; }
 
         /// <summary>
