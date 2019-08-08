@@ -11,14 +11,19 @@ namespace eGradeBook.Models.Dtos.FinalGrades
     public class FinalGradeDto
     {
         /// <summary>
-        /// The student -- only the full name
+        /// Final grade Id
         /// </summary>
-        public string Student { get; set; }
+        public int FinalGradeId { get; set; }
 
         /// <summary>
-        /// The subject (course) -- only the name
+        /// The student -- only the Id
         /// </summary>
-        public string Subject { get; set; }
+        public int StudentId { get; set; }
+
+        /// <summary>
+        /// The subject (course) -- only the id
+        /// </summary>
+        public int CourseId { get; set; }
 
         /// <summary>
         /// The (school) grade for the final grade

@@ -1,4 +1,5 @@
-﻿using eGradeBook.Models.Dtos.FinalGrades;
+﻿using eGradeBook.Models;
+using eGradeBook.Models.Dtos.FinalGrades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,5 +31,8 @@ namespace eGradeBook.Services
         /// <param name="courseId"></param>
         /// <returns></returns>
         IEnumerable<FinalGradeDto> GetAllFinalGradesForCourse(int courseId);
+
+        FinalGrade GetFinalGradeById(int finalGradeId);
+        FinalGradeDto GetFinalGradeDtoById(int finalGradeId);
     }
 }

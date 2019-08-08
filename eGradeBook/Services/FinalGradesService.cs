@@ -54,14 +54,7 @@ namespace eGradeBook.Services
             }
 
             return db.FinalGradesRepository.Get(fg => fg.Taking.Program.Course == course)
-                .Select(fg => new FinalGradeDto()
-                {
-                    Student = fg.Taking.Student.FirstName + " " + fg.Taking.Student.LastName,
-                    Subject = fg.Taking.Program.Course.Name,
-                    SchoolGrade = fg.Taking.Program.ClassRoom.ClassGrade,
-                    Semester = fg.SchoolTerm,
-                    FinalGrade = fg.GradePoint
-                });
+                .Select(fg => Converters.FinalGradesConverter.FinalGradeToFinalGradeDto(fg));
         }
 
         /// <summary>
@@ -81,16 +74,25 @@ namespace eGradeBook.Services
             // I had an exception when I have tried with fg.Taking.Studet == student
             // After I have added the id compare, it is working
             var finalGrades = db.FinalGradesRepository.Get(fg => fg.Taking.Student.Id == student.Id)
-                .Select(fg => new FinalGradeDto()
-                {
-                    Student = fg.Taking.Student.FirstName + " " + fg.Taking.Student.LastName,
-                    Subject = fg.Taking.Program.Course.Name,
-                    SchoolGrade = fg.Taking.Program.ClassRoom.ClassGrade,
-                    Semester = fg.SchoolTerm,
-                    FinalGrade = fg.GradePoint
-                });
+                .Select(fg => Converters.FinalGradesConverter.FinalGradeToFinalGradeDto(fg));
 
             return finalGrades;
+        }
+
+        public FinalGrade GetFinalGradeById(int finalGradeId)
+        {
+            logger.Info("Get final grade by Id {@finalGradeId}", finalGradeId);
+
+            return db.FinalGradesRepository.GetByID(finalGradeId);
+        }
+
+        public FinalGradeDto GetFinalGradeDtoById(int finalGradeId)
+        {
+            logger.Info("Get final grade dto by Id {@finalGradeId}", finalGradeId);
+
+            FinalGrade finalGrade = GetFinalGradeById(finalGradeId);
+
+            return Converters.FinalGradesConverter.FinalGradeToFinalGradeDto(finalGrade);
         }
     }
 }

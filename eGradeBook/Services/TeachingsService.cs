@@ -9,10 +9,15 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.Entity.Core;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading;
 using System.Web;
 
 namespace eGradeBook.Services
 {
+    /// <summary>
+    /// Teachings Service
+    /// </summary>
     public class TeachingsService : ITeachingsService
     {
         private IUnitOfWork db;
@@ -20,6 +25,13 @@ namespace eGradeBook.Services
         private Lazy<ITeachersService> teachersService;
         private Lazy<ICoursesService> coursesService;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="logger"></param>
+        /// <param name="teachersService"></param>
+        /// <param name="coursesService"></param>
         public TeachingsService(IUnitOfWork db, ILogger logger, 
             Lazy<ITeachersService> teachersService,
             Lazy<ICoursesService> coursesService)
@@ -30,11 +42,22 @@ namespace eGradeBook.Services
             this.coursesService = coursesService;
         }
 
+        /// <summary>
+        /// Create teaching from teachingDto
+        /// </summary>
+        /// <param name="teachingDto"></param>
+        /// <returns></returns>
         public Teaching CreateTeaching(TeachingDto teachingDto)
         {
             return CreateTeaching(teachingDto.CourseId, teachingDto.TeacherId);
         }
 
+        /// <summary>
+        /// Create teaching from courseId and teacherId
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
         public Teaching CreateTeaching(int courseId, int teacherId)
         {
             TeacherUser teacher = db.TeachersRepository.Get(t => t.Id == teacherId).FirstOrDefault();
@@ -52,12 +75,80 @@ namespace eGradeBook.Services
             return teaching;
         }
 
+        /// <summary>
+        /// Create teaching from teachingDto and return a teachingDto
+        /// </summary>
+        /// <param name="teachingDto"></param>
+        /// <returns></returns>
+        public TeachingDto CreateTeachingDto(TeachingDto teachingDto)
+        {
+            Teaching teaching = CreateTeaching(teachingDto);
+
+            return Converters.TeachingsConverter.TeachingToTeachingDto(teaching);
+        }
+
+        /// <summary>
+        /// Get all teachings
+        /// NOTE not very helpful
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Teaching> GetAllTeachings()
+        {
+            return db.TeachingAssignmentsRepository.Get();
+        }
+
+        /// <summary>
+        /// Get teaching by Id -- throws if not found
+        /// </summary>
+        /// <param name="teachingId"></param>
+        /// <returns></returns>
+        public Teaching GetTeachingById(int teachingId)
+        {
+            logger.Info("Get teaching by Id {@teachingId}", teachingId);
+
+            var teaching = db.TeachingAssignmentsRepository.Get(ta => ta.Id == teachingId).FirstOrDefault();
+
+            if (teaching == null)
+            {
+                // TODO find a way out of this madness, cant be teacher and course in one place and teaching in another place...
+                logger.Info("Teaching not found for Id {@teachingId}", teachingId);
+                var ex = new TeachingNotFoundException(string.Format("Teaching not found for Id {0}", teachingId));
+                ex.Data.Add("teachingId", teachingId);
+                throw ex;
+            }
+
+            return teaching;
+        }
+
+        /// <summary>
+        /// Get teaching by Id and return a teachingDto
+        /// </summary>
+        /// <param name="teachingId"></param>
+        /// <returns></returns>
+        public TeachingDto GetTeachingDtoById(int teachingId)
+        {
+            logger.Info("Get teaching dto by Id {@teachingId}", teachingId);
+            Teaching teaching = GetTeachingById(teachingId);
+
+            return Converters.TeachingsConverter.TeachingToTeachingDto(teaching);
+        }
+
+        /// <summary>
+        /// Get teaching for teachingDto --- throws
+        /// </summary>
+        /// <param name="teachingDto"></param>
+        /// <returns></returns>
         public Teaching GetTeaching(TeachingDto teachingDto)
         {
             return GetTeaching(teachingDto.CourseId, teachingDto.TeacherId);
         }
 
-
+        /// <summary>
+        /// Get teaching by course and teacher -- throws
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
         public Teaching GetTeaching(int courseId, int teacherId)
         {
             Course course = coursesService.Value.GetCourseById(courseId);
@@ -149,51 +240,10 @@ namespace eGradeBook.Services
         }
 
         /// <summary>
-        /// This is a reporting tool
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<TeachingsByCoursesDto> GetAllTeachingAssignmentsByCourses()
-        {
-            logger.Info("Retrieving all teachings by course");
-            var teachings = db.TeachingAssignmentsRepository.Get()
-                .GroupBy(ta => ta.Course)
-                .Select(ta => new TeachingsByCoursesDto()
-                {
-                    Course = ta.Key.ColloqialName,
-                    Teachers = ta.Select(c => c.Teacher.UserName).OrderBy(t => t).ToList()
-                });
-
-            return teachings;
-        }
-
-        /// <summary>
-        /// Also a reporting tool
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<TeachingsByTeachersDto> GetAllTeachingAssignmentsByTeachers()
-        {
-            var mlcs = NLog.MappedDiagnosticsContext.GetNames().ToList();
-            var names = NLog.GlobalDiagnosticsContext.GetNames().ToList();
-            var mdlcs = NLog.MappedDiagnosticsLogicalContext.GetNames().ToList();
-
-            logger.Info("Retrieving all teachings by teachers");
-
-            var teachings = db.TeachingAssignmentsRepository.Get()
-                .GroupBy(ta => ta.Teacher)
-                .Select(ta => new TeachingsByTeachersDto()
-                {
-                    Teacher = ta.Key.UserName,
-                    TeacherId = ta.Key.Id,
-                    Courses = ta.Select(c => (object) (new { Name = c.Course.Name, CourseId = c.Course.Id })).ToList()
-                });
-
-            return teachings;
-        }
-
-        /// <summary>
         /// Remove teacher from course
         /// NOTE better use DELETE to courses/{courseId}/teachers/{teachersId}
         /// it is more RESTful
+        /// NOTE this is the old method
         /// </summary>
         /// <param name="courseId"></param>
         /// <param name="teacherId"></param>
@@ -256,11 +306,54 @@ namespace eGradeBook.Services
             return null;
         }
 
-        public IEnumerable<Teaching> GetAllTeachings()
+        /// <summary>
+        /// This is a reporting tool
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<TeachingsByCoursesDto> GetAllTeachingAssignmentsByCourses()
         {
-            return db.TeachingAssignmentsRepository.Get();
+            logger.Info("Retrieving all teachings by course");
+            var teachings = db.TeachingAssignmentsRepository.Get()
+                .GroupBy(ta => ta.Course)
+                .Select(ta => new TeachingsByCoursesDto()
+                {
+                    Course = ta.Key.ColloqialName,
+                    Teachers = ta.Select(c => c.Teacher.UserName).OrderBy(t => t).ToList()
+                });
+
+            return teachings;
         }
 
+        /// <summary>
+        /// Also a reporting tool
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<TeachingsByTeachersDto> GetAllTeachingAssignmentsByTeachers()
+        {
+            var mlcs = NLog.MappedDiagnosticsContext.GetNames().ToList();
+            var names = NLog.GlobalDiagnosticsContext.GetNames().ToList();
+            var mdlcs = NLog.MappedDiagnosticsLogicalContext.GetNames().ToList();
+
+            logger.Info("Retrieving all teachings by teachers");
+
+            var teachings = db.TeachingAssignmentsRepository.Get()
+                .GroupBy(ta => ta.Teacher)
+                .Select(ta => new TeachingsByTeachersDto()
+                {
+                    Teacher = ta.Key.UserName,
+                    TeacherId = ta.Key.Id,
+                    Courses = ta.Select(c => (object) (new { Name = c.Course.Name, CourseId = c.Course.Id })).ToList()
+                });
+
+            return teachings;
+        }
+
+        /// <summary>
+        /// Get all teachings for a given course
+        /// NOTE implement with check and returning teachingDtos
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <returns></returns>
         public IEnumerable<Teaching> GetAllTeachingsForCourse(int courseId)
         {
             Course course = coursesService.Value.GetCourseById(courseId);
@@ -268,11 +361,28 @@ namespace eGradeBook.Services
             return db.TeachingAssignmentsRepository.Get(ta => ta.CourseId == courseId);
         }
 
+        /// <summary>
+        /// Get all teachings for given teacher
+        /// NOTE implement with teacherDtos ?
+        /// </summary>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
         public IEnumerable<Teaching> GetAllTeachingsForTeacher(int teacherId)
         {
             TeacherUser teacher = teachersService.Value.GetTeacherById(teacherId);
 
             return db.TeachingAssignmentsRepository.Get(ta => ta.TeacherId == teacherId);
+        }
+
+        /// <summary>
+        /// Get all teachings as dtos
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<TeachingDto> GetAllTeachingsDtos()
+        {
+            logger.Info("Get all teachings as dtos");
+            return db.TeachingAssignmentsRepository.Get()
+                .Select(ta => Converters.TeachingsConverter.TeachingToTeachingDto(ta));
         }
     }
 }

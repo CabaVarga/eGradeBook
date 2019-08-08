@@ -22,16 +22,23 @@ namespace eGradeBook.Services
         // So i need Ids.
         Program CreateProgram(ProgramDto programDto);
         Program CreateProgram(int courseId, int teacherId, int classRoomId, int weeklyHours);
+        ProgramDto CreateProgramDto(ProgramDto programDto);
 
         Program UpdateProgram(ProgramDto programDto);
         Program UpdateProgram(int courseId, int teacherId, int classRoomId, int weeklyHours);
+        ProgramDto UpdateProgramDto(ProgramDto programDto);
 
+        Program GetProgram(int programId);
         Program GetProgram(ProgramDto programDto);
         Program GetProgram(int courseId, int teacherId, int classRoomId);
+
+        IEnumerable<ProgramDto> GetAllProgramsDtos();
 
         // Eh, also for teacher etc... where will it end?
         IEnumerable<Program> GetAllProgramsForTeaching(TeachingDto teachingDto);
         IEnumerable<Program> GetAllProgramsForTeaching(int courseId, int teacherId);
+
+        ProgramDto GetProgramDto(int programId);
 
         Program DeleteProgram(ProgramDto programDto);
         Program DeleteProgram(int courseId, int teacherId, int classRoomId);

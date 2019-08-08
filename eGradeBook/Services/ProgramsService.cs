@@ -34,13 +34,20 @@ namespace eGradeBook.Services
             this.teachingsService = teachingsService;
         }
 
+        /// <summary>
+        /// Create program from dto
+        /// </summary>
+        /// <param name="programDto"></param>
+        /// <returns></returns>
         public Program CreateProgram(ProgramDto programDto)
         {
+            logger.Info("Create program {@programDto}", programDto);
             return CreateProgram(programDto.CourseId, programDto.TeacherId, programDto.ClassRoomId, programDto.WeeklyHours);
         }
 
         public Program CreateProgram(int courseId, int teacherId, int classRoomId, int weeklyHours)
         {
+            logger.Info("Create program for course {@courseId}, teacher {@teacherId} and classroom {@classRoomId}", courseId, teacherId, classRoomId);
             // We need a teaching
             Teaching teaching = teachingsService.GetTeaching(courseId, teacherId);
             ClassRoom classRoom = db.ClassRoomsRepository.Get(c => c.Id == classRoomId).FirstOrDefault();
@@ -59,13 +66,28 @@ namespace eGradeBook.Services
             return program;
         }
 
+        /// <summary>
+        /// Get program for a given dto
+        /// </summary>
+        /// <param name="programDto"></param>
+        /// <returns></returns>
         public Program GetProgram(ProgramDto programDto)
         {
+            logger.Info("Get program {@programDto}", programDto);
             return GetProgram(programDto.CourseId, programDto.TeacherId, programDto.ClassRoomId);
         }
 
+        /// <summary>
+        /// Get program for course, teacher and classroom
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="teacherId"></param>
+        /// <param name="classRoomId"></param>
+        /// <returns></returns>
         public Program GetProgram(int courseId, int teacherId, int classRoomId)
         {
+            logger.Info("Get program for course {@courseId}, teacher {@teacherId} and classroom {@classRoomId}", courseId, teacherId, classRoomId);
+            // TODO implement exceptions
             return db.ProgramsRepository.Get(p =>
                     p.ClassRoomId == classRoomId &&
                     p.Teaching.CourseId == courseId &&
@@ -73,11 +95,23 @@ namespace eGradeBook.Services
                 .FirstOrDefault();
         }
 
+        /// <summary>
+        /// Delete program
+        /// </summary>
+        /// <param name="programDto"></param>
+        /// <returns></returns>
         public Program DeleteProgram(ProgramDto programDto)
         {
             return DeleteProgram(programDto.CourseId, programDto.TeacherId, programDto.ClassRoomId);
         }
 
+        /// <summary>
+        /// Delete program
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="teacherId"></param>
+        /// <param name="classRoomId"></param>
+        /// <returns></returns>
         public Program DeleteProgram(int courseId, int teacherId, int classRoomId)
         {
             Program program = GetProgram(courseId, teacherId, classRoomId);
@@ -118,11 +152,25 @@ namespace eGradeBook.Services
                 });
         }
 
+        /// <summary>
+        /// Update program
+        /// </summary>
+        /// <param name="programDto"></param>
+        /// <returns></returns>
         public Program UpdateProgram(ProgramDto programDto)
         {
             return UpdateProgram(programDto.CourseId, programDto.TeacherId, programDto.ClassRoomId, programDto.WeeklyHours);
         }
 
+        /// <summary>
+        /// Update program
+        /// NOTE it will only update weeklyHours
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="teacherId"></param>
+        /// <param name="classRoomId"></param>
+        /// <param name="weeklyHours"></param>
+        /// <returns></returns>
         public Program UpdateProgram(int courseId, int teacherId, int classRoomId, int weeklyHours)
         {
             Program program = GetProgram(courseId, teacherId, classRoomId);
@@ -135,16 +183,88 @@ namespace eGradeBook.Services
             return program;
         }
 
+        /// <summary>
+        /// Get all programs for teaching
+        /// </summary>
+        /// <param name="teachingDto"></param>
+        /// <returns></returns>
         public IEnumerable<Program> GetAllProgramsForTeaching(TeachingDto teachingDto)
         {
             return GetAllProgramsForTeaching(teachingDto.CourseId, teachingDto.TeacherId);
         }
 
+        /// <summary>
+        /// Get all programs for teaching (course and teacher)
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
         public IEnumerable<Program> GetAllProgramsForTeaching(int courseId, int teacherId)
         {
             Teaching teaching = teachingsService.GetTeaching(courseId, teacherId);
 
             return db.ProgramsRepository.Get(p => p.Teaching.CourseId == courseId && p.Teaching.TeacherId == teacherId);
+        }
+
+        /// <summary>
+        /// Get program by Id
+        /// </summary>
+        /// <param name="programId"></param>
+        /// <returns></returns>
+        public Program GetProgram(int programId)
+        {
+            logger.Info("Get program Id {@programId}", programId);
+            return db.ProgramsRepository.GetByID(programId);
+        }
+
+        /// <summary>
+        /// Get program by Id and return dto
+        /// </summary>
+        /// <param name="programId"></param>
+        /// <returns></returns>
+        public ProgramDto GetProgramDto(int programId)
+        {
+            logger.Info("Get program dto Id {@programId}", programId);
+            Program program = GetProgram(programId);
+
+            return Converters.ProgramsConverter.ProgramToProgramDto(program);
+        }
+
+        /// <summary>
+        /// Create program and return dto
+        /// </summary>
+        /// <param name="programDto"></param>
+        /// <returns></returns>
+        public ProgramDto CreateProgramDto(ProgramDto programDto)
+        {
+            Program program = CreateProgram(programDto);
+
+            return Converters.ProgramsConverter.ProgramToProgramDto(program);
+        }
+
+        /// <summary>
+        /// Get all programs as dtos
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ProgramDto> GetAllProgramsDtos()
+        {
+            logger.Info("Get all programs as dtos");
+
+            return db.ProgramsRepository.Get()
+                .Select(p => Converters.ProgramsConverter.ProgramToProgramDto(p));
+        }
+
+        /// <summary>
+        /// Update program and return dto
+        /// </summary>
+        /// <param name="programDto"></param>
+        /// <returns></returns>
+        public ProgramDto UpdateProgramDto(ProgramDto programDto)
+        {
+            logger.Info("Update program {@programData} and return dto", programDto);
+            Program updatedProgram = UpdateProgram(programDto);
+
+            return Converters.ProgramsConverter.ProgramToProgramDto(updatedProgram);
         }
     }
 }

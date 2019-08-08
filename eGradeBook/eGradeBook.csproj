@@ -183,6 +183,7 @@
     <Compile Include="Controllers\ParentsController.cs" />
     <Compile Include="Controllers\ProgramsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
+    <Compile Include="Controllers\TakingsController.cs" />
     <Compile Include="Controllers\TeachersController.cs" />
     <Compile Include="Controllers\TeachingsController.cs" />
     <Compile Include="Infrastructure\Deal.cs" />
@@ -271,8 +272,12 @@
     <Compile Include="Services\Converters\TeachersConverter.cs" />
     <Compile Include="Services\Converters\TeachingsConverter.cs" />
     <Compile Include="Services\CoursesService.cs" />
+    <Compile Include="Services\Exceptions\AdminNotFoundException.cs" />
     <Compile Include="Services\Exceptions\CourseNotFoundException.cs" />
     <Compile Include="Services\Exceptions\InvalidUserIdException.cs" />
+    <Compile Include="Services\Exceptions\ParentNotFoundException.cs" />
+    <Compile Include="Services\Exceptions\ProgramNotFoundException.cs" />
+    <Compile Include="Services\Exceptions\StudentNotFoundException.cs" />
     <Compile Include="Services\Exceptions\TakingNotFoundException.cs" />
     <Compile Include="Services\Exceptions\TeacherNotFoundException.cs" />
     <Compile Include="Services\Exceptions\TeachingCannotBeRemovedException.cs" />

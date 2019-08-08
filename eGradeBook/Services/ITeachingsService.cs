@@ -23,7 +23,13 @@ namespace eGradeBook.Services
         Teaching GetTeaching(TeachingDto teachingDto);
         Teaching GetTeaching(int courseId, int teacherId);
 
+        TeachingDto CreateTeachingDto(TeachingDto teachingDto);
+
+        Teaching GetTeachingById(int teachingId);
+        TeachingDto GetTeachingDtoById(int teachingId);
+
         IEnumerable<Teaching> GetAllTeachings();
+        IEnumerable<TeachingDto> GetAllTeachingsDtos();
         IEnumerable<Teaching> GetAllTeachingsForCourse(int courseId);
         IEnumerable<Teaching> GetAllTeachingsForTeacher(int teacherId);
 

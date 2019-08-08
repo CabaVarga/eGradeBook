@@ -1,4 +1,5 @@
-﻿using eGradeBook.Models.Dtos;
+﻿using eGradeBook.Models;
+using eGradeBook.Models.Dtos;
 using eGradeBook.Models.Dtos.Grades;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,20 @@ namespace eGradeBook.Services
     /// </summary>
     public interface IGradesService
     {
+        /// <summary>
+        /// Create (assign) a grade
+        /// </summary>
+        /// <param name="notes"></param>
+        /// <returns></returns>
+        Grade CreateGrade(
+            int courseId, int teacherId, int classRoomId, int studentId,
+            int schoolTerm, DateTime assigned,
+            int gradePoint, string notes = null);
+
+        Grade CreateGrade(GradeDto gradeDto);
+
+        GradeDto CreateGradeDto(GradeDto gradeDto);
+
         /// <summary>
         /// Get all grades
         /// </summary>
@@ -38,18 +53,7 @@ namespace eGradeBook.Services
         /// <param name="parentId"></param>
         /// <returns></returns>
         IEnumerable<GradeDto> GetAllGradesForParent(int parentId);
-
-
-        /// <summary>
-        /// Create (assign) a grade
-        /// </summary>
-        /// <param name="teacherId"></param>
-        /// <param name="studentId"></param>
-        /// <param name="subjectId"></param>
-        /// <param name="gradePoint"></param>
-        /// <param name="notes"></param>
-        /// <returns></returns>
-        GradeDto CreateGrade(int teacherId, int studentId, int subjectId, int gradePoint, string notes = null);
+        // TODO Grade CreateGrade(GradeDto gradeDto);
 
         // --- PRETRAZIVANJE --- Najvise se spominje povodom ocene
         // po studentu, razredu, nastavniku, predmetu, roditelju, polugodistu, odeljenju
@@ -73,5 +77,8 @@ namespace eGradeBook.Services
         /// </summary>
         /// <returns></returns>
         IEnumerable<GradeDto> GetGradesByCourses();
+
+        Grade GetGradeById(int gradeId);
+        GradeDto GetGradeDtoById(int gradeId);
     }
 }

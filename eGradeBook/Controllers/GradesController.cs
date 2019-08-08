@@ -27,30 +27,62 @@ namespace eGradeBook.Controllers
         /// Constructor
         /// </summary>
         /// <param name="gradesService"></param>
-        /// <param name="log"></param>
         public GradesController(IGradesService gradesService)
         {
             this.gradesService = gradesService;
         }
 
         /// <summary>
-        /// REST Endpoint for grade assignment
-        /// The current version is using URI parameters but a special structure would be more fitting.
+        /// Get grade by Id
+        /// </summary>
+        /// <param name="gradeId"></param>
+        /// <returns></returns>
+        [Route("{gradeId}", Name = "GetGrade")]
+        [HttpGet]
+        public IHttpActionResult GetGradeById(int gradeId)
+        {
+            // TODO authorization checks..
+            logger.Info("Get grade {@gradeId}", gradeId);
+
+            var grade = gradesService.GetGradeDtoById(gradeId);
+
+            return Ok(grade);
+        }
+
+        /// <summary>
+        /// Create grade as teacher
         /// </summary>
         /// <param name="teacherId"></param>
-        /// <param name="studentId"></param>
-        /// <param name="subjectId"></param>
-        /// <param name="gradePoint"></param>
-        /// <param name="notes"></param>
+        /// <param name="gradeDto"></param>
         /// <returns></returns>
-        [Authorize(Roles = "teachers")]
-        public GradeDto PostGrade(int teacherId, int studentId, int subjectId, int gradePoint, string notes = null)
+        [Route("for-teachers/{teacherId}")]
+        [HttpPost]
+        public IHttpActionResult CreateGradeAsTeacher(int teacherId, GradeDto gradeDto)
         {
-            var claimsPrincipal = (ClaimsPrincipal)RequestContext.Principal;
-            string userEmail = claimsPrincipal.FindFirst(x => x.Type == ClaimTypes.Email)?.Value;
-            string userId = claimsPrincipal.FindFirst(x => x.Type == "UserId")?.Value;
+            logger.Info("Create grade by teacher {@teacherId} {@gradeData}", teacherId, gradeDto);
+            
+            if (teacherId != gradeDto.TeacherId)
+            {
+                return BadRequest("Id mismatch");
+            }
 
-            return gradesService.CreateGrade(teacherId, studentId, subjectId, gradePoint, notes);
+            var userData = Utilities.WebApi.IdentityHelper.GetLoggedInUser(RequestContext);
+
+            if (userData.UserRole != "teachers")
+            {
+                return Unauthorized();
+            }
+
+            if (teacherId != userData.UserId)
+            {
+                throw new UnauthorizedAccessException(string.Format("You are not allowed to assign grades for teacher {0}", teacherId));
+            }
+
+            GradeDto createdGrade = gradesService.CreateGradeDto(gradeDto);
+
+            logger.Info("Teacher {@userData} created grade {@gradeData}", userData, createdGrade);
+
+            return CreatedAtRoute("GetGrade", new { gradeId = createdGrade.GradeId }, createdGrade);            
         }
 
         /// <summary>
@@ -60,49 +92,67 @@ namespace eGradeBook.Controllers
         /// </summary>
         /// <returns></returns>
         [Authorize]
+        [Route("auto")]
         public IHttpActionResult GetGrades()
         {
-            bool isAdmin = RequestContext.Principal.IsInRole("admins");
-            bool isTeacher = RequestContext.Principal.IsInRole("teachers");
-            bool isStudent = RequestContext.Principal.IsInRole("students");
-            bool isParent = RequestContext.Principal.IsInRole("parents");
-            bool isClassMaster = RequestContext.Principal.IsInRole("classmasters");
+            logger.Info("Get grades for logged in user --- auto dispatch");
 
-            string userIdString = ((ClaimsPrincipal)RequestContext.Principal).FindFirst(x => x.Type == "UserId")?.Value;
-            int userId = 0;
+            var userData = Utilities.WebApi.IdentityHelper.FetchUserData(RequestContext);
 
-            if (userIdString != null)
+            if (userData.UserId == null)
             {
-                userId = int.Parse(userIdString);
+                return Unauthorized();
             }
 
-            if (isAdmin)
+            var userId = userData.UserId ?? 0;
+
+            if (userData.IsAdmin)
             {
                 return Ok(gradesService.GetAllGrades());
             }
-
-            if (isTeacher)
+            else if (userData.IsTeacher)
             {
                 return Ok(gradesService.GetAllGradesForTeacher(userId));
             }
-
-            if (isParent)
+            else if (userData.IsStudent)
+            {
+                return Ok(gradesService.GetAllGradesForStudent(userId));
+            }
+            else if (userData.IsParent)
             {
                 return Ok(gradesService.GetAllGradesForParent(userId));
             }
-
-            return Ok();
-
+            else
+            {
+                logger.Error("Authenticated user with no role --- this should not happen");
+                return InternalServerError();
+            }
         }
 
         /// <summary>
-        /// Created for testing purposes because the main endpoint is accessible only for authorized users
+        /// Get all grades PUBLIC --- testing
         /// </summary>
         /// <returns></returns>
+        [AllowAnonymous]
+        [Route("api/grades-by-courses/forpublic")]
+        public IHttpActionResult GetGradesForPublicByCourses()
+        {
+            logger.Info("Retrieving all grades from public endpoint");
+
+            return Ok(gradesService.GetGradesByCourses());
+        }
+
+        /// <summary>
+        /// Get all grades PUBLIC --- testing
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous]
         [Route("api/grades/forpublic")]
         public IHttpActionResult GetGradesForPublic()
         {
-            return Ok(gradesService.GetGradesByCourses());
+            logger.Info("Retrieving all grades from public endpoint");
+
+            return Ok(gradesService.GetAllGrades());
         }
 
         /// <summary>
@@ -130,6 +180,8 @@ namespace eGradeBook.Controllers
 
         /// <summary>
         /// A short, temporary endpoint for some testing
+        /// NOTE testing how to retrieve all grades for student
+        /// same for teacher etc...
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns></returns>
@@ -138,6 +190,5 @@ namespace eGradeBook.Controllers
         {
             return Ok(gradesService.GetGradesByParameters(studentId, null, null, null, null, null));
         }
-
     }
 }

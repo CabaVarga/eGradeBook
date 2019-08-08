@@ -13,6 +13,7 @@ namespace eGradeBook.Services.Converters
         {
             return new ProgramDto()
             {
+                ProgramId = program.Id,
                 CourseId = program.CourseId,
                 TeacherId = program.Teaching.TeacherId,
                 ClassRoomId = program.ClassRoomId,

@@ -7,6 +7,7 @@ namespace eGradeBook.Models.Dtos.Takings
 {
     public class TakingDto
     {
+        public int TakingId { get; set; }
         public int CourseId { get; set; }
         public int TeacherId { get; set; }
         public int ClassRoomId { get; set; }

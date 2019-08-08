@@ -22,6 +22,7 @@ namespace eGradeBook.Services.Converters
         {
             return new GradeDto()
             {
+                GradeId = grade.Id,
                 StudentName = grade.Taking.Student.FirstName + " " + grade.Taking.Student.LastName,
                 Course = grade.Taking.Program.Course.Name,
                 GradePoint = grade.GradePoint,
