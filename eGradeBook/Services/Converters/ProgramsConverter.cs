@@ -16,8 +16,13 @@ namespace eGradeBook.Services.Converters
                 ProgramId = program.Id,
                 CourseId = program.CourseId,
                 TeacherId = program.Teaching.TeacherId,
+                TeachingId = program.Teaching.Id,
                 ClassRoomId = program.ClassRoomId,
-                WeeklyHours = program.WeeklyHours
+                WeeklyHours = program.WeeklyHours,
+                CourseName= program.Teaching.Course.Name,
+                TeacherName = program.Teaching.Teacher.UserName,
+                ClassRoomName = program.ClassRoom.Name,
+                SchoolGrade = program.ClassRoom.ClassGrade
             };
         }
     }

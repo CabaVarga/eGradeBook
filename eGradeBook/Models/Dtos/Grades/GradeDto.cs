@@ -1,4 +1,5 @@
-﻿using eGradeBook.Utilities.Json;
+﻿using eGradeBook.Models.Dtos.Takings;
+using eGradeBook.Utilities.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
@@ -13,7 +14,7 @@ namespace eGradeBook.Models.Dtos.Grades
     /// Dto for grades, limited for now
     /// For viewing, not for grade assignment
     /// </summary>
-    public class GradeDto
+    public class GradeDto : TakingDto
     {
         /// <summary>
         /// Grade Id
@@ -21,35 +22,11 @@ namespace eGradeBook.Models.Dtos.Grades
         public int GradeId { get; set; }
 
         /// <summary>
-        /// Course Id
-        /// </summary>
-        [Required]
-        public int CourseId { get; set; }
-
-        /// <summary>
-        /// Teacher Id
-        /// </summary>
-        [Required]
-        public int TeacherId { get; set; }
-
-        /// <summary>
-        /// ClassRoom Id
-        /// </summary>
-        [Required]
-        public int ClassRoomId { get; set; }
-
-        /// <summary>
-        /// Student Id
-        /// </summary>
-        [Required]
-        public int StudentId { get; set; }
-
-        /// <summary>
         /// School term
         /// </summary>
         [Required]
         [Range(1, 2, ErrorMessage = "Semester must be 1 or 2")]
-        public int SchoolTerm { get; set; }
+        public int Semester { get; set; }
 
         /// <summary>
         /// Assignment date
@@ -64,25 +41,10 @@ namespace eGradeBook.Models.Dtos.Grades
         public string Notes { get; set; }
 
         /// <summary>
-        /// Subject (course) name
-        /// </summary>
-        public string Course { get; set; }
-
-        /// <summary>
         /// Grade point
         /// </summary>
         [Required]
         [Range(1, 5, ErrorMessage = "Grade point must be in range 1 to 5")]
         public int GradePoint { get; set; }
-
-        /// <summary>
-        /// The student's full name
-        /// </summary>
-        public string StudentName { get; set; }
-
-        /// <summary>
-        /// The teacher's full name
-        /// </summary>
-        public string TeacherName { get; set; }
     }
 }

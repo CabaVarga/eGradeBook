@@ -23,7 +23,9 @@ namespace eGradeBook.Services.Converters
             {
                 TeachingId = teaching.Id,
                 CourseId = teaching.CourseId,
-                TeacherId = teaching.TeacherId
+                TeacherId = teaching.TeacherId,
+                CourseName = teaching.Course.Name,
+                TeacherName = teaching.Teacher.UserName
             };
         }
     }

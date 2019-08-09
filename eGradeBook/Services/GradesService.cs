@@ -110,10 +110,12 @@ namespace eGradeBook.Services
 
             var grade = CreateGrade(
                 gradeDto.CourseId, gradeDto.TeacherId, gradeDto.ClassRoomId, gradeDto.StudentId,
-                gradeDto.SchoolTerm, gradeDto.AssignmentDate, gradeDto.GradePoint, gradeDto.Notes);
+                gradeDto.Semester, gradeDto.AssignmentDate, gradeDto.GradePoint, gradeDto.Notes);
 
             // NOTIFY PARENTS
-            emailsService.Value.NotifyParents(grade);
+
+            // ----- TURN OFF TEMPORARILY WHILE TESTING....
+            // emailsService.Value.NotifyParents(grade);
 
             return grade;
 
@@ -398,7 +400,7 @@ namespace eGradeBook.Services
             return new GradeDto()
             {
                 GradePoint = gradePoint,
-                Course = subject.Name,
+                CourseName = subject.Name,
                 StudentName = student.FirstName + " " + student.LastName,
                 TeacherName = teacherMaybe.FirstName + " " + teacherMaybe.LastName
             };
