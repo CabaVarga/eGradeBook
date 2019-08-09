@@ -1,0 +1,20 @@
+2019/08/10 00:53:09.954|Trace|8|8000000e-0002-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /api/takings, ResourceURI = http://localhost:50663/api/takings }||LoggingMiddleware.Invoke
+2019/08/10 00:53:10.040|Info|8|8000000e-0002-f900-b63f-84710c7967bb|eGradeBook.Controllers.TakingsController|Get all takings||TakingsController.GetAllTakingsDtos
+2019/08/10 00:53:10.067|Info|8|8000000e-0002-f900-b63f-84710c7967bb|eGradeBook.Services.TakingsService|Get all takings and return dtos||TakingsService.GetAllTakingsDtos
+2019/08/10 00:53:10.114|Trace|8|8000000e-0002-f900-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.Taking" repository Get request with filter and all||GenericRepository`1.Get
+2019/08/10 00:53:14.519|Info|8|8000000e-0002-f900-b63f-84710c7967bb|eGradeBook.Infrastructure.GradeBookInitializer|Seeding started||GradeBookInitializer.Seed
+2019/08/10 00:53:14.546|Info|8|8000000e-0002-f900-b63f-84710c7967bb|eGradeBook.Infrastructure.GradeBookInitializer|Seeding began||GradeBookInitializer.SeedByHand
+2019/08/10 00:53:17.093|Info|8|8000000e-0002-f900-b63f-84710c7967bb|eGradeBook.Infrastructure.GradeBookInitializer|Seeding ended||GradeBookInitializer.Seed
+2019/08/10 00:53:17.341|Trace|22|8000000e-0002-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 7339 }||LoggingMiddleware.Invoke
+2019/08/10 00:53:23.844|Trace|21|800000b2-0000-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /api/teachings, ResourceURI = http://localhost:50663/api/teachings }||LoggingMiddleware.Invoke
+2019/08/10 00:53:23.874|Info|21|800000b2-0000-fa00-b63f-84710c7967bb|eGradeBook.Controllers.TeachingsController|Get all teaching||TeachingsController.GetTeachings
+2019/08/10 00:53:23.898|Info|21|800000b2-0000-fa00-b63f-84710c7967bb|eGradeBook.Services.ProgramsService|Get all teachings as dtos||TeachingsService.GetAllTeachingsDtos
+2019/08/10 00:53:23.916|Trace|21|800000b2-0000-fa00-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.Teaching" repository Get request with filter and all||GenericRepository`1.Get
+2019/08/10 00:53:23.941|Trace|18|800000b2-0000-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 76 }||LoggingMiddleware.Invoke
+2019/08/10 00:53:32.763|Trace|22|80000010-0002-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /api/programs, ResourceURI = http://localhost:50663/api/programs }||LoggingMiddleware.Invoke
+2019/08/10 00:53:32.787|Info|22|80000010-0002-f900-b63f-84710c7967bb|eGradeBook.Controllers.ProgramsController|Get all programs||ProgramsController.GetAllProgramsDtos
+2019/08/10 00:53:32.811|Info|22|80000010-0002-f900-b63f-84710c7967bb|eGradeBook.Services.ProgramsService|Get all programs as dtos||ProgramsService.GetAllProgramsDtos
+2019/08/10 00:53:32.833|Trace|22|80000010-0002-f900-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.Program" repository Get request with filter and all||GenericRepository`1.Get
+2019/08/10 00:53:32.868|Trace|18|80000010-0002-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 84 }||LoggingMiddleware.Invoke
+2019/08/10 00:53:42.770|Trace|13|800000b4-0000-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /api/grades/auto, ResourceURI = http://localhost:50663/api/grades/auto }||LoggingMiddleware.Invoke
+2019/08/10 00:53:42.797|Trace|13|800000b4-0000-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 401, ProcessingTime = 13 }||LoggingMiddleware.Invoke

@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Web;
 using System.Web.Http;
@@ -35,45 +36,6 @@ namespace eGradeBook.Controllers
         }
 
         /// <summary>
-        /// First version of working with log files. Needs to be deleted or at least renamed
-        /// </summary>
-        /// <returns></returns>
-        // logging probably also has to be done through services...
-        [Route("logging-structure")]
-        public IHttpActionResult GetLogfiles()
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get log files by {@userData}", userData);
-
-            string logsFolder = HttpContext.Current.Server.MapPath("~/logs");
-
-            var files = Directory.EnumerateFiles(logsFolder, "*.log");
-            var fullFiles = Directory.GetFiles(logsFolder, "*.log");
-
-            var dirInfo = new DirectoryInfo(logsFolder);
-
-            var fileInfoCollection = dirInfo.GetFiles("*.log"); 
-
-            foreach (var finfo in fileInfoCollection)
-            {
-                // can access any property you need
-            }
-
-            // either download one-by-one, or in groups or everything ?
-
-            // api/admin/logs/download-all
-            // api/admin/logs -> for listing, getting filenames
-            // api/admin/logs/download-selected
-            // api/admin/logs/{logfileName:string} -> download one. 
-
-            // a few more possibilites .. download by level, download by functionality (services, repos, api access etc)
-
-            return Ok();
-        }
-
-
-        /// <summary>
         /// Returns a list of accessible log files
         /// </summary>
         /// <returns>A Json object of type LogsDto</returns>
@@ -89,14 +51,9 @@ namespace eGradeBook.Controllers
 
             string logsFolder = HttpContext.Current.Server.MapPath("~/logs");
 
-            var files = Directory.EnumerateFiles(logsFolder, "*.log");
-            var fullFiles = Directory.GetFiles(logsFolder, "*.log");
-
             var dirInfo = new DirectoryInfo(logsFolder);
 
             var fileInfoCollection = dirInfo.GetFiles();
-
-            var baseUri = Request.RequestUri.AbsoluteUri;
 
             foreach (var finfo in fileInfoCollection)
             {
@@ -104,13 +61,12 @@ namespace eGradeBook.Controllers
                 {
                     FileName = finfo.Name,
                     Path = finfo.FullName,
-                    LastModified = finfo.LastWriteTime.ToShortDateString(),
+                    LastModified = finfo.LastWriteTime.ToString("yyyyMMddTHH:mm:ssZ"),
                     Size = finfo.Length.ToString(),
-                    OpenURI = baseUri + "/" + finfo.Name,
-                    DownloadURI = baseUri + "/" + finfo.Name + "/"
+                    OpenURI = Url.Link("GetLogfile", new { logfile = finfo.Name }),
+                    DownloadURI = Url.Link("DownloadLogfile", new { logfile = finfo.Name }),
                 });
             }
-
 
             return Ok(logsDto);
         }
@@ -120,9 +76,9 @@ namespace eGradeBook.Controllers
         /// </summary>
         /// <param name="logfile"></param>
         /// <returns></returns>
-        [Route("logs/{logfile}", Name = "GetLogfile")]
+        [Route("logs/{logfile}/view", Name = "GetLogfile")]
         [HttpGet]
-        public HttpResponseMessage GetLogByFileName(string logfile)
+        public IHttpActionResult GetLogByFileName(string logfile)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
@@ -130,16 +86,12 @@ namespace eGradeBook.Controllers
 
             string logsFolder = HttpContext.Current.Server.MapPath("~/logs");
 
-            var dirInfo = new DirectoryInfo(logsFolder);
+            var path = Path.Combine(logsFolder, logfile);
 
-            var files = dirInfo.GetFiles($"{logfile}.log");
-
-            if (files.Count() != 1)
+            if (!File.Exists(path))
             {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                return BadRequest(string.Format("File {0} does not exist", logfile));
             }
-
-            var path = files[0].FullName;
 
             string data;
 
@@ -150,11 +102,158 @@ namespace eGradeBook.Controllers
 
 
             var response = new HttpResponseMessage(HttpStatusCode.OK);
-            var message = new StringContent(data, encoding: Encoding.UTF8, mediaType: "text/html");
+            var message = new StringContent(data, encoding: Encoding.UTF8, mediaType: "text/plain");
             response.Content = message;
 
-            return response;           
+            return ResponseMessage(response);           
         }
+
+
+        [Route("logs/{logfile}/download", Name = "DownloadLogfile")]
+        [HttpGet]
+        public IHttpActionResult DownloadLogfile(string logfile)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Download log file {@logFile} by {@userData}", logfile, userData);
+
+            string logsFolder = HttpContext.Current.Server.MapPath("~/logs");
+
+            var path = Path.Combine(logsFolder, logfile);
+
+            if (!File.Exists(path))
+            {
+                return BadRequest(string.Format("File {0} does not exist", logfile));
+            }
+
+            HttpResponseMessage httpResponse = Request.CreateResponse();
+
+            httpResponse.StatusCode = HttpStatusCode.OK;
+
+
+            var fileStream = new FileStream(path, FileMode.Open);
+
+            var file = new StreamContent(fileStream);
+
+            httpResponse.Content = new StreamContent(fileStream);
+
+            httpResponse.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = logfile
+            };
+
+            return ResponseMessage(httpResponse);
+        }
+
+        /// <summary>
+        /// Returns a list of accessible log files
+        /// </summary>
+        /// <returns>A Json object of type LogsDto</returns>
+        [Route("logs/archives")]
+        [HttpGet]
+        public IHttpActionResult GetListOfArchivedLogfiles()
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get list of log files by {@userData}", userData);
+
+            LogsDto logsDto = new LogsDto();
+
+            string logsFolder = HttpContext.Current.Server.MapPath("~/logs/archives");
+
+            var dirInfo = new DirectoryInfo(logsFolder);
+
+            var fileInfoCollection = dirInfo.GetFiles();
+
+            foreach (var finfo in fileInfoCollection)
+            {
+                logsDto.Logs.Add(new LogsDto.LogDto()
+                {
+                    FileName = finfo.Name,
+                    Path = finfo.FullName,
+                    LastModified = finfo.LastWriteTime.ToString("yyyyMMddTHH:mm:ssZ"),
+                    Size = finfo.Length.ToString(),
+                    OpenURI = Url.Link("GetArchivedLogfile", new { logfile = finfo.Name }),
+                    DownloadURI = Url.Link("DownloadArchivedLogfile", new { logfile = finfo.Name }),
+                });
+            }
+
+            return Ok(logsDto);
+        }
+
+        /// <summary>
+        /// Open a log file for reading, as a text/plain resource
+        /// </summary>
+        /// <param name="logfile"></param>
+        /// <returns></returns>
+        [Route("logs/archives/{logfile}/view", Name = "GetArchivedLogfile")]
+        [HttpGet]
+        public IHttpActionResult GetArchivedLogByFileName(string logfile)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get log file {@logFile} by {@userData}", logfile, userData);
+
+            string logsFolder = HttpContext.Current.Server.MapPath("~/logs/archives");
+
+            var path = Path.Combine(logsFolder, logfile);
+
+            if (!File.Exists(path))
+            {
+                return BadRequest(string.Format("File {0} does not exist", logfile));
+            }
+
+            string data;
+
+            using (var reader = new StreamReader(path))
+            {
+                data = reader.ReadToEnd();
+            }
+
+            var response = new HttpResponseMessage(HttpStatusCode.OK);
+            var message = new StringContent(data, encoding: Encoding.UTF8, mediaType: "text/plain");
+            response.Content = message;
+
+            return ResponseMessage(response);
+        }
+
+
+        [Route("logs/archives/{logfile}/download", Name = "DownloadArchivedLogfile")]
+        [HttpGet]
+        public IHttpActionResult DownloadArchivedLogfile(string logfile)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Download log file {@logFile} by {@userData}", logfile, userData);
+
+            string logsFolder = HttpContext.Current.Server.MapPath("~/logs/archives");
+
+            var path = Path.Combine(logsFolder, logfile);
+
+            if (!File.Exists(path))
+            {
+                return BadRequest(string.Format("File {0} does not exist", logfile));
+            }
+
+            HttpResponseMessage httpResponse = Request.CreateResponse();
+
+            httpResponse.StatusCode = HttpStatusCode.OK;
+
+
+            var fileStream = new FileStream(path, FileMode.Open);
+
+            var file = new StreamContent(fileStream);
+
+            httpResponse.Content = new StreamContent(fileStream);
+
+            httpResponse.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = logfile
+            };
+
+            return ResponseMessage(httpResponse);
+        }
+
 
         /// <summary>
         /// Get an admin user by Id

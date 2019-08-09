@@ -1,0 +1,2 @@
+2019/08/10 00:56:07.047|Trace|29|800000b8-0000-fa00-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.Grade" repository Get request with filter and all||GenericRepository`1.Get
+2019/08/10 00:56:07.073|Trace|28|800000b8-0000-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 48959 }||LoggingMiddleware.Invoke

@@ -1,0 +1,2 @@
+2019/08/10 00:55:18.077|Trace|29|800000b8-0000-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /api/grades/trial, ResourceURI = http://localhost:50663/api/grades/trial?query.courseId=1 }||LoggingMiddleware.Invoke
+2019/08/10 00:55:30.179|Info|29|800000b8-0000-fa00-b63f-84710c7967bb|eGradeBook.Controllers.GradesController|Get Grades for query {"CourseId":1} by {"UserId":0}||GradesController.GetGradesFromDtoQuery
