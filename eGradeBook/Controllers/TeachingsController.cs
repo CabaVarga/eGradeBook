@@ -1,7 +1,9 @@
 ﻿using eGradeBook.Models.Dtos.Teachers;
 using eGradeBook.Models.Dtos.Teachings;
 using eGradeBook.Services;
+using eGradeBook.SwaggerHelpers.Examples;
 using NLog;
+using Swashbuckle.Examples;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +40,7 @@ namespace eGradeBook.Controllers
         /// <param name="teachingDto"></param>
         /// <returns></returns>
         [Route("")]
+        [SwaggerRequestExample(typeof(TeachingDto), typeof(CreateTeachingExample))]
         [HttpPost]
         public IHttpActionResult CreateTeachingAssignment(TeachingDto teachingDto)
         {

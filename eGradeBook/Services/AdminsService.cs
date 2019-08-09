@@ -5,6 +5,7 @@ using System.Web;
 using eGradeBook.Models;
 using eGradeBook.Models.Dtos.Admins;
 using eGradeBook.Repositories;
+using eGradeBook.Services.Exceptions;
 using NLog;
 
 namespace eGradeBook.Services
@@ -45,6 +46,14 @@ namespace eGradeBook.Services
         {
             AdminDto admin = db.GradeBookUsersRepository.Get(u => u.Id == adminId).OfType<AdminUser>()
                 .Select(a => Converters.AdminsConverter.AdminToAdminDto(a)).FirstOrDefault();
+
+            if (admin == null)
+            {
+                logger.Info("Admin {@adminId} not found", adminId);
+                var ex = new AdminNotFoundException(string.Format("Admin {0} not found", adminId));
+                ex.Data.Add("adminId", adminId);
+                throw ex;
+            }
 
             return admin;
         }

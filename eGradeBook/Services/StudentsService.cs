@@ -5,6 +5,7 @@ using System.Web;
 using eGradeBook.Models;
 using eGradeBook.Models.Dtos.Students;
 using eGradeBook.Repositories;
+using eGradeBook.Services.Exceptions;
 using NLog;
 
 namespace eGradeBook.Services
@@ -106,7 +107,10 @@ namespace eGradeBook.Services
 
             if (student == null)
             {
-                return null;
+                logger.Info("Student {@studentId} not found", studentId);
+                var ex = new StudentNotFoundException(string.Format("Student {0} not found", studentId));
+                ex.Data.Add("studentId", studentId);
+                throw ex;
             }
 
             return student;

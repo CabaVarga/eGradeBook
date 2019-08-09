@@ -35,6 +35,16 @@ namespace eGradeBook.Models.Dtos.Logging
             public string Path { get; set; }
 
             /// <summary>
+            /// URI for opening
+            /// </summary>
+            public string OpenURI { get; set; }
+
+            /// <summary>
+            /// Uri for download
+            /// </summary>
+            public string DownloadURI { get; set; }
+
+            /// <summary>
             /// File size
             /// </summary>
             public string Size { get; set; }

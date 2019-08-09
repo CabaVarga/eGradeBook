@@ -3,6 +3,7 @@ using WebActivatorEx;
 using eGradeBook;
 using Swashbuckle.Application;
 using eGradeBook.SwaggerHelpers;
+using Swashbuckle.Examples;
 
 // [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -174,6 +175,7 @@ namespace eGradeBook
                         // before using this option.
                         //
                         //c.DocumentFilter<ApplyDocumentVendorExtensions>();
+                        c.OperationFilter<ExamplesOperationFilter>();
 
                         // In contrast to WebApi, Swagger 2.0 does not include the query string component when mapping a URL
                         // to an action. As a result, Swashbuckle will raise an exception if it encounters multiple actions

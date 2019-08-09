@@ -102,6 +102,9 @@
     <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
       <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Swashbuckle.Examples, Version=3.12.0.0, Culture=neutral, PublicKeyToken=aa1e9c5053bfbe95, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swashbuckle.Examples.3.12.0\lib\net40\Swashbuckle.Examples.dll</HintPath>
+    </Reference>
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.5.0\lib\net461\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
@@ -182,6 +185,7 @@
     <Compile Include="Controllers\HiddenController.cs" />
     <Compile Include="Controllers\ParentsController.cs" />
     <Compile Include="Controllers\ProgramsController.cs" />
+    <Compile Include="Controllers\StudentParentsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\TakingsController.cs" />
     <Compile Include="Controllers\TeachersController.cs" />
@@ -224,6 +228,7 @@
     <Compile Include="Models\Dtos\Programs\ProgramDto.cs" />
     <Compile Include="Models\Dtos\Registration\CreatedResourceDto.cs" />
     <Compile Include="Models\Dtos\ClassRoomsByCourses.cs" />
+    <Compile Include="Models\Dtos\StudentParents\StudentParentDto.cs" />
     <Compile Include="Models\Dtos\Students\StudentCourseDto.cs" />
     <Compile Include="Models\Dtos\Students\StudentDto.cs" />
     <Compile Include="Models\Dtos\Students\StudentParentsDto.cs" />
@@ -272,6 +277,7 @@
     <Compile Include="Services\Converters\GradesConverter.cs" />
     <Compile Include="Services\Converters\ParentsConverter.cs" />
     <Compile Include="Services\Converters\ProgramsConverter.cs" />
+    <Compile Include="Services\Converters\StudentParentsConverter.cs" />
     <Compile Include="Services\Converters\StudentsConverter.cs" />
     <Compile Include="Services\Converters\TakingsConverter.cs" />
     <Compile Include="Services\Converters\TeachersConverter.cs" />
@@ -284,6 +290,7 @@
     <Compile Include="Services\Exceptions\ParentNotFoundException.cs" />
     <Compile Include="Services\Exceptions\ProgramNotFoundException.cs" />
     <Compile Include="Services\Exceptions\StudentNotFoundException.cs" />
+    <Compile Include="Services\Exceptions\StudentParentNotFoundException.cs" />
     <Compile Include="Services\Exceptions\TakingNotFoundException.cs" />
     <Compile Include="Services\Exceptions\TeacherNotFoundException.cs" />
     <Compile Include="Services\Exceptions\TeachingCannotBeRemovedException.cs" />
@@ -300,6 +307,7 @@
     <Compile Include="Services\IGradesService.cs" />
     <Compile Include="Services\IParentsService.cs" />
     <Compile Include="Services\IProgramsService.cs" />
+    <Compile Include="Services\IStudentParentsService.cs" />
     <Compile Include="Services\IStudentsService.cs" />
     <Compile Include="Services\ITakingsService.cs" />
     <Compile Include="Services\ITeachersService.cs" />
@@ -307,6 +315,7 @@
     <Compile Include="Services\IUsersServices.cs" />
     <Compile Include="Services\ParentsService.cs" />
     <Compile Include="Services\ProgramsService.cs" />
+    <Compile Include="Services\StudentParentsService.cs" />
     <Compile Include="Services\StudentsService.cs" />
     <Compile Include="Services\TakingsService.cs" />
     <Compile Include="Services\TeachersService.cs" />
@@ -315,6 +324,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="SwaggerHelpers\AssignOAuth2SecurityRequirements.cs" />
     <Compile Include="SwaggerHelpers\AuthTokenOperation.cs" />
+    <Compile Include="SwaggerHelpers\Examples\CreateTeachingExample.cs" />
     <Compile Include="Utilities\Common\UserRole.cs" />
     <Compile Include="Utilities\Exceptions\UserManagerNotCreatedException.cs" />
     <Compile Include="Utilities\Json\DateFormatConverter.cs" />

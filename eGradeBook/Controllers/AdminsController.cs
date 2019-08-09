@@ -94,7 +94,9 @@ namespace eGradeBook.Controllers
 
             var dirInfo = new DirectoryInfo(logsFolder);
 
-            var fileInfoCollection = dirInfo.GetFiles("*.log");
+            var fileInfoCollection = dirInfo.GetFiles();
+
+            var baseUri = Request.RequestUri.AbsoluteUri;
 
             foreach (var finfo in fileInfoCollection)
             {
@@ -103,9 +105,12 @@ namespace eGradeBook.Controllers
                     FileName = finfo.Name,
                     Path = finfo.FullName,
                     LastModified = finfo.LastWriteTime.ToShortDateString(),
-                    Size = finfo.Length.ToString()
+                    Size = finfo.Length.ToString(),
+                    OpenURI = baseUri + "/" + finfo.Name,
+                    DownloadURI = baseUri + "/" + finfo.Name + "/"
                 });
             }
+
 
             return Ok(logsDto);
         }
@@ -115,7 +120,7 @@ namespace eGradeBook.Controllers
         /// </summary>
         /// <param name="logfile"></param>
         /// <returns></returns>
-        [Route("logs/{logfile}")]
+        [Route("logs/{logfile}", Name = "GetLogfile")]
         [HttpGet]
         public HttpResponseMessage GetLogByFileName(string logfile)
         {
