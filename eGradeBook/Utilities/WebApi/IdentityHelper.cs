@@ -36,19 +36,19 @@ namespace eGradeBook.Utilities.WebApi
             // TODO save role in string, if you want to add that info to log...
             if (isAdmin)
             {
-                userRole = "admin";
+                userRole = "admins";
             }
             else if (isTeacher)
             {
-                userRole = "teacher";
+                userRole = "teachers";
             }
             else if (isStudent)
             {
-                userRole = "student";
+                userRole = "students";
             }
             else if (isParent)
             {
-                userRole = "parent";
+                userRole = "parents";
             }
 
             

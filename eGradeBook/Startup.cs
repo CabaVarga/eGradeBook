@@ -145,6 +145,8 @@ namespace eGradeBook
             container.RegisterType<IGradesService, GradesService>();
             container.RegisterType<IFinalGradesService, FinalGradesService>();
 
+            container.RegisterType<IEmailsService, EmailsService>();
+
             return container;
         }
     }

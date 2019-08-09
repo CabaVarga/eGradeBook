@@ -1,5 +1,6 @@
 ﻿using eGradeBook.Models.Dtos.ClassRooms;
 using eGradeBook.Services;
+using eGradeBook.Utilities.WebApi;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,10 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetAllClassRooms()
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get all ClassRooms by {@userData}", userData);
+
             return Ok(service.GetAllClassRooms());
         }
 
@@ -51,6 +56,10 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetClassRoomById(int classRoomId)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get ClassRoom {@classRoomId} by {@userData}", classRoomId, userData);
+
             return Ok(service.GetClassRoomById(classRoomId));
         }
 
@@ -64,6 +73,10 @@ namespace eGradeBook.Controllers
         [HttpPost]
         public IHttpActionResult PostEnrollStudent(int classRoomId, ClassRoomEnrollStudentDto enroll)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Enroll Student {@studentId} in ClassRoom {@classRoomId} {@enrollData} by {@userData}", enroll.StudentId, enroll.ClassRoomId, enroll, userData);
+
             if (classRoomId != enroll.ClassRoomId)
             {
                 return BadRequest("Class identities do not match.");
@@ -81,6 +94,10 @@ namespace eGradeBook.Controllers
         [HttpPost]
         public IHttpActionResult PostCreateClassRoom(ClassRoomRegistrationDto classRoom)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Create ClassRoom {@classRoomData} by {@userData}", classRoom, userData);
+
             return Ok(service.CreateClassRoom(classRoom));
         }
 
@@ -94,6 +111,10 @@ namespace eGradeBook.Controllers
         [HttpPost]
         public IHttpActionResult PostCreateProgramOfClassRoom(int classRoomId, ClassRoomProgramDto program)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Create Program {@programData} for ClassRoom {@classRoomId} by {@userData}", program, classRoomId, userData);
+
             service.CreateClassRoomProgram(program);
 
             return Ok();

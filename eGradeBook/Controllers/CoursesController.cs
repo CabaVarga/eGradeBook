@@ -42,7 +42,8 @@ namespace eGradeBook.Controllers
         public IHttpActionResult GetAllCourses()
         {
             var user = IdentityHelper.GetLoggedInUser(RequestContext);
-            logger.Info("User {@userData} is requesting a list of all courses", user);
+
+            logger.Info("Get all Courses by {@userData}", user);
 
             var courses = service.GetAllCoursesDto();
 
@@ -66,7 +67,7 @@ namespace eGradeBook.Controllers
         public IHttpActionResult GetCourseById(int courseId)
         {
             var user = IdentityHelper.GetLoggedInUser(RequestContext);
-            logger.Info("User {@userData} is requesting a course by Id {courseId}", user, courseId);
+            logger.Info("Get Course {@courseId} by {@userData}", courseId, user);
 
             var course = service.GetCourseDtoById(courseId);
 
@@ -88,8 +89,9 @@ namespace eGradeBook.Controllers
         [HttpPost]
         public IHttpActionResult RegisterCourse(CourseDto course)
         {
-            var user = IdentityHelper.GetLoggedInUser(RequestContext);
-            logger.Info("User {@userData} is initiating a Course registration {@courseData}", user, course);
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Register Course {@courseData} by {@userData}", course, userData);
 
             // TODO logging
             var createdCourse = service.CreateCourse(course);
@@ -107,6 +109,10 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetTeachingAssignments(int courseId)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Teachings for Course {@courseId} by {@userData}", courseId, userData);
+
             return Ok(service.GetAllTeachings(courseId));
         }
 
@@ -114,6 +120,10 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetTeachingAssignments(int courseId, int teacherId)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Teaching for Course {@courseId} and Teacher {@teacherId} by {@userData}", courseId, teacherId, userData);
+
             return Ok(service.GetTeaching(courseId, teacherId));
         }
 
@@ -121,6 +131,10 @@ namespace eGradeBook.Controllers
         [HttpPost]
         public IHttpActionResult CreateTeachingAssignment(int courseId, TeachingDto teaching)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Create Teaching {@teachingData} for Course {@courseId} by {@userData}", teaching, courseId, userData);
+
             return Ok(service.CreateTeachingAssignment(teaching));
         }
         #endregion
@@ -130,7 +144,9 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetAllClassRoomsPrograms(int courseId, int teacherId)
         {
-            logger.Info("Get all programs for course {@courseId} and teacher {@teacherId}", courseId, teacherId);
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Programs for Course {@courseId} and Teacher {@teacherId} by {@userData}", courseId, teacherId, userData);
 
             return Ok(service.GetAllPrograms(courseId, teacherId));
         }
@@ -139,7 +155,9 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetClassRoomProgram(int courseId, int teacherId, int classRoomId)
         {
-            logger.Info("Get program for course {@courseId} teacher {@teacherId} and classRoom {@classRoomId}", courseId, teacherId, classRoomId);
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Program for Course {@courseId} Teacher {@teacherId} and ClassRoom {@classRoomId} by {@userData}", courseId, teacherId, classRoomId, userData);
 
             return Ok(service.GetProgram(courseId, teacherId, classRoomId));
         }
@@ -148,7 +166,9 @@ namespace eGradeBook.Controllers
         [HttpPost]
         public IHttpActionResult CreateClassRoomProgram(ProgramDto dto)
         {
-            logger.Info("Create Program {@programData}", dto);
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Create Program {@programData} by {@userData}", dto, userData);
 
             ProgramDto createdProgram = service.CreateProgram(dto);
 
@@ -173,7 +193,9 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetStudentsTakings(int courseId, int teacherId, int classRoomId)
         {
-            logger.Info("Get students taking course {@courseId} with teacher {@teacherId} in classroom {@classRoomId}", courseId, teacherId, classRoomId);
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Students taking Course {@courseId} with Teacher {@teacherId} in Classroom {@classRoomId} by {@userData}", courseId, teacherId, classRoomId, userData);
 
             return Ok(service.GetAllTakings(courseId, teacherId, classRoomId));
         }
@@ -182,7 +204,9 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetStudentTaking(int courseId, int teacherId, int classRoomId, int studentId)
         {
-            logger.Info("Get student {@studentId} taking course {@courseId} with teacher {@teacherId} in classroom {@classRoomId}", studentId, courseId, teacherId, classRoomId);
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Student {@studentId} taking Course {@courseId} with Teacher {@teacherId} in Classroom {@classRoomId} by {@userData}", studentId, courseId, teacherId, classRoomId, userData);
 
             return Ok(service.GetTaking(courseId, teacherId, classRoomId, studentId));
         }
@@ -191,7 +215,9 @@ namespace eGradeBook.Controllers
         [HttpPost]
         public IHttpActionResult CreateStudentTaking(TakingDto taking)
         {
-            logger.Info("Create new taking from {@takingData}", taking);
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Create Taking {@takingData} by {@userData}", taking, userData);
 
             return Ok(service.CreateTaking(taking));
         }

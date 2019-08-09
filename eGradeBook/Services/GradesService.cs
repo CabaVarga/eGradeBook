@@ -29,6 +29,7 @@ namespace eGradeBook.Services
         private Lazy<ITeachingsService> teachingsService;
         private Lazy<IProgramsService> programsService;
         private Lazy<ITakingsService> takingsService;
+        private Lazy<IEmailsService> emailsService;
 
         /// <summary>
         /// Contructor
@@ -43,7 +44,8 @@ namespace eGradeBook.Services
             Lazy<IParentsService> parentsService,
             Lazy<ITeachingsService> teachingsService,
             Lazy<IProgramsService> programsService,
-            Lazy<ITakingsService> takingsService)
+            Lazy<ITakingsService> takingsService,
+            Lazy<IEmailsService> emailsService)
         {
             this.db = db;
             this.logger = logger;
@@ -54,6 +56,7 @@ namespace eGradeBook.Services
             this.teachingsService = teachingsService;
             this.programsService = programsService;
             this.takingsService = takingsService;
+            this.emailsService = emailsService;
         }
 
         /// <summary>
@@ -108,6 +111,9 @@ namespace eGradeBook.Services
             var grade = CreateGrade(
                 gradeDto.CourseId, gradeDto.TeacherId, gradeDto.ClassRoomId, gradeDto.StudentId,
                 gradeDto.SchoolTerm, gradeDto.AssignmentDate, gradeDto.GradePoint, gradeDto.Notes);
+
+            // NOTIFY PARENTS
+            emailsService.Value.NotifyParents(grade);
 
             return grade;
 
@@ -218,25 +224,41 @@ namespace eGradeBook.Services
         /// <param name="semesterId"></param>
         /// <param name="classId"></param>
         /// <returns></returns>
-        public IEnumerable<GradeDto> GetGradesByParameters(int? studentId, int? gradeId, int? teacherId, int? courseId, int? semesterId, int? classId)
+        public IEnumerable<GradeDto> GetGradesByParameters(
+            int? gradeId,
+            int? courseId, 
+            int? teacherId, 
+            int? classRoomId, 
+            int? studentId,
+            int? parentId,
+            int? semester, 
+            int? schoolGrade,
+            int? grade,
+            DateTime? fromDate,
+            DateTime? toDate)
         {
             
-            Func<Grade, bool> filter =
-                g => studentId != null ? g.Taking.StudentId == studentId : true &&
-                    gradeId != null ? g.Taking.Program.ClassRoom.ClassGrade == gradeId : true &&
-                    teacherId != null ? g.Taking.Program.Teaching.TeacherId == teacherId : true &&
-                    courseId != null ? g.Taking.Program.CourseId == courseId : true &&
-                    semesterId != null ? g.SchoolTerm == semesterId : true &&
-                    classId != null ? g.Taking.Program.ClassRoomId == classId : true;
+            //Func<Grade, bool> filter =
+            //    g => studentId != null ? g.Taking.StudentId == studentId : true &&
+            //        gradeId != null ? g.Taking.Program.ClassRoom.ClassGrade == gradeId : true &&
+            //        teacherId != null ? g.Taking.Program.Teaching.TeacherId == teacherId : true &&
+            //        courseId != null ? g.Taking.Program.CourseId == courseId : true &&
+            //        semesterId != null ? g.SchoolTerm == semesterId : true &&
+            //        classId != null ? g.Taking.Program.ClassRoomId == classId : true;
 
             return db.GradesRepository.Get(
                 filter:
-                g => (studentId != null ? g.Taking.StudentId == studentId : true) &&
-                    (gradeId != null ? g.Taking.Program.ClassRoom.ClassGrade == gradeId : true) &&
-                    (teacherId != null ? g.Taking.Program.Teaching.TeacherId == teacherId : true) &&
+                g => (gradeId != null ? g.Id == gradeId : true) &&
                     (courseId != null ? g.Taking.Program.CourseId == courseId : true) &&
-                    (semesterId != null ? g.SchoolTerm == semesterId : true) &&
-                    (classId != null ? g.Taking.Program.ClassRoomId == classId : true))
+                    (teacherId != null ? g.Taking.Program.Teaching.TeacherId == teacherId : true) &&
+                    (classRoomId != null ? g.Taking.Program.ClassRoomId == classRoomId : true) &&
+                    (studentId != null ? g.Taking.StudentId == studentId : true) &&
+                    (parentId != null ? g.Taking.Student.StudentParents.Any(sp => sp.ParentId == parentId) : true) &&
+                    (semester != null ? g.SchoolTerm == semester : true) &&
+                    (schoolGrade != null ? g.Taking.Program.ClassRoom.ClassGrade == schoolGrade : true) &&
+                    (grade != null ? g.GradePoint == grade : true) &&
+                    (fromDate != null ? g.Assigned >= fromDate : true) &&
+                    (toDate != null ? g.Assigned <= toDate : true))
                     .Select(g => GradesConverter.GradeToGradeDto(g));
 
         }
@@ -380,6 +402,14 @@ namespace eGradeBook.Services
                 StudentName = student.FirstName + " " + student.LastName,
                 TeacherName = teacherMaybe.FirstName + " " + teacherMaybe.LastName
             };
+        }
+
+        public IEnumerable<GradeDto> GetGradesByParameters(GradeQueryDto query)
+        {
+            return GetGradesByParameters(
+                query.GradeId,
+                query.CourseId, query.TeacherId, query.ClassRoomId, query.StudentId, 
+                query.ParentId, query.Semester, query.SchoolGrade, query.Grade, query.FromDate, query.ToDate);
         }
     }
 }

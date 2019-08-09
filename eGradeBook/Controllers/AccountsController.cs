@@ -6,7 +6,6 @@ using eGradeBook.Models.Dtos.Students;
 using eGradeBook.Models.Dtos.Teachers;
 using eGradeBook.Services;
 using eGradeBook.Utilities.Common;
-using eGradeBook.Utilities.StructuredLogging;
 using eGradeBook.Utilities.WebApi;
 using NLog;
 using System;

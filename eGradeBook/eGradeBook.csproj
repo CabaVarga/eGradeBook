@@ -213,9 +213,12 @@
     <Compile Include="Models\Dtos\Courses\CourseRegistrationDto.cs" />
     <Compile Include="Models\Dtos\FinalGrades\FinalGradeDto.cs" />
     <Compile Include="Models\Dtos\GradesByCourseDto.cs" />
+    <Compile Include="Models\Dtos\Grades\GradeNotificationDto.cs" />
+    <Compile Include="Models\Dtos\Grades\GradeQueryDto.cs" />
     <Compile Include="Models\Dtos\Logging\LogsDto.cs" />
     <Compile Include="Models\Dtos\Parents\ParentChildrenDto.cs" />
     <Compile Include="Models\Dtos\Parents\ParentDto.cs" />
+    <Compile Include="Models\Dtos\Parents\ParentReportDto.cs" />
     <Compile Include="Models\Dtos\ProgramsByCoursesDto.cs" />
     <Compile Include="Models\Dtos\ProgramsBySchoolClassesDto.cs" />
     <Compile Include="Models\Dtos\Programs\ProgramDto.cs" />
@@ -224,10 +227,12 @@
     <Compile Include="Models\Dtos\Students\StudentCourseDto.cs" />
     <Compile Include="Models\Dtos\Students\StudentDto.cs" />
     <Compile Include="Models\Dtos\Students\StudentParentsDto.cs" />
+    <Compile Include="Models\Dtos\Students\StudentReportDto.cs" />
     <Compile Include="Models\Dtos\Students\StudentWithParentsDto.cs" />
     <Compile Include="Models\Dtos\Takings\TakingDto.cs" />
     <Compile Include="Models\Dtos\Teachers\TeacherExtendedDto.cs" />
     <Compile Include="Models\Dtos\Teachers\TeacherExtendedEvenMoreDto.cs" />
+    <Compile Include="Models\Dtos\Teachers\TeacherReportDto.cs" />
     <Compile Include="Models\Dtos\Teachers\TeachingAssignmentDto.cs" />
     <Compile Include="Models\Dtos\TeachingsByCoursesDto.cs" />
     <Compile Include="Models\Dtos\TeachingsByTeachersDto.cs" />
@@ -272,6 +277,7 @@
     <Compile Include="Services\Converters\TeachersConverter.cs" />
     <Compile Include="Services\Converters\TeachingsConverter.cs" />
     <Compile Include="Services\CoursesService.cs" />
+    <Compile Include="Services\EmailsService.cs" />
     <Compile Include="Services\Exceptions\AdminNotFoundException.cs" />
     <Compile Include="Services\Exceptions\CourseNotFoundException.cs" />
     <Compile Include="Services\Exceptions\InvalidUserIdException.cs" />
@@ -289,6 +295,7 @@
     <Compile Include="Services\IAdminsService.cs" />
     <Compile Include="Services\IClassRoomsService.cs" />
     <Compile Include="Services\ICoursesService.cs" />
+    <Compile Include="Services\IEmailsService.cs" />
     <Compile Include="Services\IFinalGradesService.cs" />
     <Compile Include="Services\IGradesService.cs" />
     <Compile Include="Services\IParentsService.cs" />
@@ -310,8 +317,7 @@
     <Compile Include="SwaggerHelpers\AuthTokenOperation.cs" />
     <Compile Include="Utilities\Common\UserRole.cs" />
     <Compile Include="Utilities\Exceptions\UserManagerNotCreatedException.cs" />
-    <Compile Include="Utilities\StructuredLogging\Where.cs" />
-    <Compile Include="Utilities\StructuredLogging\With.cs" />
+    <Compile Include="Utilities\Json\DateFormatConverter.cs" />
     <Compile Include="Utilities\WebApi\CustomExceptionFilter.cs" />
     <Compile Include="Utilities\WebApi\IdentityHelper.cs" />
     <Compile Include="Utilities\WebApi\LoggedInUser.cs" />

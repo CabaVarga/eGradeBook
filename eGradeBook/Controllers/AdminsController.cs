@@ -1,6 +1,7 @@
 ﻿using eGradeBook.Models.Dtos.Admins;
 using eGradeBook.Models.Dtos.Logging;
 using eGradeBook.Services;
+using eGradeBook.Utilities.WebApi;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,10 @@ namespace eGradeBook.Controllers
         [Route("logging-structure")]
         public IHttpActionResult GetLogfiles()
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get log files by {@userData}", userData);
+
             string logsFolder = HttpContext.Current.Server.MapPath("~/logs");
 
             var files = Directory.EnumerateFiles(logsFolder, "*.log");
@@ -76,6 +81,10 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetListOfLogfiles()
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get list of log files by {@userData}", userData);
+
             LogsDto logsDto = new LogsDto();
 
             string logsFolder = HttpContext.Current.Server.MapPath("~/logs");
@@ -110,6 +119,10 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public HttpResponseMessage GetLogByFileName(string logfile)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get log file {@logFile} by {@userData}", logfile, userData);
+
             string logsFolder = HttpContext.Current.Server.MapPath("~/logs");
 
             var dirInfo = new DirectoryInfo(logsFolder);
@@ -148,6 +161,10 @@ namespace eGradeBook.Controllers
         [ResponseType(typeof(AdminDto))]
         public IHttpActionResult GetAdminById(int adminId)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Admin {@adminId} by {@userData}", adminId, userData);
+
             return Ok(service.GetAdminById(adminId));
         }
 
@@ -177,6 +194,10 @@ namespace eGradeBook.Controllers
         [ResponseType(typeof(AdminDto))]
         public IHttpActionResult PutUpdateAdmin(int adminId, AdminDto admin)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Update Admin {@adminId} by {@userData}", adminId, userData);
+
             return Ok(service.UpdateAdmin(adminId, admin));
         }
 
@@ -190,6 +211,10 @@ namespace eGradeBook.Controllers
         [ResponseType(typeof(AdminDto))]
         public IHttpActionResult DeleteAdmin(int adminId)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Delete Admin {@adminId} by {@userData}", adminId, userData);
+
             return Ok(service.DeleteAdmin(adminId));
         }
 

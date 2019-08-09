@@ -138,5 +138,21 @@ namespace eGradeBook.Controllers
 
             return Ok();
         }
+
+        [Route("{studentId}/report")]
+        [HttpGet]
+        public IHttpActionResult GetStudentReport(int studentId)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Student report for {@studentId} by {@userData}", studentId, userData);
+
+            if (studentId != userData.UserId && userData.UserRole == "students")
+            {
+                throw new UnauthorizedAccessException("You are not allowed to access other students data");
+            }
+
+            return Ok(service.GetStudentReport(studentId));
+        }
     }
 }

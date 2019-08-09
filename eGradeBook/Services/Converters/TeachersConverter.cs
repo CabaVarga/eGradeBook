@@ -143,6 +143,7 @@ namespace eGradeBook.Services.Converters
                             WeeklyHours = prog.WeeklyHours,
                             Students = prog.TakingStudents.Select(s => new TeacherExtendedEvenMoreDto.ClassRoomCoursesDto.InnerCourseDto.StudentDto()
                             {
+                                // This was not throwing because I used the include, duh!
                                 StudentId = s.Student.Id,
                                 FirstName = s.Student.FirstName,
                                 LastName = s.Student.LastName
@@ -172,6 +173,100 @@ namespace eGradeBook.Services.Converters
             };
 
             return teacherData;
+        }
+
+        public static TeacherReportDto TeacherToTeacherReportDto(TeacherUser teacher)
+        {
+            TeacherReportDto report = new TeacherReportDto()
+            {
+                TeacherId = teacher.Id,
+                FirstName = teacher.FirstName,
+                LastName = teacher.LastName,
+                ClassRooms = teacher.Teachings
+                    .SelectMany(t => t.Programs).GroupBy(p => p.ClassRoom)
+                    .Select(g => ClassRoomProgramGroupingToTeacherReportClassRoom(g)),
+                Courses = teacher.Teachings.Select(t => TeachingToTeacherReportCourse(t))
+            };
+
+            return report;
+        }
+
+        private static TeacherReportDto.ClassRoomDto ClassRoomProgramGroupingToTeacherReportClassRoom(IGrouping<ClassRoom, Program> grouping)
+        {
+            return new TeacherReportDto.ClassRoomDto()
+            {
+                ClassRoomId = grouping.Key.Id,
+                ClassRoomName = grouping.Key.Name,
+                Grade = grouping.Key.ClassGrade,
+                Courses = grouping.Select(program => ProgramToTeacherReportClassRoomCourse(program))
+            };
+        }
+
+        private static TeacherReportDto.ClassRoomDto.CourseDto ProgramToTeacherReportClassRoomCourse(Program program)
+        {
+            return new TeacherReportDto.ClassRoomDto.CourseDto()
+            {
+                CourseId = program.Course.Id,
+                CourseName = program.Course.Name,
+                WeeklyHours = program.WeeklyHours,
+                Students = program.TakingStudents.Select(taking => TakingToStudent(taking))
+            };
+        }
+
+        private static TeacherReportDto.StudentDto TakingToStudent(Taking taking)
+        {
+            return new TeacherReportDto.StudentDto()
+            {
+                StudentId = taking.Student.Id,
+                FirstName = taking.Student.FirstName,
+                LastName = taking.Student.LastName,
+                Grades = taking.Grades.Select(g => GradeToStudentGrade(g)).ToList(),
+                Parents = taking.Student.StudentParents.Select(sp => StudentParentToStudentParent(sp))
+            };
+        }
+
+        private static TeacherReportDto.StudentDto.GradeDto GradeToStudentGrade(Grade grade)
+        {
+            return new TeacherReportDto.StudentDto.GradeDto()
+            {
+                GradeId = grade.Id,
+                GradePoint = grade.GradePoint,
+                Assigned = grade.Assigned,
+                Semester = grade.SchoolTerm,
+                Notes = grade.Notes
+            };
+        }
+
+        private static TeacherReportDto.StudentDto.ParentDto StudentParentToStudentParent(StudentParent studentParent)
+        {
+            return new TeacherReportDto.StudentDto.ParentDto()
+            {
+                ParentId = studentParent.Parent.Id,
+                FirstName = studentParent.Parent.FirstName,
+                LastName = studentParent.Parent.LastName
+            };
+        }
+
+        private static TeacherReportDto.CourseDto TeachingToTeacherReportCourse(Teaching teaching)
+        {
+            return new TeacherReportDto.CourseDto()
+            {
+                CourseId = teaching.Course.Id,
+                CourseName = teaching.Course.Name,
+                ClassRooms = teaching.Programs.Select(p => ProgramToTeacherReportCourseClassRoom(p))
+            };
+        }
+
+        private static TeacherReportDto.CourseDto.ClassRoomDto ProgramToTeacherReportCourseClassRoom(Program program)
+        {
+            return new TeacherReportDto.CourseDto.ClassRoomDto()
+            {
+                ClassRoomId = program.ClassRoom.Id,
+                ClassRoomName = program.ClassRoom.Name,
+                Grade = program.ClassRoom.ClassGrade,
+                WeeklyHours = program.WeeklyHours,
+                Students = program.TakingStudents.Select(t => TakingToStudent(t))
+            };
         }
     }
 }

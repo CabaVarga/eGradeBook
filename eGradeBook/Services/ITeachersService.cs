@@ -65,5 +65,7 @@ namespace eGradeBook.Services
         object GetCoursesForTeacher(int teacherId);
         object GetClassRoomsCoursesForTeacher(int teacherId);
         object GetCoursesClassRoomsForTeacher(int teacherId);
+
+        TeacherReportDto GetTeacherReport(int teacherId);
     }
 }

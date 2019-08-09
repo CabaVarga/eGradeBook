@@ -42,7 +42,7 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns></returns>
-        StudentDto GetStudentById(int studentId);
+        StudentUser GetStudentById(int studentId);
 
         // IEnumerable<StudentDto> GetAllStudents();
 
@@ -85,5 +85,7 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="course"></param>
         void AssignCourseToStudent(StudentCourseDto course);
+
+        StudentReportDto GetStudentReport(int studentId);
     }
 }

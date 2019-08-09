@@ -75,6 +75,6 @@ namespace eGradeBook.Models
         /// Uhm this should be the Takings, not directly the Students...
         /// TODO URGENT
         /// </summary>
-        public ICollection<Taking> TakingStudents { get; set; }
+        public virtual ICollection<Taking> TakingStudents { get; set; }
     }
 }

@@ -265,7 +265,7 @@ namespace eGradeBook.Services
 
         public object GetCoursesForTeacher(int teacherId)
         {
-            var teacher = db.TeachersRepository.Get(filter: t => t.Id == teacherId, includeProperties : "Teachings,Teachings.Programs,Teachings.Programs.Students").FirstOrDefault();
+            var teacher = db.TeachersRepository.Get(filter: t => t.Id == teacherId, includeProperties : "Teachings,Teachings.Programs,Teachings.Programs.TakingStudents").FirstOrDefault();
 
             return Converters.TeachersConverter.TeacherToTeacherEvenMoreExtendedDto(teacher);
         }
@@ -326,6 +326,13 @@ namespace eGradeBook.Services
             }
 
             return teacher;
+        }
+
+        public TeacherReportDto GetTeacherReport(int teacherId)
+        {
+            TeacherUser teacher = GetTeacherById(teacherId);
+
+            return Converters.TeachersConverter.TeacherToTeacherReportDto(teacher);
         }
     }
 }

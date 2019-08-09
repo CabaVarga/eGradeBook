@@ -98,7 +98,7 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns></returns>
-        public StudentDto GetStudentById(int studentId)
+        public StudentUser GetStudentById(int studentId)
         {
             logger.Info("Service received request for returning a student by Id {studentId}", studentId);
 
@@ -109,7 +109,7 @@ namespace eGradeBook.Services
                 return null;
             }
 
-            return Converters.StudentsConverter.StudentToStudentDto(student);
+            return student;
         }
 
         /// <summary>
@@ -142,6 +142,13 @@ namespace eGradeBook.Services
                 ClassRoom = student.ClassRoom?.Name,
                 ClassRoomId = student.ClassRoom?.Id
             };
+        }
+
+        public StudentReportDto GetStudentReport(int studentId)
+        {
+            StudentUser student = GetStudentById(studentId);
+
+            return Converters.StudentsConverter.StudentToStudentReportDto(student);
         }
 
         /// <summary>

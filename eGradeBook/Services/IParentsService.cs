@@ -1,4 +1,5 @@
-﻿using eGradeBook.Models.Dtos.Parents;
+﻿using eGradeBook.Models;
+using eGradeBook.Models.Dtos.Parents;
 using eGradeBook.Models.Dtos.Students;
 using System;
 using System.Collections.Generic;
@@ -55,7 +56,11 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="parentId"></param>
         /// <returns></returns>
-        ParentDto GetParentById(int parentId);
+        ParentUser GetParentById(int parentId);
+
+        ParentDto GetParentByIdDto(int parentId);
+
+        ParentReportDto GetParentReport(int parentId);
 
         /// <summary>
         /// Get all parent users

@@ -70,7 +70,20 @@ namespace eGradeBook.Services
         /// <param name="semesterId"></param>
         /// <param name="classId"></param>
         /// <returns></returns>
-        IEnumerable<GradeDto> GetGradesByParameters(int? studentId, int? gradeId, int? teacherId, int? courseId, int? semesterId, int? classId);
+        IEnumerable<GradeDto> GetGradesByParameters(
+            int? gradeId,
+            int? courseId,
+            int? teacherId,
+            int? classRoomId,
+            int? studentId,
+            int? parentId,
+            int? semester,
+            int? schoolGrade,
+            int? grade,
+            DateTime? fromDate,
+            DateTime? toDate);
+
+        IEnumerable<GradeDto> GetGradesByParameters(GradeQueryDto query);
 
         /// <summary>
         /// Get grades grouped by courses

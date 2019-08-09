@@ -30,6 +30,9 @@ namespace eGradeBook
 
             // Exception logging
             config.Services.Add(typeof(IExceptionLogger), new NLogExceptionLogger());
+
+            // Date formatting
+            config.Formatters.JsonFormatter.SerializerSettings.DateFormatString = "dd-MM-yyyy";
         }
     }
 }

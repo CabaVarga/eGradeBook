@@ -125,9 +125,9 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="parentId"></param>
         /// <returns></returns>
-        public ParentDto GetParentById(int parentId)
+        public ParentDto GetParentByIdDto(int parentId)
         {
-            var parent = db.ParentsRepository.Get(p => p.Id == parentId).FirstOrDefault();
+            var parent = GetParentById(parentId);
 
             if (parent == null)
             {
@@ -136,6 +136,19 @@ namespace eGradeBook.Services
             }
 
             return ParentsConverter.ParentToParentDto(parent);
+        }
+
+        public ParentUser GetParentById(int parentId)
+        {
+            ParentUser parent = db.ParentsRepository.Get(p => p.Id == parentId).FirstOrDefault();
+
+            if (parent == null)
+            {
+                // Not exception but return NotFound from controller.
+                return null;
+            }
+
+            return parent;
         }
 
         /// <summary>
@@ -162,6 +175,13 @@ namespace eGradeBook.Services
                     Name = s.FirstName + " " + s.LastName,
                     Parents = s.StudentParents.Select(p => p.Parent.LastName + " " + p.Parent.FirstName).ToList()
                 });
+        }
+
+        public ParentReportDto GetParentReport(int parentId)
+        {
+            ParentUser parent = GetParentById(parentId);
+
+            return Converters.ParentsConverter.ParentToParentReportDto(parent);
         }
     }
 }

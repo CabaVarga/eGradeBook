@@ -1,4 +1,5 @@
 ﻿using eGradeBook.Services;
+using eGradeBook.Utilities.WebApi;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,10 @@ namespace eGradeBook.Controllers
         [Route("by-course")]
         public IHttpActionResult GetFinalGradesByCourse(int courseId)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Final Grades for Course {@courseId} by {@userData}", courseId, userData);
+
             try
             {
                 return Ok(service.GetAllFinalGradesForCourse(courseId));
@@ -57,6 +62,10 @@ namespace eGradeBook.Controllers
         [Route("by-student/{studentId}")]
         public IHttpActionResult GetFinalGradesByStudent(int studentId)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Final Grades for Student {@studentId} by {@userData}", studentId, userData);
+
             try
             {
                 return Ok(service.GetAllFinalGradesForStudent(studentId));

@@ -186,5 +186,14 @@ namespace eGradeBook.Controllers
         {
             return Ok(teachersService.GetClassRoomsCoursesForTeacher(teacherId));
         }
+
+        [Route("{teacherId}/report")]
+        [HttpGet]
+        public IHttpActionResult GetTeacherReport(int teacherId)
+        {
+            // TODO authr
+
+            return Ok(teachersService.GetTeacherReport(teacherId));
+        }
     }
 }

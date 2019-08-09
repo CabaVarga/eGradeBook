@@ -45,19 +45,6 @@ namespace eGradeBook.Utilities.WebApi
                 status = HttpStatusCode.Unauthorized;
             }
 
-            else if (exceptionType == typeof(DivideByZeroException))
-            {
-                logger.Info("Exception is of type DivideByZeroException");
-
-                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
-                {
-                    Content = new StringContent("Internal Server Error. Division by zero happened...."),
-                    ReasonPhrase = "ItemNotFound"
-                };
-
-                throw new HttpResponseException(resp);
-            }
-
             #region SqlException
 
             else if (exceptionType == typeof(SqlException))

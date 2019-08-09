@@ -1,5 +1,6 @@
 ﻿using eGradeBook.Models.Dtos.Parents;
 using eGradeBook.Services;
+using eGradeBook.Utilities.WebApi;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetParentById(int parentId)
         {
-            return Ok(service.GetParentById(parentId));
+            return Ok(service.GetParentByIdDto(parentId));
         }
 
         /// <summary>
@@ -91,11 +92,20 @@ namespace eGradeBook.Controllers
             return Ok(service.GetParentsForStudents());
         }
 
-        #region Update & Delete
+        [Route("{parentId}/report")]
+        [HttpGet]
+        public IHttpActionResult GetParentReport(int parentId)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
+            logger.Info("Get Parent report for {@parentId} by {@userData}", parentId, userData);
 
+            if (parentId != userData.UserId && userData.UserRole == "parents")
+            {
+                throw new UnauthorizedAccessException("You are not allowed to access other parents data");
+            }
 
-
-        #endregion
+            return Ok(service.GetParentReport(parentId));
+        }
     }
 }
