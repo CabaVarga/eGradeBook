@@ -115,7 +115,7 @@ namespace eGradeBook.Services
             // NOTIFY PARENTS
 
             // ----- TURN OFF TEMPORARILY WHILE TESTING....
-            emailsService.Value.NotifyParents(grade);
+            // emailsService.Value.NotifyParents(grade);
 
             return grade;
 
