@@ -19,6 +19,7 @@ namespace eGradeBook.Models.Dtos.Grades
         /// <summary>
         /// Grade Id
         /// </summary>
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int GradeId { get; set; }
 
         /// <summary>
@@ -31,8 +32,8 @@ namespace eGradeBook.Models.Dtos.Grades
         /// <summary>
         /// Assignment date
         /// </summary>
+        // [JsonConverter(typeof(DateFormatConverter), "yyyy - MM - dd")]
         [Required]
-        [JsonConverter(typeof(DateFormatConverter), "yyyy - MM - dd")]
         public DateTime AssignmentDate { get; set; }
 
         /// <summary>

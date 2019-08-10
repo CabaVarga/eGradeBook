@@ -1,0 +1,18 @@
+2019/08/10 05:33:07.764|Trace|1||eGradeBook.Providers.CustomAuthorizationServerProvider|Auth server constructed||CustomAuthorizationServerProvider..ctor
+2019/08/10 05:33:08.236|Trace|9|800000a1-0000-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /, ResourceURI = http://localhost:50663/ }||LoggingMiddleware.Invoke
+2019/08/10 05:33:10.398|Trace|9|800000a1-0000-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /, ResourceURI = http://localhost:50663/ }||LoggingMiddleware.Invoke
+2019/08/10 05:33:10.503|Trace|9|800000a1-0000-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 88 }||LoggingMiddleware.Invoke
+2019/08/10 05:33:10.602|Trace|9|800000a1-0000-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 2342 }||LoggingMiddleware.Invoke
+2019/08/10 05:33:30.007|Trace|15|800000d4-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /api/takings, ResourceURI = http://localhost:50663/api/takings }||LoggingMiddleware.Invoke
+2019/08/10 05:33:30.243|Info|15|800000d4-0000-fd00-b63f-84710c7967bb|eGradeBook.Controllers.TakingsController|Get all takings||TakingsController.GetAllTakingsDtos
+2019/08/10 05:33:30.258|Info|15|800000d4-0000-fd00-b63f-84710c7967bb|eGradeBook.Services.TakingsService|Get all takings and return dtos||TakingsService.GetAllTakingsDtos
+2019/08/10 05:33:30.272|Trace|15|800000d4-0000-fd00-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.Taking" repository Get request with filter and all||GenericRepository`1.Get
+2019/08/10 05:33:34.895|Info|15|800000d4-0000-fd00-b63f-84710c7967bb|eGradeBook.Infrastructure.GradeBookInitializer|Seeding started||GradeBookInitializer.Seed
+2019/08/10 05:33:34.921|Info|15|800000d4-0000-fd00-b63f-84710c7967bb|eGradeBook.Infrastructure.GradeBookInitializer|Seeding began||GradeBookInitializer.SeedByHand
+2019/08/10 05:33:37.495|Info|15|800000d4-0000-fd00-b63f-84710c7967bb|eGradeBook.Infrastructure.GradeBookInitializer|Seeding ended||GradeBookInitializer.Seed
+2019/08/10 05:33:37.749|Trace|22|800000d4-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 7722 }||LoggingMiddleware.Invoke
+2019/08/10 05:33:48.660|Trace|22|800000d6-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /api/grades/api/grades/forpublic, ResourceURI = http://localhost:50663/api/grades/api/grades/forpublic }||LoggingMiddleware.Invoke
+2019/08/10 05:33:48.681|Info|22|800000d6-0000-fd00-b63f-84710c7967bb|eGradeBook.Controllers.GradesController|Get Grades by {"UserId":0}||GradesController.GetGradesForPublic
+2019/08/10 05:33:48.770|Info|22|800000d6-0000-fd00-b63f-84710c7967bb|eGradeBook.Controllers.GradesController|Retrieving all grades from public endpoint||GradesController.GetGradesForPublic
+2019/08/10 05:33:48.798|Trace|22|800000d6-0000-fd00-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.Grade" repository Get request with filter and all||GenericRepository`1.Get
+2019/08/10 05:33:48.934|Trace|28|800000d6-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 261 }||LoggingMiddleware.Invoke

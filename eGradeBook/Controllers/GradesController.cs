@@ -1,8 +1,10 @@
 ﻿using eGradeBook.Models.Dtos;
 using eGradeBook.Models.Dtos.Grades;
 using eGradeBook.Services;
+using eGradeBook.SwaggerHelpers.Examples;
 using eGradeBook.Utilities.WebApi;
 using NLog;
+using Swashbuckle.Examples;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,12 +48,45 @@ namespace eGradeBook.Controllers
 
             logger.Info("Get Grade {@gradeId} by {@userData}", gradeId, userData);
 
-            // TODO authorization checks..
+            // --- Dispatching
 
-            // For example GetGradeDtoByIdForTeacher(gradeId, teacherId) ... and the Get(g => g.id == id && g.taking.program ... ==  
+            var userInfo = Utilities.WebApi.IdentityHelper.FetchUserData(RequestContext);
 
+            if (userInfo.UserId == null)
+            {
+                return Unauthorized();
+            }
 
-            var grade = gradesService.GetGradeDtoById(gradeId);
+            var userId = userInfo.UserId ?? 0;
+
+            GradeDto grade = null;
+
+            if (userInfo.IsAdmin)
+            {
+                grade = gradesService.GetGradeDtoById(gradeId);
+            }
+            else if (userInfo.IsTeacher)
+            {
+                grade = gradesService.GetGradesByParameters(gradeId: gradeId, teacherId: userData.UserId).FirstOrDefault();
+            }
+            else if (userInfo.IsStudent)
+            {
+                grade = gradesService.GetGradesByParameters(gradeId: gradeId, studentId: userData.UserId).FirstOrDefault();
+            }
+            else if (userInfo.IsParent)
+            {
+                grade = gradesService.GetGradesByParameters(gradeId: gradeId, parentId: userData.UserId).FirstOrDefault();
+            }
+            else
+            {
+                logger.Error("Authenticated user with no role --- this should not happen");
+                return InternalServerError();
+            }
+
+            if (grade == null)
+            {
+                return NotFound();
+            }
 
             return Ok(grade);
         }
@@ -63,6 +98,7 @@ namespace eGradeBook.Controllers
         /// <param name="gradeDto"></param>
         /// <returns></returns>
         [Route("for-teachers/{teacherId}")]
+        [SwaggerRequestExample(typeof(GradeDto), typeof(CreateGradeByTeacherExample))]
         [HttpPost]
         public IHttpActionResult CreateGradeAsTeacher(int teacherId, GradeDto gradeDto)
         {
@@ -102,34 +138,34 @@ namespace eGradeBook.Controllers
         [Route("auto")]
         public IHttpActionResult GetGrades()
         {
-            var userInfo = IdentityHelper.GetLoggedInUser(RequestContext);
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
-            logger.Info("Get Grades by {@userData}", userInfo);
+            logger.Info("Get Grades by {@userData}", userData);
 
             logger.Info("Get grades for logged in user --- auto dispatch");
 
-            var userData = Utilities.WebApi.IdentityHelper.FetchUserData(RequestContext);
+            var userInfo = Utilities.WebApi.IdentityHelper.FetchUserData(RequestContext);
 
-            if (userData.UserId == null)
+            if (userInfo.UserId == null)
             {
                 return Unauthorized();
             }
 
-            var userId = userData.UserId ?? 0;
+            var userId = userInfo.UserId ?? 0;
 
-            if (userData.IsAdmin)
+            if (userInfo.IsAdmin)
             {
                 return Ok(gradesService.GetAllGrades());
             }
-            else if (userData.IsTeacher)
+            else if (userInfo.IsTeacher)
             {
                 return Ok(gradesService.GetAllGradesForTeacher(userId));
             }
-            else if (userData.IsStudent)
+            else if (userInfo.IsStudent)
             {
                 return Ok(gradesService.GetAllGradesForStudent(userId));
             }
-            else if (userData.IsParent)
+            else if (userInfo.IsParent)
             {
                 return Ok(gradesService.GetAllGradesForParent(userId));
             }
@@ -198,10 +234,23 @@ namespace eGradeBook.Controllers
             logger.Info("Get Grades : Query by {@userData}", studentId, userData);
 
             logger.Trace("Tracer, is authenticated -- {0}", this.User.Identity.IsAuthenticated);
-            return Ok(gradesService.GetGradesByParameters(gradeId, courseId, teacherId, classRoomId, studentId, parentId, semester, schoolGrade, grade, fromDate, toDate));
+
+            var grades = gradesService.GetGradesByParameters(gradeId, courseId, teacherId, classRoomId, studentId, parentId, semester, schoolGrade, grade, fromDate, toDate);
+
+            if (grades == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(grades);
         }
 
-        [Route("trial")]
+        /// <summary>
+        /// Get grades by parameters, same as query but using a dto
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        [Route("query-dto")]
         [HttpGet]
         public IHttpActionResult GetGradesFromDtoQuery([FromUri]GradeQueryDto query)
         {
@@ -210,6 +259,11 @@ namespace eGradeBook.Controllers
             logger.Info("Get Grades for query {@gradeQueryData} by {@userData}", query, userData);
 
             var grades = gradesService.GetGradesByParameters(query);
+
+            if (grades == null)
+            {
+                return NotFound();
+            }
 
             return Ok(grades);
         }

@@ -8,26 +8,13 @@ using System.Web;
 
 namespace eGradeBook.Models.Dtos.Takings
 {
-    public class TakingDto : ProgramDto
+    public class TakingDto : ProgramOptionalHoursDto
     {
         /// <summary>
         /// Taking Id
         /// </summary>
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int TakingId { get; set; }
-
-        /// <summary>
-        /// Weekly hours override
-        /// </summary>
-        [JsonProperty(NullValueHandling = NullValueHandling.Include, Required = Required.Default)]
-        [JsonIgnore]
-        public override int WeeklyHours { get; set; }
-
-        /// <summary>
-        /// School grade override
-        /// </summary>
-        [JsonProperty(NullValueHandling = NullValueHandling.Include, Required = Required.Default)]
-        [JsonIgnore]
-        public override int SchoolGrade { get; set; }
 
         /// <summary>
         /// Student Id
@@ -38,6 +25,7 @@ namespace eGradeBook.Models.Dtos.Takings
         /// <summary>
         /// Students username
         /// </summary>
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string StudentName { get; set; }
     }
 }

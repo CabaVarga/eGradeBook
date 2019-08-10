@@ -88,10 +88,10 @@ namespace eGradeBook.Services
             Grade grade = new Grade()
             {
                 GradePoint = gradePoint,
-                Taking = taking,
-                Assigned = DateTime.UtcNow,
+                Taking = taking,                
+                Assigned = assigned,
                 Notes = notes,
-                SchoolTerm = 1
+                SchoolTerm = schoolTerm
             };
 
             db.GradesRepository.Insert(grade);
@@ -227,17 +227,17 @@ namespace eGradeBook.Services
         /// <param name="classId"></param>
         /// <returns></returns>
         public IEnumerable<GradeDto> GetGradesByParameters(
-            int? gradeId,
-            int? courseId, 
-            int? teacherId, 
-            int? classRoomId, 
-            int? studentId,
-            int? parentId,
-            int? semester, 
-            int? schoolGrade,
-            int? grade,
-            DateTime? fromDate,
-            DateTime? toDate)
+            int? gradeId = null,
+            int? courseId = null, 
+            int? teacherId = null, 
+            int? classRoomId = null, 
+            int? studentId = null,
+            int? parentId = null,
+            int? semester = null, 
+            int? schoolGrade = null,
+            int? grade = null,
+            DateTime? fromDate = null,
+            DateTime? toDate = null)
         {
             
             //Func<Grade, bool> filter =
@@ -274,7 +274,14 @@ namespace eGradeBook.Services
         {
             logger.Info("Get grade by Id {@gradeId}", gradeId);
 
-            return db.GradesRepository.GetByID(gradeId);
+            var grade = db.GradesRepository.GetByID(gradeId);
+
+            if (grade == null)
+            {
+                return null;
+            }
+
+            return grade;
         }
 
         /// <summary>
@@ -290,122 +297,12 @@ namespace eGradeBook.Services
 
             return Converters.GradesConverter.GradeToGradeDto(grade);
         }
+
         /// <summary>
-        /// Basic grade assignment method, called from the controller.
-        /// Using a special dto with these values would be preferable.
+        /// Get grades by parameters provided in the queryDto
         /// </summary>
-        /// <param name="teacherId"></param>
-        /// <param name="studentId"></param>
-        /// <param name="subjectId"></param>
-        /// <param name="gradePoint"></param>
-        /// <param name="notes"></param>
+        /// <param name="query"></param>
         /// <returns></returns>
-        public GradeDto CreateGradeOld(int teacherId, int studentId, int subjectId, int gradePoint, string notes = null)
-        {
-            // Teacher Id must be same as the teacher that is accessing the system...
-            // If it's not then he/she should not even get here!
-            // Should that be done in the controller by accessing the authrepo? probably...
-
-
-            // check if teacherId is valid ---> I need to check if a Teacher repo is possible... let's find out...
-            // it will raise an exception if the id is not of a teacher!
-            // what now? Typechecks...
-            var teacherMaybe = db.GradeBookUsersRepository.GetByID(teacherId);
-
-            // first check for null
-
-            if (teacherMaybe == null)
-            {
-                throw new InvalidUserIdException($"There is no registered user in the system for the provided Id: {teacherId}");
-            }
-
-            // then check for teacher
-            // many ways....
-            bool itsateacher = teacherMaybe is TeacherUser;
-            bool itsastudent = teacherMaybe is StudentUser;
-            bool itsanadmin = teacherMaybe is AdminUser;
-            bool itsaparent = teacherMaybe is ParentUser;
-
-            if (!itsateacher)
-            {
-                throw new Exception("Unauthorized");
-            }
-
-            // Same thing, must check for Type again
-            //var teacher = db.TeachersRepository.GetByID(teacherId);
-
-            //if (teacher == null)
-            //{
-            //    throw new Exception("Teacher Id is invalid");
-            //}
-
-            // students repo...
-            var student = db.StudentsRepository.GetByID(studentId);
-
-            if (student == null)
-            {
-                throw new Exception("Student Id is invalid");
-            }
-
-            // must check for student!
-            // returns all users unfortunately, except when using typeof stuff..
-
-            // check subject --- repooo...
-            // its called course...
-            var subject = db.CoursesRepository.GetByID(subjectId);
-
-            if (subject == null)
-            {
-                throw new Exception("Subject Id is invalid");
-            }
-
-            // check if teacher teaches the subject
-            var assignment = db.TeachingAssignmentsRepository.Get(filter: a => a.CourseId == subjectId && a.TeacherId == teacherId).FirstOrDefault();
-
-            if (assignment == null)
-            {
-                throw new Exception("Teacher is not teaching the subject");
-            }
-
-            // we need to get to the Takings
-            // we need 1. assignment -> we have that
-            // we need 2. classRoom (or schoolClass)
-            // we need 3. program
-            // based on the above 3 we can finally get the taking..
-
-            var schoolClass = student.ClassRoom;
-
-            var program = db.ProgramsRepository.Get(p => p.ClassRoom == schoolClass && p.Teaching == assignment && p.Course == subject).FirstOrDefault();
-
-            // easy way, if null then bad for you. no helpful exception handling though...
-            var taking = db.TakingsRepository.Get(t => t.Program.CourseId == subjectId && t.Program.Teaching.TeacherId == teacherId
-                && t.StudentId == studentId).FirstOrDefault();
-
-            // School Term (or semester) check
-            // Final Grade check (if there is a final grade for a given semester, you cant assign a new grade
-            // also: without final grade for first semester cant assign a grade into the new semester...
-
-            Grade grade = new Grade()
-            {
-                GradePoint = gradePoint,
-                Taking = taking,
-                Assigned = DateTime.UtcNow,
-                Notes = notes,
-                SchoolTerm = 1
-            };
-
-            db.GradesRepository.Insert(grade);
-            db.Save();
-
-            return new GradeDto()
-            {
-                GradePoint = gradePoint,
-                CourseName = subject.Name,
-                StudentName = student.FirstName + " " + student.LastName,
-                TeacherName = teacherMaybe.FirstName + " " + teacherMaybe.LastName
-            };
-        }
-
         public IEnumerable<GradeDto> GetGradesByParameters(GradeQueryDto query)
         {
             return GetGradesByParameters(

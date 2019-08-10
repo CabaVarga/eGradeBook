@@ -6,6 +6,7 @@ using eGradeBook.Models;
 using eGradeBook.Models.Dtos.ClassRooms;
 using eGradeBook.Repositories;
 using eGradeBook.Services.Converters;
+using eGradeBook.Services.Exceptions;
 using NLog;
 
 namespace eGradeBook.Services
@@ -248,6 +249,21 @@ namespace eGradeBook.Services
             db.Save();
 
             return ClassRoomConverter.ClassRoomToClassRoomDto(updatedClassRoom);
+        }
+
+        public ClassRoom GetClassRoom(int classRoomId)
+        {
+            ClassRoom classRoom = db.ClassRoomsRepository.GetByID(classRoomId);
+
+            if (classRoom == null)
+            {
+                logger.Info("ClassRoom {@classRoomId} not found", classRoomId);
+                var ex = new ClassRoomNotFoundException(string.Format("ClassRoom {0} not found", classRoomId));
+                ex.Data.Add("classRoomId", classRoomId);
+                throw ex;
+            }
+
+            return classRoom;
         }
     }
 }

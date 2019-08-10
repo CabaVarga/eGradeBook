@@ -1,0 +1,3 @@
+2019/08/10 05:15:59.368|Trace|46|800000a2-0000-f700-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /api/accounts/whoami, ResourceURI = http://localhost:50663/api/accounts/whoami }||LoggingMiddleware.Invoke
+2019/08/10 05:15:59.501|Trace|46|800000a2-0000-f700-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.GradeBookUser" repository Get entity by Id 3||GenericRepository`1.GetByID
+2019/08/10 05:15:59.575|Trace|44|800000a2-0000-f700-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 151 }||LoggingMiddleware.Invoke

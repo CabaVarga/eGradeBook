@@ -1,4 +1,5 @@
-﻿using eGradeBook.Models.Dtos.ClassRooms;
+﻿using eGradeBook.Models;
+using eGradeBook.Models.Dtos.ClassRooms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,5 +59,7 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="program"></param>
         void CreateClassRoomProgram(ClassRoomProgramDto program);
+
+        ClassRoom GetClassRoom(int classRoomId);
     }
 }

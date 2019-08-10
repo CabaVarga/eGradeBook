@@ -14,6 +14,7 @@ using Microsoft.Owin.Security.OAuth;
 using NLog;
 using Owin;
 using Serilog;
+using Serilog.Formatting.Compact;
 using Unity;
 using Unity.Lifetime;
 using Unity.NLog;
@@ -34,7 +35,6 @@ namespace eGradeBook
             string basedir = AppDomain.CurrentDomain.BaseDirectory;
 
             Log.Logger = new LoggerConfiguration()
-                        .Enrich.WithThreadId()
                        .Enrich.WithCorrelationId()
                        .Enrich.WithUserName()
                        .Enrich.WithClaimValue("UserId")
@@ -42,10 +42,6 @@ namespace eGradeBook
                        .MinimumLevel.Debug()
                        .WriteTo.Seq("http://localhost:5341")
                        .WriteTo.File(new CompactJsonFormatter(), basedir + "/logs/serilog.txt")
-                       .WriteTo.File(
-                            outputTemplate: "{Timestamp:HH:mm} [{Level}] {Properties}: {Message}{NewLine}{Exception}",
-                            path: basedir + "/logs/textual.txt")
-                       .WriteTo.Console()
                        .CreateLogger();
         }
         /// <summary>

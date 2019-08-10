@@ -64,24 +64,29 @@ namespace eGradeBook.Services
         /// Get grades by multiple parameters.
         /// </summary>
         /// <param name="studentId"></param>
+        /// <param name="parentId"></param>
         /// <param name="gradeId"></param>
         /// <param name="teacherId"></param>
         /// <param name="courseId"></param>
-        /// <param name="semesterId"></param>
-        /// <param name="classId"></param>
+        /// <param name="semester"></param>
+        /// <param name="schoolGrade"></param>
+        /// <param name="grade"></param>
+        /// <param name="fromDate"></param>
+        /// <param name="toDate"></param>
+        /// <param name="classRoomId"></param>
         /// <returns></returns>
         IEnumerable<GradeDto> GetGradesByParameters(
-            int? gradeId,
-            int? courseId,
-            int? teacherId,
-            int? classRoomId,
-            int? studentId,
-            int? parentId,
-            int? semester,
-            int? schoolGrade,
-            int? grade,
-            DateTime? fromDate,
-            DateTime? toDate);
+            int? gradeId = null,
+            int? courseId = null,
+            int? teacherId = null,
+            int? classRoomId = null,
+            int? studentId = null,
+            int? parentId = null,
+            int? semester = null,
+            int? schoolGrade = null,
+            int? grade = null,
+            DateTime? fromDate = null,
+            DateTime? toDate = null);
 
         IEnumerable<GradeDto> GetGradesByParameters(GradeQueryDto query);
 

@@ -1,0 +1,13 @@
+2019/08/10 05:36:29.939|Trace|1||eGradeBook.Providers.CustomAuthorizationServerProvider|Auth server constructed||CustomAuthorizationServerProvider..ctor
+2019/08/10 05:36:30.459|Trace|10|8000005a-0000-f500-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /, ResourceURI = http://localhost:50663/ }||LoggingMiddleware.Invoke
+2019/08/10 05:36:33.047|Trace|10|8000005a-0000-f500-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /, ResourceURI = http://localhost:50663/ }||LoggingMiddleware.Invoke
+2019/08/10 05:36:33.158|Trace|10|8000005a-0000-f500-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 96 }||LoggingMiddleware.Invoke
+2019/08/10 05:36:33.326|Trace|10|8000005a-0000-f500-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 2840 }||LoggingMiddleware.Invoke
+2019/08/10 05:36:47.970|Trace|11|80000061-0000-f500-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /api/grades/api/grades/forpublic, ResourceURI = http://localhost:50663/api/grades/api/grades/forpublic }||LoggingMiddleware.Invoke
+2019/08/10 05:36:48.207|Info|11|80000061-0000-f500-b63f-84710c7967bb|eGradeBook.Controllers.GradesController|Get Grades by {"UserId":0}||GradesController.GetGradesForPublic
+2019/08/10 05:36:48.234|Info|11|80000061-0000-f500-b63f-84710c7967bb|eGradeBook.Controllers.GradesController|Retrieving all grades from public endpoint||GradesController.GetGradesForPublic
+2019/08/10 05:36:48.247|Trace|11|80000061-0000-f500-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.Grade" repository Get request with filter and all||GenericRepository`1.Get
+2019/08/10 05:36:52.847|Info|11|80000061-0000-f500-b63f-84710c7967bb|eGradeBook.Infrastructure.GradeBookInitializer|Seeding started||GradeBookInitializer.Seed
+2019/08/10 05:36:52.868|Info|11|80000061-0000-f500-b63f-84710c7967bb|eGradeBook.Infrastructure.GradeBookInitializer|Seeding began||GradeBookInitializer.SeedByHand
+2019/08/10 05:36:55.435|Info|11|80000061-0000-f500-b63f-84710c7967bb|eGradeBook.Infrastructure.GradeBookInitializer|Seeding ended||GradeBookInitializer.Seed
+2019/08/10 05:36:55.759|Trace|11|80000061-0000-f500-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 7776 }||LoggingMiddleware.Invoke

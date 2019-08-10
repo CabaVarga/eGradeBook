@@ -102,6 +102,27 @@
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
       <HintPath>..\packages\Serilog.2.8.0\lib\net46\Serilog.dll</HintPath>
     </Reference>
+    <Reference Include="Serilog.Enrichers.CorrelationId, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Enrichers.CorrelationId.1.0.1\lib\net45\Serilog.Enrichers.CorrelationId.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Enrichers.Thread, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Enrichers.Thread.3.1.0\lib\net45\Serilog.Enrichers.Thread.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Formatting.Compact, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Formatting.Compact.1.0.0\lib\net45\Serilog.Formatting.Compact.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.File, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.File.4.0.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.PeriodicBatching, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.PeriodicBatching.2.1.1\lib\net45\Serilog.Sinks.PeriodicBatching.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.Seq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.Seq.4.0.0\lib\net45\Serilog.Sinks.Seq.dll</HintPath>
+    </Reference>
+    <Reference Include="SerilogWeb.Classic, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9462ddd55fbc0e7f, processorArchitecture=MSIL">
+      <HintPath>..\packages\SerilogWeb.Classic.5.0.52\lib\net45\SerilogWeb.Classic.dll</HintPath>
+    </Reference>
     <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
       <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
     </Reference>
@@ -229,6 +250,7 @@
     <Compile Include="Models\Dtos\ProgramsByCoursesDto.cs" />
     <Compile Include="Models\Dtos\ProgramsBySchoolClassesDto.cs" />
     <Compile Include="Models\Dtos\Programs\ProgramDto.cs" />
+    <Compile Include="Models\Dtos\Programs\ProgramOptionalHoursDto.cs" />
     <Compile Include="Models\Dtos\Registration\CreatedResourceDto.cs" />
     <Compile Include="Models\Dtos\ClassRoomsByCourses.cs" />
     <Compile Include="Models\Dtos\StudentParents\StudentParentDto.cs" />
@@ -288,6 +310,7 @@
     <Compile Include="Services\CoursesService.cs" />
     <Compile Include="Services\EmailsService.cs" />
     <Compile Include="Services\Exceptions\AdminNotFoundException.cs" />
+    <Compile Include="Services\Exceptions\ClassRoomNotFoundException.cs" />
     <Compile Include="Services\Exceptions\CourseNotFoundException.cs" />
     <Compile Include="Services\Exceptions\InvalidUserIdException.cs" />
     <Compile Include="Services\Exceptions\ParentNotFoundException.cs" />
@@ -327,6 +350,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="SwaggerHelpers\AssignOAuth2SecurityRequirements.cs" />
     <Compile Include="SwaggerHelpers\AuthTokenOperation.cs" />
+    <Compile Include="SwaggerHelpers\Examples\CreateGradeByTeacherExample.cs" />
     <Compile Include="SwaggerHelpers\Examples\CreateTeachingExample.cs" />
     <Compile Include="Utilities\Common\UserRole.cs" />
     <Compile Include="Utilities\Exceptions\UserManagerNotCreatedException.cs" />

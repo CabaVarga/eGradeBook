@@ -428,6 +428,34 @@ namespace eGradeBook.Infrastructure
                 context.StudentParents.AddRange(studentParents);
                 context.SaveChanges();
                 #endregion
+
+                #region Grades
+                List<Grade> grades = new List<Grade>();
+                grades.Add(new Grade() { Taking = takings[1], GradePoint = 4, Assigned = new DateTime(2019, 9, 25), SchoolTerm = 1, Notes = "Algebra" });
+                grades.Add(new Grade() { Taking = takings[1], GradePoint = 4, Assigned = new DateTime(2019, 10, 15), SchoolTerm = 1, Notes = "Arithmetics" });
+                grades.Add(new Grade() { Taking = takings[1], GradePoint = 5, Assigned = new DateTime(2019, 11, 10), SchoolTerm = 1, Notes = "" });
+
+                Random random = new Random(100);
+
+                int taking = 0;
+                int grade = 0;
+                int month = 0;
+                int day = 0;
+
+                for (int i = 0; i < 200; i++)
+                {
+                    taking = random.Next(32);
+                    grade = random.Next(1, 6);
+                    month = random.Next(9, 13);
+                    day = random.Next(1, 31);
+
+                    grades.Add(new Grade() { Taking = takings[taking], GradePoint = grade, Assigned = new DateTime(2019, month, day), SchoolTerm = 1, Notes = "" });
+                }
+
+
+                context.Grades.AddRange(grades);
+                context.SaveChanges();
+                #endregion
             }
 
             catch (SqlException ex)

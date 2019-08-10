@@ -30,11 +30,12 @@ namespace eGradeBook.Models.Dtos.Teachings
         /// <summary>
         /// Course name
         /// </summary>
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string CourseName { get; set; }
 
         /// <summary>
         /// Teachers username
-        /// </summary>
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string TeacherName { get; set; }
     }
 }

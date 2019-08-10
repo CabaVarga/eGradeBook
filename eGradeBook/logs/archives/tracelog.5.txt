@@ -1,0 +1,13 @@
+2019/08/10 05:37:03.027|Trace|26|80000063-0000-f500-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /api/grades/query, ResourceURI = http://localhost:50663/api/grades/query?courseId=1 }||LoggingMiddleware.Invoke
+2019/08/10 05:37:03.113|Info|26|80000063-0000-f500-b63f-84710c7967bb|eGradeBook.Controllers.GradesController|Get Grades : Query by NULL||GradesController.GetGradesByParameters
+2019/08/10 05:37:03.113|Trace|26|80000063-0000-f500-b63f-84710c7967bb|eGradeBook.Controllers.GradesController|Tracer, is authenticated -- False||GradesController.GetGradesByParameters
+2019/08/10 05:37:07.074|Trace|26|80000063-0000-f500-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.Grade" repository Get request with filter and all||GenericRepository`1.Get
+2019/08/10 05:37:07.242|Trace|21|80000063-0000-f500-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 4170 }||LoggingMiddleware.Invoke
+2019/08/10 05:37:32.490|Trace|22|80000065-0000-f500-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /api/grades/query, ResourceURI = http://localhost:50663/api/grades/query?courseId=1&fromDate=456 }||LoggingMiddleware.Invoke
+2019/08/10 05:37:32.528|Info|22|80000065-0000-f500-b63f-84710c7967bb|eGradeBook.Utilities.WebApi.ValidateModelAttribute|Model validation failure||ValidateModelAttribute.OnActionExecuting
+2019/08/10 05:37:32.588|Trace|22|80000065-0000-f500-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 400, ProcessingTime = 73 }||LoggingMiddleware.Invoke
+2019/08/10 05:37:49.513|Trace|21|80000067-0000-f500-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /api/grades/query, ResourceURI = http://localhost:50663/api/grades/query?courseId=1&fromDate=2019-10-23 }||LoggingMiddleware.Invoke
+2019/08/10 05:37:49.547|Info|21|80000067-0000-f500-b63f-84710c7967bb|eGradeBook.Controllers.GradesController|Get Grades : Query by NULL||GradesController.GetGradesByParameters
+2019/08/10 05:37:49.568|Trace|21|80000067-0000-f500-b63f-84710c7967bb|eGradeBook.Controllers.GradesController|Tracer, is authenticated -- False||GradesController.GetGradesByParameters
+2019/08/10 05:37:49.568|Trace|21|80000067-0000-f500-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.Grade" repository Get request with filter and all||GenericRepository`1.Get
+2019/08/10 05:37:49.946|Trace|21|80000067-0000-f500-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 404 }||LoggingMiddleware.Invoke

@@ -3,6 +3,7 @@ using eGradeBook.Models.Dtos;
 using eGradeBook.Models.Dtos.Programs;
 using eGradeBook.Models.Dtos.Teachings;
 using eGradeBook.Repositories;
+using eGradeBook.Services.Exceptions;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -20,18 +21,22 @@ namespace eGradeBook.Services
     {
         private IUnitOfWork db;
         private ILogger logger;
-        private ITeachingsService teachingsService;
+        private Lazy<ITeachingsService> teachingsService;
+        private Lazy<IClassRoomsService> classRoomsService;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="db"></param>
         /// <param name="logger"></param>
-        public ProgramsService(IUnitOfWork db, ILogger logger, ITeachingsService teachingsService)
+        public ProgramsService(IUnitOfWork db, ILogger logger, 
+            Lazy<ITeachingsService> teachingsService,
+            Lazy<IClassRoomsService> classRoomsService)
         {
             this.db = db;
             this.logger = logger;
             this.teachingsService = teachingsService;
+            this.classRoomsService = classRoomsService;
         }
 
         /// <summary>
@@ -49,7 +54,7 @@ namespace eGradeBook.Services
         {
             logger.Info("Create program for course {@courseId}, teacher {@teacherId} and classroom {@classRoomId}", courseId, teacherId, classRoomId);
             // We need a teaching
-            Teaching teaching = teachingsService.GetTeaching(courseId, teacherId);
+            Teaching teaching = teachingsService.Value.GetTeaching(courseId, teacherId);
             ClassRoom classRoom = db.ClassRoomsRepository.Get(c => c.Id == classRoomId).FirstOrDefault();
 
             Program program = new Program()
@@ -87,12 +92,28 @@ namespace eGradeBook.Services
         public Program GetProgram(int courseId, int teacherId, int classRoomId)
         {
             logger.Info("Get program for course {@courseId}, teacher {@teacherId} and classroom {@classRoomId}", courseId, teacherId, classRoomId);
-            // TODO implement exceptions
-            return db.ProgramsRepository.Get(p =>
+
+            Teaching teaching = teachingsService.Value.GetTeaching(courseId, teacherId);
+
+            ClassRoom classRoom = classRoomsService.Value.GetClassRoom(classRoomId);
+
+            var program = db.ProgramsRepository.Get(p =>
                     p.ClassRoomId == classRoomId &&
                     p.Teaching.CourseId == courseId &&
                     p.Teaching.TeacherId == teacherId)
                 .FirstOrDefault();
+
+            if (program == null)
+            {
+                logger.Info("Program not found for course {@courseId}, teacher {@teacherId} and classroom {@classRoomId}", courseId, teacherId, classRoomId);
+                var ex = new ProgramNotFoundException(string.Format("Program not found for course {0}, teacher {1} and classroom {2}", courseId, teacherId, classRoomId));
+                ex.Data.Add("teacherId", teacherId);
+                ex.Data.Add("courseId", courseId);
+                ex.Data.Add("classRoomId", classRoomId);
+                throw ex;
+            }
+
+            return program;
         }
 
         /// <summary>
@@ -201,7 +222,7 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public IEnumerable<Program> GetAllProgramsForTeaching(int courseId, int teacherId)
         {
-            Teaching teaching = teachingsService.GetTeaching(courseId, teacherId);
+            Teaching teaching = teachingsService.Value.GetTeaching(courseId, teacherId);
 
             return db.ProgramsRepository.Get(p => p.Teaching.CourseId == courseId && p.Teaching.TeacherId == teacherId);
         }

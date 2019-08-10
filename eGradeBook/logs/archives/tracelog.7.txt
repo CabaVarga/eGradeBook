@@ -1,0 +1,4 @@
+2019/08/10 05:35:09.801|Trace|18|80000052-0001-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /api/grades/query, ResourceURI = http://localhost:50663/api/grades/query?courseId=1 }||LoggingMiddleware.Invoke
+2019/08/10 05:35:09.850|Info|18|80000052-0001-fa00-b63f-84710c7967bb|eGradeBook.Controllers.GradesController|Get Grades : Query by NULL||GradesController.GetGradesByParameters
+2019/08/10 05:35:09.910|Trace|18|80000052-0001-fa00-b63f-84710c7967bb|eGradeBook.Controllers.GradesController|Tracer, is authenticated -- False||GradesController.GetGradesByParameters
+2019/08/10 05:35:32.033|Trace|18|80000052-0001-fa00-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.Grade" repository Get request with filter and all||GenericRepository`1.Get

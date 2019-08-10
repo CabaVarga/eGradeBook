@@ -95,11 +95,13 @@ namespace eGradeBook.Controllers
 
             string data;
 
-            using (var reader = new StreamReader(path))
+            using (FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
-                data = reader.ReadToEnd();
+                using (var reader = new StreamReader(fileStream))
+                {
+                    data = reader.ReadToEnd();
+                }
             }
-
 
             var response = new HttpResponseMessage(HttpStatusCode.OK);
             var message = new StringContent(data, encoding: Encoding.UTF8, mediaType: "text/plain");
@@ -131,7 +133,7 @@ namespace eGradeBook.Controllers
             httpResponse.StatusCode = HttpStatusCode.OK;
 
 
-            var fileStream = new FileStream(path, FileMode.Open);
+            var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
 
             var file = new StreamContent(fileStream);
 
@@ -205,9 +207,12 @@ namespace eGradeBook.Controllers
 
             string data;
 
-            using (var reader = new StreamReader(path))
+            using (FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
-                data = reader.ReadToEnd();
+                using (var reader = new StreamReader(fileStream))
+                {
+                    data = reader.ReadToEnd();
+                }
             }
 
             var response = new HttpResponseMessage(HttpStatusCode.OK);
@@ -240,7 +245,7 @@ namespace eGradeBook.Controllers
             httpResponse.StatusCode = HttpStatusCode.OK;
 
 
-            var fileStream = new FileStream(path, FileMode.Open);
+            var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
 
             var file = new StreamContent(fileStream);
 

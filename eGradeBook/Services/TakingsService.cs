@@ -111,6 +111,10 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public Taking GetTaking(int courseId, int teacherId, int classRoomId, int studentId)
         {
+            // A more involved approach would take it apart one-by-one ...
+
+            Program program = programsService.GetProgram(courseId, teacherId, classRoomId);
+
             logger.Info("Get taking for course {@courseId}, teacher {@teacherId}, classroom {@classRoomId} and student {@studentId}",
                 courseId, teacherId, classRoomId, studentId);
             var taking = db.TakingsRepository.Get(t =>
