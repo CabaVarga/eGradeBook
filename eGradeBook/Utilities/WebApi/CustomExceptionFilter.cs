@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
@@ -50,7 +51,7 @@ namespace eGradeBook.Utilities.WebApi
             else if (exceptionType == typeof(SqlException))
             {
                 var ex = actionExecutedContext.Exception as SqlException;
-                
+
                 // TODO unwrap / write out the exact errors from the errors property...
 
                 logger.Info("Exception is of type SqlException");
@@ -87,14 +88,84 @@ namespace eGradeBook.Utilities.WebApi
                 throw new HttpResponseException(resp);
             }
 
+            else if (exceptionType == typeof(StudentEnrolledInCourseException))
+            {
+                var ex = actionExecutedContext.Exception as StudentEnrolledInCourseException;
+
+                var resp = new HttpResponseMessage(HttpStatusCode.Conflict)
+                {
+                    Content = new StringContent(string.Format("Student {0} from classroom {1} is enrolled in a course, cannot change classRooms anymore", ex.Data["studentId"], ex.Data["classRoomId"])),
+                    ReasonPhrase = "ClassRoomEnrollmentConflict"
+                };
+
+                throw new HttpResponseException(resp);
+            }
+
             else if (exceptionType == typeof(DbUpdateException))
             {
                 logger.Info("Exception is of type DbUpdateException");
 
-                throw new HttpResponseException(HttpStatusCode.ExpectationFailed);
+                var resp = new HttpResponseMessage();
+
+                // https://www.thereformedprogrammer.net/entity-framework-core-validating-data-and-catching-sql-errors/
+
+                // http://www.sql-server-helper.com/error-messages/msg-501-1000.aspx
+                // There are four for 547 (FOREIGN KEY CONSTRAINT -- insert, update and delete...
+
+                int SqlServerViolationOfUniqueIndex = 2601;
+                int SqlServerViolationOfUniqueConstraint = 2627;
+                int SqlServerViolationOfForeignKeyConstraint = 547;
+
+                var dbUpdateEx = actionExecutedContext.Exception as DbUpdateException;
+                var sqlEx = dbUpdateEx?.GetBaseException() as SqlException;
+
+                if (sqlEx != null)
+                {
+                    //This is a DbUpdateException on a SQL database
+
+                    if (sqlEx.Number == SqlServerViolationOfUniqueIndex ||
+                        sqlEx.Number == SqlServerViolationOfUniqueConstraint)
+                    {
+                        logger.Error(sqlEx, "Unique constraint violation");
+                        resp.StatusCode = HttpStatusCode.Conflict;
+                        resp.Content = new StringContent("Unique constraint violation");
+                    }
+                    else if (sqlEx.Number == SqlServerViolationOfForeignKeyConstraint)
+                    {
+                        logger.Error(sqlEx, "Foreign key constraint violation");
+                        resp.StatusCode = HttpStatusCode.Conflict;
+                        resp.Content = new StringContent("Foreign key constraint violation");
+                    }
+                    else
+                    {
+                        logger.Error(sqlEx, "Other SQL Server error...");
+                        resp.StatusCode = HttpStatusCode.InternalServerError;
+                        resp.Content = new StringContent("Other SQL Server error... ");
+                    }
+
+                    throw new HttpResponseException(resp);
+                }
+
+                resp.StatusCode = HttpStatusCode.InternalServerError;
+                resp.Content = new StringContent("DbUpdate error... ");
+                throw new HttpResponseException(resp);
             }
 
             #endregion
+
+            else if (exceptionType == typeof(DbEntityValidationException))
+            {
+                var ex = actionExecutedContext.Exception as DbEntityValidationException;
+                // Do something with ex.EntityValidationErrors ...
+                logger.Error(ex, "Entity validation failure");
+
+                var resp = new HttpResponseMessage(HttpStatusCode.InternalServerError)
+                {
+                    Content = new StringContent("Entity validation failure")
+                };
+
+                throw new HttpResponseException(resp);
+            }
 
             else if (exceptionType == typeof(UserRegistrationException))
             {

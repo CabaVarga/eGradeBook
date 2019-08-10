@@ -5,9 +5,11 @@ using eGradeBook.Models.Dtos.Registration;
 using eGradeBook.Models.Dtos.Students;
 using eGradeBook.Models.Dtos.Teachers;
 using eGradeBook.Services;
+using eGradeBook.SwaggerHelpers.Examples;
 using eGradeBook.Utilities.Common;
 using eGradeBook.Utilities.WebApi;
 using NLog;
+using Swashbuckle.Examples;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -45,6 +47,7 @@ namespace eGradeBook.Controllers
         /// <returns>CreatedResourceDto payload describing and linking to the resource</returns>
         [ResponseType(typeof(AdminDto))]
         [Authorize(Roles = "admins")]
+        [SwaggerRequestExample(typeof(AdminRegistrationDto), typeof(RegisterAdminExample))]
         [Route("register-admin")]
         public async Task<IHttpActionResult> RegisterAdmin(AdminRegistrationDto userModel)
         {
@@ -54,9 +57,9 @@ namespace eGradeBook.Controllers
 
             var result = await service.RegisterAdmin(userModel);
 
-            logger.Info("Created Admin {@userId}", result.Id);
+            logger.Info("Created Admin {@userId}", result.AdminId);
 
-            return CreatedAtRoute("GetAdminById", new { adminId = result.Id }, result);
+            return CreatedAtRoute("GetAdminById", new { adminId = result.AdminId }, result);
         }
 
         /// <summary>
@@ -66,6 +69,7 @@ namespace eGradeBook.Controllers
         /// <returns>CreatedResourceDto payload describing and linking to the resource</returns>
         [Route("register-teacher")]
         [Authorize(Roles = "admins")]
+        [SwaggerRequestExample(typeof(TeacherRegistrationDto), typeof(RegisterTeacherExample))]
         public async Task<IHttpActionResult> RegisterTeacher(TeacherRegistrationDto userModel)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
@@ -86,6 +90,7 @@ namespace eGradeBook.Controllers
         /// <returns>CreatedResourceDto payload describing and linking to the resource</returns>
         [Route("register-student")]
         [Authorize(Roles = "admins")]
+        [SwaggerRequestExample(typeof(StudentRegistrationDto), typeof(RegisterStudentExample))]
         public async Task<IHttpActionResult> RegisterStudent(StudentRegistrationDto userModel)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
@@ -106,6 +111,7 @@ namespace eGradeBook.Controllers
         /// <returns>CreatedResourceDto payload describing and linking to the resource</returns>
         [Route("register-parent")]
         [Authorize(Roles = "admins")]
+        [SwaggerRequestExample(typeof(ParentRegistrationDto), typeof(RegisterParentExample))]
         public async Task<IHttpActionResult> RegisterParent(ParentRegistrationDto userModel)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
@@ -114,9 +120,9 @@ namespace eGradeBook.Controllers
 
             var result = await service.RegisterParent(userModel);
 
-            logger.Info("Created Parent {@userId}", result.Id);
+            logger.Info("Created Parent {@userId}", result.ParentId);
 
-            return CreatedAtRoute("GetParentById", new { parentId = result.Id }, result);
+            return CreatedAtRoute("GetParentById", new { parentId = result.ParentId }, result);
         }
 
         #endregion

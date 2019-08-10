@@ -23,8 +23,12 @@ namespace eGradeBook.Services.Converters
             return new StudentDto()
             {
                 StudentId = student.Id,
+                UserName = student.UserName,
                 FirstName = student.FirstName,
                 LastName = student.LastName,
+                Gender = student.Gender,
+                Email = student.Email,
+                Phone = student.PhoneNumber,
                 PlaceOfBirth = student.PlaceOfBirth,
                 DateOfBirth = student.DateOfBirth,
                 ClassRoom = student.ClassRoom?.Name,
@@ -48,7 +52,7 @@ namespace eGradeBook.Services.Converters
                 Email = dto.Email,
                 PhoneNumber = dto.PhoneNumber,
                 PlaceOfBirth = dto.PlaceOfBirth,
-                DateOfBirth = dto.DateOfBirth
+                DateOfBirth = dto.DateOfBirth,
             };
         }
 

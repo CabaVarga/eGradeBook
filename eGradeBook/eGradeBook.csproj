@@ -315,6 +315,7 @@
     <Compile Include="Services\Exceptions\InvalidUserIdException.cs" />
     <Compile Include="Services\Exceptions\ParentNotFoundException.cs" />
     <Compile Include="Services\Exceptions\ProgramNotFoundException.cs" />
+    <Compile Include="Services\Exceptions\StudentEnrolledInCourseException.cs" />
     <Compile Include="Services\Exceptions\StudentNotFoundException.cs" />
     <Compile Include="Services\Exceptions\StudentParentNotFoundException.cs" />
     <Compile Include="Services\Exceptions\TakingNotFoundException.cs" />
@@ -350,8 +351,16 @@
     <Compile Include="Startup.cs" />
     <Compile Include="SwaggerHelpers\AssignOAuth2SecurityRequirements.cs" />
     <Compile Include="SwaggerHelpers\AuthTokenOperation.cs" />
+    <Compile Include="SwaggerHelpers\Examples\CreateClassRoomProgramExample.cs" />
     <Compile Include="SwaggerHelpers\Examples\CreateGradeByTeacherExample.cs" />
+    <Compile Include="SwaggerHelpers\Examples\CreateProgramExample.cs" />
+    <Compile Include="SwaggerHelpers\Examples\CreateTakingForStudentExample.cs" />
     <Compile Include="SwaggerHelpers\Examples\CreateTeachingExample.cs" />
+    <Compile Include="SwaggerHelpers\Examples\EnrollStudentInClassRoomExample.cs" />
+    <Compile Include="SwaggerHelpers\Examples\RegisterAdminExample.cs" />
+    <Compile Include="SwaggerHelpers\Examples\RegisterParentExample.cs" />
+    <Compile Include="SwaggerHelpers\Examples\RegisterStudentExample.cs" />
+    <Compile Include="SwaggerHelpers\Examples\RegisterTeacherExample.cs" />
     <Compile Include="Utilities\Common\UserRole.cs" />
     <Compile Include="Utilities\Exceptions\UserManagerNotCreatedException.cs" />
     <Compile Include="Utilities\Json\DateFormatConverter.cs" />

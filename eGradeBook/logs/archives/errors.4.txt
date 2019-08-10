@@ -1,0 +1,99 @@
+2019/08/10 05:00:31.063|Error|26|80000048-0000-f500-b63f-84710c7967bb|POST http://localhost:50663/api/grades/for-teachers/3|eGradeBook.Services.Exceptions.TakingNotFoundException: Student 10 is not taking the course 2 with teacher 3 in classroom 3
+   at eGradeBook.Services.TakingsService.GetTaking(Int32 courseId, Int32 teacherId, Int32 classRoomId, Int32 studentId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\TakingsService.cs:line 135
+   at eGradeBook.Services.GradesService.CreateGrade(Int32 courseId, Int32 teacherId, Int32 classRoomId, Int32 studentId, Int32 schoolTerm, DateTime assigned, Int32 gradePoint, String notes) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 73
+   at eGradeBook.Services.GradesService.CreateGrade(GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 111
+   at eGradeBook.Services.GradesService.CreateGradeDto(GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 133
+   at eGradeBook.Controllers.GradesController.CreateGradeAsTeacher(Int32 teacherId, GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\GradesController.cs:line 124
+   at lambda_method(Closure , Object , Object[] )
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass6_2.<GetExecutor>b__2(Object instance, Object[] methodParameters)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<ExecuteActionFilterAsyncCore>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() courseId: 2;teacherId: 3;classRoomId: 3;studentId: 10;MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/10 05:16:35.901|Error|6|800000a6-0000-f700-b63f-84710c7967bb|POST http://localhost:50663/api/grades/for-teachers/3|eGradeBook.Services.Exceptions.TeachingNotFoundException: Teaching not found for course 3 and teacher 3
+   at eGradeBook.Services.TeachingsService.GetTeaching(Int32 courseId, Int32 teacherId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\TeachingsService.cs:line 166
+   at eGradeBook.Services.ProgramsService.GetProgram(Int32 courseId, Int32 teacherId, Int32 classRoomId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\ProgramsService.cs:line 96
+   at eGradeBook.Services.TakingsService.GetTaking(Int32 courseId, Int32 teacherId, Int32 classRoomId, Int32 studentId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\TakingsService.cs:line 116
+   at eGradeBook.Services.GradesService.CreateGrade(Int32 courseId, Int32 teacherId, Int32 classRoomId, Int32 studentId, Int32 schoolTerm, DateTime assigned, Int32 gradePoint, String notes) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 73
+   at eGradeBook.Services.GradesService.CreateGrade(GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 111
+   at eGradeBook.Services.GradesService.CreateGradeDto(GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 133
+   at eGradeBook.Controllers.GradesController.CreateGradeAsTeacher(Int32 teacherId, GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\GradesController.cs:line 124
+   at lambda_method(Closure , Object , Object[] )
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass6_2.<GetExecutor>b__2(Object instance, Object[] methodParameters)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<ExecuteActionFilterAsyncCore>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() teacherId: 3;courseId: 3;MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/10 05:41:39.060|Error|43|80000072-0000-f500-b63f-84710c7967bb|POST http://localhost:50663/api/students/7/courses|System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at eGradeBook.Repositories.UnitOfWork.Save() in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Repositories\UnitOfWork.cs:line 115
+   at eGradeBook.Services.StudentsService.AssignCourseToStudent(StudentCourseDto course) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\StudentsService.cs:line 47
+   at eGradeBook.Controllers.StudentsController.PostAssignCourseToStudent(Int32 studentId, StudentCourseDto course) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\StudentsController.cs:line 137
+   at lambda_method(Closure , Object , Object[] )
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass6_2.<GetExecutor>b__2(Object instance, Object[] methodParameters)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<ExecuteActionFilterAsyncCore>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]

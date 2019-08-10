@@ -14,7 +14,12 @@ namespace eGradeBook.Models.Dtos.Parents
         /// <summary>
         /// The Parents Id
         /// </summary>
-        public int Id { get; set; }
+        public int ParentId { get; set; }
+
+        /// <summary>
+        /// User name
+        /// </summary>
+        public string UserName { get; set; }
 
         /// <summary>
         /// First name

@@ -1,6 +1,8 @@
 ﻿using eGradeBook.Models.Dtos.Programs;
 using eGradeBook.Services;
+using eGradeBook.SwaggerHelpers.Examples;
 using NLog;
+using Swashbuckle.Examples;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +40,7 @@ namespace eGradeBook.Controllers
         /// <returns></returns>
         [Route("")]
         [HttpPost]
+        [SwaggerRequestExample(typeof(ProgramDto), typeof(CreateProgramExample))]
         public IHttpActionResult PostCreateProgram(ProgramDto programDto)
         {
             logger.Info("Create program {@programData}", programDto);

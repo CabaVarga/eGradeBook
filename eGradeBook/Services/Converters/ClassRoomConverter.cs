@@ -37,7 +37,8 @@ namespace eGradeBook.Services.Converters
                     Course = p.Course.Name,
                     Teacher = p.Teaching.Teacher.FirstName + " " + p.Teaching.Teacher.LastName,
                     CourseId = p.CourseId,
-                    TeacherId = p.Teaching.TeacherId
+                    TeacherId = p.Teaching.TeacherId,
+                    TeachingHours = p.WeeklyHours
                 }).ToList()
             };
         }

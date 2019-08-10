@@ -22,13 +22,13 @@ namespace eGradeBook.Services.Converters
         {
             return new ParentDto()
             {
-                Id = parent.Id,
+                ParentId = parent.Id,
+                UserName = parent.UserName,
                 FirstName = parent.FirstName,
                 LastName = parent.LastName,
                 Gender = parent.Gender,
                 Email = parent.Email,
-                PhoneNumber = parent.PhoneNumber,
-
+                PhoneNumber = parent.PhoneNumber
             };
         }
 

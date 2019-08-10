@@ -22,7 +22,8 @@ namespace eGradeBook.Services.Converters
         {
             return new AdminDto()
             {
-                Id = admin.Id,
+                AdminId = admin.Id,
+                UserName = admin.UserName,
                 FirstName = admin.FirstName,
                 LastName = admin.LastName,
                 Gender = admin.Gender,

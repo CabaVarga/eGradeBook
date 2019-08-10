@@ -23,12 +23,14 @@ namespace eGradeBook.Services.Converters
             return new TeacherDto()
             {
                 TeacherId = teacher.Id,
-                Name = teacher.FirstName + " " + teacher.LastName,
-                Courses = teacher.Teachings?.Select(t => new TeacherDto.CourseList()
-                {
-                    Id = t.Course.Id,
-                    Name = t.Course.Name
-                }).ToList()
+                UserName = teacher.UserName,
+                FirstName = teacher.FirstName,
+                LastName = teacher.LastName,
+                Gender = teacher.Gender,
+                Email = teacher.Email,
+                Phone = teacher.PhoneNumber,
+                Degree = teacher.Degree,
+                Title = teacher.Title
             };
         }
 

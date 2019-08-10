@@ -1,8 +1,7 @@
-2019/08/10 05:41:00.017|Info|43|80000072-0000-f500-b63f-84710c7967bb|eGradeBook.Controllers.StudentsController|User {"UserId":0} requested assignment of course {"StudentId":0, "CourseId":0} to student 7||StudentsController.PostAssignCourseToStudent
-2019/08/10 05:41:00.051|Info|43|80000072-0000-f500-b63f-84710c7967bb|eGradeBook.Services.GradesService|Service received request for assigning a course to a student {"StudentId":0, "CourseId":0}||StudentsService.AssignCourseToStudent
-2019/08/10 05:41:00.063|Trace|43|80000072-0000-f500-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.StudentUser" repository Get request with filter and all||GenericRepository`1.Get
-2019/08/10 05:41:00.079|Trace|43|80000072-0000-f500-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.Course" repository Get request with filter and all||GenericRepository`1.Get
-2019/08/10 05:41:00.098|Trace|43|80000072-0000-f500-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.Program" repository Get request with filter and all||GenericRepository`1.Get
-2019/08/10 05:41:00.118|Trace|43|80000072-0000-f500-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.Taking" repository Insert new entity||GenericRepository`1.Insert
-2019/08/10 05:41:39.060|Error|43|80000072-0000-f500-b63f-84710c7967bb|eGradeBook.Utilities.WebApi.NLogExceptionLogger|POST http://localhost:50663/api/students/7/courses|Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.|NLogExceptionLogger.Log
-2019/08/10 05:41:39.130|Trace|55|80000072-0000-f500-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 500, ProcessingTime = 39172 }||LoggingMiddleware.Invoke
+2019/08/10 10:07:08.341|Trace|15|80000018-0000-fe00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /api/classrooms, ResourceURI = http://localhost:50663/api/classrooms }||LoggingMiddleware.Invoke
+2019/08/10 10:07:08.618|Info|15|80000018-0000-fe00-b63f-84710c7967bb|eGradeBook.Controllers.ClassRoomsController|Get all ClassRooms by {"UserId":0}||ClassRoomsController.GetAllClassRooms
+2019/08/10 10:07:11.521|Trace|15|80000018-0000-fe00-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.ClassRoom" repository Get request with filter and all||GenericRepository`1.Get
+2019/08/10 10:07:16.440|Info|15|80000018-0000-fe00-b63f-84710c7967bb|eGradeBook.Infrastructure.GradeBookInitializer|Seeding started||GradeBookInitializer.Seed
+2019/08/10 10:07:16.469|Info|15|80000018-0000-fe00-b63f-84710c7967bb|eGradeBook.Infrastructure.GradeBookInitializer|Seeding began||GradeBookInitializer.SeedByHand
+2019/08/10 10:07:19.033|Info|15|80000018-0000-fe00-b63f-84710c7967bb|eGradeBook.Infrastructure.GradeBookInitializer|Seeding ended||GradeBookInitializer.Seed
+2019/08/10 10:07:48.705|Trace|8|80000018-0000-fe00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 40315 }||LoggingMiddleware.Invoke

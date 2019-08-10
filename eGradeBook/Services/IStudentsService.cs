@@ -1,5 +1,6 @@
 ﻿using eGradeBook.Models;
 using eGradeBook.Models.Dtos.Students;
+using eGradeBook.Models.Dtos.Takings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,8 +85,12 @@ namespace eGradeBook.Services
         /// Or at least student + courses list would be maybe better?
         /// </summary>
         /// <param name="course"></param>
-        void AssignCourseToStudent(StudentCourseDto course);
+        TakingDto AssignCourseToStudent(StudentCourseDto course);
+
+        StudentDto GetStudentByIdDto(int studentId);
 
         StudentReportDto GetStudentReport(int studentId);
+
+        bool IsParent(int studentId, int parentId);
     }
 }

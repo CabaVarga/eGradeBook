@@ -1,4 +1,5 @@
 ﻿using eGradeBook.Models.Dtos.Students;
+using eGradeBook.Models.Dtos.Takings;
 using eGradeBook.Services;
 using eGradeBook.Utilities.WebApi;
 using NLog;
@@ -60,7 +61,7 @@ namespace eGradeBook.Controllers
 
             logger.Info("User {@user} requested student with Id {studentId}",
                 IdentityHelper.GetLoggedInUser(userData), studentId);
-            return Ok(service.GetStudentById(studentId));
+            return Ok(service.GetStudentByIdDto(studentId));
         }
 
         /// <summary>
@@ -134,25 +135,43 @@ namespace eGradeBook.Controllers
             logger.Info("User {@user} requested assignment of course {@assignment} to student {studentId}",
                 IdentityHelper.GetLoggedInUser(userData), course, studentId);
 
-            service.AssignCourseToStudent(course);
+            var taking = service.AssignCourseToStudent(course);
 
-            return Ok();
+            if (taking == null)
+            {
+                return BadRequest("Course assignment failed");
+            }
+
+            return Ok(taking);
         }
 
+        [Authorize(Roles = "admins,students,parents,teachers")]
         [Route("{studentId}/report")]
         [HttpGet]
         public IHttpActionResult GetStudentReport(int studentId)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
-            logger.Info("Get Student report for {@studentId} by {@userData}", studentId, userData);
+            logger.Info("Get Student report for {@studentId} by {@userData}", studentId, userData);                       
 
             if (studentId != userData.UserId && userData.UserRole == "students")
             {
                 throw new UnauthorizedAccessException("You are not allowed to access other students data");
             }
 
-            return Ok(service.GetStudentReport(studentId));
+            else if (userData.UserRole == "parents")
+            {
+                if (!service.IsParent(studentId, (int)userData.UserId))
+                {
+                    throw new UnauthorizedAccessException("You are not allowed to access other parents childrens data");
+                }
+            }
+
+            // Teacher is a special case, because he/she can't see other courses...
+
+            var report = service.GetStudentReport(studentId);
+
+            return Ok(report);
         }
     }
 }

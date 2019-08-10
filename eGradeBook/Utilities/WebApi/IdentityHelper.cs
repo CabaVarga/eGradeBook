@@ -26,7 +26,7 @@ namespace eGradeBook.Utilities.WebApi
             var isAdmin = principal.IsInRole("admins");
             var isTeacher = principal.IsInRole("teachers");
             var isStudent = principal.IsInRole("students");
-            var isParent = principal.IsInRole("teachers");
+            var isParent = principal.IsInRole("parents");
             var isAuthenticated = principal.Identity.IsAuthenticated;
             var userEmail = ((ClaimsPrincipal)principal).FindFirst(x => x.Type == ClaimTypes.Email)?.Value;
             var userId = ((ClaimsPrincipal)principal).FindFirst(x => x.Type == "UserId")?.Value;

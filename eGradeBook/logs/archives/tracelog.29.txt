@@ -1,3 +1,0 @@
-2019/08/10 04:31:21.081|Trace|10|8000007b-0000-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = POST, Path = /api/grades/for-teachers/3, ResourceURI = http://localhost:50663/api/grades/for-teachers/3 }||LoggingMiddleware.Invoke
-2019/08/10 04:31:21.440|Info|10|8000007b-0000-f900-b63f-84710c7967bb|eGradeBook.Utilities.WebApi.ValidateModelAttribute|Model validation failure||ValidateModelAttribute.OnActionExecuting
-2019/08/10 04:31:21.460|Trace|11|8000007b-0000-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 400, ProcessingTime = 334 }||LoggingMiddleware.Invoke

@@ -93,13 +93,7 @@ namespace eGradeBook.Services
 
             return db.TeachersRepository.Get()
                 .OfType<TeacherUser>()
-                .Select(t => new TeacherDto()
-                {
-                    Name = t.FirstName + " " + t.LastName,
-                    TeacherId = t.Id,
-                    Courses = t.Teachings.Select(tc => new TeacherDto.CourseList() { Id = tc.CourseId, Name = tc.Course.Name }).ToList()
-//                    Courses = t.Teachings.Select(tc => tc.Course.Name).ToList()
-                });
+                .Select(t => Converters.TeachersConverter.TeacherToTeacherDto(t)).ToList();
         }
 
         /// <summary>
@@ -110,27 +104,11 @@ namespace eGradeBook.Services
         public TeacherDto GetTeacherByIdDto(int id)
         {
             logger.Info("Service received request for retrieving teacher by Id {teacherId}", id);
-            //            return db.TeachersRepository.Get(t => t.Id == id)
-            //                .OfType<TeacherUser>()
-            //                .Select(t => new TeacherDto()
-            //                {
-            //                    Name = t.FirstName + " " + t.LastName,
-            //                    TeacherId = t.Id,
-            //                    Courses = t.Teachings.Select(tc => new TeacherDto.CourseList() { Id = tc.SubjectId, Name = tc.Course.Name }).ToList()
-            ////                    Courses = t.Teachings.Select(tc => tc.Course.Name).ToList()
-            //                })
-            //                .FirstOrDefault();
 
             var t = db.TeachersRepository.GetByID(id);
 
 
-            var dto = new TeacherDto()
-            {
-                Name = t.FirstName + " " + t.LastName,
-                TeacherId = t.Id,
-                Courses = t.Teachings.Select(tc => new TeacherDto.CourseList() { Id = tc.CourseId, Name = tc.Course.Name }).ToList()
-                //                    Courses = t.Teachings.Select(tc => tc.Course.Name).ToList()
-            };
+            var dto = Converters.TeachersConverter.TeacherToTeacherDto(t);
 
             return dto;
 
@@ -157,45 +135,6 @@ namespace eGradeBook.Services
             {
                 return null;
             }
-
-            //TeacherExtendedDto teacherData = new TeacherExtendedDto()
-            //{
-            //    TeacherId = teacher.Id,
-            //    FirstName = teacher.FirstName,
-            //    LastName = teacher.LastName,
-            //    ClassRooms = teacher.Teachings
-            //        .SelectMany(t => t.Programs).GroupBy(p => p.ClassRoom)
-            //        .Select(g => new TeacherExtendedDto.ClassRoomCoursesDto()
-            //    {
-            //        ClassRoomId = g.Key.Id,
-            //        ClassRoomName = g.Key.Name,
-            //        Grade = g.Key.ClassGrade,
-            //        Courses = g.Select(prog => new TeacherExtendedDto.ClassRoomCoursesDto.InnerCourseDto()
-            //        {
-            //            CourseId = prog.Course.Id,
-            //            CourseName = prog.Course.Name,
-            //            WeeklyHours = prog.WeeklyHours
-            //        }).ToList()
-            //    }).ToList(),
-            //    // No groupings or selectmanys?? and still working...
-            //    Courses = teacher.Teachings
-            //        .Select(g => new TeacherExtendedDto.CourseClassRoomDto()
-            //        {
-            //            CourseId = g.Course.Id,
-            //            CourseName = g.Course.Name,
-            //            ClassRooms = g.Programs.Select(p => new TeacherExtendedDto.CourseClassRoomDto.InnerClassRoomDto()
-            //            {
-            //                ClassRoomId = p.ClassRoom.Id,
-            //                ClassRoomName = p.ClassRoom.Name,
-            //                Grade = p.ClassRoom.ClassGrade,
-            //                WeeklyHours = p.WeeklyHours
-            //            }).ToList()
-            //        }).ToList()
-            //};
-
-            // IZ NEKOG RAZLOGA OVO SAD RADI....
-
-            // TODO sledece probati: ClassRoom -> Course -> Students?
 
             TeacherExtendedDto teacherData = new TeacherExtendedDto()
             {
@@ -237,19 +176,6 @@ namespace eGradeBook.Services
 
         public object GetClassRoomsForTeacher(int teacherId)
         {
-            //return db.TeachersRepository.Get(t => t.Id == teacherId)
-            //    .Select(t => new
-            //    {
-            //        TeacherId = t.Id,
-            //        FName = t.FirstName,
-            //        LName = t.LastName,
-            //        ClassRooms = t.Teachings.SelectMany(ts => ts.Programs).Select(p => new
-            //        {
-            //            ClassRoomId = p.ClassRoom.Id,
-            //            ClassRoomName = p.ClassRoom.Name
-            //        })
-            //    });
-
             return db.TeachersRepository.Get(t => t.Id == teacherId)
     .Select(t => new
     {

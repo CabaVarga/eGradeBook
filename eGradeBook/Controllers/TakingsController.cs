@@ -1,5 +1,6 @@
 ﻿using eGradeBook.Models.Dtos.Takings;
 using eGradeBook.Services;
+using eGradeBook.SwaggerHelpers.Examples;
 using NLog;
 using Swashbuckle.Examples;
 using System;
@@ -65,6 +66,7 @@ namespace eGradeBook.Controllers
         /// <returns></returns>
         [Route("")]
         [HttpPost]
+        [SwaggerRequestExample(typeof(TakingDto), typeof(CreateTakingForStudentExample))]
         public IHttpActionResult PostCreateTaking(TakingDto takingDto)
         {
             logger.Info("Create taking {@takingData}", takingDto);

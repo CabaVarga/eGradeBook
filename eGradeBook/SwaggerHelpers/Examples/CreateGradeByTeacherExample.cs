@@ -9,7 +9,6 @@ namespace eGradeBook.SwaggerHelpers.Examples
 {
     public class CreateGradeByTeacherExample : IExamplesProvider
     {
-
         public object GetExamples()
         {
             return new GradeDto()

@@ -60,9 +60,10 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public Teaching CreateTeaching(int courseId, int teacherId)
         {
-            TeacherUser teacher = db.TeachersRepository.Get(t => t.Id == teacherId).FirstOrDefault();
-            Course course = db.CoursesRepository.GetByID(courseId);
+            Course course = coursesService.Value.GetCourseById(courseId);
 
+            TeacherUser teacher = teachersService.Value.GetTeacherById(teacherId);
+            
             Teaching teaching = new Teaching()
             {
                 Course = course,

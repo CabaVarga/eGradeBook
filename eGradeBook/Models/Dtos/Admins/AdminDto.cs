@@ -13,7 +13,12 @@ namespace eGradeBook.Models.Dtos.Admins
         /// <summary>
         /// Admin Id of type int
         /// </summary>
-        public int Id { get; set; }
+        public int AdminId { get; set; }
+
+        /// <summary>
+        /// User name
+        /// </summary>
+        public string UserName { get; set; }
 
         /// <summary>
         /// First name

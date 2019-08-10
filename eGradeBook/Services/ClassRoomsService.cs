@@ -157,6 +157,24 @@ namespace eGradeBook.Services
                 return null;
             }
 
+            // --- IF STUDENT IS ENROLLED:
+
+            if (student.ClassRoomId != null)
+            {
+                // check if already registered for a course
+                var takingCourse = db.TakingsRepository.Get(t => t.Student.Id == student.Id).FirstOrDefault();
+
+                if (takingCourse != null)
+                {
+                    // can't switch classroom, too late
+                    logger.Info("Student {@studentId} from classroom {@classRoomId} is enrolled in a course, cannot change classRooms anymore", student.Id, classRoom.Id);
+                    var ex = new StudentEnrolledInCourseException(string.Format("Student {0} from classroom {1} is enrolled in a course, cannot change classRooms anymore", student.Id, classRoom.Id));
+                    ex.Data.Add("studentId", student.Id);
+                    ex.Data.Add("classRoomId", classRoom.Id);
+                    throw ex;
+                }
+            }
+
             // Two strategies with current model:
             // -- 1. Change ClassRoom property of student.
             // -- 2. Update Students collection of classroom.
@@ -203,8 +221,10 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public IEnumerable<ClassRoomDto> GetAllClassRooms()
         {
-            return db.ClassRoomsRepository.Get()
+            var classRoomDtos =  db.ClassRoomsRepository.Get()
                 .Select(c => Converters.ClassRoomConverter.ClassRoomToClassRoomDto(c));
+
+            return classRoomDtos;
         }
 
         /// <summary>

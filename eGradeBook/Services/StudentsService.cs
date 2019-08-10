@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using eGradeBook.Models;
 using eGradeBook.Models.Dtos.Students;
+using eGradeBook.Models.Dtos.Takings;
 using eGradeBook.Repositories;
 using eGradeBook.Services.Exceptions;
 using NLog;
@@ -17,25 +18,44 @@ namespace eGradeBook.Services
     {
         private IUnitOfWork db;
         private ILogger logger;
+        private Lazy<IClassRoomsService> classRoomsService;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="db"></param>
-        public StudentsService(IUnitOfWork db, ILogger logger)
+        public StudentsService(IUnitOfWork db, ILogger logger,
+            Lazy<IClassRoomsService> classRoomsService)
         {
             this.db = db;
             this.logger = logger;
+            this.classRoomsService = classRoomsService;
         }
 
-        public void AssignCourseToStudent(StudentCourseDto course)
+        public TakingDto AssignCourseToStudent(StudentCourseDto course)
         {
             logger.Info("Service received request for assigning a course to a student {@course}", course);
 
             StudentUser student = db.StudentsRepository.Get(s => s.Id == course.StudentId).FirstOrDefault();
+
+            if (student == null)
+            {
+                return null;
+            }
+
             Course theCourse = db.CoursesRepository.Get(c => c.Id == course.CourseId).FirstOrDefault();
 
+            if (theCourse == null)
+            {
+                return null;
+            }
+
             Program program = db.ProgramsRepository.Get(p => p.Teaching.Course.Id == course.CourseId).FirstOrDefault();
+
+            if (program == null)
+            {
+                return null;
+            }
 
             Taking taking = new Taking()
             {
@@ -45,6 +65,8 @@ namespace eGradeBook.Services
 
             db.TakingsRepository.Insert(taking);
             db.Save();
+
+            return Converters.TakingsConverter.TakingToTakingDto(taking);
         }
 
         /// <summary>
@@ -125,27 +147,14 @@ namespace eGradeBook.Services
         {
             logger.Info("Service received request for returning a student by Id {studentId}", studentId);
 
-            StudentUser student = db.StudentsRepository.Get(s => s.Id == studentId)
-//                .OfType<StudentUser>()
-                .FirstOrDefault();
-
-            // ZANIMLJIVO
-            // GetById ako je podmetnut Id od GradeBookUsera koji nije StudentUser -> pokusava da vrati istog i program puca
-            // Sa druge strane, Get sa filterom radi i bez provere OfType<StudentUser> ???
+            StudentUser student = GetStudentById(studentId);
 
             if (student == null)
             {
                 return null;
             }
 
-            return new StudentDto()
-            {
-                FirstName = student.FirstName,
-                LastName = student.LastName,
-                StudentId = student.Id,
-                ClassRoom = student.ClassRoom?.Name,
-                ClassRoomId = student.ClassRoom?.Id
-            };
+            return Converters.StudentsConverter.StudentToStudentDto(student);
         }
 
         public StudentReportDto GetStudentReport(int studentId)
@@ -182,6 +191,18 @@ namespace eGradeBook.Services
 
             return db.StudentsRepository.Get(s => s.LastName.ToLower().StartsWith(start))
                 .Select(s => Converters.StudentsConverter.StudentToStudentDto(s));
+        }
+
+        public bool IsParent(int studentId, int parentId)
+        {
+            StudentParent studentParent = db.StudentParentsRepository.Get(sp => sp.StudentId == studentId && sp.ParentId == parentId).FirstOrDefault();
+
+            if (studentParent == null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>

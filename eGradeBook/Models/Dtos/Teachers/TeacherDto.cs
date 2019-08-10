@@ -11,42 +11,48 @@ namespace eGradeBook.Models.Dtos.Teachers
     public class TeacherDto
     {
         /// <summary>
-        /// Constructor
-        /// </summary>
-        public TeacherDto()
-        {
-            this.Courses = new List<CourseList>();
-        }
-
-        /// <summary>
-        /// A list of courses taught by the teacher
-        /// </summary>
-        public class CourseList
-        {
-            /// <summary>
-            /// Course Id
-            /// </summary>
-            public int Id { get; set; }
-
-            /// <summary>
-            /// Course name
-            /// </summary>
-            public string Name { get; set; }
-        }
-
-        /// <summary>
-        /// The teachers full name        
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// The teachers Id
+        /// Teacher Id of type int
         /// </summary>
         public int TeacherId { get; set; }
 
         /// <summary>
-        /// A list of courses taught by the teacher
+        /// User name
         /// </summary>
-        public List<CourseList> Courses { get; set; }
+        public string UserName { get; set; }
+
+        /// <summary>
+        /// First name
+        /// </summary>
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// Last name
+        /// </summary>
+        public string LastName { get; set; }
+
+        /// <summary>
+        /// Gender
+        /// </summary>
+        public string Gender { get; set; }
+
+        /// <summary>
+        /// E-mail address
+        /// </summary>
+        public string Email { get; set; }
+
+        /// <summary>
+        /// Phone number
+        /// </summary>
+        public string Phone { get; set; }
+
+        /// <summary>
+        /// Title
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
+        /// Degree
+        /// </summary>
+        public string Degree { get; set; }
     }
 }

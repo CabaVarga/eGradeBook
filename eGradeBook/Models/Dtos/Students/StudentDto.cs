@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -12,6 +13,11 @@ namespace eGradeBook.Models.Dtos.Students
     public class StudentDto
     {
         /// <summary>
+        /// User name
+        /// </summary>
+        public string UserName { get; set; }
+
+        /// <summary>
         /// First name
         /// </summary>
         public string FirstName { get; set; }
@@ -20,6 +26,21 @@ namespace eGradeBook.Models.Dtos.Students
         /// Last name
         /// </summary>
         public string LastName { get; set; }
+
+        /// <summary>
+        /// Gender
+        /// </summary>
+        public string Gender { get; set; }
+
+        /// <summary>
+        /// E-mail address
+        /// </summary>
+        public string Email { get; set; }
+
+        /// <summary>
+        /// Phone number
+        /// </summary>
+        public string Phone { get; set; }
 
         /// <summary>
         /// Place of birth

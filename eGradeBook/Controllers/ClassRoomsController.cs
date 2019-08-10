@@ -1,7 +1,9 @@
 ﻿using eGradeBook.Models.Dtos.ClassRooms;
 using eGradeBook.Services;
+using eGradeBook.SwaggerHelpers.Examples;
 using eGradeBook.Utilities.WebApi;
 using NLog;
+using Swashbuckle.Examples;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +72,7 @@ namespace eGradeBook.Controllers
         /// <param name="enroll"></param>
         /// <returns></returns>
         [Route("{classRoomId}/enrollments")]
+        [SwaggerRequestExample(typeof(ClassRoomEnrollStudentDto), typeof(EnrollStudentInClassRoomExample))]
         [HttpPost]
         public IHttpActionResult PostEnrollStudent(int classRoomId, ClassRoomEnrollStudentDto enroll)
         {
@@ -109,6 +112,7 @@ namespace eGradeBook.Controllers
         /// <returns></returns>
         [Route("{classRoomId:int}/programs")]
         [HttpPost]
+        [SwaggerRequestExample(typeof(ClassRoomProgramDto), typeof(CreateClassRoomProgramExample))]
         public IHttpActionResult PostCreateProgramOfClassRoom(int classRoomId, ClassRoomProgramDto program)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
