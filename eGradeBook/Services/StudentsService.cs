@@ -143,8 +143,8 @@ namespace eGradeBook.Services
                 FirstName = student.FirstName,
                 LastName = student.LastName,
                 StudentId = student.Id,
-                ClassRoom = student.ClassRoom?.Name,
-                ClassRoomId = student.ClassRoom?.Id
+                ClassRoom = student.Enrollments.FirstOrDefault()?.ClassRoom?.Name,
+                ClassRoomId = student.Enrollments.FirstOrDefault()?.ClassRoom?.Id
             };
         }
 

@@ -31,20 +31,6 @@ namespace eGradeBook.Models
         public DateTime? DateOfBirth { get; set; }
 
         /// <summary>
-        /// Which classroom is the student enrolled in?
-        /// Not a Requested property because we can define a student and enroll in a class later.
-        /// Perhaps. Probably not :(
-        /// </summary>
-        public int? ClassRoomId { get; set; }
-
-        /// <summary>
-        /// The ClassRoom the Student is enrolled in
-        /// NOTE in a more ideal solution this would be an associative relation
-        /// </summary>
-        [ForeignKey("ClassRoomId")]
-        public virtual ClassRoom ClassRoom { get; set; }
-
-        /// <summary>
         /// Associative class between Students and their parents
         /// NOTE Enables later improvements like a defined relation between a Guardian and a student...
         /// </summary>
@@ -54,5 +40,7 @@ namespace eGradeBook.Models
         /// What courses does the student take?
         /// </summary>
         public virtual ICollection<Taking> Takings { get; set; }
+
+        public virtual ICollection<Enrollment> Enrollments { get; set; }
     }
 }

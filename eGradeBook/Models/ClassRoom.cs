@@ -63,5 +63,7 @@ namespace eGradeBook.Models
         /// </summary>
         [JsonIgnore]
         public virtual ICollection<Program> Program { get; set; }
+
+        public virtual ICollection<Enrollment> Enrollments { get; set; }
     }
 }

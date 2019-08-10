@@ -27,8 +27,8 @@ namespace eGradeBook.Services.Converters
                 LastName = student.LastName,
                 PlaceOfBirth = student.PlaceOfBirth,
                 DateOfBirth = student.DateOfBirth,
-                ClassRoom = student.ClassRoom?.Name,
-                ClassRoomId = student.ClassRoomId
+                ClassRoom = student.Enrollments.FirstOrDefault()?.ClassRoom.Name,
+                ClassRoomId = student.Enrollments.FirstOrDefault()?.ClassRoom.Id
             };
         }
 
@@ -81,8 +81,8 @@ namespace eGradeBook.Services.Converters
                 StudentId = student.Id,
                 FirstName = student.FirstName,
                 LastName = student.LastName,
-                ClassRoom = student.ClassRoom.Name,
-                ClassRoomId = student.ClassRoomId,
+                ClassRoom = student.Enrollments.FirstOrDefault()?.ClassRoom.Name,
+                ClassRoomId = student.Enrollments.FirstOrDefault()?.ClassRoom.Id,
                 Parents = student.StudentParents.Select(sp => new ParentsDto()
                 {
                     FirstName = sp.Parent.FirstName,
@@ -107,9 +107,9 @@ namespace eGradeBook.Services.Converters
                 DateOfBirth = student.DateOfBirth,
                 ClassRoom = new StudentReportDto.ClassRoomDto()
                 {
-                    ClassRoomId = student.ClassRoom?.Id,
-                    Name = student.ClassRoom?.Name,
-                    SchoolGrade = student.ClassRoom?.ClassGrade
+                    ClassRoomId = student.Enrollments.FirstOrDefault()?.ClassRoom.Id,
+                    Name = student.Enrollments.FirstOrDefault()?.ClassRoom.Name,
+                    SchoolGrade = student.Enrollments.FirstOrDefault()?.ClassRoom.ClassGrade
                 },
                 Courses = student.Takings.Select(t => new StudentReportDto.CoursesDto()
                 {

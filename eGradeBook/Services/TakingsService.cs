@@ -70,7 +70,7 @@ namespace eGradeBook.Services
             }
 
             // need to check classroom manually :(
-            if (student.ClassRoomId != classRoomId)
+            if (student.Enrollments.FirstOrDefault()?.ClassRoom.Id  != classRoomId)
             {
                 // probably an exception but ok for now
                 return null;

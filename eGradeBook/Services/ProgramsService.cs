@@ -56,6 +56,11 @@ namespace eGradeBook.Services
             // We need a teaching
             Teaching teaching = teachingsService.Value.GetTeaching(courseId, teacherId);
             ClassRoom classRoom = db.ClassRoomsRepository.Get(c => c.Id == classRoomId).FirstOrDefault();
+            TeachingProgram teachingProgram = new TeachingProgram()
+            {
+                Teaching = teaching,
+
+            }
 
             Program program = new Program()
             {
@@ -99,8 +104,8 @@ namespace eGradeBook.Services
 
             var program = db.ProgramsRepository.Get(p =>
                     p.ClassRoomId == classRoomId &&
-                    p.Teaching.CourseId == courseId &&
-                    p.Teaching.TeacherId == teacherId)
+                    p.TeachingPrograms.FirstOrDefault().Teaching.CourseId == courseId &&
+                    p.TeachingPrograms.FirstOrDefault().Teaching.TeacherId == teacherId)
                 .FirstOrDefault();
 
             if (program == null)
@@ -224,7 +229,7 @@ namespace eGradeBook.Services
         {
             Teaching teaching = teachingsService.Value.GetTeaching(courseId, teacherId);
 
-            return db.ProgramsRepository.Get(p => p.Teaching.CourseId == courseId && p.Teaching.TeacherId == teacherId);
+            return db.ProgramsRepository.Get(p => p.TeachingPrograms.FirstOrDefault().Teaching.CourseId == courseId && p.TeachingPrograms.FirstOrDefault().Teaching.TeacherId == teacherId);
         }
 
         /// <summary>

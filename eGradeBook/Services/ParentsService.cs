@@ -69,8 +69,8 @@ namespace eGradeBook.Services
                 {
                     FirstName = c.Student.FirstName,
                     LastName = c.Student.LastName,
-                    ClassRoom = c.Student.ClassRoom.Name,
-                    ClassRoomId = c.Student.ClassRoom.Id,
+                    ClassRoom = c.Student.Enrollments.FirstOrDefault()?.ClassRoom.Name,
+                    ClassRoomId = c.Student.Enrollments.FirstOrDefault()?.ClassRoom.Id,
                     StudentId = c.Student.Id
                 }).ToList()
             };
@@ -90,8 +90,8 @@ namespace eGradeBook.Services
 
                 FirstName = c.Student.FirstName,
                 LastName = c.Student.LastName,
-                ClassRoom = c.Student.ClassRoom.Name,
-                ClassRoomId = c.Student.ClassRoom.Id,
+                ClassRoom = c.Student.Enrollments.FirstOrDefault()?.ClassRoom.Name,
+                ClassRoomId = c.Student.Enrollments.FirstOrDefault()?.ClassRoom.Id,
                 StudentId = c.Student.Id
             });
         }
@@ -113,8 +113,8 @@ namespace eGradeBook.Services
                     {
                         FirstName = c.Student.FirstName,
                         LastName = c.Student.LastName,
-                        ClassRoom = c.Student.ClassRoom.Name,
-                        ClassRoomId = c.Student.ClassRoom.Id,
+                        ClassRoom = c.Student.Enrollments.FirstOrDefault()?.ClassRoom.Name,
+                        ClassRoomId = c.Student.Enrollments.FirstOrDefault()?.ClassRoom.Id,
                         StudentId = c.Student.Id
                     }).ToList()
                 });

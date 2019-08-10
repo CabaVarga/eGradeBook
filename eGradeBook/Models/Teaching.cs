@@ -44,9 +44,7 @@ namespace eGradeBook.Models
         // [Required]
         public virtual Course Course { get; set; }
 
-        /// <summary>
-        /// A collection of programs where the course is taught by the teacher
-        /// </summary>
-        public virtual ICollection<Program> Programs { get; set; }
+
+        public virtual ICollection<TeachingProgram> TeachingPrograms { get; set; }
     }
 }

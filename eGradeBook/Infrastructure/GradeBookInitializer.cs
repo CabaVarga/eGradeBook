@@ -35,192 +35,192 @@ namespace eGradeBook.Infrastructure
             logger.Info("Seeding ended");
         }
 
-        private void SeedByAlgorithm(GradeBookContext context)
-        {
-            try
-            {
-                logger.Info("Seeding began");
-                UserManager<GradeBookUser, int> _userManager =
-                    new UserManager<GradeBookUser, int>(
-                        new UserStore<GradeBookUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(context));
+        //private void SeedByAlgorithm(GradeBookContext context)
+        //{
+        //    try
+        //    {
+        //        logger.Info("Seeding began");
+        //        UserManager<GradeBookUser, int> _userManager =
+        //            new UserManager<GradeBookUser, int>(
+        //                new UserStore<GradeBookUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(context));
 
-                RoleManager<CustomRole, int> _roleManager =
-                    new RoleManager<CustomRole, int>(new RoleStore<CustomRole, int, CustomUserRole>(context));
+        //        RoleManager<CustomRole, int> _roleManager =
+        //            new RoleManager<CustomRole, int>(new RoleStore<CustomRole, int, CustomUserRole>(context));
 
-                #region Roles
-                CustomRole adminRole = new CustomRole() { Name = "admins" };
-                CustomRole studentRole = new CustomRole() { Name = "students" };
-                CustomRole teacherRole = new CustomRole() { Name = "teachers" };
-                CustomRole parentRole = new CustomRole() { Name = "parents" };
+        //        #region Roles
+        //        CustomRole adminRole = new CustomRole() { Name = "admins" };
+        //        CustomRole studentRole = new CustomRole() { Name = "students" };
+        //        CustomRole teacherRole = new CustomRole() { Name = "teachers" };
+        //        CustomRole parentRole = new CustomRole() { Name = "parents" };
 
-                _roleManager.Create(adminRole);
-                _roleManager.Create(studentRole);
-                _roleManager.Create(teacherRole);
-                _roleManager.Create(parentRole);
-                #endregion
+        //        _roleManager.Create(adminRole);
+        //        _roleManager.Create(studentRole);
+        //        _roleManager.Create(teacherRole);
+        //        _roleManager.Create(parentRole);
+        //        #endregion
 
-                logger.Info("Roles created");
+        //        logger.Info("Roles created");
 
-                #region Admins
-                AdminUser admin_pera = new AdminUser() { UserName = "peraperic", FirstName = "Pera", LastName = "Peric" };
-                AdminUser admin_milan = new AdminUser() { UserName = "milanmilic", FirstName = "Milan", LastName = "Milic" };
+        //        #region Admins
+        //        AdminUser admin_pera = new AdminUser() { UserName = "peraperic", FirstName = "Pera", LastName = "Peric" };
+        //        AdminUser admin_milan = new AdminUser() { UserName = "milanmilic", FirstName = "Milan", LastName = "Milic" };
 
-                _userManager.Create(admin_pera, "password");
-                _userManager.Create(admin_milan, "password");
+        //        _userManager.Create(admin_pera, "password");
+        //        _userManager.Create(admin_milan, "password");
 
-                _userManager.AddToRole(admin_pera.Id, "admins");
-                _userManager.AddToRole(admin_milan.Id, "admins");
-                #endregion
+        //        _userManager.AddToRole(admin_pera.Id, "admins");
+        //        _userManager.AddToRole(admin_milan.Id, "admins");
+        //        #endregion
 
-                logger.Info("Admins created");
+        //        logger.Info("Admins created");
 
-                #region Courses, FOR NOW LET's use these
-                List<Course> courses = new List<Course>();
-                courses.Add(new Course() { Name = "Mathematics", ColloqialName = "Matis" });
-                courses.Add(new Course() { Name = "Chemistry", ColloqialName = "Hemija" });
-                courses.Add(new Course() { Name = "Biology", ColloqialName = "Biologija" });
-                courses.Add(new Course() { Name = "Informatics", ColloqialName = "Informatika" });
-                courses.Add(new Course() { Name = "German", ColloqialName = "Nemacki" });
-                courses.Add(new Course() { Name = "History", ColloqialName = "Istorija" });
-                courses.Add(new Course() { Name = "English", ColloqialName = "Engleski" });
+        //        #region Courses, FOR NOW LET's use these
+        //        List<Course> courses = new List<Course>();
+        //        courses.Add(new Course() { Name = "Mathematics", ColloqialName = "Matis" });
+        //        courses.Add(new Course() { Name = "Chemistry", ColloqialName = "Hemija" });
+        //        courses.Add(new Course() { Name = "Biology", ColloqialName = "Biologija" });
+        //        courses.Add(new Course() { Name = "Informatics", ColloqialName = "Informatika" });
+        //        courses.Add(new Course() { Name = "German", ColloqialName = "Nemacki" });
+        //        courses.Add(new Course() { Name = "History", ColloqialName = "Istorija" });
+        //        courses.Add(new Course() { Name = "English", ColloqialName = "Engleski" });
 
-                context.Courses.AddRange(courses);
+        //        context.Courses.AddRange(courses);
 
-                context.SaveChanges();
-                #endregion
+        //        context.SaveChanges();
+        //        #endregion
 
-                logger.Info("Courses cretated");
+        //        logger.Info("Courses cretated");
 
-                #region Students
+        //        #region Students
 
-                List<StudentUser> students = SeederHelper.CreateStudents(20);
+        //        List<StudentUser> students = SeederHelper.CreateStudents(20);
 
-                foreach (var s in students)
-                {
-                    context.Users.Add(s);
-                    context.SaveChanges();
+        //        foreach (var s in students)
+        //        {
+        //            context.Users.Add(s);
+        //            context.SaveChanges();
 
-                    CustomUserRole st = new CustomUserRole() { RoleId = studentRole.Id, UserId = s.Id };
-                    context.SaveChanges();
-                }
+        //            CustomUserRole st = new CustomUserRole() { RoleId = studentRole.Id, UserId = s.Id };
+        //            context.SaveChanges();
+        //        }
 
-                #endregion
+        //        #endregion
 
-                logger.Info("Students created");
+        //        logger.Info("Students created");
 
-                #region Teachers
-                List<TeacherUser> teachers = SeederHelper.CreateTeachers(10);
+        //        #region Teachers
+        //        List<TeacherUser> teachers = SeederHelper.CreateTeachers(10);
 
-                foreach (var t in teachers)
-                {
-                    context.Users.Add(t);
-                    context.SaveChanges();
+        //        foreach (var t in teachers)
+        //        {
+        //            context.Users.Add(t);
+        //            context.SaveChanges();
 
-                    CustomUserRole st = new CustomUserRole() { RoleId = teacherRole.Id, UserId = t.Id };
-                    context.SaveChanges();
-                }
-                #endregion
+        //            CustomUserRole st = new CustomUserRole() { RoleId = teacherRole.Id, UserId = t.Id };
+        //            context.SaveChanges();
+        //        }
+        //        #endregion
 
-                logger.Info("Teachers created");
+        //        logger.Info("Teachers created");
 
-                #region Parents
-                List<StudentParent> studentParents = SeederHelper.CreateRealisticParents(students);
+        //        #region Parents
+        //        List<StudentParent> studentParents = SeederHelper.CreateRealisticParents(students);
 
-                List<ParentUser> parents = studentParents.Select(sp => sp.Parent).Distinct().ToList();
+        //        List<ParentUser> parents = studentParents.Select(sp => sp.Parent).Distinct().ToList();
 
-                foreach (var p in parents)
-                {
-                    context.Users.Add(p);
+        //        foreach (var p in parents)
+        //        {
+        //            context.Users.Add(p);
 
-                    context.SaveChanges();
+        //            context.SaveChanges();
 
-                    CustomUserRole st = new CustomUserRole() { RoleId = parentRole.Id, UserId = p.Id };
-                    context.SaveChanges();
-                }
+        //            CustomUserRole st = new CustomUserRole() { RoleId = parentRole.Id, UserId = p.Id };
+        //            context.SaveChanges();
+        //        }
 
-                context.StudentParents.AddRange(studentParents);
-                context.SaveChanges();
-                #endregion
+        //        context.StudentParents.AddRange(studentParents);
+        //        context.SaveChanges();
+        //        #endregion
 
-                logger.Info("Parents created");
+        //        logger.Info("Parents created");
 
-                #region Teaching (assignments)
+        //        #region Teaching (assignments)
 
-                // --- Teaching assignments *** This one could have been added to curriculum....
-                List<Teaching> teachings = SeederHelper.AssignTeaching(teachers, courses);
+        //        // --- Teaching assignments *** This one could have been added to curriculum....
+        //        List<Teaching> teachings = SeederHelper.AssignTeaching(teachers, courses);
 
-                context.TeachingAssignments.AddRange(teachings);
-                context.SaveChanges();
+        //        context.TeachingAssignments.AddRange(teachings);
+        //        context.SaveChanges();
 
-                #endregion
+        //        #endregion
 
-                logger.Info("Teaching assignments created");
+        //        logger.Info("Teaching assignments created");
 
-                #region Classrooms
-                List<ClassRoom> classes = SeederHelper.CreateSchoolClasses(2, 5, 6);
-                context.ClassRooms.AddRange(classes);
+        //        #region Classrooms
+        //        List<ClassRoom> classes = SeederHelper.CreateSchoolClasses(2, 5, 6);
+        //        context.ClassRooms.AddRange(classes);
 
-                context.SaveChanges();
+        //        context.SaveChanges();
 
-                #endregion
+        //        #endregion
 
-                logger.Info("Classrooms created");
+        //        logger.Info("Classrooms created");
 
-                #region Student enrollments, Programs
-                SeederHelper.AssignStudentsToClasses(students, classes, 2);
-                context.SaveChanges();
+        //        #region Student enrollments, Programs
+        //        SeederHelper.AssignStudentsToClasses(students, classes, 2);
+        //        context.SaveChanges();
 
-                logger.Info("Students assigned to classrooms");
+        //        logger.Info("Students assigned to classrooms");
 
-                List<Program> programs = SeederHelper.AssignProgram(teachings, classes);
-                context.Programs.AddRange(programs);
+        //        List<Program> programs = SeederHelper.AssignProgram(teachings, classes);
+        //        context.Programs.AddRange(programs);
 
-                logger.Info("Students assigned to takings");
+        //        logger.Info("Students assigned to takings");
 
-                context.SaveChanges();
-                #endregion
+        //        context.SaveChanges();
+        //        #endregion
 
-                logger.Info("Students enrolled, programs created");
+        //        logger.Info("Students enrolled, programs created");
 
-                #region Learning (student learning a subject)
+        //        #region Learning (student learning a subject)
 
-                List<Taking> takings = SeederHelper.AssignTakings(students, programs);
-                context.Takings.AddRange(takings);
-                context.SaveChanges();
-                #endregion
+        //        List<Taking> takings = SeederHelper.AssignTakings(students, programs);
+        //        context.Takings.AddRange(takings);
+        //        context.SaveChanges();
+        //        #endregion
 
-                logger.Info("Takings creadte");
+        //        logger.Info("Takings creadte");
 
-                #region Grades 
-                List<Grade> grades = SeederHelper.AssignGrades(takings, new DateTime(2018, 9, 1), new DateTime(2018, 12, 31), 1, 2, 5);
-                context.Grades.AddRange(grades);
-                context.SaveChanges();
-                #endregion
+        //        #region Grades 
+        //        List<Grade> grades = SeederHelper.AssignGrades(takings, new DateTime(2018, 9, 1), new DateTime(2018, 12, 31), 1, 2, 5);
+        //        context.Grades.AddRange(grades);
+        //        context.SaveChanges();
+        //        #endregion
 
-                logger.Info("Grades assigned");
+        //        logger.Info("Grades assigned");
 
-                #region Final Grades
-                List<FinalGrade> finalGrades = SeederHelper.AssignFinalGrades(takings, new DateTime(2018, 9, 1), new DateTime(2018, 12, 31), 1);
-                context.FinalGrades.AddRange(finalGrades);
-                context.SaveChanges();
+        //        #region Final Grades
+        //        List<FinalGrade> finalGrades = SeederHelper.AssignFinalGrades(takings, new DateTime(2018, 9, 1), new DateTime(2018, 12, 31), 1);
+        //        context.FinalGrades.AddRange(finalGrades);
+        //        context.SaveChanges();
 
-                #endregion
+        //        #endregion
 
-                logger.Info("Final grades assigned");
-            }
+        //        logger.Info("Final grades assigned");
+        //    }
 
-            catch (SqlException ex)
-            {
-                Debug.WriteLine("Database cannot be accessed.");
-                throw ex;
-            }
+        //    catch (SqlException ex)
+        //    {
+        //        Debug.WriteLine("Database cannot be accessed.");
+        //        throw ex;
+        //    }
 
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Seeding the database failed");
-                throw ex;
-            }
-        }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine("Seeding the database failed");
+        //        throw ex;
+        //    }
+        //}
 
         private void SeedByHand(GradeBookContext context)
         {
@@ -337,20 +337,24 @@ namespace eGradeBook.Infrastructure
 
                 #region Students
                 List<StudentUser> students = new List<StudentUser>();
-                students.Add(new StudentUser() { UserName = "zoranzoric", FirstName = "Zoran", LastName = "Zoric", Email = "zoran@gmail.com", Gender = "m", PhoneNumber = "064548458", PlaceOfBirth = "Novi Sad", DateOfBirth = DateTime.Parse("2010-05-23"), ClassRoom = classRooms[0] });
-                students.Add(new StudentUser() { UserName = "zoricazoric", FirstName = "Zorica", LastName = "Zoric", Email = "zorica@gmail.com", Gender = "f", PhoneNumber = "063565485", PlaceOfBirth = "Novi Sad", DateOfBirth = DateTime.Parse("2010-05-23"), ClassRoom = classRooms[0] });
-                students.Add(new StudentUser() { UserName = "dragankljajic", FirstName = "Dragan", LastName = "Kljajic", Email = "dragan@gmail.com", Gender = "m", PhoneNumber = "02365465", PlaceOfBirth = "Becej", DateOfBirth = DateTime.Parse("2010-01-23"), ClassRoom = classRooms[1] });
-                students.Add(new StudentUser() { UserName = "draganamihic", FirstName = "Dragana", LastName = "Mihic", Email = "dragana@gmail.com", Gender = "f", PhoneNumber = "062456895", PlaceOfBirth = "Temerin", DateOfBirth = DateTime.Parse("2010-04-12"), ClassRoom = classRooms[1] });
-                students.Add(new StudentUser() { UserName = "milanmihic", FirstName = "Milan", LastName = "Mihic", Email = "milan@gmail.com", Gender = "m", PhoneNumber = "06548575", PlaceOfBirth = "Rumenka", DateOfBirth = DateTime.Parse("2009-11-05"), ClassRoom = classRooms[2] });
-                students.Add(new StudentUser() { UserName = "milanaivic", FirstName = "Milana", LastName = "Ivic", Email = "milana@gmail.com", Gender = "f", PhoneNumber = "02365847", PlaceOfBirth = "Novi Sad", DateOfBirth = DateTime.Parse("2009-08-07"), ClassRoom = classRooms[2] });
-                students.Add(new StudentUser() { UserName = "ivanmihic", FirstName = "Ivan", LastName = "Mihic", Email = "aleksandar@gmail.com", Gender = "m", PhoneNumber = "01254822", PlaceOfBirth = "Novi Sad", DateOfBirth = DateTime.Parse("2009-03-30"), ClassRoom = classRooms[3] });
-                students.Add(new StudentUser() { UserName = "ivanazoric", FirstName = "Ivana", LastName = "Zoric", Email = "aleksandra@gmail.com", Gender = "f", PhoneNumber = "01525465", PlaceOfBirth = "Beograd", DateOfBirth = DateTime.Parse("2009-02-28"), ClassRoom = classRooms[3] });
+                students.Add(new StudentUser() { UserName = "zoranzoric", FirstName = "Zoran", LastName = "Zoric", Email = "zoran@gmail.com", Gender = "m", PhoneNumber = "064548458", PlaceOfBirth = "Novi Sad", DateOfBirth = DateTime.Parse("2010-05-23") });
+                students.Add(new StudentUser() { UserName = "zoricazoric", FirstName = "Zorica", LastName = "Zoric", Email = "zorica@gmail.com", Gender = "f", PhoneNumber = "063565485", PlaceOfBirth = "Novi Sad", DateOfBirth = DateTime.Parse("2010-05-23") });
+                students.Add(new StudentUser() { UserName = "dragankljajic", FirstName = "Dragan", LastName = "Kljajic", Email = "dragan@gmail.com", Gender = "m", PhoneNumber = "02365465", PlaceOfBirth = "Becej", DateOfBirth = DateTime.Parse("2010-01-23") });
+                students.Add(new StudentUser() { UserName = "draganamihic", FirstName = "Dragana", LastName = "Mihic", Email = "dragana@gmail.com", Gender = "f", PhoneNumber = "062456895", PlaceOfBirth = "Temerin", DateOfBirth = DateTime.Parse("2010-04-12") });
+                students.Add(new StudentUser() { UserName = "milanmihic", FirstName = "Milan", LastName = "Mihic", Email = "milan@gmail.com", Gender = "m", PhoneNumber = "06548575", PlaceOfBirth = "Rumenka", DateOfBirth = DateTime.Parse("2009-11-05") });
+                students.Add(new StudentUser() { UserName = "milanaivic", FirstName = "Milana", LastName = "Ivic", Email = "milana@gmail.com", Gender = "f", PhoneNumber = "02365847", PlaceOfBirth = "Novi Sad", DateOfBirth = DateTime.Parse("2009-08-07") });
+                students.Add(new StudentUser() { UserName = "ivanmihic", FirstName = "Ivan", LastName = "Mihic", Email = "aleksandar@gmail.com", Gender = "m", PhoneNumber = "01254822", PlaceOfBirth = "Novi Sad", DateOfBirth = DateTime.Parse("2009-03-30") });
+                students.Add(new StudentUser() { UserName = "ivanazoric", FirstName = "Ivana", LastName = "Zoric", Email = "aleksandra@gmail.com", Gender = "f", PhoneNumber = "01525465", PlaceOfBirth = "Beograd", DateOfBirth = DateTime.Parse("2009-02-28") });
 
                 foreach (var student in students)
                 {
                     _userManager.Create(student, "password");
                     _userManager.AddToRole(student.Id, "teachers");
                 }
+                #endregion
+
+                #region Enrollments
+
                 #endregion
 
                 #region Takings
