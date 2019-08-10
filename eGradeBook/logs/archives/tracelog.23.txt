@@ -1,1 +1,0 @@
-2019/08/10 09:07:12.542|Trace|16|8000015b-0000-fb00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 417, ProcessingTime = 66366 }||LoggingMiddleware.Invoke

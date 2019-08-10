@@ -1,2 +1,0 @@
-2019/08/10 09:16:39.890|Info|19|800000ec-0000-f900-b63f-84710c7967bb|eGradeBook.Controllers.AccountsController|Created Student 20||AccountsController.RegisterStudent
-2019/08/10 09:16:39.990|Trace|27|800000ec-0000-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 201, ProcessingTime = 93165 }||LoggingMiddleware.Invoke

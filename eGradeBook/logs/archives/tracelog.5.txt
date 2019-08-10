@@ -1,5 +1,0 @@
-2019/08/10 09:57:01.782|Trace|48|80000158-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /api/students, ResourceURI = http://localhost:50663/api/students }||LoggingMiddleware.Invoke
-2019/08/10 09:57:01.817|Info|48|80000158-0000-fd00-b63f-84710c7967bb|eGradeBook.Controllers.StudentsController|User {"UserId":1, "UserRole":"admins"} requested all students||StudentsController.GetAllStudents
-2019/08/10 09:57:01.844|Info|48|80000158-0000-fd00-b63f-84710c7967bb|eGradeBook.Services.ProgramsService|Service received request for returning all students||StudentsService.GetAllStudentsDto
-2019/08/10 09:57:01.862|Trace|48|80000158-0000-fd00-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.StudentUser" repository Get request with filter and all||GenericRepository`1.Get
-2019/08/10 09:57:01.890|Trace|49|80000158-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 75 }||LoggingMiddleware.Invoke

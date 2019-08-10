@@ -1,2 +1,0 @@
-2019/08/10 09:55:06.570|Error|32|80000156-0000-fd00-b63f-84710c7967bb|eGradeBook.Utilities.WebApi.NLogExceptionLogger|POST http://localhost:50663/api/classrooms/2/enrollments|Student 20 from classroom 2 is enrolled in a course, cannot change classRooms anymore|NLogExceptionLogger.Log
-2019/08/10 09:55:08.266|Trace|32|80000156-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 409, ProcessingTime = 9129 }||LoggingMiddleware.Invoke

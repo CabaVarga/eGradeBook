@@ -1,5 +1,0 @@
-2019/08/10 10:06:48.262|Trace|1||eGradeBook.Providers.CustomAuthorizationServerProvider|Auth server constructed||CustomAuthorizationServerProvider..ctor
-2019/08/10 10:06:48.631|Trace|9|8000010d-0000-f700-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /, ResourceURI = http://localhost:50663/ }||LoggingMiddleware.Invoke
-2019/08/10 10:06:50.752|Trace|9|8000010d-0000-f700-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /, ResourceURI = http://localhost:50663/ }||LoggingMiddleware.Invoke
-2019/08/10 10:06:50.864|Trace|11|8000010d-0000-f700-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 96 }||LoggingMiddleware.Invoke
-2019/08/10 10:06:50.922|Trace|11|8000010d-0000-f700-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 2267 }||LoggingMiddleware.Invoke

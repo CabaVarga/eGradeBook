@@ -1,3 +1,0 @@
-2019/08/10 09:35:36.379|Trace|20|80000139-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = POST, Path = /api/takings, ResourceURI = http://localhost:50663/api/takings }||LoggingMiddleware.Invoke
-2019/08/10 09:35:36.523|Info|20|80000139-0000-fd00-b63f-84710c7967bb|eGradeBook.Utilities.WebApi.ValidateModelAttribute|Model validation failure||ValidateModelAttribute.OnActionExecuting
-2019/08/10 09:35:36.564|Trace|40|80000139-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 400, ProcessingTime = 138 }||LoggingMiddleware.Invoke
