@@ -16,6 +16,7 @@ namespace eGradeBook.Controllers
     /// Web api controller for parent users and related tasks
     /// </summary>
     [RoutePrefix("api/parents")]
+    [Authorize(Roles = "admins,teachers")]
     public class ParentsController : ApiController
     {
         private IParentsService service;

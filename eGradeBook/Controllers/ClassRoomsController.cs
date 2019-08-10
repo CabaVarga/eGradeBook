@@ -17,6 +17,7 @@ namespace eGradeBook.Controllers
     /// Web api controller for working with classrooms related data and relations
     /// </summary>
     [RoutePrefix("api/classrooms")]
+    [Authorize]
     public class ClassRoomsController : ApiController
     {
         /// <summary>
@@ -40,6 +41,7 @@ namespace eGradeBook.Controllers
         /// <returns></returns>
         [Route("")]
         [HttpGet]
+        [Authorize(Roles = "admins")]
         public IHttpActionResult GetAllClassRooms()
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
@@ -55,6 +57,7 @@ namespace eGradeBook.Controllers
         /// <param name="classRoomId"></param>
         /// <returns></returns>
         [Route("{classRoomId:int}")]
+        [Authorize(Roles = "admins")]
         [HttpGet]
         public IHttpActionResult GetClassRoomById(int classRoomId)
         {
@@ -72,6 +75,7 @@ namespace eGradeBook.Controllers
         /// <param name="enroll"></param>
         /// <returns></returns>
         [Route("{classRoomId}/enrollments")]
+        [Authorize(Roles = "admins")]
         [SwaggerRequestExample(typeof(ClassRoomEnrollStudentDto), typeof(EnrollStudentInClassRoomExample))]
         [HttpPost]
         public IHttpActionResult PostEnrollStudent(int classRoomId, ClassRoomEnrollStudentDto enroll)
@@ -95,6 +99,7 @@ namespace eGradeBook.Controllers
         /// <returns></returns>
         [Route("")]
         [HttpPost]
+        [Authorize(Roles = "admins")]
         public IHttpActionResult PostCreateClassRoom(ClassRoomRegistrationDto classRoom)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
@@ -112,6 +117,7 @@ namespace eGradeBook.Controllers
         /// <returns></returns>
         [Route("{classRoomId:int}/programs")]
         [HttpPost]
+        [Authorize(Roles = "admins")]
         [SwaggerRequestExample(typeof(ClassRoomProgramDto), typeof(CreateClassRoomProgramExample))]
         public IHttpActionResult PostCreateProgramOfClassRoom(int classRoomId, ClassRoomProgramDto program)
         {

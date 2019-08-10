@@ -1,9 +1,10 @@
-2019/08/10 04:49:28.337|Error|6|80000037-0000-f500-b63f-84710c7967bb|POST http://localhost:50663/api/grades/for-teachers/3|eGradeBook.Services.Exceptions.TakingNotFoundException: Student 12 is not taking the course 1 with teacher 3 in classroom 4
-   at eGradeBook.Services.TakingsService.GetTaking(Int32 courseId, Int32 teacherId, Int32 classRoomId, Int32 studentId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\TakingsService.cs:line 131
-   at eGradeBook.Services.GradesService.CreateGrade(Int32 courseId, Int32 teacherId, Int32 classRoomId, Int32 studentId, Int32 schoolTerm, DateTime assigned, Int32 gradePoint, String notes) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 73
-   at eGradeBook.Services.GradesService.CreateGrade(GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 111
-   at eGradeBook.Services.GradesService.CreateGradeDto(GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 133
-   at eGradeBook.Controllers.GradesController.CreateGradeAsTeacher(Int32 teacherId, GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\GradesController.cs:line 124
+2019/08/10 00:52:54.922|Error|7|8000000c-0002-f900-b63f-84710c7967bb|GET http://localhost:50663/api/admins/logs/archives|System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\Varga\source\repos\eGradeBook\eGradeBook\logs\archives'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileSystemEnumerableIterator`1.CommonInit()
+   at System.IO.FileSystemEnumerableIterator`1..ctor(String path, String originalUserPath, String searchPattern, SearchOption searchOption, SearchResultHandler`1 resultHandler, Boolean checkHost)
+   at System.IO.DirectoryInfo.InternalGetFiles(String searchPattern, SearchOption searchOption)
+   at System.IO.DirectoryInfo.GetFiles()
+   at eGradeBook.Controllers.AdminsController.GetListOfArchivedLogfiles() in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\AdminsController.cs:line 166
    at lambda_method(Closure , Object , Object[] )
    at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass6_2.<GetExecutor>b__2(Object instance, Object[] methodParameters)
    at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
@@ -29,13 +30,11 @@
 --- End of stack trace from previous location where exception was thrown ---
    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() courseId: 1;teacherId: 3;classRoomId: 4;studentId: 12;MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
-2019/08/10 04:52:34.799|Error|43|8000003d-0000-f500-b63f-84710c7967bb|POST http://localhost:50663/api/grades/for-teachers/3|eGradeBook.Services.Exceptions.TakingNotFoundException: Student 11 is not taking the course 2 with teacher 3 in classroom 2
-   at eGradeBook.Services.TakingsService.GetTaking(Int32 courseId, Int32 teacherId, Int32 classRoomId, Int32 studentId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\TakingsService.cs:line 131
-   at eGradeBook.Services.GradesService.CreateGrade(Int32 courseId, Int32 teacherId, Int32 classRoomId, Int32 studentId, Int32 schoolTerm, DateTime assigned, Int32 gradePoint, String notes) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 73
-   at eGradeBook.Services.GradesService.CreateGrade(GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 111
-   at eGradeBook.Services.GradesService.CreateGradeDto(GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 133
-   at eGradeBook.Controllers.GradesController.CreateGradeAsTeacher(Int32 teacherId, GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\GradesController.cs:line 124
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/10 01:17:04.770|Error|40|800000ca-0000-f600-b63f-84710c7967bb|GET http://localhost:50663/api/grades/1|System.NullReferenceException: Object reference not set to an instance of an object.
+   at eGradeBook.Services.Converters.GradesConverter.GradeToGradeDto(Grade grade) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\Converters\GradesConverter.cs:line 23
+   at eGradeBook.Services.GradesService.GetGradeDtoById(Int32 gradeId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 291
+   at eGradeBook.Controllers.GradesController.GetGradeById(Int32 gradeId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\GradesController.cs:line 54
    at lambda_method(Closure , Object , Object[] )
    at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass6_2.<GetExecutor>b__2(Object instance, Object[] methodParameters)
    at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
@@ -61,13 +60,14 @@
 --- End of stack trace from previous location where exception was thrown ---
    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() courseId: 2;teacherId: 3;classRoomId: 2;studentId: 11;MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
-2019/08/10 04:55:15.386|Error|25|8000013b-0000-fb00-b63f-84710c7967bb|POST http://localhost:50663/api/grades/for-teachers/3|eGradeBook.Services.Exceptions.TakingNotFoundException: Student 10 is not taking the course 1 with teacher 3 in classroom 2
-   at eGradeBook.Services.TakingsService.GetTaking(Int32 courseId, Int32 teacherId, Int32 classRoomId, Int32 studentId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\TakingsService.cs:line 131
-   at eGradeBook.Services.GradesService.CreateGrade(Int32 courseId, Int32 teacherId, Int32 classRoomId, Int32 studentId, Int32 schoolTerm, DateTime assigned, Int32 gradePoint, String notes) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 73
-   at eGradeBook.Services.GradesService.CreateGrade(GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 111
-   at eGradeBook.Services.GradesService.CreateGradeDto(GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 133
-   at eGradeBook.Controllers.GradesController.CreateGradeAsTeacher(Int32 teacherId, GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\GradesController.cs:line 124
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/10 01:18:30.486|Error|51|800000bb-0000-fc00-b63f-84710c7967bb|GET http://localhost:50663/api/admins/logs/serilog.txt/view|System.IO.IOException: The process cannot access the file 'C:\Users\Varga\source\repos\eGradeBook\eGradeBook\logs\serilog.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path)
+   at eGradeBook.Controllers.AdminsController.GetLogByFileName(String logfile) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\AdminsController.cs:line 98
    at lambda_method(Closure , Object , Object[] )
    at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass6_2.<GetExecutor>b__2(Object instance, Object[] methodParameters)
    at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
@@ -93,13 +93,14 @@
 --- End of stack trace from previous location where exception was thrown ---
    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() courseId: 1;teacherId: 3;classRoomId: 2;studentId: 10;MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
-2019/08/10 04:55:28.006|Error|13|8000013d-0000-fb00-b63f-84710c7967bb|POST http://localhost:50663/api/grades/for-teachers/3|eGradeBook.Services.Exceptions.TakingNotFoundException: Student 10 is not taking the course 3 with teacher 3 in classroom 2
-   at eGradeBook.Services.TakingsService.GetTaking(Int32 courseId, Int32 teacherId, Int32 classRoomId, Int32 studentId) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\TakingsService.cs:line 131
-   at eGradeBook.Services.GradesService.CreateGrade(Int32 courseId, Int32 teacherId, Int32 classRoomId, Int32 studentId, Int32 schoolTerm, DateTime assigned, Int32 gradePoint, String notes) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 73
-   at eGradeBook.Services.GradesService.CreateGrade(GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 111
-   at eGradeBook.Services.GradesService.CreateGradeDto(GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Services\GradesService.cs:line 133
-   at eGradeBook.Controllers.GradesController.CreateGradeAsTeacher(Int32 teacherId, GradeDto gradeDto) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\GradesController.cs:line 124
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/10 01:18:50.362|Error|54|800000bd-0000-fc00-b63f-84710c7967bb|GET http://localhost:50663/api/admins/logs/serilog.txt/view|System.IO.IOException: The process cannot access the file 'C:\Users\Varga\source\repos\eGradeBook\eGradeBook\logs\serilog.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path)
+   at eGradeBook.Controllers.AdminsController.GetLogByFileName(String logfile) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\AdminsController.cs:line 98
    at lambda_method(Closure , Object , Object[] )
    at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass6_2.<GetExecutor>b__2(Object instance, Object[] methodParameters)
    at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
@@ -125,4 +126,36 @@
 --- End of stack trace from previous location where exception was thrown ---
    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() courseId: 3;teacherId: 3;classRoomId: 2;studentId: 10;MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]
+2019/08/10 01:19:16.139|Error|51|800000d6-0000-f600-b63f-84710c7967bb|GET http://localhost:50663/api/admins/logs/serilog.txt/download|System.IO.IOException: The process cannot access the file 'C:\Users\Varga\source\repos\eGradeBook\eGradeBook\logs\serilog.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at eGradeBook.Controllers.AdminsController.DownloadLogfile(String logfile) in C:\Users\Varga\source\repos\eGradeBook\eGradeBook\Controllers\AdminsController.cs:line 134
+   at lambda_method(Closure , Object , Object[] )
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass6_2.<GetExecutor>b__2(Object instance, Object[] methodParameters)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Web.Http.Filters.ActionFilterAttribute.<CallOnActionExecutedAsync>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Filters.ActionFilterAttribute.<ExecuteActionFilterAsyncCore>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__6.MoveNext() MS_LoggedBy: System.Collections.Generic.List`1[System.Object]

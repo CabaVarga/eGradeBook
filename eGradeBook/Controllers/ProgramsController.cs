@@ -19,6 +19,7 @@ namespace eGradeBook.Controllers
     /// NOTE final grades will also only be an aspect of either takings or grades... but i'm not completely convinced yet of that
     /// </summary>
     [RoutePrefix("api/programs")]
+    [Authorize(Roles = "admins")]
     public class ProgramsController : ApiController
     {
         private IProgramsService programs;

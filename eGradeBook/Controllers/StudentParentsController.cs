@@ -12,6 +12,7 @@ using System.Web.Http;
 namespace eGradeBook.Controllers
 {
     [RoutePrefix("api/studentparents")]
+    [Authorize(Roles = "admins")]
     public class StudentParentsController : ApiController
     {
         private IStudentParentsService studentParentsService;

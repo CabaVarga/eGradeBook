@@ -98,5 +98,7 @@ namespace eGradeBook.Services
 
         Grade GetGradeById(int gradeId);
         GradeDto GetGradeDtoById(int gradeId);
+
+        GradeDto UpdateGrade(GradeDto gradeDto);
     }
 }

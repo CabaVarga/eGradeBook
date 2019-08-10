@@ -21,6 +21,7 @@ namespace eGradeBook.Controllers
     /// Web api controller for working with Admins and for admin exclusive functionalities, like accessing log files, for example.
     /// </summary>
     [RoutePrefix("api/admins")]
+    [Authorize(Roles = "admins")]
     public class AdminsController : ApiController
     {
         private IAdminsService service;

@@ -1,2 +1,6 @@
-2019/08/10 09:16:39.890|Info|19|800000ec-0000-f900-b63f-84710c7967bb|eGradeBook.Controllers.AccountsController|Created Student 20||AccountsController.RegisterStudent
-2019/08/10 09:16:39.990|Trace|27|800000ec-0000-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 201, ProcessingTime = 93165 }||LoggingMiddleware.Invoke
+2019/08/10 09:34:19.058|Trace|23|80000137-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = POST, Path = /api/classrooms/1/enrollments, ResourceURI = http://localhost:50663/api/classrooms/1/enrollments }||LoggingMiddleware.Invoke
+2019/08/10 09:34:19.133|Info|23|80000137-0000-fd00-b63f-84710c7967bb|eGradeBook.Controllers.ClassRoomsController|Enroll Student 20 in ClassRoom 1 {"StudentId":20, "ClassRoomId":1} by {"UserId":1, "UserRole":"admins"}||ClassRoomsController.PostEnrollStudent
+2019/08/10 09:34:19.151|Trace|23|80000137-0000-fd00-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.ClassRoom" repository Get entity by Id 1||GenericRepository`1.GetByID
+2019/08/10 09:34:19.210|Trace|23|80000137-0000-fd00-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.StudentUser" repository Get request with filter and all||GenericRepository`1.Get
+2019/08/10 09:34:19.318|Trace|23|80000137-0000-fd00-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.ClassRoom" repository Get request with filter and all||GenericRepository`1.Get
+2019/08/10 09:34:19.344|Trace|19|80000137-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 239 }||LoggingMiddleware.Invoke

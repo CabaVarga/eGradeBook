@@ -315,7 +315,7 @@ namespace eGradeBook.Controllers
         [Route("whois/{userId}")]
         [ResponseType(typeof(UserDataDto))]
         [HttpGet]
-        [Authorize(Roles = "admins,teachers,students,parents")]
+        [Authorize(Roles = "admins")]
         public IHttpActionResult GetWhoIsUser(int userId)
         {
             return Ok(service.GetUserData(userId));

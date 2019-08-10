@@ -17,6 +17,7 @@ namespace eGradeBook.Controllers
     /// Web api for working with Courses
     /// </summary>
     [RoutePrefix("api/courses")]
+    [Authorize]
     public class CoursesController : ApiController
     {
         private ICoursesService service;
@@ -38,6 +39,7 @@ namespace eGradeBook.Controllers
         /// <returns></returns>
         [Route("")]
         [HttpGet]
+        [Authorize(Roles = "admins")]
         [ResponseType(typeof(IEnumerable<CourseDto>))]
         public IHttpActionResult GetAllCourses()
         {
@@ -62,6 +64,7 @@ namespace eGradeBook.Controllers
         /// <param name="courseId"></param>
         /// <returns></returns>
         [Route("{courseId:int}")]
+        [Authorize(Roles = "admins")]
         [HttpGet]
         [ResponseType(typeof(CourseDto))]
         public IHttpActionResult GetCourseById(int courseId)
@@ -106,6 +109,7 @@ namespace eGradeBook.Controllers
 
         #region Teachings
         [Route("{courseId}/teachers")]
+        [Authorize(Roles = "admins")]
         [HttpGet]
         public IHttpActionResult GetTeachingAssignments(int courseId)
         {
@@ -118,6 +122,7 @@ namespace eGradeBook.Controllers
 
         [Route("{courseId}/teachers/{teacherId}")]
         [HttpGet]
+        [Authorize(Roles = "admins")]
         public IHttpActionResult GetTeachingAssignments(int courseId, int teacherId)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
@@ -129,6 +134,7 @@ namespace eGradeBook.Controllers
 
         [Route("{courseId}/teachers")]
         [HttpPost]
+        [Authorize(Roles = "admins")]
         public IHttpActionResult CreateTeachingAssignment(int courseId, TeachingDto teaching)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
@@ -142,6 +148,7 @@ namespace eGradeBook.Controllers
         #region Programs
         [Route("{courseId}/teachers/{teacherId}/classrooms")]
         [HttpGet]
+        [Authorize(Roles = "admins")]
         public IHttpActionResult GetAllClassRoomsPrograms(int courseId, int teacherId)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
@@ -153,6 +160,7 @@ namespace eGradeBook.Controllers
 
         [Route("{courseId}/teachers/{teacherId}/classrooms/{classRoomId}")]
         [HttpGet]
+        [Authorize(Roles = "admins")]
         public IHttpActionResult GetClassRoomProgram(int courseId, int teacherId, int classRoomId)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
@@ -164,6 +172,7 @@ namespace eGradeBook.Controllers
 
         [Route("{courseId}/teachers/{teacherId}/classrooms")]
         [HttpPost]
+        [Authorize(Roles = "admins")]
         public IHttpActionResult CreateClassRoomProgram(ProgramDto dto)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
@@ -191,6 +200,7 @@ namespace eGradeBook.Controllers
         #region Takings
         [Route("{courseId}/teachers/{teacherId}/classrooms/{classRoomId}/students")]
         [HttpGet]
+        [Authorize(Roles = "admins")]
         public IHttpActionResult GetStudentsTakings(int courseId, int teacherId, int classRoomId)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
@@ -202,6 +212,7 @@ namespace eGradeBook.Controllers
 
         [Route("{courseId}/teachers/{teacherId}/classrooms/{classRoomId}/students/{studentId}")]
         [HttpGet]
+        [Authorize(Roles = "admins")]
         public IHttpActionResult GetStudentTaking(int courseId, int teacherId, int classRoomId, int studentId)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
@@ -213,6 +224,7 @@ namespace eGradeBook.Controllers
 
         [Route("{courseId}/teachers/{teacherId}/classrooms/{classRoomId}/students")]
         [HttpPost]
+        [Authorize(Roles = "admins")]
         public IHttpActionResult CreateStudentTaking(TakingDto taking)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);

@@ -92,5 +92,13 @@ namespace eGradeBook.Services
         StudentReportDto GetStudentReport(int studentId);
 
         bool IsParent(int studentId, int parentId);
+
+        IEnumerable<StudentDto> GetStudentsByQuery(
+            int? teacherId = null,
+            int? studentId = null,
+            int? parentId = null,
+            int? courseId = null,
+            int? classRoomId = null,
+            int? schoolGrade = null);
     }
 }

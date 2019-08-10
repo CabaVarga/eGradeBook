@@ -193,6 +193,20 @@ namespace eGradeBook.Services
                 .Select(s => Converters.StudentsConverter.StudentToStudentDto(s));
         }
 
+        public IEnumerable<StudentDto> GetStudentsByQuery(int? teacherId = null, int? studentId = null, int? parentId = null, int? courseId = null, int? classRoomId = null, int? schoolGrade = null)
+        {
+            var students = db.StudentsRepository.Get(
+                g => (courseId != null ? g.Takings.Any(t => t.Program.Teaching.Course.Id == courseId) : true) &&
+                    (teacherId != null ? g.Takings.Any(t => t.Program.Teaching.TeacherId == teacherId) : true) &&
+                    (classRoomId != null ? g.Takings.Any(t => t.Program.Course.Id == classRoomId) : true) &&
+                    (studentId != null ? g.Id == studentId : true) &&
+                    (parentId != null ? g.StudentParents.Any(sp => sp.Parent.Id  == parentId) : true) &&
+                    (schoolGrade != null ? g.ClassRoom.ClassGrade == schoolGrade : true))
+                    .Select(g => Converters.StudentsConverter.StudentToStudentDto(g));
+
+            return students;
+        }
+
         public bool IsParent(int studentId, int parentId)
         {
             StudentParent studentParent = db.StudentParentsRepository.Get(sp => sp.StudentId == studentId && sp.ParentId == parentId).FirstOrDefault();

@@ -1,14 +1,3 @@
-2019/08/10 09:33:14.133|Trace|1||eGradeBook.Providers.CustomAuthorizationServerProvider|Auth server constructed||CustomAuthorizationServerProvider..ctor
-2019/08/10 09:33:14.560|Trace|9|80000126-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /, ResourceURI = http://localhost:50663/ }||LoggingMiddleware.Invoke
-2019/08/10 09:33:16.714|Trace|9|80000126-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /, ResourceURI = http://localhost:50663/ }||LoggingMiddleware.Invoke
-2019/08/10 09:33:16.838|Trace|10|80000126-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 112 }||LoggingMiddleware.Invoke
-2019/08/10 09:33:16.914|Trace|10|80000126-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 2325 }||LoggingMiddleware.Invoke
-2019/08/10 09:33:38.857|Trace|10|80000135-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = POST, Path = /api/accounts/register-student, ResourceURI = http://localhost:50663/api/accounts/register-student }||LoggingMiddleware.Invoke
-2019/08/10 09:33:39.162|Info|10|80000135-0000-fd00-b63f-84710c7967bb|eGradeBook.Controllers.AccountsController|Register Student {"PlaceOfBirth":"Novi Sad", "DateOfBirth":"2000-10-10T00:00:00Z", "UserName":"noviucenik", "FirstName":"Ime", "LastName":"Prezime", "Gender":"m", "Email":"ime@mail.com", "PhoneNumber":"0234255", "Password":"password", "ConfirmPassword":"password"} by {"UserId":1, "UserRole":"admins"}||AccountsController.RegisterStudent
-2019/08/10 09:33:39.198|Trace|10|80000135-0000-fd00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Register Student "noviucenik"||AuthRepository.RegisterStudentUser
-2019/08/10 09:33:43.365|Info|10|80000135-0000-fd00-b63f-84710c7967bb|eGradeBook.Infrastructure.GradeBookInitializer|Seeding started||GradeBookInitializer.Seed
-2019/08/10 09:33:43.387|Info|10|80000135-0000-fd00-b63f-84710c7967bb|eGradeBook.Infrastructure.GradeBookInitializer|Seeding began||GradeBookInitializer.SeedByHand
-2019/08/10 09:33:45.890|Info|10|80000135-0000-fd00-b63f-84710c7967bb|eGradeBook.Infrastructure.GradeBookInitializer|Seeding ended||GradeBookInitializer.Seed
-2019/08/10 09:33:45.941|Trace|9|80000135-0000-fd00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find User "noviucenik"||AuthRepository.FindUserByUserName
-2019/08/10 09:33:50.541|Info|10|80000135-0000-fd00-b63f-84710c7967bb|eGradeBook.Controllers.AccountsController|Created Student 20||AccountsController.RegisterStudent
-2019/08/10 09:33:50.571|Trace|10|80000135-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 201, ProcessingTime = 11702 }||LoggingMiddleware.Invoke
+2019/08/10 09:35:36.379|Trace|20|80000139-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = POST, Path = /api/takings, ResourceURI = http://localhost:50663/api/takings }||LoggingMiddleware.Invoke
+2019/08/10 09:35:36.523|Info|20|80000139-0000-fd00-b63f-84710c7967bb|eGradeBook.Utilities.WebApi.ValidateModelAttribute|Model validation failure||ValidateModelAttribute.OnActionExecuting
+2019/08/10 09:35:36.564|Trace|40|80000139-0000-fd00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 400, ProcessingTime = 138 }||LoggingMiddleware.Invoke

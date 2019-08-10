@@ -16,6 +16,7 @@ namespace eGradeBook.Controllers
     /// Takings controller
     /// </summary>
     [RoutePrefix("api/takings")]
+    [Authorize(Roles = "admins")]
     public class TakingsController : ApiController
     {
         private ITakingsService takingsService;

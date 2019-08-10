@@ -17,6 +17,7 @@ namespace eGradeBook.Controllers
     /// Web api controller for student users
     /// </summary>
     [RoutePrefix("api/students")]
+    [Authorize(Roles = "admins,students,teachers,parents")]
     public class StudentsController : ApiController
     {
         private IStudentsService service;
@@ -37,6 +38,7 @@ namespace eGradeBook.Controllers
         /// <returns></returns>
         [Route("")]
         [HttpGet]
+        [Authorize(Roles = "admins")]
         public IHttpActionResult GetAllStudents()
         {
             var userData = IdentityHelper.FetchUserData(RequestContext);
@@ -53,6 +55,7 @@ namespace eGradeBook.Controllers
         /// <param name="studentId"></param>
         /// <returns></returns>
         [HttpGet]
+        [Authorize(Roles = "admins")]
         [ResponseType(typeof(StudentDto))]
         [Route("{studentId}", Name = "GetStudentById")]
         public IHttpActionResult GetStudentById(int studentId)
@@ -71,6 +74,7 @@ namespace eGradeBook.Controllers
         /// <returns></returns>
         [Route("by-firstname/{firstName}")]
         [HttpGet]
+        [Authorize(Roles = "admins")]
         public IHttpActionResult GetStudentsByFirstName(string firstName)
         {
             var userData = IdentityHelper.FetchUserData(RequestContext);
@@ -88,6 +92,7 @@ namespace eGradeBook.Controllers
         /// <returns></returns>
         [Route("by-lastname/{lastName}")]
         [ResponseType(typeof(IEnumerable<StudentDto>))]
+        [Authorize(Roles = "admins")]
         [HttpGet]
         public IHttpActionResult GetStudentsByLastName(string lastName)
         {
@@ -105,6 +110,7 @@ namespace eGradeBook.Controllers
         /// <returns></returns>
         [Route("with-parents")]
         [ResponseType(typeof(IEnumerable<StudentWithParentsDto>))]
+        [Authorize(Roles = "admins")]
         [HttpGet]
         public IHttpActionResult GetStudentsWithParents()
         {
@@ -128,6 +134,7 @@ namespace eGradeBook.Controllers
         /// <param name="course"></param>
         /// <returns></returns>
         [Route("{studentId}/courses")]
+        [Authorize(Roles = "admins")]
         [HttpPost]
         public IHttpActionResult PostAssignCourseToStudent(int studentId, StudentCourseDto course)
         {
@@ -145,7 +152,7 @@ namespace eGradeBook.Controllers
             return Ok(taking);
         }
 
-        [Authorize(Roles = "admins,students,parents,teachers")]
+        [Authorize(Roles = "admins,students,parents")]
         [Route("{studentId}/report")]
         [HttpGet]
         public IHttpActionResult GetStudentReport(int studentId)
@@ -172,6 +179,107 @@ namespace eGradeBook.Controllers
             var report = service.GetStudentReport(studentId);
 
             return Ok(report);
+        }
+
+        /// <summary>
+        /// Get students based on query
+        /// </summary>
+        /// <param name="teacherId"></param>
+        /// <param name="studentId"></param>
+        /// <param name="parentId"></param>
+        /// <param name="courseId"></param>
+        /// <param name="classRoomId"></param>
+        /// <param name="schoolGrade"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("query")]
+        public IHttpActionResult GetStudentsByQuery(
+            [FromUri]int? teacherId = null,
+            [FromUri]int? studentId = null,
+            [FromUri]int? parentId = null,
+            [FromUri]int? courseId = null,
+            [FromUri]int? classRoomId = null,
+            [FromUri]int? schoolGrade = null)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Students by {@userData}", userData);
+
+            logger.Info("Get grades for logged in user --- auto dispatch");
+
+            var userInfo = Utilities.WebApi.IdentityHelper.FetchUserData(RequestContext);
+
+            if (userInfo.UserId == null)
+            {
+                return Unauthorized();
+            }
+
+            var userId = userInfo.UserId ?? 0;
+
+            if (userInfo.IsAdmin)
+            {
+                var results = service.GetStudentsByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsTeacher)
+            {
+                if (teacherId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = service.GetStudentsByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsStudent)
+            {
+                if (studentId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = service.GetStudentsByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsParent)
+            {
+                if (parentId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = service.GetStudentsByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else
+            {
+                logger.Error("Authenticated user with no role --- this should not happen");
+                return InternalServerError();
+            }
         }
     }
 }

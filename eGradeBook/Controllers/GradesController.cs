@@ -19,6 +19,7 @@ namespace eGradeBook.Controllers
     /// Web api controller for working with grades
     /// </summary>
     [RoutePrefix("api/grades")]
+    [Authorize]
     public class GradesController : ApiController
     {
         // private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
@@ -100,6 +101,7 @@ namespace eGradeBook.Controllers
         [Route("for-teachers/{teacherId}")]
         [SwaggerRequestExample(typeof(GradeDto), typeof(CreateGradeByTeacherExample))]
         [HttpPost]
+        [Authorize(Roles = "admins,teachers")]
         public IHttpActionResult CreateGradeAsTeacher(int teacherId, GradeDto gradeDto)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
@@ -216,6 +218,7 @@ namespace eGradeBook.Controllers
         /// <returns></returns>
         [Route("query")]
         [HttpGet]
+        [Authorize(Roles = "admins")]
         public IHttpActionResult GetGradesByParameters(
             [FromUri]int? gradeId = null,
             [FromUri]int? courseId = null,
@@ -251,6 +254,7 @@ namespace eGradeBook.Controllers
         /// <param name="query"></param>
         /// <returns></returns>
         [Route("query-dto")]
+        [Authorize(Roles = "admins")]
         [HttpGet]
         public IHttpActionResult GetGradesFromDtoQuery([FromUri]GradeQueryDto query)
         {
@@ -266,6 +270,38 @@ namespace eGradeBook.Controllers
             }
 
             return Ok(grades);
+        }
+
+        [Authorize(Roles = "admins,teachers")]
+        [Route("{gradeId}")]
+        [HttpPut]
+        public IHttpActionResult PutUpdateGrade(int gradeId, GradeDto gradeDto)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Update Grade {@gradeData} for Grade {@gradeId} by {@userData}", gradeDto, gradeId, userData);
+
+            if (gradeId != gradeDto.GradeId)
+            {
+                return BadRequest("Ids do not match");
+            }
+
+            if (userData.UserRole == "teachers")
+            {
+                if (gradeDto.TeacherId != userData.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+            }
+
+            GradeDto result = gradesService.UpdateGrade(gradeDto);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
     }
 }

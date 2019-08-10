@@ -20,6 +20,7 @@ namespace eGradeBook.Controllers
     /// NOTE: maybe not
     /// </summary>
     [RoutePrefix("api/teachings")]
+    [Authorize(Roles = "admins")]
     public class TeachingsController : ApiController
     {
         private ITeachingsService teachings;

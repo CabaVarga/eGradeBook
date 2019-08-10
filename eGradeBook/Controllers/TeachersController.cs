@@ -13,6 +13,7 @@ using System.Web.Http.Description;
 namespace eGradeBook.Controllers
 {
     [RoutePrefix("api/teachers")]
+    [Authorize(Roles = "admins,teachers")]
     public class TeachersController : ApiController
     {
         private ITeachersService teachersService;
@@ -29,6 +30,7 @@ namespace eGradeBook.Controllers
         /// <returns>A Json array of Teacher Dtos</returns>
         [Route("")]
         [ResponseType(typeof(IEnumerable<TeacherDto>))]
+        [Authorize(Roles = "admins")]
         [HttpGet]
         public IHttpActionResult GetAllTeachers()
         {
@@ -47,6 +49,7 @@ namespace eGradeBook.Controllers
         /// <returns>A Json object of the Teacher Dto</returns>
         [Route("{teacherId:int}", Name = "GetTeacherById")]
         [ResponseType(typeof(TeacherDto))]
+        [Authorize(Roles = "admins")]
         [HttpGet]
         public IHttpActionResult GetTeacherById(int teacherId)
         {
@@ -71,6 +74,7 @@ namespace eGradeBook.Controllers
         /// <returns>Status code of 200 in case of success</returns>
         [Route("{teacherId:int}/courses")]
         [ResponseType(typeof(void))]
+        [Authorize(Roles = "admins")]
         [HttpPost]
         public IHttpActionResult PostAssignCourseToTeacher(int teacherId, TeachingAssignmentDto assignment)
         {
@@ -106,6 +110,7 @@ namespace eGradeBook.Controllers
         /// <returns>A Json object of the Teacher Dto with the updated personal details</returns>
         [HttpPut]
         [Route("{teacherId}")]
+        [Authorize(Roles = "admins")]
         [ResponseType(typeof(TeacherDto))]
         public IHttpActionResult PutUpdateTeacher(int teacherId, TeacherDto teacher)
         {
@@ -128,6 +133,7 @@ namespace eGradeBook.Controllers
         /// <returns>A Json object of type Teacher Dto for the deleted teacher</returns>
         [HttpDelete]
         [Route("{teacherId}")]
+        [Authorize(Roles = "admins")]
         [ResponseType(typeof(TeacherDto))]
         public IHttpActionResult DeleteTeacher(int teacherId)
         {
@@ -152,6 +158,15 @@ namespace eGradeBook.Controllers
         [ResponseType(typeof(TeacherExtendedDto))]
         public IHttpActionResult GetTeacherExtendedData(int teacherId)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Extended data for teacher {@teacherId} by {@userData}", teacherId, userData);
+
+            if (userData.UserId != teacherId && userData.UserRole == "teachers")
+            {
+                throw new UnauthorizedAccessException("You are not allowed to access other teachers data");
+            }
+
             return Ok(teachersService.GetExtendedDataForTeacher(teacherId));
         }
 
@@ -163,6 +178,15 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetCoursesForTeacher(int teacherId)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Courses for teacher {@teacherId} by {@userData}", teacherId, userData);
+
+            if (userData.UserId != teacherId && userData.UserRole == "teachers")
+            {
+                throw new UnauthorizedAccessException("You are not allowed to access other teachers data");
+            }
+
             return Ok(teachersService.GetCoursesForTeacher(teacherId));
         }
 
@@ -170,6 +194,15 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetCoursesClassroomsForTeacher(int teacherId)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Courses and classrooms data for teacher {@teacherId} by {@userData}", teacherId, userData);
+
+            if (userData.UserId != teacherId && userData.UserRole == "teachers")
+            {
+                throw new UnauthorizedAccessException("You are not allowed to access other teachers data");
+            }
+
             return Ok(teachersService.GetCoursesClassRoomsForTeacher(teacherId));
         }
 
@@ -177,6 +210,15 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetClassroomsForTeacher(int teacherId)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get classrooms for teacher {@teacherId} by {@userData}", teacherId, userData);
+
+            if (userData.UserId != teacherId && userData.UserRole == "teachers")
+            {
+                throw new UnauthorizedAccessException("You are not allowed to access other teachers data");
+            }
+
             return Ok(teachersService.GetClassRoomsForTeacher(teacherId));
         }
 
@@ -184,6 +226,15 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetClassroomsCoursesForTeacher(int teacherId)
         {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get classrooms and courses data for teacher {@teacherId} by {@userData}", teacherId, userData);
+
+            if (userData.UserId != teacherId && userData.UserRole == "teachers")
+            {
+                throw new UnauthorizedAccessException("You are not allowed to access other teachers data");
+            }
+
             return Ok(teachersService.GetClassRoomsCoursesForTeacher(teacherId));
         }
 
@@ -191,7 +242,14 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetTeacherReport(int teacherId)
         {
-            // TODO authr
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Report teacher {@teacherId} by {@userData}", teacherId, userData);
+
+            if (userData.UserId != teacherId && userData.UserRole == "teachers")
+            {
+                throw new UnauthorizedAccessException("You are not allowed to access other teachers data");
+            }
 
             return Ok(teachersService.GetTeacherReport(teacherId));
         }

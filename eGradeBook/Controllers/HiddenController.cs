@@ -14,6 +14,7 @@ namespace eGradeBook.Controllers
     /// Deletions, insertions and the like
     /// </summary>
     [RoutePrefix("api/hidden")]
+    [Authorize(Roles = "admins")]
     public class HiddenController : ApiController
     {
         /// <summary>

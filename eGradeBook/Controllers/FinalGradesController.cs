@@ -14,6 +14,7 @@ namespace eGradeBook.Controllers
     /// Web api controller for working with final grades
     /// </summary>
     [RoutePrefix("api/finalgrades")]
+    [Authorize(Roles = "admins")]
     public class FinalGradesController : ApiController
     {
         /// <summary>

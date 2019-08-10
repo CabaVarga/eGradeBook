@@ -1,5 +1,2 @@
-2019/08/10 09:14:44.566|Trace|1||eGradeBook.Providers.CustomAuthorizationServerProvider|Auth server constructed||CustomAuthorizationServerProvider..ctor
-2019/08/10 09:14:44.977|Trace|7|800000f3-0000-f700-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /, ResourceURI = http://localhost:50663/ }||LoggingMiddleware.Invoke
-2019/08/10 09:14:47.099|Trace|7|800000f3-0000-f700-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /, ResourceURI = http://localhost:50663/ }||LoggingMiddleware.Invoke
-2019/08/10 09:14:47.211|Trace|6|800000f3-0000-f700-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 95 }||LoggingMiddleware.Invoke
-2019/08/10 09:14:47.271|Trace|6|800000f3-0000-f700-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 2262 }||LoggingMiddleware.Invoke
+2019/08/10 09:16:39.890|Info|19|800000ec-0000-f900-b63f-84710c7967bb|eGradeBook.Controllers.AccountsController|Created Student 20||AccountsController.RegisterStudent
+2019/08/10 09:16:39.990|Trace|27|800000ec-0000-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 201, ProcessingTime = 93165 }||LoggingMiddleware.Invoke

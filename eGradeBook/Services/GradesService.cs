@@ -115,7 +115,7 @@ namespace eGradeBook.Services
             // NOTIFY PARENTS
 
             // ----- TURN OFF TEMPORARILY WHILE TESTING....
-            // emailsService.Value.NotifyParents(grade);
+            emailsService.Value.NotifyParents(grade);
 
             return grade;
 
@@ -309,6 +309,26 @@ namespace eGradeBook.Services
                 query.GradeId,
                 query.CourseId, query.TeacherId, query.ClassRoomId, query.StudentId, 
                 query.ParentId, query.Semester, query.SchoolGrade, query.Grade, query.FromDate, query.ToDate);
+        }
+
+        public GradeDto UpdateGrade(GradeDto gradeDto)
+        {
+            Grade grade = GetGradeById(gradeDto.GradeId);
+
+            if (grade == null)
+            {
+                return null;
+            }
+
+            grade.Assigned = gradeDto.AssignmentDate;
+            grade.GradePoint = gradeDto.GradePoint;
+            grade.Notes = gradeDto.Notes;
+            grade.SchoolTerm = gradeDto.Semester;
+
+            db.GradesRepository.Update(grade);
+            db.Save();
+
+            return GradesConverter.GradeToGradeDto(grade);
         }
     }
 }
