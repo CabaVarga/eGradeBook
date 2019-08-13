@@ -1,0 +1,54 @@
+{ "time": "2019-08-10 23:58:18.2188", "level": "TRACE", "message": "Auth server constructed" }
+{ "time": "2019-08-10 23:58:18.6288", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-10 23:58:20.7219", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-10 23:58:20.8149", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 81 }" }
+{ "time": "2019-08-10 23:58:20.8599", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 2209 }" }
+{ "time": "2019-08-11 15:02:04.6656", "level": "TRACE", "message": "Auth server constructed" }
+{ "time": "2019-08-11 15:02:05.0226", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-11 15:02:07.0777", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-11 15:02:07.1737", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 84 }" }
+{ "time": "2019-08-11 15:02:07.2297", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 2187 }" }
+{ "time": "2019-08-11 15:02:31.3831", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/api\/accounts\/register-admin, ResourceURI = http:\/\/localhost:50663\/api\/accounts\/register-admin }" }
+{ "time": "2019-08-11 15:02:31.6241", "level": "TRACE", "message": "HttpResponse { StatusCode = 401, ProcessingTime = 219 }" }
+{ "time": "2019-08-11 15:02:59.1427", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-11 15:02:59.2127", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-11 15:02:59.2527", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-11 15:03:44.0512", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-11 15:03:44.0842", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-11 15:03:44.1202", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-11 15:03:49.7286", "level": "INFO", "message": "Seeding started" }
+{ "time": "2019-08-11 15:03:49.7616", "level": "INFO", "message": "Seeding began" }
+{ "time": "2019-08-11 15:03:52.3437", "level": "INFO", "message": "Seeding ended" }
+{ "time": "2019-08-11 15:03:52.3937", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-11 15:03:52.4457", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 8360 }" }
+{ "time": "2019-08-11 15:03:56.9680", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/api\/accounts\/register-admin, ResourceURI = http:\/\/localhost:50663\/api\/accounts\/register-admin }" }
+{ "time": "2019-08-11 15:03:57.0820", "level": "INFO", "message": "Register Admin {\"UserName\":\"noviadmin\", \"FirstName\":\"Ime\", \"LastName\":\"Prezime\", \"Gender\":\"m\", \"Email\":\"ime@mail.com\", \"PhoneNumber\":\"0234255\", \"Password\":\"password\", \"ConfirmPassword\":\"password\"} by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-11 15:03:57.1070", "level": "TRACE", "message": "layer=service class=users method=registerAdmin stage=init" }
+{ "time": "2019-08-11 15:03:57.1210", "level": "TRACE", "message": "Register Admin \"noviadmin\"" }
+{ "time": "2019-08-11 15:03:57.1780", "level": "TRACE", "message": "Find User \"noviadmin\"" }
+{ "time": "2019-08-11 15:03:57.1910", "level": "INFO", "message": "Created Admin 20" }
+{ "time": "2019-08-11 15:03:57.2120", "level": "TRACE", "message": "HttpResponse { StatusCode = 201, ProcessingTime = 227 }" }
+{ "time": "2019-08-11 15:04:07.1226", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/students, ResourceURI = http:\/\/localhost:50663\/api\/students }" }
+{ "time": "2019-08-11 15:04:07.1456", "level": "INFO", "message": "User {\"UserId\":1, \"UserRole\":\"admins\"} requested all students" }
+{ "time": "2019-08-11 15:04:07.1686", "level": "INFO", "message": "Service received request for returning all students" }
+{ "time": "2019-08-11 15:04:07.2026", "level": "TRACE", "message": "\"eGradeBook.Models.StudentUser\" repository Get request with filter and all" }
+{ "time": "2019-08-11 15:04:07.3496", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 214 }" }
+{ "time": "2019-08-11 15:04:20.3063", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/programs, ResourceURI = http:\/\/localhost:50663\/api\/programs }" }
+{ "time": "2019-08-11 15:04:20.3363", "level": "INFO", "message": "Get all programs" }
+{ "time": "2019-08-11 15:04:20.3653", "level": "INFO", "message": "Get all programs as dtos" }
+{ "time": "2019-08-11 15:04:20.3843", "level": "TRACE", "message": "\"eGradeBook.Models.Program\" repository Get request with filter and all" }
+{ "time": "2019-08-11 15:04:20.4943", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 164 }" }
+{ "time": "2019-08-11 15:04:44.3067", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/teachers, ResourceURI = http:\/\/localhost:50663\/api\/teachers }" }
+{ "time": "2019-08-11 15:04:44.3367", "level": "INFO", "message": "User {\"UserId\":1, \"UserRole\":\"admins\"} is requesting a list of all teacher" }
+{ "time": "2019-08-11 15:04:44.3537", "level": "INFO", "message": "Service received request for retrieving all teachers" }
+{ "time": "2019-08-11 15:04:44.3697", "level": "TRACE", "message": "\"eGradeBook.Models.TeacherUser\" repository Get request with filter and all" }
+{ "time": "2019-08-11 15:04:44.3997", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 66 }" }
+{ "time": "2019-08-11 15:05:10.6472", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-11 15:05:10.7012", "level": "TRACE", "message": "IP: ::1 username=radaradic" }
+{ "time": "2019-08-11 15:05:10.7302", "level": "TRACE", "message": "Find User \"radaradic\"" }
+{ "time": "2019-08-11 15:05:10.7772", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-11 15:05:10.8272", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 125 }" }
+{ "time": "2019-08-11 15:05:20.1467", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/teachers\/3\/report, ResourceURI = http:\/\/localhost:50663\/api\/teachers\/3\/report }" }
+{ "time": "2019-08-11 15:05:20.2057", "level": "INFO", "message": "Get Report teacher 3 by {\"UserId\":3, \"UserRole\":\"teachers\"}" }
+{ "time": "2019-08-11 15:05:20.2297", "level": "TRACE", "message": "\"eGradeBook.Models.TeacherUser\" repository Get request with filter and all" }
+{ "time": "2019-08-11 15:05:20.4388", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 261 }" }

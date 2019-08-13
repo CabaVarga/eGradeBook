@@ -18,10 +18,10 @@ namespace eGradeBook.Services
     public interface ITeachingsService
     {
         #region Full CRUD
-        Teaching CreateTeaching(TeachingDto teachingDto);
+        Teaching CreateTeaching(TeachingDto teachingDto); // NO?, I mean, yes, the controller can get the Ids and send them through, but then again?
         Teaching CreateTeaching(int courseId, int teacherId);
-        Teaching GetTeaching(TeachingDto teachingDto);
-        Teaching GetTeaching(int courseId, int teacherId);
+        Teaching GetTeaching(TeachingDto teachingDto); // THIS IS A NO
+        Teaching GetTeaching(int courseId, int teacherId); // 
 
         TeachingDto CreateTeachingDto(TeachingDto teachingDto);
 
@@ -35,6 +35,8 @@ namespace eGradeBook.Services
 
         Teaching DeleteTeaching(TeachingDto teachingDto);
         Teaching DeleteTeaching(int courseId, int teacherId);
+
+
         #endregion
         /// <summary>
         /// Retrieve a list of teaching assignments grouped by courses

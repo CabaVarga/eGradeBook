@@ -112,6 +112,5 @@ namespace eGradeBook.Controllers
             logger.Info("Get programs grouped by classrooms");
             return Ok(programs.GetAllProgramsGroupedBySchoolClasses());
         }
-
     }
 }
