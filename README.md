@@ -1,7 +1,7 @@
 # eGradeBook
 Grade book project for the course
 
-Project includes quite helpful Swagger support. You need to append */swagger* to your base path, in order to use that funcinality. Example: *http://localhost:50663/swagger*.  
+The project includes some quite helpful Swagger support. You need to append */swagger* to your base path, in order to use that funcionality. Example: *http://localhost:50663/swagger*.  
 
 Another interesting feature is [Serilog](https://serilog.net/) logging to [Seq](https://datalust.co/seq). You need to install Seq if you want to follow the realtime logging and advanced filtering features. For Windows 7 users you will need an earlier version, 4.2+. Once installed, it can be accessed through *http://localhost:5341*.  
 
