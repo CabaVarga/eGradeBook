@@ -17,27 +17,81 @@ namespace eGradeBook.Services
     /// </summary>
     public interface ITeachingsService
     {
-        #region Full CRUD
-        Teaching CreateTeaching(TeachingDto teachingDto); // NO?, I mean, yes, the controller can get the Ids and send them through, but then again?
-        Teaching CreateTeaching(int courseId, int teacherId);
-        Teaching GetTeaching(TeachingDto teachingDto); // THIS IS A NO
-        Teaching GetTeaching(int courseId, int teacherId); // 
+        #region CRUD Entities
+        /// <summary>
+        /// Create a teaching from TeachingDto
+        /// </summary>
+        /// <param name="teachingDto"></param>
+        /// <returns></returns>
+        Teaching CreateTeaching(TeachingDto teachingDto);
 
+        /// <summary>
+        /// Create a teaching from a courseId and a teacherId
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
+        Teaching CreateTeaching(int courseId, int teacherId);
+
+        /// <summary>
+        /// Get a teaching for courseId and teacherId
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
+        Teaching GetTeaching(int courseId, int teacherId);
+
+        /// <summary>
+        /// Get a teaching by teachingId
+        /// </summary>
+        /// <param name="teachingId"></param>
+        /// <returns></returns>
+        Teaching GetTeachingById(int teachingId);
+
+        /// <summary>
+        /// Get all teachings
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<Teaching> GetAllTeachings();
+
+        /// <summary>
+        /// Delete teaching based on supplied teachingDto
+        /// </summary>
+        /// <param name="teachingDto"></param>
+        /// <returns></returns>
+        Teaching DeleteTeaching(TeachingDto teachingDto);
+
+        /// <summary>
+        /// Delete teaching by courseId and teacherId
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
+        Teaching DeleteTeaching(int courseId, int teacherId);
+        #endregion
+
+        #region CRUD Dtos
+        /// <summary>
+        /// Create a teaching from TeachingDto, return TeachingDto
+        /// </summary>
+        /// <param name="teachingDto"></param>
+        /// <returns></returns>
         TeachingDto CreateTeachingDto(TeachingDto teachingDto);
 
-        Teaching GetTeachingById(int teachingId);
-        TeachingDto GetTeachingDtoById(int teachingId);
-
-        IEnumerable<Teaching> GetAllTeachings();
+        /// <summary>
+        /// Get all teachings as dtos
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<TeachingDto> GetAllTeachingsDtos();
-        IEnumerable<Teaching> GetAllTeachingsForCourse(int courseId);
-        IEnumerable<Teaching> GetAllTeachingsForTeacher(int teacherId);
 
-        Teaching DeleteTeaching(TeachingDto teachingDto);
-        Teaching DeleteTeaching(int courseId, int teacherId);
-
-
+        /// <summary>
+        /// Get teaching by teachingId, return teachingDto
+        /// </summary>
+        /// <param name="teachingId"></param>
+        /// <returns></returns>
+        TeachingDto GetTeachingDtoById(int teachingId);
         #endregion
+
         /// <summary>
         /// Retrieve a list of teaching assignments grouped by courses
         /// </summary>
@@ -66,5 +120,19 @@ namespace eGradeBook.Services
         /// <param name="teacherId">Teacher Id</param>
         /// <returns></returns>
         Teaching RemoveTeacherFromCourse(int courseId, int teacherId);
+
+        /// <summary>
+        /// Get all teachings for a course
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <returns></returns>
+        IEnumerable<Teaching> GetAllTeachingsForCourse(int courseId);
+
+        /// <summary>
+        /// Get all teaching for a teacher
+        /// </summary>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
+        IEnumerable<Teaching> GetAllTeachingsForTeacher(int teacherId);
     }
 }

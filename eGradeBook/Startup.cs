@@ -57,6 +57,7 @@ namespace eGradeBook
 
             HttpConfiguration config = new HttpConfiguration();
             config.DependencyResolver = new UnityDependencyResolver(container);
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             WebApiConfig.Register(config);
 
             // This is the call to our swashbuckle config that needs to be called 

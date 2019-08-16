@@ -52,3 +52,41 @@
 { "time": "2019-08-11 15:05:20.2057", "level": "INFO", "message": "Get Report teacher 3 by {\"UserId\":3, \"UserRole\":\"teachers\"}" }
 { "time": "2019-08-11 15:05:20.2297", "level": "TRACE", "message": "\"eGradeBook.Models.TeacherUser\" repository Get request with filter and all" }
 { "time": "2019-08-11 15:05:20.4388", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 261 }" }
+{ "time": "2019-08-15 14:11:11.1804", "level": "TRACE", "message": "Auth server constructed" }
+{ "time": "2019-08-15 14:11:11.5544", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-15 14:11:13.6045", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-15 14:11:13.7965", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 181 }" }
+{ "time": "2019-08-15 14:11:13.8285", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 2252 }" }
+{ "time": "2019-08-15 14:11:28.1523", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/accounts\/whoami, ResourceURI = http:\/\/localhost:50663\/api\/accounts\/whoami }" }
+{ "time": "2019-08-15 14:11:28.4314", "level": "TRACE", "message": "HttpResponse { StatusCode = 401, ProcessingTime = 262 }" }
+{ "time": "2019-08-15 14:12:17.4062", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/accounts\/whoami, ResourceURI = http:\/\/localhost:50663\/api\/accounts\/whoami }" }
+{ "time": "2019-08-15 14:12:17.4222", "level": "TRACE", "message": "HttpResponse { StatusCode = 401, ProcessingTime = 2 }" }
+{ "time": "2019-08-15 14:14:19.3731", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/accounts\/whoami, ResourceURI = http:\/\/localhost:50663\/api\/accounts\/whoami }" }
+{ "time": "2019-08-15 14:14:19.4531", "level": "TRACE", "message": "HttpResponse { StatusCode = 401, ProcessingTime = 36 }" }
+{ "time": "2019-08-15 14:14:55.1962", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/accounts\/whoami, ResourceURI = http:\/\/localhost:50663\/api\/accounts\/whoami }" }
+{ "time": "2019-08-15 14:14:55.2992", "level": "TRACE", "message": "HttpResponse { StatusCode = 401, ProcessingTime = 81 }" }
+{ "time": "2019-08-15 14:19:58.0785", "level": "TRACE", "message": "Auth server constructed" }
+{ "time": "2019-08-15 14:19:58.4125", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-15 14:20:00.5256", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-15 14:20:00.6126", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 73 }" }
+{ "time": "2019-08-15 14:20:00.6846", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 2249 }" }
+{ "time": "2019-08-15 14:20:12.6423", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/accounts\/whoami, ResourceURI = http:\/\/localhost:50663\/api\/accounts\/whoami }" }
+{ "time": "2019-08-15 14:20:12.9914", "level": "TRACE", "message": "HttpResponse { StatusCode = 401, ProcessingTime = 327 }" }
+{ "time": "2019-08-15 14:21:24.5804", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/grades\/api\/grades-by-courses\/forpublic, ResourceURI = http:\/\/localhost:50663\/api\/grades\/api\/grades-by-courses\/forpublic }" }
+{ "time": "2019-08-15 14:21:24.6285", "level": "INFO", "message": "Get grades by {\"UserId\":0}" }
+{ "time": "2019-08-15 14:21:24.6705", "level": "INFO", "message": "Retrieving all grades from public endpoint" }
+{ "time": "2019-08-15 14:21:24.6855", "level": "TRACE", "message": "\"eGradeBook.Models.Grade\" repository Get request with filter and all" }
+{ "time": "2019-08-15 14:21:53.5491", "level": "INFO", "message": "Seeding started" }
+{ "time": "2019-08-15 14:21:53.5741", "level": "INFO", "message": "Seeding began" }
+{ "time": "2019-08-15 14:21:56.3073", "level": "INFO", "message": "Seeding ended" }
+{ "time": "2019-08-15 14:21:56.6443", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 32051 }" }
+{ "time": "2019-08-15 14:22:29.0751", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/grades\/api\/grades-by-courses\/forpublic, ResourceURI = http:\/\/localhost:50663\/api\/grades\/api\/grades-by-courses\/forpublic }" }
+{ "time": "2019-08-15 14:22:29.0971", "level": "INFO", "message": "Get grades by {\"UserId\":0}" }
+{ "time": "2019-08-15 14:22:29.1881", "level": "INFO", "message": "Retrieving all grades from public endpoint" }
+{ "time": "2019-08-15 14:22:29.2021", "level": "TRACE", "message": "\"eGradeBook.Models.Grade\" repository Get request with filter and all" }
+{ "time": "2019-08-15 14:22:29.2701", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 175 }" }
+{ "time": "2019-08-15 14:23:36.1710", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/grades\/api\/grades-by-courses\/forpublic, ResourceURI = http:\/\/localhost:50663\/api\/grades\/api\/grades-by-courses\/forpublic }" }
+{ "time": "2019-08-15 14:23:36.1930", "level": "INFO", "message": "Get grades by {\"UserId\":0}" }
+{ "time": "2019-08-15 14:23:36.2240", "level": "INFO", "message": "Retrieving all grades from public endpoint" }
+{ "time": "2019-08-15 14:23:36.2390", "level": "TRACE", "message": "\"eGradeBook.Models.Grade\" repository Get request with filter and all" }
+{ "time": "2019-08-15 14:23:36.2880", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 100 }" }

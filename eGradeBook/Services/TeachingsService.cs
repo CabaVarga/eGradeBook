@@ -135,16 +135,6 @@ namespace eGradeBook.Services
         }
 
         /// <summary>
-        /// Get teaching for teachingDto --- throws
-        /// </summary>
-        /// <param name="teachingDto"></param>
-        /// <returns></returns>
-        public Teaching GetTeaching(TeachingDto teachingDto)
-        {
-            return GetTeaching(teachingDto.CourseId, teachingDto.TeacherId);
-        }
-
-        /// <summary>
         /// Get teaching by course and teacher -- throws
         /// </summary>
         /// <param name="courseId"></param>
