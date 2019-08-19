@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eGradeBook", "eGradeBook\eGradeBook.csproj", "{4810924B-3995-4F8E-B521-CFB9929AAC62}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eGradeBook.Tests", "eGradeBook.Tests\eGradeBook.Tests.csproj", "{72C6CA63-BA03-493D-A641-F531E093048C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4810924B-3995-4F8E-B521-CFB9929AAC62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4810924B-3995-4F8E-B521-CFB9929AAC62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4810924B-3995-4F8E-B521-CFB9929AAC62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72C6CA63-BA03-493D-A641-F531E093048C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72C6CA63-BA03-493D-A641-F531E093048C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72C6CA63-BA03-493D-A641-F531E093048C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72C6CA63-BA03-493D-A641-F531E093048C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

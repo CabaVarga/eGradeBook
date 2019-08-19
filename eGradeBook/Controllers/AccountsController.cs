@@ -22,7 +22,7 @@ namespace eGradeBook.Controllers
     /// Web api controller for working with User Accounts
     /// </summary>
     [RoutePrefix("api/accounts")]
-    [Authorize]
+    // [Authorize]
     public class AccountsController : ApiController
     {
         private IUsersService service;
@@ -46,7 +46,7 @@ namespace eGradeBook.Controllers
         /// <param name="userModel">Dto object with account and personal details.</param>
         /// <returns>CreatedResourceDto payload describing and linking to the resource</returns>
         [ResponseType(typeof(AdminDto))]
-        [Authorize(Roles = "admins")]
+        // [Authorize(Roles = "admins")]
         [SwaggerRequestExample(typeof(AdminRegistrationDto), typeof(RegisterAdminExample))]
         [Route("register-admin")]
         public async Task<IHttpActionResult> RegisterAdmin(AdminRegistrationDto userModel)

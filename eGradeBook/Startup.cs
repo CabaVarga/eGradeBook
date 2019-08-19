@@ -40,7 +40,7 @@ namespace eGradeBook
                        .Enrich.WithClaimValue("UserId")
                        .Enrich.WithClaimValue("http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
                        .MinimumLevel.Debug()
-                       .WriteTo.Seq("http://localhost:5341")
+                       //.WriteTo.Seq("http://localhost:5341")
                        .WriteTo.File(new CompactJsonFormatter(), basedir + "/logs/serilog.txt")
                        .CreateLogger();
         }
@@ -51,13 +51,14 @@ namespace eGradeBook
         public void Configuration(IAppBuilder app)
         {
             app.Use<LoggingMiddleware>();
-
+            // https://stackoverflow.com/questions/36285253/enable-cors-for-web-api-2-and-owin-token-authentication
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             var container = SetupUnity();
             ConfigureOAuth(app, container);
 
             HttpConfiguration config = new HttpConfiguration();
             config.DependencyResolver = new UnityDependencyResolver(container);
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+
             WebApiConfig.Register(config);
 
             // This is the call to our swashbuckle config that needs to be called 

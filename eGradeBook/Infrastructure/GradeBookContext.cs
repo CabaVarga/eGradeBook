@@ -20,9 +20,9 @@ namespace eGradeBook.Infrastructure
         /// <summary>
         /// The constructor. Seeding is happening inside here
         /// </summary>
-        public GradeBookContext() : base("eGradeBookContext")
+        public GradeBookContext() : base("DefaultConnection")
         {
-            Database.SetInitializer<GradeBookContext>(new GradeBookInitializer());
+            // Database.SetInitializer<GradeBookContext>(new GradeBookInitializer());
         }
 
         /// <summary>

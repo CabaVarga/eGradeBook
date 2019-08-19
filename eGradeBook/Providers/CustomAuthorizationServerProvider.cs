@@ -42,7 +42,9 @@ namespace eGradeBook.Providers
             // Cannot set in constructor -- of course I cant, for the object itself is not yet created?
             logger.Trace("IP: {0} username={1}", context.Request.RemoteIpAddress, context.UserName);
 
-            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+
+            // YOU CANNOT SET IT TWICE, ALLEGEDLY...
+            // context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
             IdentityUser<int, CustomUserLogin, CustomUserRole, CustomUserClaim> user = null;
             IEnumerable<string> roles = null;
