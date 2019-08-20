@@ -1,4 +1,5 @@
-﻿using eGradeBook.Models;
+﻿using eGradeBook.Migrations;
+using eGradeBook.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace eGradeBook.Infrastructure
         /// </summary>
         public GradeBookContext() : base("DefaultConnection")
         {
-            // Database.SetInitializer<GradeBookContext>(new GradeBookInitializer());
+            Database.SetInitializer<GradeBookContext>(new MigrateDatabaseToLatestVersion<GradeBookContext, Configuration>());
         }
 
         /// <summary>
