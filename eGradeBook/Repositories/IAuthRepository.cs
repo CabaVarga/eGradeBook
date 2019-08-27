@@ -81,5 +81,7 @@ namespace eGradeBook.Repositories
         Task<IdentityResult> UpdateUser(GradeBookUser user);
 
         Task<GradeBookUser> FindUserByUserName(string userName);
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -18,6 +19,7 @@ namespace eGradeBook.Models.Dtos.Courses
         /// <summary>
         /// Course name
         /// </summary>
+        [Required]
         public string Name { get; set; }
 
         /// <summary>

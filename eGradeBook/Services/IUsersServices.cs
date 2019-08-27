@@ -79,5 +79,7 @@ namespace eGradeBook.Services
         Task<TeacherDto> UpdateTeacher(TeacherUpdateDto teacherUpdate);
         Task<StudentDto> UpdateStudent(StudentUpdateDto studentUpdate);
         Task<ParentDto> UpdateParent(ParentUpdateDto parentUpdate);
+
+        Task<bool> CheckUsername(string username);
     }
 }

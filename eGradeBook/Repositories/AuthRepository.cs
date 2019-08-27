@@ -60,7 +60,7 @@ namespace eGradeBook.Repositories
         public async Task<IdentityResult> RegisterStudentUser(StudentUser student, string password)
         {
             logger.Trace("Register Student {@userName}", student.UserName);
-
+            
             var result = await _userManager.CreateAsync(student, password);
 
             if (!result.Succeeded)

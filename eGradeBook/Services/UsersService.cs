@@ -320,6 +320,18 @@ namespace eGradeBook.Services
 
             return dataDto;
         }
+
+        public async Task<bool> CheckUsername(string username)
+        {
+            var result = await db.AuthRepository.FindUserByUserName(username);
+
+            if (result == null)
+            {
+                return true;
+            }
+
+            return false;
+        }
         #endregion
     }
 }

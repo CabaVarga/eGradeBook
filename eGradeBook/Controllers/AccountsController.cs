@@ -40,6 +40,21 @@ namespace eGradeBook.Controllers
         #region Registrations
 
         /// <summary>
+        /// Check if username is available
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [Route("check-username/{username}")]
+        [HttpGet]
+        public async Task<IHttpActionResult> CheckUsername(string username)
+        {
+            var available = await service.CheckUsername(username);
+
+            return Ok(available);
+        }
+
+        /// <summary>
         /// Register a new Admin
         /// NOTE I need to return a full AdminDto at creation, the current solution is not good.
         /// </summary>
