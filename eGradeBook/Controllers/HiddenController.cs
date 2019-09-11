@@ -358,14 +358,14 @@ namespace eGradeBook.Controllers
                     parents.Add(new ParentUser() { UserName = "anakljajic", FirstName = "Ana", LastName = "Kljajic", Email = "caba.varga@gmail.com", Gender = "f", PhoneNumber = "063568595" });
                     parents.Add(new ParentUser() { UserName = "evazoric", FirstName = "Eva", LastName = "Zoric", Email = "caba.varga@gmail.com", Gender = "f", PhoneNumber = "024568958" });
                     parents.Add(new ParentUser() { UserName = "dusanmihic", FirstName = "Dusan", LastName = "Mihic", Email = "caba.varga@gmail.com", Gender = "m", PhoneNumber = "062458785" });
-
+                    
                     foreach (var parent in parents)
                     {
                         _userManager.Create(parent, "password");
                         _userManager.AddToRole(parent.Id, "parents");
                     }
                     #endregion
-
+                    
                     #region StudentParents
                     List<StudentParent> studentParents = new List<StudentParent>();
                     studentParents.Add(new StudentParent() { Student = students[0], Parent = parents[1] });

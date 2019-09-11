@@ -1,9 +1,50 @@
-2019/08/21 03:03:41.582|Trace|28|80000090-0000-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = /api/accounts/register-admin, ResourceURI = http://localhost:50663/api/accounts/register-admin }||LoggingMiddleware.Invoke
-2019/08/21 03:03:41.699|Trace|28|80000090-0000-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 0 }||LoggingMiddleware.Invoke
-2019/08/21 03:03:41.802|Trace|32|80000091-0000-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = POST, Path = /api/accounts/register-admin, ResourceURI = http://localhost:50663/api/accounts/register-admin }||LoggingMiddleware.Invoke
-2019/08/21 03:03:41.823|Info|32|80000091-0000-f900-b63f-84710c7967bb|eGradeBook.Utilities.WebApi.ValidateModelAttribute|Model validation failure||ValidateModelAttribute.OnActionExecuting
-2019/08/21 03:03:41.848|Trace|32|80000091-0000-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 400, ProcessingTime = 28 }||LoggingMiddleware.Invoke
-2019/08/21 03:04:05.753|Trace|28|80000092-0000-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = /api/courses, ResourceURI = http://localhost:50663/api/courses }||LoggingMiddleware.Invoke
-2019/08/21 03:04:05.772|Trace|28|80000092-0000-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 0 }||LoggingMiddleware.Invoke
-2019/08/21 03:04:05.846|Trace|31|80000093-0000-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /api/courses, ResourceURI = http://localhost:50663/api/courses }||LoggingMiddleware.Invoke
-2019/08/21 03:04:05.889|Trace|31|80000093-0000-f900-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 401, ProcessingTime = 10 }||LoggingMiddleware.Invoke
+2019/08/30 15:03:51.087|Trace|41|8000000f-0000-ff00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = POST, Path = /token, ResourceURI = http://localhost:50663/token }||LoggingMiddleware.Invoke
+2019/08/30 15:03:51.137|Trace|41|8000000f-0000-ff00-b63f-84710c7967bb|eGradeBook.Providers.CustomAuthorizationServerProvider|IP: ::1 username=peraperic||CustomAuthorizationServerProvider.GrantResourceOwnerCredentials
+2019/08/30 15:03:51.164|Trace|41|8000000f-0000-ff00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find User "peraperic"||AuthRepository.FindUser
+2019/08/30 15:03:51.464|Trace|41|8000000f-0000-ff00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find Roles for {@userId}}||AuthRepository.FindRoles
+2019/08/30 15:03:51.479|Trace|20|8000000f-0000-ff00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 342 }||LoggingMiddleware.Invoke
+2019/08/30 15:10:02.821|Trace|5|80000004-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = POST, Path = /token, ResourceURI = http://localhost:50663/token }||LoggingMiddleware.Invoke
+2019/08/30 15:10:02.843|Trace|5|80000004-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.CustomAuthorizationServerProvider|IP: ::1 username=peraperic||CustomAuthorizationServerProvider.GrantResourceOwnerCredentials
+2019/08/30 15:10:02.898|Trace|5|80000004-0002-fa00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find User "peraperic"||AuthRepository.FindUser
+2019/08/30 15:10:03.129|Trace|41|80000004-0002-fa00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find Roles for {@userId}}||AuthRepository.FindRoles
+2019/08/30 15:10:03.171|Trace|5|80000004-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 327 }||LoggingMiddleware.Invoke
+2019/08/30 15:12:04.638|Trace|50|80000005-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = POST, Path = /token, ResourceURI = http://localhost:50663/token }||LoggingMiddleware.Invoke
+2019/08/30 15:12:04.662|Trace|50|80000005-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.CustomAuthorizationServerProvider|IP: ::1 username=peraperic||CustomAuthorizationServerProvider.GrantResourceOwnerCredentials
+2019/08/30 15:12:04.687|Trace|50|80000005-0002-fa00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find User "peraperic"||AuthRepository.FindUser
+2019/08/30 15:12:04.758|Trace|52|80000005-0002-fa00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find Roles for {@userId}}||AuthRepository.FindRoles
+2019/08/30 15:12:04.798|Trace|52|80000005-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 136 }||LoggingMiddleware.Invoke
+2019/08/30 15:13:38.863|Trace|51|80000006-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = POST, Path = /token, ResourceURI = http://localhost:50663/token }||LoggingMiddleware.Invoke
+2019/08/30 15:13:38.905|Trace|51|80000006-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.CustomAuthorizationServerProvider|IP: ::1 username=peraperic||CustomAuthorizationServerProvider.GrantResourceOwnerCredentials
+2019/08/30 15:13:38.932|Trace|51|80000006-0002-fa00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find User "peraperic"||AuthRepository.FindUser
+2019/08/30 15:13:38.987|Trace|50|80000006-0002-fa00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find Roles for {@userId}}||AuthRepository.FindRoles
+2019/08/30 15:13:39.005|Trace|5|80000006-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 100 }||LoggingMiddleware.Invoke
+2019/08/30 15:14:00.898|Trace|51|80000007-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = POST, Path = /token, ResourceURI = http://localhost:50663/token }||LoggingMiddleware.Invoke
+2019/08/30 15:14:00.927|Trace|51|80000007-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.CustomAuthorizationServerProvider|IP: ::1 username=peraperic||CustomAuthorizationServerProvider.GrantResourceOwnerCredentials
+2019/08/30 15:14:00.952|Trace|51|80000007-0002-fa00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find User "peraperic"||AuthRepository.FindUser
+2019/08/30 15:14:00.984|Trace|50|80000007-0002-fa00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find Roles for {@userId}}||AuthRepository.FindRoles
+2019/08/30 15:14:00.984|Trace|50|80000007-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 69 }||LoggingMiddleware.Invoke
+2019/08/30 15:14:38.945|Trace|54|80000009-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = POST, Path = /token, ResourceURI = http://localhost:50663/token }||LoggingMiddleware.Invoke
+2019/08/30 15:14:38.979|Trace|51|80000009-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.CustomAuthorizationServerProvider|IP: ::1 username=peraperic||CustomAuthorizationServerProvider.GrantResourceOwnerCredentials
+2019/08/30 15:14:39.018|Trace|51|80000009-0002-fa00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find User "peraperic"||AuthRepository.FindUser
+2019/08/30 15:14:39.045|Trace|59|80000009-0002-fa00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find Roles for {@userId}}||AuthRepository.FindRoles
+2019/08/30 15:14:39.069|Trace|56|80000009-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 104 }||LoggingMiddleware.Invoke
+2019/08/30 15:14:48.404|Trace|55|8000000c-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = GET, Path = /api/teachers, ResourceURI = http://localhost:50663/api/teachers }||LoggingMiddleware.Invoke
+2019/08/30 15:14:48.502|Info|55|8000000c-0002-fa00-b63f-84710c7967bb|eGradeBook.Controllers.TeachersController|User {"UserId":1, "UserRole":"admins"} is requesting a list of all teacher||TeachersController.GetAllTeachers
+2019/08/30 15:14:48.528|Info|55|8000000c-0002-fa00-b63f-84710c7967bb|eGradeBook.Services.TeachersService|Service received request for retrieving all teachers||TeachersService.GetAllTeachersDtos
+2019/08/30 15:14:48.539|Trace|55|8000000c-0002-fa00-b63f-84710c7967bb|eGradeBook.Repositories.GenericRepository`1|"eGradeBook.Models.TeacherUser" repository Get request with filter and all||GenericRepository`1.Get
+2019/08/30 15:14:48.622|Trace|59|8000000c-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 204 }||LoggingMiddleware.Invoke
+2019/08/30 15:14:59.004|Trace|58|80000011-0000-fe00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = POST, Path = /token, ResourceURI = http://localhost:50663/token }||LoggingMiddleware.Invoke
+2019/08/30 15:14:59.036|Trace|58|80000011-0000-fe00-b63f-84710c7967bb|eGradeBook.Providers.CustomAuthorizationServerProvider|IP: ::1 username=radaradic||CustomAuthorizationServerProvider.GrantResourceOwnerCredentials
+2019/08/30 15:14:59.067|Trace|58|80000011-0000-fe00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find User "radaradic"||AuthRepository.FindUser
+2019/08/30 15:14:59.107|Trace|50|80000011-0000-fe00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find Roles for {@userId}}||AuthRepository.FindRoles
+2019/08/30 15:14:59.120|Trace|50|80000011-0000-fe00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 84 }||LoggingMiddleware.Invoke
+2019/08/30 15:16:55.205|Trace|52|80000008-0001-f800-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = POST, Path = /token, ResourceURI = http://localhost:50663/token }||LoggingMiddleware.Invoke
+2019/08/30 15:16:55.233|Trace|52|80000008-0001-f800-b63f-84710c7967bb|eGradeBook.Providers.CustomAuthorizationServerProvider|IP: ::1 username=radaradic||CustomAuthorizationServerProvider.GrantResourceOwnerCredentials
+2019/08/30 15:16:55.252|Trace|52|80000008-0001-f800-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find User "radaradic"||AuthRepository.FindUser
+2019/08/30 15:16:55.279|Trace|53|80000008-0001-f800-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find Roles for {@userId}}||AuthRepository.FindRoles
+2019/08/30 15:16:55.292|Trace|53|80000008-0001-f800-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 59 }||LoggingMiddleware.Invoke
+2019/08/30 15:18:07.494|Trace|47|8000000e-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpRequest { RemoteIP = ::1, Method = POST, Path = /token, ResourceURI = http://localhost:50663/token }||LoggingMiddleware.Invoke
+2019/08/30 15:18:07.534|Trace|47|8000000e-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.CustomAuthorizationServerProvider|IP: ::1 username=radaradic||CustomAuthorizationServerProvider.GrantResourceOwnerCredentials
+2019/08/30 15:18:07.552|Trace|47|8000000e-0002-fa00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find User "radaradic"||AuthRepository.FindUser
+2019/08/30 15:18:07.598|Trace|5|8000000e-0002-fa00-b63f-84710c7967bb|eGradeBook.Repositories.AuthRepository|Find Roles for {@userId}}||AuthRepository.FindRoles
+2019/08/30 15:18:07.611|Trace|48|8000000e-0002-fa00-b63f-84710c7967bb|eGradeBook.Providers.LoggingMiddleware|HttpResponse { StatusCode = 200, ProcessingTime = 77 }||LoggingMiddleware.Invoke

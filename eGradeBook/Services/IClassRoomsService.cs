@@ -61,5 +61,19 @@ namespace eGradeBook.Services
         void CreateClassRoomProgram(ClassRoomProgramDto program);
 
         ClassRoom GetClassRoom(int classRoomId);
+
+        /// <summary>
+        /// Get Basic Report (courses and enrolled students) for given Classroom
+        /// </summary>
+        /// <param name="classRoomId"></param>
+        /// <returns></returns>
+        ClassRoomBasicReportDto GetBasicReport(int classRoomId);
+
+        /// <summary>
+        /// Get Full Report (courses, enrolled students and grades) for given Classroom
+        /// </summary>
+        /// <param name="classRoomId"></param>
+        /// <returns></returns>
+        ClassRoomFullReportDto GetFullReport(int classRoomId);
     }
 }

@@ -1113,3 +1113,993 @@
 { "time": "2019-08-27 15:04:20.4819", "level": "INFO", "message": "Get Report teacher 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
 { "time": "2019-08-27 15:04:20.5099", "level": "TRACE", "message": "\"eGradeBook.Models.TeacherUser\" repository Get request with filter and all" }
 { "time": "2019-08-27 15:04:20.6589", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 181 }" }
+{ "time": "2019-08-27 15:40:32.2841", "level": "TRACE", "message": "Auth server constructed" }
+{ "time": "2019-08-27 15:40:32.7941", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-27 15:40:35.5233", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-27 15:40:35.8023", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 252 }" }
+{ "time": "2019-08-27 15:40:35.8713", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 3041 }" }
+{ "time": "2019-08-27 15:40:54.0993", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-27 15:40:54.1983", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-27 15:40:54.4563", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-27 15:40:59.7506", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-27 15:40:59.8716", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 5735 }" }
+{ "time": "2019-08-27 15:41:06.7490", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-27 15:41:06.8510", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-27 15:41:06.8810", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-27 15:41:07.4261", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 664 }" }
+{ "time": "2019-08-27 15:41:26.1151", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/basic-report }" }
+{ "time": "2019-08-27 15:41:26.1722", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-27 15:41:26.2022", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-27 15:41:26.2442", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 113 }" }
+{ "time": "2019-08-27 15:41:58.3110", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1 }" }
+{ "time": "2019-08-27 15:41:58.3360", "level": "INFO", "message": "Get ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-27 15:41:58.3680", "level": "TRACE", "message": "Service received request to return classroom by Id 1" }
+{ "time": "2019-08-27 15:41:58.3860", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-27 15:41:58.4150", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 81 }" }
+{ "time": "2019-08-28 00:03:21.5747", "level": "TRACE", "message": "Auth server constructed" }
+{ "time": "2019-08-28 00:03:21.9917", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-28 00:03:24.6188", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-28 00:03:24.7678", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 136 }" }
+{ "time": "2019-08-28 00:03:24.8388", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 2823 }" }
+{ "time": "2019-08-28 00:06:47.4394", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:06:47.4774", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 17 }" }
+{ "time": "2019-08-28 00:06:47.4984", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:06:47.9495", "level": "TRACE", "message": "HttpResponse { StatusCode = 401, ProcessingTime = 439 }" }
+{ "time": "2019-08-28 00:07:07.2296", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-28 00:07:07.2756", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-28 00:07:07.2906", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-28 00:07:11.7898", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-28 00:07:11.8938", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 4647 }" }
+{ "time": "2019-08-28 00:07:22.4134", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:07:22.4314", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:07:22.4764", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:07:22.6294", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:07:22.6644", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:07:23.0865", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 590 }" }
+{ "time": "2019-08-28 00:16:56.6923", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:16:56.7323", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:16:56.9683", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:16:56.9893", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:16:57.0143", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:16:57.1763", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 188 }" }
+{ "time": "2019-08-28 00:18:41.5173", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:18:41.5623", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:18:41.6123", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:18:41.6323", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:18:41.6603", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:18:41.6913", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 60 }" }
+{ "time": "2019-08-28 00:19:46.1200", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:19:46.1690", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:19:46.2020", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:19:46.2360", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:19:46.2530", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:19:46.2840", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 51 }" }
+{ "time": "2019-08-28 00:21:09.2887", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:21:09.3137", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:21:09.3477", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:21:09.3677", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:21:09.3827", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:21:09.4047", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 39 }" }
+{ "time": "2019-08-28 00:22:14.9065", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:22:14.9265", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:22:14.9875", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:22:15.0165", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:22:15.0575", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:22:15.0875", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 72 }" }
+{ "time": "2019-08-28 00:23:37.4522", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:23:37.4892", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:23:37.5412", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:23:37.5712", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:23:37.6222", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:23:37.6662", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 100 }" }
+{ "time": "2019-08-28 00:29:02.2808", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:29:02.3048", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:29:02.3408", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:29:02.3818", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:29:02.3818", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:29:02.6468", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 268 }" }
+{ "time": "2019-08-28 00:30:24.0785", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:30:24.1255", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:30:24.1565", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:30:24.1845", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:30:24.2185", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:30:24.2605", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 76 }" }
+{ "time": "2019-08-28 00:31:36.5936", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:31:36.6416", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:31:36.6796", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:31:36.7056", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:31:36.7316", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:31:36.7666", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 61 }" }
+{ "time": "2019-08-28 00:31:49.7554", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/basic-report }" }
+{ "time": "2019-08-28 00:31:49.8214", "level": "TRACE", "message": "HttpResponse { StatusCode = 401, ProcessingTime = 40 }" }
+{ "time": "2019-08-28 00:31:54.9577", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:31:54.9857", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:31:57.7978", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:31:57.8228", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:31:57.8428", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:31:57.8838", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 62 }" }
+{ "time": "2019-08-28 00:32:00.6160", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/2\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/basic-report }" }
+{ "time": "2019-08-28 00:32:00.6650", "level": "TRACE", "message": "HttpResponse { StatusCode = 401, ProcessingTime = 15 }" }
+{ "time": "2019-08-28 00:32:02.2261", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:32:02.2461", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:39:26.6825", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:39:26.7575", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:39:26.7855", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:39:26.8065", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:39:26.8065", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:39:27.4815", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 676 }" }
+{ "time": "2019-08-28 00:39:29.5807", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 00:39:29.6107", "level": "TRACE", "message": "HttpResponse { StatusCode = 401, ProcessingTime = 6 }" }
+{ "time": "2019-08-28 00:39:33.0049", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:39:33.0249", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:41:00.7359", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:41:00.7609", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:41:00.7839", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:41:00.8009", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:41:00.8149", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:41:00.8489", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 48 }" }
+{ "time": "2019-08-28 00:42:22.1905", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:42:22.2405", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:42:22.2725", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:42:22.3085", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:42:22.3305", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:42:22.3645", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 57 }" }
+{ "time": "2019-08-28 00:43:47.4734", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:43:47.5024", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:43:47.5484", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:43:47.5704", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:43:47.5844", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:43:47.6174", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 48 }" }
+{ "time": "2019-08-28 00:50:24.1351", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:50:24.1611", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:50:24.2221", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:50:24.2581", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:50:24.3101", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:50:24.5201", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 275 }" }
+{ "time": "2019-08-28 00:55:08.8664", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:55:08.8934", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:55:08.9634", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:55:09.0034", "level": "TRACE", "message": "HttpResponse { StatusCode = 401, ProcessingTime = 4 }" }
+{ "time": "2019-08-28 00:55:36.4920", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-28 00:55:36.5380", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-28 00:55:36.5610", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-28 00:55:37.1310", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-28 00:55:37.1740", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 636 }" }
+{ "time": "2019-08-28 00:55:56.6801", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:55:56.7351", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:55:56.7591", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:55:56.7761", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:55:56.7941", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:55:56.8321", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 56 }" }
+{ "time": "2019-08-28 00:58:44.9867", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:58:45.0577", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:58:45.1828", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:58:45.2448", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:58:45.2738", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:58:45.3448", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 103 }" }
+{ "time": "2019-08-28 00:59:27.1542", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:59:27.1802", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:59:27.2632", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:59:27.2862", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:59:27.3112", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:59:27.3582", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 74 }" }
+{ "time": "2019-08-28 00:59:29.3713", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:59:29.4033", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:59:29.4783", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:59:29.5093", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:59:29.5233", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:59:29.5493", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 41 }" }
+{ "time": "2019-08-28 00:59:33.7005", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:59:33.7525", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:59:33.8165", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 00:59:33.8675", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:59:33.8935", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 00:59:33.9535", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 87 }" }
+{ "time": "2019-08-28 00:59:58.8940", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 00:59:58.9260", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 00:59:58.9770", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 00:59:59.0270", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 00:59:59.0270", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 00:59:59.1100", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 117 }" }
+{ "time": "2019-08-28 01:00:27.9736", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 01:00:28.0226", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:00:28.0656", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 01:00:28.0866", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:00:28.1046", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 01:00:28.1476", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 62 }" }
+{ "time": "2019-08-28 01:00:33.4539", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 01:00:33.4719", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:00:33.4959", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 01:00:33.5200", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:00:33.5360", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 01:00:33.5610", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 43 }" }
+{ "time": "2019-08-28 01:00:34.2910", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 01:00:34.3090", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:00:34.3220", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 01:00:34.3450", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 36 }" }
+{ "time": "2019-08-28 01:00:38.0302", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:00:38.0642", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:00:38.0792", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:00:38.0962", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:00:38.1072", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 01:00:38.1242", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 29 }" }
+{ "time": "2019-08-28 01:00:40.2083", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/3\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/basic-report }" }
+{ "time": "2019-08-28 01:00:40.2333", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:00:40.2573", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/3\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/basic-report }" }
+{ "time": "2019-08-28 01:00:40.2753", "level": "INFO", "message": "Get Basic Report for ClassRoom 3 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:00:40.2933", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 3" }
+{ "time": "2019-08-28 01:00:40.3123", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 38 }" }
+{ "time": "2019-08-28 01:00:40.8614", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/2\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/basic-report }" }
+{ "time": "2019-08-28 01:00:40.8824", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:00:40.8824", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/2\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/basic-report }" }
+{ "time": "2019-08-28 01:00:40.9174", "level": "INFO", "message": "Get Basic Report for ClassRoom 2 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:00:40.9174", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 2" }
+{ "time": "2019-08-28 01:00:40.9444", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 28 }" }
+{ "time": "2019-08-28 01:00:41.9004", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/basic-report }" }
+{ "time": "2019-08-28 01:00:41.9164", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:00:41.9374", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/basic-report }" }
+{ "time": "2019-08-28 01:00:41.9514", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:00:41.9664", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 01:00:41.9834", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 33 }" }
+{ "time": "2019-08-28 01:00:42.5085", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/3\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/basic-report }" }
+{ "time": "2019-08-28 01:00:42.5235", "level": "INFO", "message": "Get Basic Report for ClassRoom 3 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:00:42.5385", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 3" }
+{ "time": "2019-08-28 01:00:42.5565", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 35 }" }
+{ "time": "2019-08-28 01:00:43.1725", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:00:43.1835", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:00:43.2025", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:00:43.2145", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:00:43.2265", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 01:00:43.2425", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 29 }" }
+{ "time": "2019-08-28 01:00:43.7095", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/3\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/basic-report }" }
+{ "time": "2019-08-28 01:00:43.7385", "level": "INFO", "message": "Get Basic Report for ClassRoom 3 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:00:43.7535", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 3" }
+{ "time": "2019-08-28 01:00:43.7705", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 33 }" }
+{ "time": "2019-08-28 01:00:44.4266", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/2\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/basic-report }" }
+{ "time": "2019-08-28 01:00:44.4616", "level": "INFO", "message": "Get Basic Report for ClassRoom 2 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:00:44.4756", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 2" }
+{ "time": "2019-08-28 01:00:44.4986", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 38 }" }
+{ "time": "2019-08-28 01:00:45.1026", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/basic-report }" }
+{ "time": "2019-08-28 01:00:45.1386", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:00:45.1506", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 01:00:45.1666", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 29 }" }
+{ "time": "2019-08-28 01:00:45.4846", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/2\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/basic-report }" }
+{ "time": "2019-08-28 01:00:45.5016", "level": "INFO", "message": "Get Basic Report for ClassRoom 2 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:00:45.5016", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 2" }
+{ "time": "2019-08-28 01:00:45.5336", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 36 }" }
+{ "time": "2019-08-28 01:00:45.8707", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:00:45.8937", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:00:45.8937", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 01:00:45.9197", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 27 }" }
+{ "time": "2019-08-28 01:00:49.3429", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/basic-report }" }
+{ "time": "2019-08-28 01:00:49.3729", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:00:49.3929", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/basic-report }" }
+{ "time": "2019-08-28 01:00:49.4079", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:00:49.4219", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 01:00:49.4379", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 31 }" }
+{ "time": "2019-08-28 01:10:35.7154", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 01:10:35.7374", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:10:35.7934", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 01:10:35.8134", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:10:35.8534", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 01:10:36.6244", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 814 }" }
+{ "time": "2019-08-28 01:10:40.5487", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:10:40.5887", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:10:40.6127", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:10:40.6337", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:10:40.6477", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 01:10:40.6727", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 39 }" }
+{ "time": "2019-08-28 01:20:24.1761", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 01:20:24.1991", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:20:24.2351", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 01:20:24.2641", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:20:24.2861", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 01:20:24.5241", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 261 }" }
+{ "time": "2019-08-28 01:20:26.1822", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:20:26.1992", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:20:26.2142", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:20:26.2322", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:20:26.2452", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 01:20:26.2622", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 31 }" }
+{ "time": "2019-08-28 01:20:28.9543", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/3\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/basic-report }" }
+{ "time": "2019-08-28 01:20:28.9743", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:20:29.0083", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/3\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/basic-report }" }
+{ "time": "2019-08-28 01:20:29.0223", "level": "INFO", "message": "Get Basic Report for ClassRoom 3 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:20:29.0373", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 3" }
+{ "time": "2019-08-28 01:20:29.0663", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 45 }" }
+{ "time": "2019-08-28 01:20:31.5035", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/basic-report }" }
+{ "time": "2019-08-28 01:20:31.5175", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:20:31.5765", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/basic-report }" }
+{ "time": "2019-08-28 01:20:31.6235", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:20:31.6235", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 01:20:31.6515", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 28 }" }
+{ "time": "2019-08-28 01:20:33.4406", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/2\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/basic-report }" }
+{ "time": "2019-08-28 01:20:33.4586", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:20:33.4756", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/2\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/basic-report }" }
+{ "time": "2019-08-28 01:20:33.4906", "level": "INFO", "message": "Get Basic Report for ClassRoom 2 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:20:33.5056", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 2" }
+{ "time": "2019-08-28 01:20:33.5206", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 31 }" }
+{ "time": "2019-08-28 01:21:42.4715", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 01:21:42.5125", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:21:42.5975", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 01:21:42.6395", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:21:42.6585", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 01:21:42.6815", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 43 }" }
+{ "time": "2019-08-28 01:21:43.5086", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:21:43.5456", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:21:43.5656", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:21:43.5866", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:21:43.6076", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 01:21:43.6336", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 49 }" }
+{ "time": "2019-08-28 01:21:50.5580", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/2\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/basic-report }" }
+{ "time": "2019-08-28 01:21:50.5750", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:21:50.6240", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/2\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/basic-report }" }
+{ "time": "2019-08-28 01:21:50.6440", "level": "INFO", "message": "Get Basic Report for ClassRoom 2 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:21:50.6600", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 2" }
+{ "time": "2019-08-28 01:21:50.6760", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 34 }" }
+{ "time": "2019-08-28 01:21:51.5571", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/3\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/basic-report }" }
+{ "time": "2019-08-28 01:21:51.5871", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:21:51.6051", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/3\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/basic-report }" }
+{ "time": "2019-08-28 01:21:51.6241", "level": "INFO", "message": "Get Basic Report for ClassRoom 3 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:21:51.6401", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 3" }
+{ "time": "2019-08-28 01:21:51.6761", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 53 }" }
+{ "time": "2019-08-28 01:21:51.9401", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:21:51.9561", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:21:51.9701", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:21:51.9861", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:21:51.9981", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 01:21:52.0141", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 28 }" }
+{ "time": "2019-08-28 01:41:53.1428", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 01:41:53.1848", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:41:53.2158", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 01:41:53.2358", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:41:53.2518", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 01:41:53.6618", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 427 }" }
+{ "time": "2019-08-28 01:41:55.3809", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:41:55.3989", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:41:55.4279", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:41:55.4499", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:41:55.4639", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 01:41:55.4859", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 38 }" }
+{ "time": "2019-08-28 01:42:28.8318", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 01:42:28.8548", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:42:28.9418", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 01:42:28.9738", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:42:28.9938", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 01:42:29.0268", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 54 }" }
+{ "time": "2019-08-28 01:42:29.9419", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:42:29.9689", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:42:29.9869", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:42:30.0159", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:42:30.0369", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 01:42:30.0659", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 52 }" }
+{ "time": "2019-08-28 01:42:39.2734", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/basic-report }" }
+{ "time": "2019-08-28 01:42:39.3154", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:42:39.3354", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/basic-report }" }
+{ "time": "2019-08-28 01:42:39.3554", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:42:39.3664", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 01:42:39.3834", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 29 }" }
+{ "time": "2019-08-28 01:42:40.8475", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/2\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/basic-report }" }
+{ "time": "2019-08-28 01:42:40.8645", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:42:40.8855", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/2\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/basic-report }" }
+{ "time": "2019-08-28 01:42:40.9015", "level": "INFO", "message": "Get Basic Report for ClassRoom 2 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:42:40.9135", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 2" }
+{ "time": "2019-08-28 01:42:40.9345", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 33 }" }
+{ "time": "2019-08-28 01:42:41.8366", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/3\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/basic-report }" }
+{ "time": "2019-08-28 01:42:41.8546", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:42:41.8746", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/3\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/basic-report }" }
+{ "time": "2019-08-28 01:42:41.8906", "level": "INFO", "message": "Get Basic Report for ClassRoom 3 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:42:41.8906", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 3" }
+{ "time": "2019-08-28 01:42:41.9266", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 36 }" }
+{ "time": "2019-08-28 01:42:42.8256", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:42:42.8596", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:42:42.9016", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:42:42.9176", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:42:42.9316", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 01:42:42.9506", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 34 }" }
+{ "time": "2019-08-28 01:42:51.0361", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:42:51.0701", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:42:51.1061", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/basic-report }" }
+{ "time": "2019-08-28 01:42:51.1241", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:42:51.1401", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 01:42:51.1611", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 38 }" }
+{ "time": "2019-08-28 01:42:52.2762", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/basic-report }" }
+{ "time": "2019-08-28 01:42:52.3082", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 01:42:52.3242", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/basic-report }" }
+{ "time": "2019-08-28 01:42:52.3412", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 01:42:52.3522", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 01:42:52.3692", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 28 }" }
+{ "time": "2019-08-28 13:40:22.5179", "level": "TRACE", "message": "Auth server constructed" }
+{ "time": "2019-08-28 13:40:22.9239", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-28 13:40:25.2831", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-28 13:40:25.3991", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 103 }" }
+{ "time": "2019-08-28 13:40:25.4611", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 2514 }" }
+{ "time": "2019-08-28 13:44:23.3507", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-28 13:44:23.4077", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-28 13:44:23.6367", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-28 13:44:29.5480", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-28 13:44:29.6461", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 6280 }" }
+{ "time": "2019-08-28 13:44:38.0815", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/basic-report }" }
+{ "time": "2019-08-28 13:44:38.1935", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 13:44:38.2245", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 13:44:38.5926", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 497 }" }
+{ "time": "2019-08-28 13:44:48.2371", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 13:44:48.2551", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 13:44:48.3051", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 13:44:48.7431", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 490 }" }
+{ "time": "2019-08-28 14:59:32.5766", "level": "TRACE", "message": "Auth server constructed" }
+{ "time": "2019-08-28 14:59:32.9216", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-28 14:59:34.9057", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-28 14:59:35.0007", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 84 }" }
+{ "time": "2019-08-28 14:59:35.0347", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 2094 }" }
+{ "time": "2019-08-28 14:59:48.8995", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/courses, ResourceURI = http:\/\/localhost:50663\/api\/courses }" }
+{ "time": "2019-08-28 14:59:48.9455", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 13 }" }
+{ "time": "2019-08-28 14:59:48.9665", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/courses, ResourceURI = http:\/\/localhost:50663\/api\/courses }" }
+{ "time": "2019-08-28 14:59:49.3746", "level": "INFO", "message": "Get all Courses by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 14:59:49.3986", "level": "TRACE", "message": "Service received a request to return all courses as dtos" }
+{ "time": "2019-08-28 14:59:49.4106", "level": "TRACE", "message": "\"eGradeBook.Models.Course\" repository Get request with filter and all" }
+{ "time": "2019-08-28 14:59:53.7758", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 4795 }" }
+{ "time": "2019-08-28 15:00:04.0364", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:00:04.0784", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:00:04.0994", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:00:04.1224", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:00:04.1434", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 15:00:04.6354", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 518 }" }
+{ "time": "2019-08-28 15:00:08.5727", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/basic-report }" }
+{ "time": "2019-08-28 15:00:08.5947", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:00:08.6497", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/basic-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/basic-report }" }
+{ "time": "2019-08-28 15:00:08.7217", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:00:08.7377", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:00:08.7917", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 121 }" }
+{ "time": "2019-08-28 15:01:26.8831", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:01:26.9081", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:01:26.9461", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:01:26.9732", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:01:26.9992", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 15:01:27.0932", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 122 }" }
+{ "time": "2019-08-28 15:01:31.2974", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:01:31.3324", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:01:31.3784", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:01:31.3954", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:01:31.4104", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:01:31.7234", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 330 }" }
+{ "time": "2019-08-28 15:03:22.3117", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:03:22.3337", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:03:22.3618", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:03:22.3838", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:03:22.4118", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 15:03:22.4428", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 61 }" }
+{ "time": "2019-08-28 15:03:23.4998", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:03:23.5198", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:03:23.5358", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:03:23.5488", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:03:23.5628", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:03:23.5878", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 40 }" }
+{ "time": "2019-08-28 15:03:57.5738", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:03:57.5958", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:03:57.6218", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:03:57.6418", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:03:57.6628", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 15:03:57.7088", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 68 }" }
+{ "time": "2019-08-28 15:03:58.4518", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:03:58.4828", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:03:58.5038", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:03:58.5178", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:03:58.5348", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:03:58.5608", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 44 }" }
+{ "time": "2019-08-28 15:04:39.5982", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:04:39.6262", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:04:39.6572", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:04:39.6762", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:04:39.6952", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 15:04:39.7262", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 51 }" }
+{ "time": "2019-08-28 15:04:40.5472", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:04:40.5642", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:04:40.5812", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:04:40.5952", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:04:40.6082", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:04:40.6352", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 41 }" }
+{ "time": "2019-08-28 15:05:24.4897", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:05:24.5147", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:05:24.5387", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:05:24.5697", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:05:24.5877", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 15:05:24.6177", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 50 }" }
+{ "time": "2019-08-28 15:05:25.2898", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:05:25.3078", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:05:25.3218", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:05:25.3328", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:05:25.3328", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:05:25.3658", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 34 }" }
+{ "time": "2019-08-28 15:05:34.3443", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 15:05:34.3583", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:05:34.3953", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 15:05:34.4223", "level": "INFO", "message": "Get Basic Report for ClassRoom 3 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:05:34.4383", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 3" }
+{ "time": "2019-08-28 15:05:34.4653", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 44 }" }
+{ "time": "2019-08-28 15:05:52.0403", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:05:52.0663", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:05:52.1103", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:05:52.1293", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:05:52.1563", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:05:52.1883", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 59 }" }
+{ "time": "2019-08-28 15:08:40.8280", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:08:40.8490", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:08:40.8830", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:08:40.9050", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:08:40.9200", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:08:40.9450", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 40 }" }
+{ "time": "2019-08-28 15:09:01.3441", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:09:01.3621", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:09:01.4101", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:09:01.4381", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:09:01.4551", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 15:09:01.4771", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 41 }" }
+{ "time": "2019-08-28 15:09:02.2602", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:09:02.2932", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:09:02.3132", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:09:02.3272", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:09:02.3432", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:09:02.3682", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 41 }" }
+{ "time": "2019-08-28 15:14:55.1094", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:14:55.1384", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:14:55.1784", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:14:55.2034", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:14:55.2154", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 15:14:55.4294", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 228 }" }
+{ "time": "2019-08-28 15:14:56.7485", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:14:56.7485", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:14:56.7795", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:14:56.7795", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:14:56.8045", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:14:56.8345", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 42 }" }
+{ "time": "2019-08-28 15:23:14.1689", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:23:14.2059", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:23:14.2429", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:23:14.2629", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:23:14.2779", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 15:23:15.0640", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 802 }" }
+{ "time": "2019-08-28 15:23:17.2971", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:23:17.3141", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:23:17.3391", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:23:17.3561", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:23:17.3721", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:23:17.5891", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 234 }" }
+{ "time": "2019-08-28 15:23:27.4827", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:23:27.5057", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:23:27.5467", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:23:27.5647", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:23:27.5877", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 15:23:27.6147", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 52 }" }
+{ "time": "2019-08-28 15:23:28.5777", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:23:28.5937", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:23:28.6137", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:23:28.6297", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:23:28.6497", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:23:28.6787", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 50 }" }
+{ "time": "2019-08-28 15:24:25.6140", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:24:25.6370", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:24:25.6900", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:24:25.7160", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:24:25.7480", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 15:24:25.8030", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 90 }" }
+{ "time": "2019-08-28 15:24:28.7152", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:24:28.7282", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:24:28.7652", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:24:28.7872", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:24:28.8122", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:24:28.8422", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 56 }" }
+{ "time": "2019-08-28 15:25:08.8635", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:25:08.8845", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:25:08.9295", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:25:08.9625", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:25:08.9925", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 15:25:09.0295", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 82 }" }
+{ "time": "2019-08-28 15:25:10.5776", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:25:10.6006", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:25:10.6186", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:25:10.6356", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:25:10.6536", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:25:10.6866", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 52 }" }
+{ "time": "2019-08-28 15:28:47.6350", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:28:47.6490", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:28:47.6750", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:28:47.6950", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:28:47.7250", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 15:28:47.7480", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 54 }" }
+{ "time": "2019-08-28 15:28:48.5230", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:28:48.5440", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:28:48.5600", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:28:48.5750", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:28:48.5890", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:28:48.6170", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 43 }" }
+{ "time": "2019-08-28 15:30:27.7717", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:30:27.7867", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:30:27.8327", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:30:27.8487", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:30:27.8687", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 15:30:27.8897", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 41 }" }
+{ "time": "2019-08-28 15:30:29.3848", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:30:29.3848", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:30:29.4088", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:30:29.4218", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:30:29.4328", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:30:29.4598", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 38 }" }
+{ "time": "2019-08-28 15:30:52.6111", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/full-report }" }
+{ "time": "2019-08-28 15:30:52.6401", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:30:52.6651", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/full-report }" }
+{ "time": "2019-08-28 15:30:52.6891", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:30:52.7091", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 15:30:52.7321", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 44 }" }
+{ "time": "2019-08-28 15:30:59.7045", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 15:30:59.7165", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:30:59.7375", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 15:30:59.7565", "level": "INFO", "message": "Get Basic Report for ClassRoom 3 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:30:59.7705", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 3" }
+{ "time": "2019-08-28 15:30:59.7976", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 41 }" }
+{ "time": "2019-08-28 15:31:01.2546", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/2\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/full-report }" }
+{ "time": "2019-08-28 15:31:01.2906", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:31:01.3126", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/2\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/full-report }" }
+{ "time": "2019-08-28 15:31:01.3286", "level": "INFO", "message": "Get Basic Report for ClassRoom 2 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:31:01.3416", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 2" }
+{ "time": "2019-08-28 15:31:01.3676", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 40 }" }
+{ "time": "2019-08-28 15:31:03.9278", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:31:03.9588", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:31:03.9908", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:31:04.0138", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:31:04.0248", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:31:04.0518", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 40 }" }
+{ "time": "2019-08-28 15:32:02.1531", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-28 15:32:02.2361", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-28 15:32:02.2551", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-28 15:32:03.0832", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-28 15:32:03.1732", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 982 }" }
+{ "time": "2019-08-28 15:32:23.6463", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/grades\/20, ResourceURI = http:\/\/localhost:50663\/api\/grades\/20 }" }
+{ "time": "2019-08-28 15:32:23.6743", "level": "INFO", "message": "Get Grade 20 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:32:23.6963", "level": "INFO", "message": "Get grade dto by Id 20" }
+{ "time": "2019-08-28 15:32:23.7154", "level": "INFO", "message": "Get grade by Id 20" }
+{ "time": "2019-08-28 15:32:23.7314", "level": "TRACE", "message": "\"eGradeBook.Models.Grade\" repository Get entity by Id 20" }
+{ "time": "2019-08-28 15:32:23.7834", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 114 }" }
+{ "time": "2019-08-28 15:33:26.5479", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/grades\/query, ResourceURI = http:\/\/localhost:50663\/api\/grades\/query?courseId=18&studentId=8 }" }
+{ "time": "2019-08-28 15:33:26.6219", "level": "INFO", "message": "Get Grades : Query by 8" }
+{ "time": "2019-08-28 15:33:26.6470", "level": "TRACE", "message": "Tracer, is authenticated -- True" }
+{ "time": "2019-08-28 15:33:26.6810", "level": "TRACE", "message": "\"eGradeBook.Models.Grade\" repository Get request with filter and all" }
+{ "time": "2019-08-28 15:33:27.3050", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 710 }" }
+{ "time": "2019-08-28 15:35:40.0986", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 15:35:40.1166", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:35:40.1806", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 15:35:40.2106", "level": "INFO", "message": "Get Basic Report for ClassRoom 3 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:35:40.2226", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 3" }
+{ "time": "2019-08-28 15:35:40.2436", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 33 }" }
+{ "time": "2019-08-28 15:35:41.4407", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/2\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/full-report }" }
+{ "time": "2019-08-28 15:35:41.4527", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:35:41.4657", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/2\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/full-report }" }
+{ "time": "2019-08-28 15:35:41.4657", "level": "INFO", "message": "Get Basic Report for ClassRoom 2 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:35:41.4897", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 2" }
+{ "time": "2019-08-28 15:35:41.5127", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 34 }" }
+{ "time": "2019-08-28 15:35:42.9757", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:35:42.9947", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:35:43.0158", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:35:43.0318", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:35:43.0468", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:35:43.0878", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 56 }" }
+{ "time": "2019-08-28 15:35:44.0478", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/full-report }" }
+{ "time": "2019-08-28 15:35:44.0728", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:35:44.0948", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/full-report }" }
+{ "time": "2019-08-28 15:35:44.1108", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:35:44.1238", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 15:35:44.1518", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 42 }" }
+{ "time": "2019-08-28 15:36:09.3523", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:36:09.3653", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:36:09.3873", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:36:09.4043", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:36:09.4203", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:36:09.4713", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 67 }" }
+{ "time": "2019-08-28 15:36:10.2523", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/2\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/full-report }" }
+{ "time": "2019-08-28 15:36:10.2883", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:36:10.3033", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/2\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/full-report }" }
+{ "time": "2019-08-28 15:36:10.3243", "level": "INFO", "message": "Get Basic Report for ClassRoom 2 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:36:10.3393", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 2" }
+{ "time": "2019-08-28 15:36:10.3723", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 48 }" }
+{ "time": "2019-08-28 15:36:10.7683", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 15:36:10.7803", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:36:10.7933", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 15:36:10.8143", "level": "INFO", "message": "Get Basic Report for ClassRoom 3 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:36:10.8253", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 3" }
+{ "time": "2019-08-28 15:36:10.8483", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 35 }" }
+{ "time": "2019-08-28 15:36:11.2004", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/full-report }" }
+{ "time": "2019-08-28 15:36:11.2004", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:36:11.2334", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/full-report }" }
+{ "time": "2019-08-28 15:36:11.2454", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:36:11.2454", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 15:36:11.2794", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 35 }" }
+{ "time": "2019-08-28 15:36:14.2655", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/courses, ResourceURI = http:\/\/localhost:50663\/api\/courses }" }
+{ "time": "2019-08-28 15:36:14.2775", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:36:14.2945", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/courses, ResourceURI = http:\/\/localhost:50663\/api\/courses }" }
+{ "time": "2019-08-28 15:36:14.3155", "level": "INFO", "message": "Get all Courses by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:36:14.3285", "level": "TRACE", "message": "Service received a request to return all courses as dtos" }
+{ "time": "2019-08-28 15:36:14.3385", "level": "TRACE", "message": "\"eGradeBook.Models.Course\" repository Get request with filter and all" }
+{ "time": "2019-08-28 15:36:14.3515", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 37 }" }
+{ "time": "2019-08-28 15:36:18.0288", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:36:18.0458", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:36:18.0758", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 15:36:18.0908", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:36:18.1048", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 15:36:18.1278", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 38 }" }
+{ "time": "2019-08-28 15:36:19.2188", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:36:19.2188", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 15:36:19.2438", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:36:19.2558", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:36:19.2668", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:36:19.2928", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 37 }" }
+{ "time": "2019-08-28 15:36:20.0649", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 15:36:20.0789", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 15:36:20.0909", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 15:36:20.1119", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 34 }" }
+{ "time": "2019-08-28 18:02:49.7183", "level": "TRACE", "message": "Auth server constructed" }
+{ "time": "2019-08-28 18:02:50.1183", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-28 18:02:52.6085", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-28 18:02:52.7275", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 105 }" }
+{ "time": "2019-08-28 18:02:52.8115", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 2670 }" }
+{ "time": "2019-08-28 18:03:03.2281", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 18:03:03.2581", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 10 }" }
+{ "time": "2019-08-28 18:03:03.2781", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 18:03:03.6761", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:03:03.7011", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 18:03:05.5482", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms, ResourceURI = http:\/\/localhost:50663\/api\/classrooms }" }
+{ "time": "2019-08-28 18:03:05.5652", "level": "INFO", "message": "Get all ClassRooms by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:03:05.5852", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get request with filter and all" }
+{ "time": "2019-08-28 18:03:09.2884", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 3724 }" }
+{ "time": "2019-08-28 18:03:14.4367", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 18:03:14.4557", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 18:03:14.4827", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 18:03:14.5447", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:03:14.5627", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 18:03:14.9317", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 434 }" }
+{ "time": "2019-08-28 18:03:22.3342", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/full-report }" }
+{ "time": "2019-08-28 18:03:22.3712", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 18:03:22.3922", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/full-report }" }
+{ "time": "2019-08-28 18:03:22.4072", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:03:22.4192", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 18:03:22.4452", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 38 }" }
+{ "time": "2019-08-28 18:03:23.9462", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 18:03:23.9592", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 18:03:23.9812", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 18:03:23.9952", "level": "INFO", "message": "Get Basic Report for ClassRoom 3 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:03:24.0082", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 3" }
+{ "time": "2019-08-28 18:03:24.0332", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 39 }" }
+{ "time": "2019-08-28 18:03:25.1563", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 18:03:25.1873", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 18:03:25.1873", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 18:03:25.2123", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:03:25.2243", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 18:03:25.2503", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 38 }" }
+{ "time": "2019-08-28 18:03:27.7605", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/2\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/full-report }" }
+{ "time": "2019-08-28 18:03:27.7605", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 18:03:27.7915", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/2\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/full-report }" }
+{ "time": "2019-08-28 18:03:27.7915", "level": "INFO", "message": "Get Basic Report for ClassRoom 2 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:03:27.8175", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 2" }
+{ "time": "2019-08-28 18:03:27.8425", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 37 }" }
+{ "time": "2019-08-28 18:03:32.9758", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 18:03:33.0158", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 18:03:33.0488", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 18:03:33.0488", "level": "INFO", "message": "Get Basic Report for ClassRoom 3 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:03:33.0738", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 3" }
+{ "time": "2019-08-28 18:03:33.0958", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 35 }" }
+{ "time": "2019-08-28 18:03:33.6068", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/2\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/full-report }" }
+{ "time": "2019-08-28 18:03:33.6498", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 18:03:33.6658", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/2\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/full-report }" }
+{ "time": "2019-08-28 18:03:33.6798", "level": "INFO", "message": "Get Basic Report for ClassRoom 2 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:03:33.6908", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 2" }
+{ "time": "2019-08-28 18:03:33.7158", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 37 }" }
+{ "time": "2019-08-28 18:03:34.0428", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 18:03:34.0598", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 18:03:34.0748", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 18:03:34.0898", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:03:34.1028", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 18:03:34.1308", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 41 }" }
+{ "time": "2019-08-28 18:03:34.8049", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/full-report }" }
+{ "time": "2019-08-28 18:03:34.8279", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 18:03:34.8589", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/full-report }" }
+{ "time": "2019-08-28 18:03:34.8589", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:03:34.8829", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 18:03:34.9069", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 36 }" }
+{ "time": "2019-08-28 18:05:26.9273", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/2\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/full-report }" }
+{ "time": "2019-08-28 18:05:26.9423", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 18:05:26.9663", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/2\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/full-report }" }
+{ "time": "2019-08-28 18:05:26.9833", "level": "INFO", "message": "Get Basic Report for ClassRoom 2 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:05:27.0063", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 2" }
+{ "time": "2019-08-28 18:05:27.0313", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 49 }" }
+{ "time": "2019-08-28 18:05:27.7183", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 18:05:27.7303", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 18:05:27.7433", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 18:05:27.7593", "level": "INFO", "message": "Get Basic Report for ClassRoom 3 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:05:27.7593", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 3" }
+{ "time": "2019-08-28 18:05:27.7933", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 36 }" }
+{ "time": "2019-08-28 18:05:28.2194", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/full-report }" }
+{ "time": "2019-08-28 18:05:28.2384", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 18:05:28.2514", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/full-report }" }
+{ "time": "2019-08-28 18:05:28.2644", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:05:28.2764", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 18:05:28.3044", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 41 }" }
+{ "time": "2019-08-28 18:05:29.2354", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 18:05:29.2584", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 18:05:29.2724", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 18:05:29.2854", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:05:29.2854", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 18:05:29.3304", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 46 }" }
+{ "time": "2019-08-28 18:05:30.2695", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 18:05:30.3045", "level": "INFO", "message": "Get Basic Report for ClassRoom 3 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:05:30.3195", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 3" }
+{ "time": "2019-08-28 18:05:30.3625", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 59 }" }
+{ "time": "2019-08-28 18:05:31.0735", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/2\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/full-report }" }
+{ "time": "2019-08-28 18:05:31.1125", "level": "INFO", "message": "Get Basic Report for ClassRoom 2 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:05:31.1305", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 2" }
+{ "time": "2019-08-28 18:05:31.1575", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 47 }" }
+{ "time": "2019-08-28 18:05:31.5955", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/full-report }" }
+{ "time": "2019-08-28 18:05:31.5955", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 18:05:31.6185", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 18:05:31.6425", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 37 }" }
+{ "time": "2019-08-28 19:03:48.1355", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 19:03:48.1845", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 19:03:48.2035", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 19:03:48.2195", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 19:03:48.2495", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 19:03:48.4056", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 187 }" }
+{ "time": "2019-08-28 19:03:50.4937", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/2\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/full-report }" }
+{ "time": "2019-08-28 19:03:50.5197", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 19:03:50.5427", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/2\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/full-report }" }
+{ "time": "2019-08-28 19:03:50.5597", "level": "INFO", "message": "Get Basic Report for ClassRoom 2 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 19:03:50.5747", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 2" }
+{ "time": "2019-08-28 19:03:50.5977", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 39 }" }
+{ "time": "2019-08-28 19:03:53.9329", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 19:03:53.9519", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 19:03:53.9749", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 19:03:53.9989", "level": "INFO", "message": "Get Basic Report for ClassRoom 3 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 19:03:54.0179", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 3" }
+{ "time": "2019-08-28 19:03:54.0529", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 56 }" }
+{ "time": "2019-08-28 19:03:54.7509", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/full-report }" }
+{ "time": "2019-08-28 19:03:54.7709", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 19:03:54.7889", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/full-report }" }
+{ "time": "2019-08-28 19:03:54.7999", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 19:03:54.7999", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 19:03:54.8339", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 35 }" }
+{ "time": "2019-08-28 19:04:11.5599", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/4\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/full-report }" }
+{ "time": "2019-08-28 19:04:11.5899", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 19:04:11.6069", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/4\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/4\/full-report }" }
+{ "time": "2019-08-28 19:04:11.6239", "level": "INFO", "message": "Get Basic Report for ClassRoom 4 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 19:04:11.6429", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 4" }
+{ "time": "2019-08-28 19:04:11.6729", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 50 }" }
+{ "time": "2019-08-28 19:04:12.8850", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 19:04:12.9090", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 19:04:12.9260", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/3\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/3\/full-report }" }
+{ "time": "2019-08-28 19:04:12.9440", "level": "INFO", "message": "Get Basic Report for ClassRoom 3 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 19:04:12.9580", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 3" }
+{ "time": "2019-08-28 19:04:12.9840", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 40 }" }
+{ "time": "2019-08-28 19:04:13.6760", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/2\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/full-report }" }
+{ "time": "2019-08-28 19:04:13.7070", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 19:04:13.7230", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/2\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/2\/full-report }" }
+{ "time": "2019-08-28 19:04:13.7230", "level": "INFO", "message": "Get Basic Report for ClassRoom 2 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 19:04:13.7500", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 2" }
+{ "time": "2019-08-28 19:04:13.7890", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 55 }" }
+{ "time": "2019-08-28 19:04:15.3421", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = OPTIONS, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 19:04:15.3671", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 0 }" }
+{ "time": "2019-08-28 19:04:15.3791", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/classrooms\/1\/full-report, ResourceURI = http:\/\/localhost:50663\/api\/classrooms\/1\/full-report }" }
+{ "time": "2019-08-28 19:04:15.3791", "level": "INFO", "message": "Get Basic Report for ClassRoom 1 by {\"UserId\":1, \"UserRole\":\"admins\"}" }
+{ "time": "2019-08-28 19:04:15.4021", "level": "TRACE", "message": "\"eGradeBook.Models.ClassRoom\" repository Get entity by Id 1" }
+{ "time": "2019-08-28 19:04:15.4271", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 36 }" }
+{ "time": "2019-08-30 14:50:25.5119", "level": "TRACE", "message": "Auth server constructed" }
+{ "time": "2019-08-30 14:50:25.9560", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-30 14:50:28.7261", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-30 14:50:28.8481", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 107 }" }
+{ "time": "2019-08-30 14:50:28.9061", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 2929 }" }
+{ "time": "2019-08-30 14:50:43.0089", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 14:50:43.0979", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-30 14:50:43.2700", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-30 14:50:48.5183", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-30 14:52:47.6591", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 14:52:47.6881", "level": "TRACE", "message": "IP: ::1 username=" }
+{ "time": "2019-08-30 14:52:47.7271", "level": "TRACE", "message": "Find User \"\"" }
+{ "time": "2019-08-30 14:52:47.7481", "level": "TRACE", "message": "username= and password combo is not valid" }
+{ "time": "2019-08-30 14:52:47.7621", "level": "TRACE", "message": "HttpResponse { StatusCode = 400, ProcessingTime = 74 }" }
+{ "time": "2019-08-30 14:53:43.1282", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 14:53:43.1892", "level": "TRACE", "message": "IP: ::1 username=" }
+{ "time": "2019-08-30 14:53:43.2122", "level": "TRACE", "message": "Find User \"\"" }
+{ "time": "2019-08-30 14:53:43.2312", "level": "TRACE", "message": "username= and password combo is not valid" }
+{ "time": "2019-08-30 14:53:45.9954", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 14:53:46.0244", "level": "TRACE", "message": "IP: ::1 username=" }
+{ "time": "2019-08-30 14:53:46.1084", "level": "TRACE", "message": "Find User \"\"" }
+{ "time": "2019-08-30 14:53:46.1394", "level": "TRACE", "message": "username= and password combo is not valid" }
+{ "time": "2019-08-30 14:54:15.1911", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 14:54:15.2371", "level": "TRACE", "message": "IP: ::1 username=" }
+{ "time": "2019-08-30 14:54:15.2681", "level": "TRACE", "message": "Find User \"\"" }
+{ "time": "2019-08-30 14:54:15.2891", "level": "TRACE", "message": "username= and password combo is not valid" }
+{ "time": "2019-08-30 14:54:15.3121", "level": "TRACE", "message": "HttpResponse { StatusCode = 400, ProcessingTime = 75 }" }
+{ "time": "2019-08-30 14:55:20.6278", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 14:55:20.7008", "level": "TRACE", "message": "IP: ::1 username=" }
+{ "time": "2019-08-30 14:55:20.7838", "level": "TRACE", "message": "Find User \"\"" }
+{ "time": "2019-08-30 14:55:20.8098", "level": "TRACE", "message": "username= and password combo is not valid" }
+{ "time": "2019-08-30 14:55:20.8248", "level": "TRACE", "message": "HttpResponse { StatusCode = 400, ProcessingTime = 124 }" }
+{ "time": "2019-08-30 14:55:53.5317", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 14:55:53.5667", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-30 14:55:53.6087", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-30 14:55:53.6687", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-30 14:55:53.6927", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 125 }" }
+{ "time": "2019-08-30 14:58:43.5154", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 14:58:43.5544", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-30 14:58:43.6014", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-30 14:58:43.6694", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-30 14:58:43.7324", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 178 }" }
+{ "time": "2019-08-30 15:03:51.0870", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 15:03:51.1370", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-30 15:03:51.1640", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-30 15:03:51.4640", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-30 15:03:51.4790", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 342 }" }
+{ "time": "2019-08-30 15:10:02.8213", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 15:10:02.8433", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-30 15:10:02.8983", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-30 15:10:03.1293", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-30 15:10:03.1713", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 327 }" }
+{ "time": "2019-08-30 15:12:04.6382", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 15:12:04.6622", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-30 15:12:04.6872", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-30 15:12:04.7583", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-30 15:12:04.7983", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 136 }" }
+{ "time": "2019-08-30 15:13:38.8636", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 15:13:38.9056", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-30 15:13:38.9326", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-30 15:13:38.9876", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-30 15:13:39.0056", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 100 }" }
+{ "time": "2019-08-30 15:14:00.8989", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 15:14:00.9279", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-30 15:14:00.9529", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-30 15:14:00.9849", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-30 15:14:00.9849", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 69 }" }
+{ "time": "2019-08-30 15:14:38.9451", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 15:14:38.9791", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-30 15:14:39.0181", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-30 15:14:39.0451", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-30 15:14:39.0691", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 104 }" }
+{ "time": "2019-08-30 15:14:48.4046", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/api\/teachers, ResourceURI = http:\/\/localhost:50663\/api\/teachers }" }
+{ "time": "2019-08-30 15:14:48.5026", "level": "INFO", "message": "User {\"UserId\":1, \"UserRole\":\"admins\"} is requesting a list of all teacher" }
+{ "time": "2019-08-30 15:14:48.5286", "level": "INFO", "message": "Service received request for retrieving all teachers" }
+{ "time": "2019-08-30 15:14:48.5396", "level": "TRACE", "message": "\"eGradeBook.Models.TeacherUser\" repository Get request with filter and all" }
+{ "time": "2019-08-30 15:14:48.6226", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 204 }" }
+{ "time": "2019-08-30 15:14:59.0042", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 15:14:59.0362", "level": "TRACE", "message": "IP: ::1 username=radaradic" }
+{ "time": "2019-08-30 15:14:59.0672", "level": "TRACE", "message": "Find User \"radaradic\"" }
+{ "time": "2019-08-30 15:14:59.1072", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-30 15:14:59.1202", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 84 }" }
+{ "time": "2019-08-30 15:16:55.2059", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 15:16:55.2339", "level": "TRACE", "message": "IP: ::1 username=radaradic" }
+{ "time": "2019-08-30 15:16:55.2529", "level": "TRACE", "message": "Find User \"radaradic\"" }
+{ "time": "2019-08-30 15:16:55.2799", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-30 15:16:55.2929", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 59 }" }
+{ "time": "2019-08-30 15:18:07.4940", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 15:18:07.5340", "level": "TRACE", "message": "IP: ::1 username=radaradic" }
+{ "time": "2019-08-30 15:18:07.5520", "level": "TRACE", "message": "Find User \"radaradic\"" }
+{ "time": "2019-08-30 15:18:07.5980", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-30 15:18:07.6110", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 77 }" }
+{ "time": "2019-08-30 18:50:34.0336", "level": "TRACE", "message": "Auth server constructed" }
+{ "time": "2019-08-30 18:50:34.4066", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-30 18:50:36.6427", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-08-30 18:50:36.7147", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 61 }" }
+{ "time": "2019-08-30 18:50:36.7467", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 2319 }" }
+{ "time": "2019-08-30 18:50:56.1068", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 18:50:56.1618", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-30 18:50:56.3259", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-30 18:50:59.4980", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 18:50:59.4980", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-30 18:50:59.5400", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-30 18:51:00.6601", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-30 18:51:00.8331", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 4701 }" }
+{ "time": "2019-08-30 19:02:26.8173", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = POST, Path = \/token, ResourceURI = http:\/\/localhost:50663\/token }" }
+{ "time": "2019-08-30 19:02:26.8814", "level": "TRACE", "message": "IP: ::1 username=peraperic" }
+{ "time": "2019-08-30 19:02:26.9004", "level": "TRACE", "message": "Find User \"peraperic\"" }
+{ "time": "2019-08-30 19:02:27.4344", "level": "TRACE", "message": "Find Roles for {@userId}}" }
+{ "time": "2019-08-30 19:02:27.4504", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 569 }" }
+{ "time": "2019-09-11 23:59:30.6313", "level": "TRACE", "message": "Auth server constructed" }
+{ "time": "2019-09-11 23:59:31.0143", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-09-11 23:59:33.1874", "level": "TRACE", "message": "HttpRequest { RemoteIP = ::1, Method = GET, Path = \/, ResourceURI = http:\/\/localhost:50663\/ }" }
+{ "time": "2019-09-11 23:59:33.2854", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 88 }" }
+{ "time": "2019-09-11 23:59:33.3394", "level": "TRACE", "message": "HttpResponse { StatusCode = 200, ProcessingTime = 2303 }" }

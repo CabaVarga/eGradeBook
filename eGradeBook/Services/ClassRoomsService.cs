@@ -285,5 +285,38 @@ namespace eGradeBook.Services
 
             return classRoom;
         }
+
+        /// <summary>
+        /// Get basic report for a given classroom
+        /// </summary>
+        /// <param name="classRoomId"></param>
+        /// <returns></returns>
+        public ClassRoomBasicReportDto GetBasicReport(int classRoomId)
+        {
+            ClassRoom classRoom = db.ClassRoomsRepository.GetByID(classRoomId);
+
+            if (classRoom == null)
+            {
+                throw new ClassRoomNotFoundException(string.Format("ClassRoom {0} not found", classRoomId));
+            }
+
+            var report = Converters.ClassRoomConverter.ClassRoomToClassRoomBasicReportDto(classRoom);
+
+            return report;
+        }
+
+        public ClassRoomFullReportDto GetFullReport(int classRoomId)
+        {
+            ClassRoom classRoom = db.ClassRoomsRepository.GetByID(classRoomId);
+
+            if (classRoom == null)
+            {
+                throw new ClassRoomNotFoundException(string.Format("ClassRoom {0} not found", classRoomId));
+            }
+
+            var report = Converters.ClassRoomConverter.ClassRoomToClassRoomFullReportDto(classRoom);
+
+            return report;
+        }
     }
 }

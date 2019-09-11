@@ -129,5 +129,36 @@ namespace eGradeBook.Controllers
 
             return Ok();
         }
+
+
+        #region Reports
+        [Route("{classRoomId}/basic-report")]
+        [HttpGet]
+        [Authorize(Roles = "admins")]
+        public IHttpActionResult GetClassRoomBasicReport(int classRoomId)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Basic Report for ClassRoom {@classRoomId} by {@userData}", classRoomId, userData);
+
+            var report = service.GetBasicReport(classRoomId);
+
+            return Ok(report);
+        }
+
+        [Route("{classRoomId}/full-report")]
+        [HttpGet]
+        [Authorize(Roles = "admins")]
+        public IHttpActionResult GetClassRoomFullReport(int classRoomId)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Basic Report for ClassRoom {@classRoomId} by {@userData}", classRoomId, userData);
+
+            var report = service.GetFullReport(classRoomId);
+
+            return Ok(report);
+        }
+        #endregion
     }
 }

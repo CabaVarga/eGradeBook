@@ -247,8 +247,10 @@
     <Compile Include="Models\Dtos\ClassMasters\ClassMasterDto.cs" />
     <Compile Include="Models\Dtos\ClassRooms\ClassRoomDto.cs" />
     <Compile Include="Models\Dtos\ClassRooms\ClassRoomEnrollStudentDto.cs" />
+    <Compile Include="Models\Dtos\ClassRooms\ClassRoomFullReportDto.cs" />
     <Compile Include="Models\Dtos\ClassRooms\ClassRoomProgramDto.cs" />
     <Compile Include="Models\Dtos\ClassRooms\ClassRoomRegistrationDto.cs" />
+    <Compile Include="Models\Dtos\ClassRooms\ClassRoomBasicReportDto.cs" />
     <Compile Include="Models\Dtos\Courses\CourseDto.cs" />
     <Compile Include="Models\Dtos\CoursesBySchoolClassesDto.cs" />
     <Compile Include="Models\Dtos\Courses\CourseRegistrationDto.cs" />

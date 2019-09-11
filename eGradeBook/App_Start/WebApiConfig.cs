@@ -1,4 +1,5 @@
 ﻿using eGradeBook.Utilities.WebApi;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,9 @@ namespace eGradeBook
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            // Camel case formatting
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
             // Validation filter
             config.Filters.Add(new ValidateModelAttribute());

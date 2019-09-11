@@ -104,6 +104,11 @@ namespace eGradeBook.Tests.Controllers
             throw new NotImplementedException();
         }
 
+        public ClassRoomBasicReportDto GetBasicReport(int classRoomId)
+        {
+            throw new NotImplementedException();
+        }
+
         public ClassRoom GetClassRoom(int classRoomId)
         {
             return new ClassRoom()
@@ -122,6 +127,11 @@ namespace eGradeBook.Tests.Controllers
                 Name = "5a",
                 SchoolGrade = 5
             };
+        }
+
+        public ClassRoomFullReportDto GetFullReport(int classRoomId)
+        {
+            throw new NotImplementedException();
         }
 
         public ClassRoomDto UpdateClassRoom(int classRoomId, ClassRoomDto classRoom)
