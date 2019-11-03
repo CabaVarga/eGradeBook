@@ -1,4 +1,5 @@
-﻿using eGradeBook.Services;
+﻿using eGradeBook.Models.Dtos.FinalGrades;
+using eGradeBook.Services;
 using eGradeBook.Utilities.WebApi;
 using NLog;
 using System;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace eGradeBook.Controllers
 {
@@ -77,5 +79,75 @@ namespace eGradeBook.Controllers
                 return NotFound();
             }
         }
+
+        #region CRUD
+        [HttpPost]
+        [ResponseType(typeof(FinalGradeDto))]
+        [Route("")]
+        public IHttpActionResult CreateFinalGrade(FinalGradeDto finalGradeDto)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Create Final Grade {@finalGradeDto} by {@userData}", finalGradeDto, userData);
+
+            var result = service.CreateFinalGrade(finalGradeDto);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            logger.Info("Created Final Grade {@finalGradeId}", result.FinalGradeId);
+
+            return Ok(result);
+        }
+
+
+        [HttpGet]
+        [ResponseType(typeof(IEnumerable<FinalGradeDto>))]
+        [Route("")]
+        public IHttpActionResult GetFinalGrades()
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Requestad all Final Grades by {@userData}", userData);
+
+            var result = service.GetAllFinalGradesDto();
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            logger.Info("Received all Final Grades ");
+
+            return Ok(result);
+        }
+
+
+        [HttpDelete]
+        [ResponseType(typeof(FinalGradeDto))]
+        [Route("{finalGradeId}")]
+        public IHttpActionResult DeleteFinalGrade(int finalGradeId)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Delete Final Grade {@finalGradeId} by {@userData}", finalGradeId, userData);
+
+            var result = service.DeleteFinalGrade(finalGradeId);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            logger.Info("Deleted Final Grade {@finalGradeId}", result.FinalGradeId);
+
+            return Ok(result);
+        }
+
+
+
+        #endregion
     }
 }

@@ -11,6 +11,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -319,13 +320,20 @@ namespace eGradeBook.Controllers
         [HttpDelete]
         [Route("{adminId}")]
         [ResponseType(typeof(AdminDto))]
-        public IHttpActionResult DeleteAdmin(int adminId)
+        public async Task<IHttpActionResult> DeleteAdmin(int adminId)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
             logger.Info("Delete Admin {@adminId} by {@userData}", adminId, userData);
 
-            return Ok(service.DeleteAdmin(adminId));
+            var result = await service.DeleteAdmin(adminId);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
 
         #endregion

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -107,6 +108,25 @@ namespace eGradeBook.Controllers
             }
 
             return Ok(service.GetParentReport(parentId));
+        }
+
+        [HttpDelete]
+        [Route("{parentId}")]
+        [ResponseType(typeof(ParentDto))]
+        public async Task<IHttpActionResult> DeleteParent(int parentId)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Delete Parent {@parentId} by {@userData}", parentId, userData);
+
+            var result = await service.DeleteParent(parentId);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
     }
 }

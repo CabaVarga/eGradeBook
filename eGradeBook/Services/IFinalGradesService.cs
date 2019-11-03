@@ -34,5 +34,9 @@ namespace eGradeBook.Services
 
         FinalGrade GetFinalGradeById(int finalGradeId);
         FinalGradeDto GetFinalGradeDtoById(int finalGradeId);
+
+        FinalGradeDto CreateFinalGrade(FinalGradeDto finalGradeDto);
+        FinalGradeDto UpdateFinalGrade(int finalGradeId, FinalGradeDto finalGradeDto);
+        FinalGradeDto DeleteFinalGrade(int finalGradeId);
     }
 }

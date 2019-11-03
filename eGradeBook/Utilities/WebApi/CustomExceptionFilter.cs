@@ -167,6 +167,20 @@ namespace eGradeBook.Utilities.WebApi
                 throw new HttpResponseException(resp);
             }
 
+            else if (exceptionType == typeof(ConflictException))
+            {
+                logger.Info("Exception is of type ConflictException");
+                var ex = actionExecutedContext.Exception as ConflictException;
+                logger.Error(ex.Message);
+
+                var resp = new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.Conflict
+                };
+
+                throw new HttpResponseException(resp);
+            }
+
             else if (exceptionType == typeof(UserRegistrationException))
             {
                 logger.Info("Exception is of type UserRegistrationException");

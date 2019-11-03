@@ -4,6 +4,7 @@ using eGradeBook.Models.Dtos.Students;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace eGradeBook.Services
@@ -67,5 +68,7 @@ namespace eGradeBook.Services
         /// </summary>
         /// <returns></returns>
         IEnumerable<ParentDto> GetAllParents();
+
+        Task<ParentDto> DeleteParent(int parentId);
     }
 }

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -135,17 +136,21 @@ namespace eGradeBook.Controllers
         [Route("{teacherId}")]
         [Authorize(Roles = "admins")]
         [ResponseType(typeof(TeacherDto))]
-        public IHttpActionResult DeleteTeacher(int teacherId)
+        public async Task<IHttpActionResult> DeleteTeacher(int teacherId)
         {
-            // check model
+            // this is from accounts
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
-            // check id
+            logger.Trace("Delete User {@teacherId} by {@userData}", teacherId, userData);
 
-            // call service
+            var result = await teachersService.DeleteTeacher(teacherId);
 
-            // return deleted teacher
-            return Ok(teachersService.DeleteTeacher(teacherId));
-            // catch exception: here or at some central place?
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
 
         /// <summary>

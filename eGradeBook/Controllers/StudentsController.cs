@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -281,5 +282,26 @@ namespace eGradeBook.Controllers
                 return InternalServerError();
             }
         }
+
+        [HttpDelete]
+        [Route("{studentId}")]
+        [Authorize(Roles = "admins")]
+        [ResponseType(typeof(StudentDto))]
+        public async Task<IHttpActionResult> DeleteStudent(int studentId)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Trace("Delete Student {@studentId} by {@userData}", studentId, userData);
+
+            var result = await service.DeleteStudent(studentId);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+
     }
 }

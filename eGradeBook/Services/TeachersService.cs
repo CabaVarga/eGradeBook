@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace eGradeBook.Services
@@ -52,7 +53,7 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="teacherId"></param>
         /// <returns></returns>
-        public TeacherDto DeleteTeacher(int teacherId)
+        public async Task<TeacherDto> DeleteTeacher(int teacherId)
         {
             logger.Info("Service received request for deleting a teacher {teacherId}", teacherId);
 
@@ -63,8 +64,14 @@ namespace eGradeBook.Services
                 return null;
             }
 
-            db.TeachersRepository.Delete(teacherId);
-            db.Save();
+            var result = await db.AuthRepository.DeleteUser(teacherId);
+
+            if (!result.Succeeded)
+            {
+                logger.Error("User removal failed {errors}", result.Errors);
+                //return null;
+                throw new ConflictException("Delete teacher failed in auth repo");
+            }
 
             return TeachersConverter.TeacherToTeacherDto(deletedTeacher);
         }

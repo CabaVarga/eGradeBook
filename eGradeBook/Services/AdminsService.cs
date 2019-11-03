@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using eGradeBook.Models;
 using eGradeBook.Models.Dtos.Admins;
@@ -32,9 +33,27 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="adminId"></param>
         /// <returns></returns>
-        public AdminDto DeleteAdmin(int adminId)
+        public async Task<AdminDto> DeleteAdmin(int adminId)
         {
-            throw new NotImplementedException();
+            logger.Info("Service received request for deleting an admin {adminId}", adminId);
+
+            var deletedAdmin = db.AdminsRepository.Get(a => a.Id == adminId).FirstOrDefault();
+
+            if (deletedAdmin == null)
+            {
+                return null;
+            }
+
+            var result = await db.AuthRepository.DeleteUser(adminId);
+
+            if (!result.Succeeded)
+            {
+                logger.Error("Admin removal failed {errors}", result.Errors);
+                //return null;
+                throw new ConflictException("Delete admin failed in auth repo");
+            }
+
+            return Converters.AdminsConverter.AdminToAdminDto(deletedAdmin);
         }
 
         /// <summary>

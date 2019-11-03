@@ -134,5 +134,20 @@ namespace eGradeBook.Services
         /// <param name="teacherId"></param>
         /// <returns></returns>
         IEnumerable<Teaching> GetAllTeachingsForTeacher(int teacherId);
+
+        /// <summary>
+        /// Delete Teaching by teachingId
+        /// </summary>
+        /// <param name="teachingId"></param>
+        /// <returns></returns>
+        TeachingDto DeleteTeaching(int teachingId);
+
+        /// <summary>
+        /// Get Teachings by courseId or teacherId
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
+        IEnumerable<TeachingDto> GetTeachingsByParameters(int? courseId, int? teacherId);
     }
 }

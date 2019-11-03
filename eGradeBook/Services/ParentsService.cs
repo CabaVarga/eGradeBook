@@ -3,9 +3,11 @@ using eGradeBook.Models.Dtos.Parents;
 using eGradeBook.Models.Dtos.Students;
 using eGradeBook.Repositories;
 using eGradeBook.Services.Converters;
+using eGradeBook.Services.Exceptions;
 using NLog;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace eGradeBook.Services
 {
@@ -182,6 +184,29 @@ namespace eGradeBook.Services
             ParentUser parent = GetParentById(parentId);
 
             return Converters.ParentsConverter.ParentToParentReportDto(parent);
+        }
+
+        public async Task<ParentDto> DeleteParent(int parentId)
+        {
+            logger.Info("Service received request for deleting a parent {parentId}", parentId);
+
+            var deletedParent = db.ParentsRepository.Get(p => p.Id == parentId).FirstOrDefault();
+
+            if (deletedParent == null)
+            {
+                return null;
+            }
+
+            var result = await db.AuthRepository.DeleteUser(parentId);
+
+            if (!result.Succeeded)
+            {
+                logger.Error("Parent removal failed {errors}", result.Errors);
+                //return null;
+                throw new ConflictException("Delete parent failed in auth repo");
+            }
+
+            return Converters.ParentsConverter.ParentToParentDto(deletedParent);
         }
     }
 }

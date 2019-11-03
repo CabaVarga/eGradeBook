@@ -3,6 +3,7 @@ using eGradeBook.Models.Dtos.Teachers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace eGradeBook.Services
@@ -55,7 +56,7 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="teacherId"></param>
         /// <returns></returns>
-        TeacherDto DeleteTeacher(int teacherId);
+        Task<TeacherDto> DeleteTeacher(int teacherId);
 
         TeacherExtendedDto GetExtendedDataForTeacher(int teacherId);
 

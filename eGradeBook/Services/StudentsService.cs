@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using eGradeBook.Models;
 using eGradeBook.Models.Dtos.Students;
@@ -75,11 +76,27 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns></returns>
-        public StudentDto DeleteStudent(int studentId)
+        public async Task<StudentDto> DeleteStudent(int studentId)
         {
             logger.Info("Service received request for deleting a student {studentId}", studentId);
 
-            throw new NotImplementedException();
+            var deletedStudent = db.StudentsRepository.Get(s => s.Id == studentId).FirstOrDefault();
+
+            if (deletedStudent == null)
+            {
+                return null;
+            }
+
+            var result = await db.AuthRepository.DeleteUser(studentId);
+
+            if (!result.Succeeded)
+            {
+                logger.Error("Student removal failed {errors}", result.Errors);
+                //return null;
+                throw new ConflictException("Delete student failed in auth repo");
+            }
+
+            return Converters.StudentsConverter.StudentToStudentDto(deletedStudent);
         }
 
         /// <summary>

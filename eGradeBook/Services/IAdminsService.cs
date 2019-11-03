@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace eGradeBook.Services
@@ -39,6 +40,6 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="adminId"></param>
         /// <returns></returns>
-        AdminDto DeleteAdmin(int adminId);
+        Task<AdminDto> DeleteAdmin(int adminId);
     }
 }

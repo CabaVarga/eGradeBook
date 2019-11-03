@@ -30,13 +30,61 @@ namespace eGradeBook.Services
             this.logger = logger;
         }
 
+        public FinalGradeDto CreateFinalGrade(FinalGradeDto finalGradeDto)
+        {
+            var taking = db.TakingsRepository.Get(t =>
+                t.StudentId == finalGradeDto.StudentId &&
+                t.Program.ClassRoomId == finalGradeDto.ClassRoomId &&
+                t.Program.Teaching.CourseId == finalGradeDto.CourseId &&
+                t.Program.Teaching.TeacherId == finalGradeDto.TeacherId).FirstOrDefault();
+
+            if (taking == null)
+            {
+                return null;
+            }
+
+            // no logging for now
+            FinalGrade createdGrade = new FinalGrade
+            {
+                Assigned = finalGradeDto.AssignmentDate,
+                GradePoint = finalGradeDto.FinalGradePoint,
+                Notes = finalGradeDto.Notes,
+                SchoolTerm = finalGradeDto.Semester,
+                Taking = taking              
+            };
+
+            db.FinalGradesRepository.Insert(createdGrade);
+            db.Save();
+
+            // for now
+            return Converters.FinalGradesConverter.FinalGradeToFinalGradeDto(createdGrade);
+        }
+
+        public FinalGradeDto DeleteFinalGrade(int finalGradeId)
+        {
+            var deletedFinalGrade = db.FinalGradesRepository.GetByID(finalGradeId);
+
+            if (deletedFinalGrade == null)
+            {
+                return null;
+            }
+
+            // try to convert before deletion?
+            var deletedFinalGradeDto = Converters.FinalGradesConverter.FinalGradeToFinalGradeDto(deletedFinalGrade);
+
+            db.FinalGradesRepository.Delete(deletedFinalGrade);
+            db.Save();
+
+            return deletedFinalGradeDto;
+        }
+
         /// <summary>
         /// Retrieve all final grades and convert them to Dtos
         /// </summary>
         /// <returns></returns>
         public IEnumerable<FinalGradeDto> GetAllFinalGradesDto()
         {
-            throw new NotImplementedException();
+            return db.FinalGradesRepository.Get().Select(fg => Converters.FinalGradesConverter.FinalGradeToFinalGradeDto(fg));
         }
 
         /// <summary>
@@ -93,6 +141,11 @@ namespace eGradeBook.Services
             FinalGrade finalGrade = GetFinalGradeById(finalGradeId);
 
             return Converters.FinalGradesConverter.FinalGradeToFinalGradeDto(finalGrade);
+        }
+
+        public FinalGradeDto UpdateFinalGrade(int finalGradeId, FinalGradeDto finalGradeDto)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -375,5 +375,44 @@ namespace eGradeBook.Services
             return db.TeachingAssignmentsRepository.Get()
                 .Select(ta => Converters.TeachingsConverter.TeachingToTeachingDto(ta));
         }
+
+        /// <summary>
+        /// Delete a Teaching
+        /// </summary>
+        /// <param name="teachingId"></param>
+        /// <returns></returns>
+        public TeachingDto DeleteTeaching(int teachingId)
+        {
+            logger.Info("Attempting to delete Teaching");
+
+            Teaching deletedTeaching = db.TeachingAssignmentsRepository.GetByID(teachingId);
+
+            if (deletedTeaching == null)
+            {
+                return null;
+            }
+
+            var deletedTeachingDto = Converters.TeachingsConverter.TeachingToTeachingDto(deletedTeaching);
+
+            db.TeachingAssignmentsRepository.Delete(teachingId);
+            db.Save();
+
+
+            return deletedTeachingDto;
+        }
+
+        /// <summary>
+        /// Return teachings for courseId and/or teacherId
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="teacherId"></param>
+        /// <returns></returns>
+        public IEnumerable<TeachingDto> GetTeachingsByParameters(int? courseId, int? teacherId)
+        {
+            return db.TeachingAssignmentsRepository.Get(filter:
+                g => (courseId != null ? g.Course.Id == courseId : true) &&
+                    (teacherId != null ? g.Teacher.Id == teacherId : true))
+                    .Select(g => Converters.TeachingsConverter.TeachingToTeachingDto(g));
+        }
     }
 }

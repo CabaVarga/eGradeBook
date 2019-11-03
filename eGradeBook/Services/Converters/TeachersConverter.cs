@@ -65,7 +65,9 @@ namespace eGradeBook.Services.Converters
                 LastName = teacherReg.LastName,
                 Gender = teacherReg.Gender,
                 Email = teacherReg.Email,
-                PhoneNumber = teacherReg.PhoneNumber
+                PhoneNumber = teacherReg.PhoneNumber,
+                Degree = teacherReg.Degree,
+                Title = teacherReg.Title
             };
         }
 

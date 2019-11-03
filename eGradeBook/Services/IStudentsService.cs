@@ -4,6 +4,7 @@ using eGradeBook.Models.Dtos.Takings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace eGradeBook.Services
@@ -61,7 +62,7 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns></returns>
-        StudentDto DeleteStudent(int studentId);
+        Task<StudentDto> DeleteStudent(int studentId);
 
         /// <summary>
         /// Retrieve all students

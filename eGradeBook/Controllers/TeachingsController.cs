@@ -2,6 +2,7 @@
 using eGradeBook.Models.Dtos.Teachings;
 using eGradeBook.Services;
 using eGradeBook.SwaggerHelpers.Examples;
+using eGradeBook.Utilities.WebApi;
 using NLog;
 using Swashbuckle.Examples;
 using System;
@@ -61,6 +62,7 @@ namespace eGradeBook.Controllers
         [ResponseType(typeof(IEnumerable<TeachingDto>))]
         public IHttpActionResult GetTeachings()
         {
+            // let us try making it queryable...
             logger.Info("Get all teaching");
             return Ok(teachings.GetAllTeachingsDtos());
         }
@@ -109,6 +111,63 @@ namespace eGradeBook.Controllers
         public IHttpActionResult RemoveTeachingAssignment(TeachingAssignmentDto assignment)
         {
             teachings.RemoveTeacherFromCourse(assignment.SubjectId, assignment.TeacherId);
+
+            return Ok();
+        }
+
+        // THE API IS SHIT
+        // INSTEAD OF THESE STUPID BY TEACHER ETC METHODS I NEED A CLEAR
+        // QUERY BASED METHOD
+        // TEACHINGS -> RETURNS EITHER A TEACHING OR AN ARRAY OF TEACHINGS. CLEAR & SIMPLE
+
+
+        /// <summary>
+        /// Retrieve grades by different criteria
+        /// </summary>
+        /// <returns></returns>
+        [Route("query")]
+        [HttpGet]
+        [Authorize(Roles = "admins")]
+        public IHttpActionResult GetTeachingsByParameters(
+            [FromUri]int? courseId = null,
+            [FromUri]int? teacherId = null
+            )
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Teachings : Query by {@userData}", userData);
+
+            logger.Trace("Tracer, is authenticated -- {0}", this.User.Identity.IsAuthenticated);
+
+            var filteredTeachings = teachings.GetTeachingsByParameters(courseId, teacherId);
+
+            if (filteredTeachings == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(filteredTeachings);
+        }
+
+        /// <summary>
+        /// Delete Teaching by teachingId
+        /// </summary>
+        /// <param name="teachingId"></param>
+        /// <returns></returns>
+        [Route("{teachingId}")]
+        [HttpDelete]
+        public IHttpActionResult DeleteTeaching(int teachingId)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Trace("Delete Teaching {@teachingId} by {@userData}", teachingId, userData);
+
+            var result = teachings.DeleteTeaching(teachingId);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
 
             return Ok();
         }

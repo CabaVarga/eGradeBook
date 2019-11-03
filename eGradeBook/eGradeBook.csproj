@@ -326,6 +326,7 @@
     <Compile Include="Services\EmailsService.cs" />
     <Compile Include="Services\Exceptions\AdminNotFoundException.cs" />
     <Compile Include="Services\Exceptions\ClassRoomNotFoundException.cs" />
+    <Compile Include="Services\Exceptions\ConflictException.cs" />
     <Compile Include="Services\Exceptions\CourseNotFoundException.cs" />
     <Compile Include="Services\Exceptions\InvalidUserIdException.cs" />
     <Compile Include="Services\Exceptions\ParentNotFoundException.cs" />
