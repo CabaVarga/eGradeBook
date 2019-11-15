@@ -1,5 +1,6 @@
 ﻿using eGradeBook.Models.Dtos.Admins;
 using eGradeBook.Models.Dtos.Logging;
+using eGradeBook.Models.Dtos.PasswordUpdate;
 using eGradeBook.Services;
 using eGradeBook.Utilities.WebApi;
 using NLog;

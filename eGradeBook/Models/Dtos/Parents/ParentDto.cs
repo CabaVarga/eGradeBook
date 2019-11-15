@@ -45,5 +45,7 @@ namespace eGradeBook.Models.Dtos.Parents
         /// Phone number
         /// </summary>
         public string PhoneNumber { get; set; }
+
+        public int? AvatarId { get; set; }
     }
 }

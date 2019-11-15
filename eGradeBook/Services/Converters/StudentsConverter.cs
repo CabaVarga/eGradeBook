@@ -32,7 +32,8 @@ namespace eGradeBook.Services.Converters
                 PlaceOfBirth = student.PlaceOfBirth,
                 DateOfBirth = student.DateOfBirth,
                 ClassRoom = student.ClassRoom?.Name,
-                ClassRoomId = student.ClassRoomId
+                ClassRoomId = student.ClassRoomId,
+                AvatarId = student.AvatarId
             };
         }
 
@@ -53,6 +54,8 @@ namespace eGradeBook.Services.Converters
                 PhoneNumber = dto.PhoneNumber,
                 PlaceOfBirth = dto.PlaceOfBirth,
                 DateOfBirth = dto.DateOfBirth,
+                AvatarId = dto.AvatarId,
+                ClassRoomId = dto.ClassRoomId
             };
         }
 
@@ -71,6 +74,7 @@ namespace eGradeBook.Services.Converters
             user.PhoneNumber = dto.PhoneNumber;
             user.PlaceOfBirth = dto.PlaceOfBirth;
             user.DateOfBirth = dto.DateOfBirth;
+            user.AvatarId = dto.AvatarId;
         }
 
         /// <summary>

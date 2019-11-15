@@ -140,12 +140,52 @@ namespace eGradeBook.Services
 
             FinalGrade finalGrade = GetFinalGradeById(finalGradeId);
 
+            if (finalGrade == null)
+            {
+                return null;
+            }
+
             return Converters.FinalGradesConverter.FinalGradeToFinalGradeDto(finalGrade);
         }
 
+        public IEnumerable<FinalGradeDto> GetFinalGradesByQuery(int? gradeId = null, int? finalGradeId = null, int? courseId = null, int? teacherId = null, int? classRoomId = null, int? studentId = null, int? parentId = null, int? semester = null, int? schoolGrade = null, int? grade = null, int? finalGrade = null, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            return db.FinalGradesRepository.Get(
+                filter:
+                g => (gradeId != null ? g.Taking.Grades.Any(gr => gr.Id == gradeId) : true) &&
+                    (finalGradeId != null ? g.Id == finalGradeId : true) &&
+                    (courseId != null ? g.Taking.Program.CourseId == courseId : true) &&
+                    (teacherId != null ? g.Taking.Program.Teaching.TeacherId == teacherId : true) &&
+                    (classRoomId != null ? g.Taking.Program.ClassRoomId == classRoomId : true) &&
+                    (studentId != null ? g.Taking.StudentId == studentId : true) &&
+                    (parentId != null ? g.Taking.Student.StudentParents.Any(sp => sp.ParentId == parentId) : true) &&
+                    (semester != null ? g.SchoolTerm == semester : true) &&
+                    (schoolGrade != null ? g.Taking.Program.ClassRoom.ClassGrade == schoolGrade : true) &&
+                    (grade != null ? g.Taking.Grades.Any(gr => gr.GradePoint == grade) : true) &&
+                    (finalGrade != null ? g.GradePoint == finalGrade : true) &&
+                    (fromDate != null ? g.Assigned >= fromDate : true) &&
+                    (toDate != null ? g.Assigned <= toDate : true))
+                    .Select(g => Converters.FinalGradesConverter.FinalGradeToFinalGradeDto(g));
+                    }
+
         public FinalGradeDto UpdateFinalGrade(int finalGradeId, FinalGradeDto finalGradeDto)
         {
-            throw new NotImplementedException();
+            var finalGradeToUpdate = db.FinalGradesRepository.GetByID(finalGradeId);
+
+            if (finalGradeToUpdate == null)
+            {
+                return null;
+            }
+
+            // update:
+            finalGradeToUpdate.Assigned = finalGradeDto.AssignmentDate;
+            finalGradeToUpdate.GradePoint = finalGradeDto.FinalGradePoint;
+            finalGradeToUpdate.Notes = finalGradeDto.Notes;
+
+            db.FinalGradesRepository.Update(finalGradeToUpdate);
+            db.Save();
+
+            return Converters.FinalGradesConverter.FinalGradeToFinalGradeDto(finalGradeToUpdate);
         }
     }
 }

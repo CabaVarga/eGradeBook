@@ -9,7 +9,7 @@ namespace eGradeBook.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(eGradeBook.Infrastructure.GradeBookContext context)

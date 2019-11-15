@@ -55,5 +55,10 @@ namespace eGradeBook.Models
         /// What courses does the student take?
         /// </summary>
         public virtual ICollection<Taking> Takings { get; set; }
+
+        /// <summary>
+        /// A student is enrolled in a classroom (one at a time)
+        /// </summary>
+        public virtual ICollection<Enrollment> Enrollments { get; set; }
     }
 }

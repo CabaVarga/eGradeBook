@@ -1,4 +1,5 @@
 ﻿using eGradeBook.Models;
+using eGradeBook.Models.Dtos.PasswordUpdate;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using NLog;
@@ -167,8 +168,8 @@ namespace eGradeBook.Repositories
         public async Task<IList<string>> FindRoles(int userId)
         {
             logger.Trace("Find Roles for {@userId}}", userId);
-
-            return await _userManager.GetRolesAsync(userId);
+            var result = await _userManager.GetRolesAsync(userId);
+            return result;
         }
         #endregion
 
@@ -187,6 +188,22 @@ namespace eGradeBook.Repositories
             // It will only update the common properties, not the special ones....
             // UPDATE It is working, indeed
             var result = await _userManager.UpdateAsync(user);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Change password for user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="passwordDto"></param>
+        /// <returns></returns>
+        public async Task<IdentityResult> ChangePassword(int userId, PasswordDto passwordDto)
+        {
+            // NOTE this will not work for concrete users
+            // It will only update the common properties, not the special ones....
+            // UPDATE It is working, indeed
+            var result = await _userManager.ChangePasswordAsync(userId, passwordDto.CurrentPassword, passwordDto.NewPassword);
 
             return result;
         }

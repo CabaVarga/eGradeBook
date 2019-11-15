@@ -38,6 +38,11 @@ namespace eGradeBook.Models
         public string Gender { get; set; }
 
         /// <summary>
+        /// Id of picture used as an avatar
+        /// </summary>
+        public int? AvatarId { get; set; }
+
+        /// <summary>
         /// We will be probably using this later on the Front End
         /// </summary>
         /// <param name="manager"></param>

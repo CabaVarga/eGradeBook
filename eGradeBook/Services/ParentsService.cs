@@ -208,5 +208,19 @@ namespace eGradeBook.Services
 
             return Converters.ParentsConverter.ParentToParentDto(deletedParent);
         }
+
+        public IEnumerable<ParentDto> GetParentsByQuery(int? teacherId = null, int? studentId = null, int? parentId = null, int? courseId = null, int? classRoomId = null, int? schoolGrade = null)
+        {
+            var parents = db.ParentsRepository.Get(
+                g => (courseId != null ? g.StudentParents.Any(sp => sp.Student.Takings.Any(t => t.Program.Teaching.CourseId == courseId)) : true) &&
+                    (teacherId != null ? g.StudentParents.Any(sp => sp.Student.Takings.Any(t => t.Program.Teaching.TeacherId == teacherId)) : true) &&
+                    (classRoomId != null ? g.StudentParents.Any(sp => sp.Student.Takings.Any(t => t.Program.ClassRoomId == classRoomId)) : true) &&
+                    (studentId != null ? g.StudentParents.Any(sp => sp.StudentId == studentId) : true) &&
+                    (parentId != null ? g.Id == parentId : true) &&
+                    (schoolGrade != null ? g.StudentParents.Any(sp => sp.Student.ClassRoom.ClassGrade == schoolGrade) : true))
+                    .Select(g => Converters.ParentsConverter.ParentToParentDto(g));
+
+            return parents;
+        }
     }
 }

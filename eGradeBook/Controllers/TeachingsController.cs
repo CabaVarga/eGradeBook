@@ -21,7 +21,7 @@ namespace eGradeBook.Controllers
     /// NOTE: maybe not
     /// </summary>
     [RoutePrefix("api/teachings")]
-    [Authorize(Roles = "admins")]
+    [Authorize]
     public class TeachingsController : ApiController
     {
         private ITeachingsService teachings;
@@ -121,11 +121,13 @@ namespace eGradeBook.Controllers
         // TEACHINGS -> RETURNS EITHER A TEACHING OR AN ARRAY OF TEACHINGS. CLEAR & SIMPLE
 
 
+        // 
+
         /// <summary>
-        /// Retrieve grades by different criteria
+        /// Retrieve teachings by different criteria
         /// </summary>
         /// <returns></returns>
-        [Route("query")]
+        [Route("params")]
         [HttpGet]
         [Authorize(Roles = "admins")]
         public IHttpActionResult GetTeachingsByParameters(
@@ -169,7 +171,108 @@ namespace eGradeBook.Controllers
                 return NotFound();
             }
 
-            return Ok();
+            return Ok(result);
         }
+
+        #region QUERY
+        /// <summary>
+        /// Get teachings based on query
+        /// </summary>
+        /// <param name="teacherId"></param>
+        /// <param name="studentId"></param>
+        /// <param name="parentId"></param>
+        /// <param name="courseId"></param>
+        /// <param name="classRoomId"></param>
+        /// <param name="schoolGrade"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("query")]
+        public IHttpActionResult GetTeachingsByQuery(
+            [FromUri]int? teacherId = null,
+            [FromUri]int? studentId = null,
+            [FromUri]int? parentId = null,
+            [FromUri]int? courseId = null,
+            [FromUri]int? classRoomId = null,
+            [FromUri]int? schoolGrade = null)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Teachers by {@userData}", userData);
+
+            var userInfo = Utilities.WebApi.IdentityHelper.FetchUserData(RequestContext);
+
+            if (userInfo.UserId == null)
+            {
+                return Unauthorized();
+            }
+
+            var userId = userInfo.UserId ?? 0;
+
+            if (userInfo.IsAdmin)
+            {
+                var results = teachings.GetTeachingsByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsTeacher)
+            {
+                if (teacherId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = teachings.GetTeachingsByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsStudent)
+            {
+                if (studentId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = teachings.GetTeachingsByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsParent)
+            {
+                if (parentId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = teachings.GetTeachingsByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else
+            {
+                logger.Error("Authenticated user with no role --- this should not happen");
+                return InternalServerError();
+            }
+        }
+        #endregion
     }
 }

@@ -33,7 +33,7 @@ namespace eGradeBook.Controllers
         {
             this.service = service;
         }
-
+/*
         /// <summary>
         /// Retrieve final grades for a given course.
         /// </summary>
@@ -79,12 +79,12 @@ namespace eGradeBook.Controllers
                 return NotFound();
             }
         }
-
+*/
         #region CRUD
         [HttpPost]
         [ResponseType(typeof(FinalGradeDto))]
         [Route("")]
-        public IHttpActionResult CreateFinalGrade(FinalGradeDto finalGradeDto)
+        public IHttpActionResult PostFinalGrade(FinalGradeDto finalGradeDto)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
@@ -101,7 +101,6 @@ namespace eGradeBook.Controllers
 
             return Ok(result);
         }
-
 
         [HttpGet]
         [ResponseType(typeof(IEnumerable<FinalGradeDto>))]
@@ -124,11 +123,52 @@ namespace eGradeBook.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [ResponseType(typeof(FinalGradeDto))]
+        [Route("{finalGradeId}")]
+        public IHttpActionResult GetFinalGradesById(int finalGradeId)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Requested Final Grade {@finalGradeId} by {@userData}", finalGradeId, userData);
+
+            var result = service.GetFinalGradeDtoById(finalGradeId);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            logger.Info("Received Final Grade");
+
+            return Ok(result);
+        }
+
+        [HttpPut]
+        [ResponseType(typeof(FinalGradeDto))]
+        [Route("{finalGradeId}")]
+        public IHttpActionResult PutFinalGrade(int finalGradeId, FinalGradeDto finalGradeDto)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Requested Update for Final Grade {@finalGradeId} by {@userData}", finalGradeId, userData);
+
+            var result = service.UpdateFinalGrade(finalGradeId, finalGradeDto);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            logger.Info("Received Updated Final Grade");
+
+            return Ok(result);
+        }
 
         [HttpDelete]
         [ResponseType(typeof(FinalGradeDto))]
         [Route("{finalGradeId}")]
-        public IHttpActionResult DeleteFinalGrade(int finalGradeId)
+        public IHttpActionResult RemoveFinalGrade(int finalGradeId)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
@@ -145,9 +185,48 @@ namespace eGradeBook.Controllers
 
             return Ok(result);
         }
+        #endregion
 
+        #region QUERY
+        /// <summary>
+        /// Retrieve grades by different criteria
+        /// </summary>
+        /// <returns></returns>
+        [Route("query")]
+        [HttpGet]
+        [Authorize(Roles = "admins")]
+        public IHttpActionResult GetFinalGradesByQuery(
+            [FromUri]int? gradeId = null,
+            [FromUri]int? finalGradeId = null,
+            [FromUri]int? courseId = null,
+            [FromUri]int? teacherId = null,
+            [FromUri]int? classRoomId = null,
+            [FromUri]int? studentId = null,
+            [FromUri]int? parentId = null,
+            [FromUri]int? semester = null,
+            [FromUri]int? schoolGrade = null,
+            [FromUri]int? grade = null,
+            [FromUri]int? finalGrade = null,
+            [FromUri]DateTime? fromDate = null,
+            [FromUri]DateTime? toDate = null)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
+            logger.Info("Get Grades : Query by {@userData}", userData);
 
+            logger.Trace("Tracer, is authenticated -- {0}", this.User.Identity.IsAuthenticated);
+
+            // TODO: IMPLEMENT SECURITY AS IN STUDENTS QUERY...
+
+            var finalGrades = service.GetFinalGradesByQuery(gradeId, finalGradeId, courseId, teacherId, classRoomId, studentId, parentId, semester, schoolGrade, grade, finalGrade, fromDate, toDate);
+
+            if (finalGrades == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(finalGrades);
+        }
         #endregion
     }
 }

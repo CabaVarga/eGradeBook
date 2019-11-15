@@ -129,6 +129,7 @@ namespace eGradeBook.Services
                 return null;
             }
 
+
             db.CoursesRepository.Delete(deletedCourse);
             db.Save();
 
@@ -161,7 +162,7 @@ namespace eGradeBook.Services
             {
                 Name = newCourse.Name,
                 ColloqialName = newCourse.ColloqialName,
-                Id = newCourse.Id
+                CourseId = newCourse.Id
             };
 
             logger.Info("Course creation succesful");
@@ -185,7 +186,7 @@ namespace eGradeBook.Services
         /// <returns></returns>
         public CourseDto UpdateCourse(CourseDto course)
         {
-            Course updatedCourse = GetCourseById(course.Id);
+            Course updatedCourse = GetCourseById(course.CourseId);
 
             updatedCourse.Name = course.Name;
             updatedCourse.ColloqialName = course.ColloqialName;
@@ -423,5 +424,19 @@ namespace eGradeBook.Services
             return TakingsConverter.TakingToTakingDto(deletedTaking);
         }
         #endregion
+
+        public IEnumerable<CourseDto> GetCoursesByQuery(int? teacherId = null, int? studentId = null, int? parentId = null, int? courseId = null, int? classRoomId = null, int? schoolGrade = null)
+        {
+            var courses = db.CoursesRepository.Get(
+                g => (courseId != null ? g.Id == courseId : true) &&
+                    (teacherId != null ? g.Teachings.Any(t => t.TeacherId == teacherId) : true) &&
+                    (classRoomId != null ? g.Teachings.Any(t => t.Programs.Any(p => p.ClassRoomId == classRoomId)) : true) &&
+                    (studentId != null ? g.Teachings.Any(t => t.Programs.Any(p => p.TakingStudents.Any(ts => ts.StudentId == studentId))) : true) &&
+                    (parentId != null ? g.Teachings.Any(t => t.Programs.Any(p => p.TakingStudents.Any(ts => ts.Student.StudentParents.Any(sp => sp.ParentId == parentId)))) : true) &&
+                    (schoolGrade != null ? g.Teachings.Any(t => t.Programs.Any(p => p.ClassRoom.ClassGrade == schoolGrade)) : true))
+                    .Select(g => Converters.CoursesConverter.CourseToCourseDto(g));
+
+            return courses;
+        }
     }
 }

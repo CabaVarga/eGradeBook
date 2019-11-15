@@ -149,5 +149,13 @@ namespace eGradeBook.Services
         /// <param name="teacherId"></param>
         /// <returns></returns>
         IEnumerable<TeachingDto> GetTeachingsByParameters(int? courseId, int? teacherId);
+
+        IEnumerable<TeachingDto> GetTeachingsByQuery(
+            int? teacherId = null,
+            int? studentId = null,
+            int? parentId = null,
+            int? courseId = null,
+            int? classRoomId = null,
+            int? schoolGrade = null);
     }
 }

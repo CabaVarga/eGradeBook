@@ -39,7 +39,7 @@ namespace eGradeBook.Controllers
         /// <returns></returns>
         [Route("")]
         [HttpGet]
-        [Authorize(Roles = "admins")]
+        //[Authorize(Roles = "admins")]
         [ResponseType(typeof(IEnumerable<CourseDto>))]
         public IHttpActionResult GetAllCourses()
         {
@@ -64,7 +64,7 @@ namespace eGradeBook.Controllers
         /// <param name="courseId"></param>
         /// <returns></returns>
         [Route("{courseId:int}")]
-        [Authorize(Roles = "admins")]
+        //[Authorize(Roles = "admins")]
         [HttpGet]
         [ResponseType(typeof(CourseDto))]
         public IHttpActionResult GetCourseById(int courseId)
@@ -87,7 +87,7 @@ namespace eGradeBook.Controllers
         /// </summary>
         /// <param name="course"></param>
         /// <returns></returns>
-        [Authorize(Roles = "admins")]
+        //[Authorize(Roles = "admins")]
         [Route("")]
         [HttpPost]
         public IHttpActionResult RegisterCourse(CourseDto course)
@@ -99,13 +99,58 @@ namespace eGradeBook.Controllers
             // TODO logging
             var createdCourse = service.CreateCourse(course);
 
-            var link = Url.Route("DefaultApi", new { controller = "Courses", courseId = createdCourse.Id });
+            var link = Url.Route("DefaultApi", new { controller = "Courses", courseId = createdCourse.CourseId });
 
-            logger.Info("Course {@courseId} created at route {@route}", createdCourse.Id, link);
+            logger.Info("Course {@courseId} created at route {@route}", createdCourse.CourseId, link);
 
             // TODO ERROR HANDLING
-            return CreatedAtRoute("DefaultApi", new { controller = "Courses", courseId = createdCourse.Id }, createdCourse);
+            return CreatedAtRoute("DefaultApi", new { controller = "Courses", courseId = createdCourse.CourseId }, createdCourse);
         }
+
+        [Route("{courseId}")]
+        [HttpPut]
+        public IHttpActionResult UpdateCourse(int courseId, CourseDto course)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Change Course {@courseData} by {@userData}", course, userData);
+
+            if (courseId != course.CourseId)
+            {
+                return BadRequest("Ids do not match");
+            }
+            // TODO logging
+            var updatedCourse = service.UpdateCourse(course);
+
+            var link = Url.Route("DefaultApi", new { controller = "Courses", courseId = updatedCourse.CourseId });
+
+            logger.Info("Course {@courseId} created at route {@route}", updatedCourse.CourseId, link);
+
+            // TODO ERROR HANDLING
+            return CreatedAtRoute("DefaultApi", new { controller = "Courses", courseId = updatedCourse.CourseId }, updatedCourse);
+        }
+
+        [Route("{courseId}")]
+        [HttpDelete]
+        public IHttpActionResult DeleteCourse(int courseId)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Change Course by {@userData}",userData);
+
+            // TODO logging
+            var deletedCourse = service.DeleteCourse(courseId);
+
+            if (deletedCourse == null)
+            {
+                return NotFound();
+            }
+
+
+            // TODO ERROR HANDLING
+            return Ok(deletedCourse);
+        }
+
 
         #region Teachings
         [Route("{courseId}/teachers")]
@@ -232,6 +277,107 @@ namespace eGradeBook.Controllers
             logger.Info("Create Taking {@takingData} by {@userData}", taking, userData);
 
             return Ok(service.CreateTaking(taking));
+        }
+        #endregion
+
+        #region QUERY
+        /// <summary>
+        /// Get courses based on query
+        /// </summary>
+        /// <param name="teacherId"></param>
+        /// <param name="studentId"></param>
+        /// <param name="parentId"></param>
+        /// <param name="courseId"></param>
+        /// <param name="classRoomId"></param>
+        /// <param name="schoolGrade"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("query")]
+        public IHttpActionResult GetCoursesByQuery(
+            [FromUri]int? teacherId = null,
+            [FromUri]int? studentId = null,
+            [FromUri]int? parentId = null,
+            [FromUri]int? courseId = null,
+            [FromUri]int? classRoomId = null,
+            [FromUri]int? schoolGrade = null)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Teachers by {@userData}", userData);
+
+            var userInfo = Utilities.WebApi.IdentityHelper.FetchUserData(RequestContext);
+
+            if (userInfo.UserId == null)
+            {
+                return Unauthorized();
+            }
+
+            var userId = userInfo.UserId ?? 0;
+
+            if (userInfo.IsAdmin)
+            {
+                var results = service.GetCoursesByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsTeacher)
+            {
+                if (teacherId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = service.GetCoursesByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsStudent)
+            {
+                if (studentId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = service.GetCoursesByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsParent)
+            {
+                if (parentId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = service.GetCoursesByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else
+            {
+                logger.Error("Authenticated user with no role --- this should not happen");
+                return InternalServerError();
+            }
         }
         #endregion
     }

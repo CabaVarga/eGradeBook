@@ -39,7 +39,6 @@ namespace eGradeBook.Controllers
         /// <returns></returns>
         [Route("")]
         [HttpGet]
-        [Authorize(Roles = "admins")]
         public IHttpActionResult GetAllStudents()
         {
             var userData = IdentityHelper.FetchUserData(RequestContext);
@@ -56,7 +55,6 @@ namespace eGradeBook.Controllers
         /// <param name="studentId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Authorize(Roles = "admins")]
         [ResponseType(typeof(StudentDto))]
         [Route("{studentId}", Name = "GetStudentById")]
         public IHttpActionResult GetStudentById(int studentId)

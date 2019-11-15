@@ -145,6 +145,8 @@ namespace eGradeBook
             container.RegisterType<IGenericRepository<FinalGrade>, GenericRepository<FinalGrade>>();
             container.RegisterType<IAuthRepository, AuthRepository>();
 
+            container.RegisterType<IGenericRepository<FileResource>, GenericRepository<FileResource>>();
+
 
             // --- Services
             container.RegisterType<IUsersService, UsersService>();
@@ -164,7 +166,9 @@ namespace eGradeBook
             container.RegisterType<IGradesService, GradesService>();
             container.RegisterType<IFinalGradesService, FinalGradesService>();
 
+            // --- Emails and files
             container.RegisterType<IEmailsService, EmailsService>();
+            container.RegisterType<IFileResourcesService, FileResourcesService>();
 
             return container;
         }

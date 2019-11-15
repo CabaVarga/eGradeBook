@@ -54,5 +54,7 @@ namespace eGradeBook.Models.Dtos.Teachers
         /// Degree
         /// </summary>
         public string Degree { get; set; }
+
+        public int? AvatarId { get; set; }
     }
 }

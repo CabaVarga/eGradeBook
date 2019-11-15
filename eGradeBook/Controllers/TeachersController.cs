@@ -14,7 +14,7 @@ using System.Web.Http.Description;
 namespace eGradeBook.Controllers
 {
     [RoutePrefix("api/teachers")]
-    [Authorize(Roles = "admins,teachers")]
+    [Authorize]
     public class TeachersController : ApiController
     {
         private ITeachersService teachersService;
@@ -50,7 +50,6 @@ namespace eGradeBook.Controllers
         /// <returns>A Json object of the Teacher Dto</returns>
         [Route("{teacherId:int}", Name = "GetTeacherById")]
         [ResponseType(typeof(TeacherDto))]
-        [Authorize(Roles = "admins")]
         [HttpGet]
         public IHttpActionResult GetTeacherById(int teacherId)
         {
@@ -258,5 +257,110 @@ namespace eGradeBook.Controllers
 
             return Ok(teachersService.GetTeacherReport(teacherId));
         }
+
+        #region CRUD
+
+        #endregion
+
+        #region QUERY
+        /// <summary>
+        /// Get teachers based on query
+        /// </summary>
+        /// <param name="teacherId"></param>
+        /// <param name="studentId"></param>
+        /// <param name="parentId"></param>
+        /// <param name="courseId"></param>
+        /// <param name="classRoomId"></param>
+        /// <param name="schoolGrade"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("query")]
+        public IHttpActionResult GetTeachersByQuery(
+            [FromUri]int? teacherId = null,
+            [FromUri]int? studentId = null,
+            [FromUri]int? parentId = null,
+            [FromUri]int? courseId = null,
+            [FromUri]int? classRoomId = null,
+            [FromUri]int? schoolGrade = null)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Teachers by {@userData}", userData);
+
+            var userInfo = Utilities.WebApi.IdentityHelper.FetchUserData(RequestContext);
+
+            if (userInfo.UserId == null)
+            {
+                return Unauthorized();
+            }
+
+            var userId = userInfo.UserId ?? 0;
+
+            if (userInfo.IsAdmin)
+            {
+                var results = teachersService.GetTeachersByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsTeacher)
+            {
+                if (teacherId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = teachersService.GetTeachersByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsStudent)
+            {
+                if (studentId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = teachersService.GetTeachersByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsParent)
+            {
+                if (parentId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = teachersService.GetTeachersByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else
+            {
+                logger.Error("Authenticated user with no role --- this should not happen");
+                return InternalServerError();
+            }
+        }
+        #endregion
     }
 }

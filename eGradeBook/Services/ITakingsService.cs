@@ -23,6 +23,7 @@ namespace eGradeBook.Services
 
         IEnumerable<TakingDto> GetAllTakingsDtos();
 
+        TakingDto UpdateTaking(int takingId, TakingDto takingDto);
 
         IEnumerable<Taking> GetAllTakings();
         IEnumerable<Taking> GetAllTakingsForProgram(ProgramDto programDto);
@@ -30,6 +31,15 @@ namespace eGradeBook.Services
         IEnumerable<Taking> GetAllTakingsForStudent(int studentId);
         Taking DeleteTaking(TakingDto takingDto);
         Taking DeleteTaking(int courseId, int teacherId, int classRoomId, int studentId);
+        TakingDto DeleteTakingById(int takingId);
         #endregion
+
+        IEnumerable<TakingDto> GetTakingsByQuery(
+            int? teacherId = null,
+            int? studentId = null,
+            int? parentId = null,
+            int? courseId = null,
+            int? classRoomId = null,
+            int? schoolGrade = null);
     }
 }

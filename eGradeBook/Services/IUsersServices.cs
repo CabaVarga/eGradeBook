@@ -2,6 +2,7 @@
 using eGradeBook.Models.Dtos.Accounts;
 using eGradeBook.Models.Dtos.Admins;
 using eGradeBook.Models.Dtos.Parents;
+using eGradeBook.Models.Dtos.PasswordUpdate;
 using eGradeBook.Models.Dtos.Students;
 using eGradeBook.Models.Dtos.Teachers;
 using Microsoft.AspNet.Identity;
@@ -81,5 +82,7 @@ namespace eGradeBook.Services
         Task<ParentDto> UpdateParent(ParentUpdateDto parentUpdate);
 
         Task<bool> CheckUsername(string username);
+
+        Task<bool> ChangePassword(int userId, PasswordDto passwordDto);
     }
 }

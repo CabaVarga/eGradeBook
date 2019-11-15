@@ -397,7 +397,6 @@ namespace eGradeBook.Services
             db.TeachingAssignmentsRepository.Delete(teachingId);
             db.Save();
 
-
             return deletedTeachingDto;
         }
 
@@ -413,6 +412,20 @@ namespace eGradeBook.Services
                 g => (courseId != null ? g.Course.Id == courseId : true) &&
                     (teacherId != null ? g.Teacher.Id == teacherId : true))
                     .Select(g => Converters.TeachingsConverter.TeachingToTeachingDto(g));
+        }
+
+        public IEnumerable<TeachingDto> GetTeachingsByQuery(int? teacherId = null, int? studentId = null, int? parentId = null, int? courseId = null, int? classRoomId = null, int? schoolGrade = null)
+        {
+            var teachings = db.TeachingAssignmentsRepository.Get(
+                g => (courseId != null ? g.CourseId == courseId : true) &&
+                    (teacherId != null ? g.TeacherId == teacherId : true) &&
+                    (classRoomId != null ? g.Programs.Any(p => p.ClassRoomId == classRoomId) : true) &&
+                    (studentId != null ? g.Programs.Any(p => p.TakingStudents.Any(ts => ts.StudentId == studentId)) : true) &&
+                    (parentId != null ? g.Programs.Any(p => p.TakingStudents.Any(ts => ts.Student.StudentParents.Any(sp => sp.ParentId == parentId))) : true) &&
+                    (schoolGrade != null ? g.Programs.Any(p => p.ClassRoom.ClassGrade == schoolGrade) : true))
+                    .Select(g => Converters.TeachingsConverter.TeachingToTeachingDto(g));
+
+            return teachings;
         }
     }
 }

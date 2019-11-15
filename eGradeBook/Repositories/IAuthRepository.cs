@@ -1,4 +1,5 @@
 ﻿using eGradeBook.Models;
+using eGradeBook.Models.Dtos.PasswordUpdate;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -79,6 +80,8 @@ namespace eGradeBook.Repositories
         Task<IdentityResult> DeleteUser(int userId);
 
         Task<IdentityResult> UpdateUser(GradeBookUser user);
+
+        Task<IdentityResult> ChangePassword(int userId, PasswordDto passwordDto);
 
         Task<GradeBookUser> FindUserByUserName(string userName);
 

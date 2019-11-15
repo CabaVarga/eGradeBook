@@ -70,5 +70,13 @@ namespace eGradeBook.Services
         IEnumerable<ParentDto> GetAllParents();
 
         Task<ParentDto> DeleteParent(int parentId);
+
+        IEnumerable<ParentDto> GetParentsByQuery(
+            int? teacherId = null,
+            int? studentId = null,
+            int? parentId = null,
+            int? courseId = null,
+            int? classRoomId = null,
+            int? schoolGrade = null);
     }
 }

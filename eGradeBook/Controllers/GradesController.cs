@@ -218,7 +218,6 @@ namespace eGradeBook.Controllers
         /// <returns></returns>
         [Route("query")]
         [HttpGet]
-        [Authorize(Roles = "admins")]
         public IHttpActionResult GetGradesByParameters(
             [FromUri]int? gradeId = null,
             [FromUri]int? courseId = null,
@@ -303,5 +302,83 @@ namespace eGradeBook.Controllers
 
             return Ok(result);
         }
+
+        /// <summary>
+        /// Create grade as teacher
+        /// </summary>
+        /// <param name="teacherId"></param>
+        /// <param name="gradeDto"></param>
+        /// <returns></returns>
+        [Route("")]
+        [SwaggerRequestExample(typeof(GradeDto), typeof(CreateGradeByTeacherExample))]
+        [HttpPost]
+        [Authorize(Roles = "admins,teachers")]
+        public IHttpActionResult CreateGrade(GradeDto gradeDto)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Create Grade {@gradeData} for Teacher {@teacherId} by {@userData}", gradeDto, gradeDto.TeacherId, userData);
+
+            GradeDto createdGrade = gradesService.CreateGradeDto(gradeDto);
+
+            if (createdGrade == null)
+            {
+                return NotFound();
+            }
+
+            logger.Info("Teacher {@userData} created grade {@gradeData}", userData, createdGrade);
+
+            return CreatedAtRoute("GetGrade", new { gradeId = createdGrade.GradeId }, createdGrade);
+        }
+
+        /// <summary>
+        /// Retrieve all grades.
+        /// It will first identify the user by role and id
+        /// The call the matching service method and return the list of grades
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [Route("")]
+        public IHttpActionResult GetGradesAll()
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Grades by {@userData}", userData);
+
+            logger.Info("Get grades for logged in user --- auto dispatch");
+
+            var userInfo = Utilities.WebApi.IdentityHelper.FetchUserData(RequestContext);
+
+            if (userInfo.UserId == null)
+            {
+                return Unauthorized();
+            }
+
+            var userId = userInfo.UserId ?? 0;
+
+            if (userInfo.IsAdmin)
+            {
+                return Ok(gradesService.GetAllGrades());
+            }
+            else if (userInfo.IsTeacher)
+            {
+                return Ok(gradesService.GetAllGradesForTeacher(userId));
+            }
+            else if (userInfo.IsStudent)
+            {
+                return Ok(gradesService.GetAllGradesForStudent(userId));
+            }
+            else if (userInfo.IsParent)
+            {
+                return Ok(gradesService.GetAllGradesForParent(userId));
+            }
+            else
+            {
+                logger.Error("Authenticated user with no role --- this should not happen");
+                return InternalServerError();
+            }
+        }
+
+
     }
 }

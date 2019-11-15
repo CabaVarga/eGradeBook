@@ -4,6 +4,7 @@ using eGradeBook.Models.Dtos.Accounts;
 using eGradeBook.Models.Dtos.Admins;
 using eGradeBook.Models.Dtos.ClassMasters;
 using eGradeBook.Models.Dtos.Parents;
+using eGradeBook.Models.Dtos.PasswordUpdate;
 using eGradeBook.Models.Dtos.Students;
 using eGradeBook.Models.Dtos.Teachers;
 using eGradeBook.Repositories;
@@ -298,7 +299,8 @@ namespace eGradeBook.Services
                 UserId = user.Id,
                 UserName = user.UserName,
                 FirstName = user.FirstName,
-                LastName = user.LastName
+                LastName = user.LastName,
+                AvatarId = user.AvatarId
             };
 
             if (user is AdminUser)
@@ -331,6 +333,18 @@ namespace eGradeBook.Services
             }
 
             return false;
+        }
+
+        public async Task<bool> ChangePassword(int userId, PasswordDto passwordDto)
+        {
+            var result = await db.AuthRepository.ChangePassword(userId, passwordDto);
+
+            if (!result.Succeeded)
+            {
+                return false;
+            }
+
+            return true;
         }
         #endregion
     }

@@ -75,5 +75,13 @@ namespace eGradeBook.Services
         /// <param name="classRoomId"></param>
         /// <returns></returns>
         ClassRoomFullReportDto GetFullReport(int classRoomId);
+
+        IEnumerable<ClassRoomDto> GetClassRoomsByQuery(
+            int? teacherId = null,
+            int? studentId = null,
+            int? parentId = null,
+            int? courseId = null,
+            int? classRoomId = null,
+            int? schoolGrade = null);
     }
 }

@@ -275,5 +275,46 @@ namespace eGradeBook.Services
 
             return takings;
         }
+
+        public IEnumerable<TakingDto> GetTakingsByQuery(int? teacherId = null, int? studentId = null, int? parentId = null, int? courseId = null, int? classRoomId = null, int? schoolGrade = null)
+        {
+            var takings = db.TakingsRepository.Get(
+                g => (courseId != null ? g.Program.Teaching.CourseId == courseId : true) &&
+                    (teacherId != null ? g.Program.Teaching.TeacherId == teacherId : true) &&
+                    (classRoomId != null ? g.Program.ClassRoomId == classRoomId : true) &&
+                    (studentId != null ? g.StudentId == studentId : true) &&
+                    (parentId != null ? g.Student.StudentParents.Any(sp => sp.ParentId == parentId) : true) &&
+                    (schoolGrade != null ? g.Program.ClassRoom.ClassGrade == schoolGrade : true))
+                    .Select(g => Converters.TakingsConverter.TakingToTakingDto(g));
+
+            return takings;
+        }
+
+        public TakingDto UpdateTaking(int takingId, TakingDto takingDto)
+        {
+            var taking = db.TakingsRepository.GetByID(takingId);
+
+            if (taking == null)
+            {
+                return null;
+            }
+
+            return null;
+        }
+
+        public TakingDto DeleteTakingById(int takingId)
+        {
+            var taking = db.TakingsRepository.GetByID(takingId);
+            if (taking == null)
+            {
+                return null;
+            }
+            var deletedTaking = Converters.TakingsConverter.TakingToTakingDto(taking);
+
+            db.TakingsRepository.Delete(taking);
+            db.Save();
+
+            return deletedTaking;
+        }
     }
 }

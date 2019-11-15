@@ -81,6 +81,8 @@ namespace eGradeBook.Services
         {
             StudentParent studentParent = GetStudentParent(studentParentId);
 
+
+
             db.StudentParentsRepository.Delete(studentParent);
             db.Save();
 
@@ -176,6 +178,35 @@ namespace eGradeBook.Services
             StudentParent studentParent = GetStudentParent(studentParentId);
 
             return Converters.StudentParentsConverter.StudentParentToStudentParentDto(studentParent);
+        }
+
+        public IEnumerable<StudentParentDto> GetStudentParentsByQuery(int? teacherId = null, int? studentId = null, int? parentId = null, int? courseId = null, int? classRoomId = null, int? schoolGrade = null)
+        {
+            var studentParents = db.StudentParentsRepository.Get(
+                g => (courseId != null ? g.Student.Takings.Any(t => t.Program.Teaching.CourseId == courseId) : true) &&
+                    (teacherId != null ? g.Student.Takings.Any(t => t.Program.Teaching.TeacherId == teacherId) : true) &&
+                    (classRoomId != null ? g.Student.ClassRoomId == classRoomId : true) &&
+                    (studentId != null ? g.StudentId == studentId : true) &&
+                    (parentId != null ? g.ParentId == parentId : true) &&
+                    (schoolGrade != null ? g.Student.ClassRoom.ClassGrade == schoolGrade : true))
+                    .Select(g => Converters.StudentParentsConverter.StudentParentToStudentParentDto(g));
+
+            return studentParents;
+        }
+
+        public StudentParentDto DeleteStudentParentForReal(int studentParentId)
+        {
+            var sp = db.StudentParentsRepository.GetByID(studentParentId);
+            if (sp == null)
+            {
+                return null;
+            }
+            var spDeleted = Converters.StudentParentsConverter.StudentParentToStudentParentDto(sp);
+
+            db.StudentParentsRepository.Delete(sp);
+            db.Save();
+
+            return spDeleted;
         }
     }
 }

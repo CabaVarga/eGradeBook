@@ -106,6 +106,7 @@ namespace eGradeBook.Services
         // Make a queryable method with parameters and use the parameters
         ProgramDto GetProgramDto(int programId);
 
+        ProgramDto DeleteProgramById(int programId);
         Program DeleteProgram(ProgramDto programDto);
         Program DeleteProgram(int courseId, int teacherId, int classRoomId);
         #endregion
@@ -120,5 +121,13 @@ namespace eGradeBook.Services
         /// </summary>
         /// <returns></returns>
         IEnumerable<ProgramsBySchoolClassesDto> GetAllProgramsGroupedBySchoolClasses();
+
+        IEnumerable<ProgramDto> GetProgramsByQuery(
+            int? teacherId = null,
+            int? studentId = null,
+            int? parentId = null,
+            int? courseId = null,
+            int? classRoomId = null,
+            int? schoolGrade = null);
     }
 }

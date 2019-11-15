@@ -92,5 +92,7 @@ namespace eGradeBook.Infrastructure
         /// Mapping the student - program relation. Base entity for grading.
         /// </summary>
         public DbSet<Taking> Takings { get; set; }
+
+        public DbSet<FileResource> FileResources { get; set; }
     }
 }

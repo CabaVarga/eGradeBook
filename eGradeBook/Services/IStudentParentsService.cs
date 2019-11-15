@@ -38,5 +38,14 @@ namespace eGradeBook.Services
         StudentParentDto DeleteStudentParentDto(int studentParentId);
 
         // Diretct access is problematic...
+        StudentParentDto DeleteStudentParentForReal(int studentParentId);
+
+        IEnumerable<StudentParentDto> GetStudentParentsByQuery(
+            int? teacherId = null,
+            int? studentId = null,
+            int? parentId = null,
+            int? courseId = null,
+            int? classRoomId = null,
+            int? schoolGrade = null);
     }
 }

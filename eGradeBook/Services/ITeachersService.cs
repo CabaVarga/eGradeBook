@@ -68,5 +68,13 @@ namespace eGradeBook.Services
         object GetCoursesClassRoomsForTeacher(int teacherId);
 
         TeacherReportDto GetTeacherReport(int teacherId);
+
+        IEnumerable<TeacherDto> GetTeachersByQuery(
+            int? teacherId = null,
+            int? studentId = null,
+            int? parentId = null,
+            int? courseId = null,
+            int? classRoomId = null,
+            int? schoolGrade = null);
     }
 }

@@ -138,5 +138,13 @@ namespace eGradeBook.Services
         TakingDto CreateTaking(TakingDto taking);
         TakingDto DeleteTaking(TakingDto taking);
         #endregion
+
+        IEnumerable<CourseDto> GetCoursesByQuery(
+            int? teacherId = null,
+            int? studentId = null,
+            int? parentId = null,
+            int? courseId = null,
+            int? classRoomId = null,
+            int? schoolGrade = null);
     }
 }

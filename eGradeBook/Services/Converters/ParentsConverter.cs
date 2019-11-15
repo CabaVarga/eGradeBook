@@ -28,7 +28,8 @@ namespace eGradeBook.Services.Converters
                 LastName = parent.LastName,
                 Gender = parent.Gender,
                 Email = parent.Email,
-                PhoneNumber = parent.PhoneNumber
+                PhoneNumber = parent.PhoneNumber,
+                AvatarId = parent.AvatarId
             };
         }
 
@@ -45,6 +46,7 @@ namespace eGradeBook.Services.Converters
             user.Gender = dto.Gender;
             user.Email = dto.Email;
             user.PhoneNumber = dto.PhoneNumber;
+            user.AvatarId = dto.AvatarId;
         }
 
         /// <summary>
@@ -61,7 +63,8 @@ namespace eGradeBook.Services.Converters
                 LastName = dto.LastName,
                 Gender = dto.Gender,
                 Email = dto.Email,
-                PhoneNumber = dto.PhoneNumber
+                PhoneNumber = dto.PhoneNumber,
+                AvatarId = dto.AvatarId
             };
         }
 

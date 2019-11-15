@@ -267,5 +267,19 @@ namespace eGradeBook.Services
 
             return Converters.TeachersConverter.TeacherToTeacherReportDto(teacher);
         }
+
+        public IEnumerable<TeacherDto> GetTeachersByQuery(int? teacherId = null, int? studentId = null, int? parentId = null, int? courseId = null, int? classRoomId = null, int? schoolGrade = null)
+        {
+            var teachers = db.TeachersRepository.Get(
+                g => (courseId != null ? g.Teachings.Any(t => t.CourseId == courseId) : true) &&
+                    (teacherId != null ? g.Id == teacherId : true) &&
+                    (classRoomId != null ? g.Teachings.Any(t => t.Programs.Any(p => p.ClassRoomId == classRoomId)) : true) &&
+                    (studentId != null ? g.Teachings.Any(t => t.Programs.Any(p => p.TakingStudents.Any(ts => ts.StudentId == studentId))) : true) &&
+                    (parentId != null ? g.Teachings.Any(t => t.Programs.Any(p => p.TakingStudents.Any(ts => ts.Student.StudentParents.Any(sp => sp.ParentId == parentId)))) : true) &&
+                    (schoolGrade != null ? g.Teachings.Any(t => t.Programs.Any(p => p.ClassRoom.ClassGrade == schoolGrade)) : true))
+                    .Select(g => Converters.TeachersConverter.TeacherToTeacherDto(g));
+
+            return teachers;
+        }
     }
 }

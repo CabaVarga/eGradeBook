@@ -49,6 +49,8 @@ namespace eGradeBook.Models.Dtos.Accounts
 
         public string PhoneNumber { get; set; }
 
+        public int? AvatarId { get; set; }
+
 
     }
 }

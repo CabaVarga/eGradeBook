@@ -20,5 +20,7 @@ namespace eGradeBook.Models.Dtos.Accounts
         /// Date of birth
         /// </summary>
         public DateTime? DateOfBirth { get; set; }
+
+        public int ClassRoomId { get; set; }
     }
 }

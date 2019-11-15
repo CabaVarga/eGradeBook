@@ -212,6 +212,7 @@
     <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\ClassRoomsController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\FinalGradesController.cs" />
     <Compile Include="Controllers\GradesController.cs" />
     <Compile Include="Controllers\HiddenController.cs" />
@@ -254,6 +255,8 @@
     <Compile Include="Models\Dtos\Courses\CourseDto.cs" />
     <Compile Include="Models\Dtos\CoursesBySchoolClassesDto.cs" />
     <Compile Include="Models\Dtos\Courses\CourseRegistrationDto.cs" />
+    <Compile Include="Models\Dtos\Enrollments\EnrollmentDto.cs" />
+    <Compile Include="Models\Dtos\FileResourceDto.cs" />
     <Compile Include="Models\Dtos\FinalGrades\FinalGradeDto.cs" />
     <Compile Include="Models\Dtos\GradesByCourseDto.cs" />
     <Compile Include="Models\Dtos\Grades\GradeNotificationDto.cs" />
@@ -262,6 +265,7 @@
     <Compile Include="Models\Dtos\Parents\ParentChildrenDto.cs" />
     <Compile Include="Models\Dtos\Parents\ParentDto.cs" />
     <Compile Include="Models\Dtos\Parents\ParentReportDto.cs" />
+    <Compile Include="Models\Dtos\PasswordUpdate\PasswordDto.cs" />
     <Compile Include="Models\Dtos\ProgramsByCoursesDto.cs" />
     <Compile Include="Models\Dtos\ProgramsBySchoolClassesDto.cs" />
     <Compile Include="Models\Dtos\Programs\ProgramDto.cs" />
@@ -282,6 +286,8 @@
     <Compile Include="Models\Dtos\TeachingsByCoursesDto.cs" />
     <Compile Include="Models\Dtos\TeachingsByTeachersDto.cs" />
     <Compile Include="Models\Dtos\Teachings\TeachingDto.cs" />
+    <Compile Include="Models\Enrollment.cs" />
+    <Compile Include="Models\FileResource.cs" />
     <Compile Include="Models\StudentParent.cs" />
     <Compile Include="Models\Taking.cs" />
     <Compile Include="Models\FinalGrade.cs" />
@@ -313,6 +319,7 @@
     <Compile Include="Services\Converters\AdminsConverter.cs" />
     <Compile Include="Services\Converters\ClassRoomConverter.cs" />
     <Compile Include="Services\Converters\CoursesConverter.cs" />
+    <Compile Include="Services\Converters\EnrollmentsConverter.cs" />
     <Compile Include="Services\Converters\FinalGradesConverter.cs" />
     <Compile Include="Services\Converters\GradesConverter.cs" />
     <Compile Include="Services\Converters\ParentsConverter.cs" />
@@ -340,12 +347,14 @@
     <Compile Include="Services\Exceptions\TeachingNotFoundException.cs" />
     <Compile Include="Services\Exceptions\UserRegistrationException.cs" />
     <Compile Include="Services\Exceptions\UserUpdateException.cs" />
+    <Compile Include="Services\FileResourcesService.cs" />
     <Compile Include="Services\FinalGradesService.cs" />
     <Compile Include="Services\GradesService.cs" />
     <Compile Include="Services\IAdminsService.cs" />
     <Compile Include="Services\IClassRoomsService.cs" />
     <Compile Include="Services\ICoursesService.cs" />
     <Compile Include="Services\IEmailsService.cs" />
+    <Compile Include="Services\IFileResourcesService.cs" />
     <Compile Include="Services\IFinalGradesService.cs" />
     <Compile Include="Services\IGradesService.cs" />
     <Compile Include="Services\IParentsService.cs" />
@@ -367,6 +376,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="SwaggerHelpers\AssignOAuth2SecurityRequirements.cs" />
     <Compile Include="SwaggerHelpers\AuthTokenOperation.cs" />
+    <Compile Include="SwaggerHelpers\CustomDocumentFilter.cs" />
     <Compile Include="SwaggerHelpers\Examples\CreateClassRoomProgramExample.cs" />
     <Compile Include="SwaggerHelpers\Examples\CreateGradeByTeacherExample.cs" />
     <Compile Include="SwaggerHelpers\Examples\CreateProgramExample.cs" />

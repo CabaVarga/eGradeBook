@@ -30,7 +30,8 @@ namespace eGradeBook.Services.Converters
                 Email = teacher.Email,
                 Phone = teacher.PhoneNumber,
                 Degree = teacher.Degree,
-                Title = teacher.Title
+                Title = teacher.Title,
+                AvatarId = teacher.AvatarId
             };
         }
 
@@ -49,6 +50,7 @@ namespace eGradeBook.Services.Converters
             user.PhoneNumber = dto.PhoneNumber;
             user.Title = dto.Title;
             user.Degree = dto.Degree;
+            user.AvatarId = dto.AvatarId;
         }
 
         /// <summary>
@@ -67,7 +69,8 @@ namespace eGradeBook.Services.Converters
                 Email = teacherReg.Email,
                 PhoneNumber = teacherReg.PhoneNumber,
                 Degree = teacherReg.Degree,
-                Title = teacherReg.Title
+                Title = teacherReg.Title,
+                AvatarId = teacherReg.AvatarId
             };
         }
 

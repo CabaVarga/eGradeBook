@@ -287,5 +287,36 @@ namespace eGradeBook.Services
 
             return Converters.ProgramsConverter.ProgramToProgramDto(updatedProgram);
         }
+
+        public IEnumerable<ProgramDto> GetProgramsByQuery(int? teacherId = null, int? studentId = null, int? parentId = null, int? courseId = null, int? classRoomId = null, int? schoolGrade = null)
+        {
+            var programs = db.ProgramsRepository.Get(
+                g => (courseId != null ? g.CourseId == courseId : true) &&
+                    (teacherId != null ? g.Teaching.TeacherId == teacherId : true) &&
+                    (classRoomId != null ? g.ClassRoomId == classRoomId : true) &&
+                    (studentId != null ? g.TakingStudents.Any(ts => ts.StudentId == studentId) : true) &&
+                    (parentId != null ? g.TakingStudents.Any(ts => ts.Student.StudentParents.Any(sp => sp.ParentId == parentId)) : true) &&
+                    (schoolGrade != null ? g.ClassRoom.ClassGrade == schoolGrade : true))
+                    .Select(g => Converters.ProgramsConverter.ProgramToProgramDto(g));
+
+            return programs;
+        }
+
+        public ProgramDto DeleteProgramById(int programId)
+        {
+            Program program = GetProgram(programId);
+
+            if (program == null)
+            {
+                return null;
+            }
+
+            var deletedProgram = Converters.ProgramsConverter.ProgramToProgramDto(program);
+
+            db.ProgramsRepository.Delete(program);
+            db.Save();
+
+            return deletedProgram;
+        }
     }
 }

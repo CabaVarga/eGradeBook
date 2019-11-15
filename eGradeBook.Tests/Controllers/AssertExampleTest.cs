@@ -129,6 +129,11 @@ namespace eGradeBook.Tests.Controllers
             };
         }
 
+        public IEnumerable<ClassRoomDto> GetClassRoomsByQuery(int? teacherId = null, int? studentId = null, int? parentId = null, int? courseId = null, int? classRoomId = null, int? schoolGrade = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public ClassRoomFullReportDto GetFullReport(int classRoomId)
         {
             throw new NotImplementedException();

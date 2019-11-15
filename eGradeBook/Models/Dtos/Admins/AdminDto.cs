@@ -44,5 +44,10 @@ namespace eGradeBook.Models.Dtos.Admins
         /// Phone number
         /// </summary>
         public string Phone { get; set; }
+
+        /// <summary>
+        /// Picture id of avatar
+        /// </summary>
+        public int? AvatarId { get; set; }
     }
 }

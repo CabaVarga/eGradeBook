@@ -108,6 +108,12 @@ namespace eGradeBook.Repositories
         public IGenericRepository<AdminUser> AdminsRepository { get; set; }
 
         /// <summary>
+        /// File resources repository
+        /// </summary>
+        [Dependency]
+        public IGenericRepository<FileResource> FileResourcesRepository { get; set; }
+
+        /// <summary>
         /// Save all changes.
         /// </summary>
         public void Save()

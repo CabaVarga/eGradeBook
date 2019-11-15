@@ -127,11 +127,15 @@ namespace eGradeBook.Services
                 return null;
             }
 
+            var deletedClassroom = ClassRoomConverter.ClassRoomToClassRoomDto(classRoom);
+
             db.ClassRoomsRepository.Delete(classRoom);
             db.Save();
 
-            return ClassRoomConverter.ClassRoomToClassRoomDto(classRoom);
+            return deletedClassroom;
         }
+
+
 
         /// <summary>
         /// Enroll student in classroom
@@ -317,6 +321,20 @@ namespace eGradeBook.Services
             var report = Converters.ClassRoomConverter.ClassRoomToClassRoomFullReportDto(classRoom);
 
             return report;
+        }
+
+        public IEnumerable<ClassRoomDto> GetClassRoomsByQuery(int? teacherId = null, int? studentId = null, int? parentId = null, int? courseId = null, int? classRoomId = null, int? schoolGrade = null)
+        {
+            var classRooms = db.ClassRoomsRepository.Get(
+                g => (courseId != null ? g.Program.Any(p => p.Teaching.CourseId == courseId) : true) &&
+                    (teacherId != null ? g.Program.Any(p => p.Teaching.TeacherId == teacherId) : true) &&
+                    (classRoomId != null ? g.Id == classRoomId : true) &&
+                    (studentId != null ? g.Students.Any(s => s.Id == studentId) : true) &&
+                    (parentId != null ? g.Students.Any(s => s.StudentParents.Any(sp => sp.ParentId == parentId)) : true) &&
+                    (schoolGrade != null ? g.ClassGrade == schoolGrade : true))
+                    .Select(g => Converters.ClassRoomConverter.ClassRoomToClassRoomDto(g));
+
+            return classRooms;
         }
     }
 }

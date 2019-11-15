@@ -38,5 +38,20 @@ namespace eGradeBook.Services
         FinalGradeDto CreateFinalGrade(FinalGradeDto finalGradeDto);
         FinalGradeDto UpdateFinalGrade(int finalGradeId, FinalGradeDto finalGradeDto);
         FinalGradeDto DeleteFinalGrade(int finalGradeId);
+
+        IEnumerable<FinalGradeDto> GetFinalGradesByQuery(
+            int? gradeId = null,
+            int? finalGradeId = null,
+            int? courseId = null,
+            int? teacherId = null,
+            int? classRoomId = null,
+            int? studentId = null,
+            int? parentId = null,
+            int? semester = null,
+            int? schoolGrade = null,
+            int? grade = null,
+            int? finalGrade = null,
+            DateTime? fromDate = null,
+            DateTime? toDate = null);
     }
 }

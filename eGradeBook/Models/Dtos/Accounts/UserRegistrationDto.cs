@@ -57,6 +57,8 @@ namespace eGradeBook.Models.Dtos.Accounts
         [Phone(ErrorMessage = "Not a valid phone number")]
         public string PhoneNumber { get; set; }
 
+        public int? AvatarId { get; set; }
+
         /// <summary>
         /// Password
         /// </summary>

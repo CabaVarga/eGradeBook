@@ -87,6 +87,7 @@ namespace eGradeBook
                                 scopes.Add("teachers", "Write access to protected resources");
                             });
 
+                        c.DocumentFilter<CustomDocumentFilter>();
                         c.OperationFilter<AssignOAuth2SecurityRequirements>();
                         c.DocumentFilter<AuthTokenOperation>();
                         // Set this flag to omit descriptions for any actions decorated with the Obsolete attribute
@@ -97,7 +98,7 @@ namespace eGradeBook
                         // By default, this will be controller name but you can use the "GroupActionsBy" option to
                         // override with any value.
                         //
-                        //c.GroupActionsBy(apiDesc => apiDesc.HttpMethod.ToString());
+                        // c.GroupActionsBy(apiDesc => apiDesc.HttpMethod.ToString());
 
                         // You can also specify a custom sort order for groups (as defined by "GroupActionsBy") to dictate
                         // the order in which operations are listed. For example, if the default grouping is in place
@@ -138,7 +139,7 @@ namespace eGradeBook
                         // Swagger docs and UI. However, if you have multiple types in your API with the same class name, you'll
                         // need to opt out of this behavior to avoid Schema Id conflicts.
                         //
-                        //c.UseFullTypeNameInSchemaIds();
+                        c.UseFullTypeNameInSchemaIds();
 
                         // Alternatively, you can provide your own custom strategy for inferring SchemaId's for
                         // describing "complex" types in your API.

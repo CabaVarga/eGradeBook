@@ -14,7 +14,7 @@ namespace eGradeBook.Models.Dtos.Courses
         /// <summary>
         /// Course Id
         /// </summary>
-        public int Id { get; set; }
+        public int CourseId { get; set; }
 
         /// <summary>
         /// Course name

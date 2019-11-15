@@ -308,7 +308,7 @@ namespace eGradeBook.Controllers
                     foreach (var student in students)
                     {
                         _userManager.Create(student, "password");
-                        _userManager.AddToRole(student.Id, "teachers");
+                        _userManager.AddToRole(student.Id, "students");
                     }
                     #endregion
 

@@ -14,6 +14,7 @@ namespace eGradeBook.Models.Dtos.Accounts
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public int? AvatarId { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
         public UserRole Role { get; set; }

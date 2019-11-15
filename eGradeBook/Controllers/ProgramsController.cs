@@ -1,6 +1,7 @@
 ﻿using eGradeBook.Models.Dtos.Programs;
 using eGradeBook.Services;
 using eGradeBook.SwaggerHelpers.Examples;
+using eGradeBook.Utilities.WebApi;
 using NLog;
 using Swashbuckle.Examples;
 using System;
@@ -19,7 +20,7 @@ namespace eGradeBook.Controllers
     /// NOTE final grades will also only be an aspect of either takings or grades... but i'm not completely convinced yet of that
     /// </summary>
     [RoutePrefix("api/programs")]
-    [Authorize(Roles = "admins")]
+    [Authorize]
     public class ProgramsController : ApiController
     {
         private IProgramsService programs;
@@ -111,6 +112,125 @@ namespace eGradeBook.Controllers
         {
             logger.Info("Get programs grouped by classrooms");
             return Ok(programs.GetAllProgramsGroupedBySchoolClasses());
+        }
+
+        #region QUERY
+        /// <summary>
+        /// Get programs based on query
+        /// </summary>
+        /// <param name="teacherId"></param>
+        /// <param name="studentId"></param>
+        /// <param name="parentId"></param>
+        /// <param name="courseId"></param>
+        /// <param name="classRoomId"></param>
+        /// <param name="schoolGrade"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("query")]
+        public IHttpActionResult GetProgramsByQuery(
+            [FromUri]int? teacherId = null,
+            [FromUri]int? studentId = null,
+            [FromUri]int? parentId = null,
+            [FromUri]int? courseId = null,
+            [FromUri]int? classRoomId = null,
+            [FromUri]int? schoolGrade = null)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Teachers by {@userData}", userData);
+
+            var userInfo = Utilities.WebApi.IdentityHelper.FetchUserData(RequestContext);
+
+            if (userInfo.UserId == null)
+            {
+                return Unauthorized();
+            }
+
+            var userId = userInfo.UserId ?? 0;
+
+            if (userInfo.IsAdmin)
+            {
+                var results = programs.GetProgramsByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsTeacher)
+            {
+                if (teacherId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = programs.GetProgramsByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsStudent)
+            {
+                if (studentId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = programs.GetProgramsByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsParent)
+            {
+                if (parentId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = programs.GetProgramsByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else
+            {
+                logger.Error("Authenticated user with no role --- this should not happen");
+                return InternalServerError();
+            }
+        }
+        #endregion
+
+        [Route("{programId}")]
+        [HttpDelete]
+        public IHttpActionResult DeleteProgramById(int programId)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Trace("Delete Teaching {@programId} by {@userData}", programId, userData);
+
+            var result = programs.DeleteProgramById(programId);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
     }
 }

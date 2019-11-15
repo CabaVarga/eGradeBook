@@ -215,7 +215,7 @@ namespace eGradeBook.Services
             var students = db.StudentsRepository.Get(
                 g => (courseId != null ? g.Takings.Any(t => t.Program.Teaching.Course.Id == courseId) : true) &&
                     (teacherId != null ? g.Takings.Any(t => t.Program.Teaching.TeacherId == teacherId) : true) &&
-                    (classRoomId != null ? g.Takings.Any(t => t.Program.Course.Id == classRoomId) : true) &&
+                    (classRoomId != null ? g.Takings.Any(t => t.Program.ClassRoomId == classRoomId) : true) &&
                     (studentId != null ? g.Id == studentId : true) &&
                     (parentId != null ? g.StudentParents.Any(sp => sp.Parent.Id  == parentId) : true) &&
                     (schoolGrade != null ? g.ClassRoom.ClassGrade == schoolGrade : true))

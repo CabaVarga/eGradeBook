@@ -22,7 +22,7 @@ namespace eGradeBook.Services.Converters
         {
             return new CourseDto()
             {
-                Id = course.Id,
+                CourseId = course.Id,
                 Name = course.Name,
                 ColloqialName = course.ColloqialName
             };

@@ -110,6 +110,41 @@ namespace eGradeBook.Controllers
         }
 
         /// <summary>
+        /// Delete classroom
+        /// </summary>
+        /// <param name="classRoomId"></param>
+        /// <returns></returns>
+        [Route("{classRoomId}")]
+        [HttpDelete]
+        public ClassRoomDto DeleteClassRoom(int classRoomId)
+        {
+            var deletedClassroom = service.DeleteClassRoom(classRoomId);
+
+            if (deletedClassroom == null)
+            {
+                return null;
+            }
+
+            return deletedClassroom;
+        }
+
+        [Route("{classRoomId}")]
+        [HttpPut]
+        public IHttpActionResult UpdateClassRoom(int classRoomId, ClassRoomDto classRoomDto)
+        {
+            logger.Info("Update classroom {@programId} {@programData}", classRoomId, classRoomDto);
+
+            if (classRoomId != classRoomDto.ClassRoomId)
+            {
+                return BadRequest("Id mismatch");
+            }
+
+            var updatedClassRoom = service.UpdateClassRoom(classRoomId, classRoomDto);
+
+            return Ok(updatedClassRoom);
+        }
+
+        /// <summary>
         /// Create a new program entry associated with the given classroom
         /// </summary>
         /// <param name="classRoomId">Class room Id</param>
@@ -158,6 +193,107 @@ namespace eGradeBook.Controllers
             var report = service.GetFullReport(classRoomId);
 
             return Ok(report);
+        }
+        #endregion
+
+        #region QUERY
+        /// <summary>
+        /// Get classrooms based on query
+        /// </summary>
+        /// <param name="teacherId"></param>
+        /// <param name="studentId"></param>
+        /// <param name="parentId"></param>
+        /// <param name="courseId"></param>
+        /// <param name="classRoomId"></param>
+        /// <param name="schoolGrade"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("query")]
+        public IHttpActionResult GetClassRoomsByQuery(
+            [FromUri]int? teacherId = null,
+            [FromUri]int? studentId = null,
+            [FromUri]int? parentId = null,
+            [FromUri]int? courseId = null,
+            [FromUri]int? classRoomId = null,
+            [FromUri]int? schoolGrade = null)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Get Teachers by {@userData}", userData);
+
+            var userInfo = Utilities.WebApi.IdentityHelper.FetchUserData(RequestContext);
+
+            if (userInfo.UserId == null)
+            {
+                return Unauthorized();
+            }
+
+            var userId = userInfo.UserId ?? 0;
+
+            if (userInfo.IsAdmin)
+            {
+                var results = service.GetClassRoomsByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsTeacher)
+            {
+                if (teacherId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = service.GetClassRoomsByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsStudent)
+            {
+                if (studentId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = service.GetClassRoomsByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else if (userInfo.IsParent)
+            {
+                if (parentId != userInfo.UserId)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                var results = service.GetClassRoomsByQuery(teacherId, studentId, parentId, courseId, classRoomId, schoolGrade);
+
+                if (results == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(results);
+            }
+            else
+            {
+                logger.Error("Authenticated user with no role --- this should not happen");
+                return InternalServerError();
+            }
         }
         #endregion
     }

@@ -66,5 +66,7 @@ namespace eGradeBook.Models.Dtos.Students
         /// Class room Id
         /// </summary>
         public int? ClassRoomId { get; set; }
+
+        public int? AvatarId { get; set; }
     }
 }

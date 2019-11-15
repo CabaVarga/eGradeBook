@@ -1,6 +1,9 @@
-﻿using eGradeBook.Models.Dtos.Accounts;
+﻿using eGradeBook.Models;
+using eGradeBook.Models.Dtos;
+using eGradeBook.Models.Dtos.Accounts;
 using eGradeBook.Models.Dtos.Admins;
 using eGradeBook.Models.Dtos.Parents;
+using eGradeBook.Models.Dtos.PasswordUpdate;
 using eGradeBook.Models.Dtos.Registration;
 using eGradeBook.Models.Dtos.Students;
 using eGradeBook.Models.Dtos.Teachers;
@@ -11,8 +14,12 @@ using eGradeBook.Utilities.WebApi;
 using NLog;
 using Swashbuckle.Examples;
 using System;
+using System.Diagnostics;
+using System.Net;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -26,15 +33,17 @@ namespace eGradeBook.Controllers
     public class AccountsController : ApiController
     {
         private IUsersService service;
+        private IFileResourcesService fileResourcesService;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Accounts Controller constructor
         /// </summary>
         /// <param name="userService"></param>
-        public AccountsController(IUsersService userService)
+        public AccountsController(IUsersService userService, IFileResourcesService fileResourcesService)
         {
             this.service = userService;
+            this.fileResourcesService = fileResourcesService;
         }
 
         #region Registrations
@@ -184,7 +193,7 @@ namespace eGradeBook.Controllers
         [Route("update-teacher/{teacherId}")]
         [HttpPut]
         [ResponseType(typeof(TeacherDto))]
-        [Authorize(Roles = "admins")]
+        [Authorize(Roles = "admins,teachers")]
         public async Task<IHttpActionResult> UpdateTeacher([FromUri] int teacherId, [FromBody] TeacherUpdateDto teacherUpdate)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
@@ -216,7 +225,7 @@ namespace eGradeBook.Controllers
         [Route("update-student/{studentId}")]
         [HttpPut]
         [ResponseType(typeof(StudentDto))]
-        [Authorize(Roles = "admins")]
+        [Authorize(Roles = "admins,students")]
         public async Task<IHttpActionResult> UpdateStudent([FromUri] int studentId, [FromBody] StudentUpdateDto studentUpdate)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
@@ -249,7 +258,7 @@ namespace eGradeBook.Controllers
         [Route("update-parent/{parentId}")]
         [HttpPut]
         [ResponseType(typeof(ParentDto))]
-        [Authorize(Roles = "admins")]
+        [Authorize(Roles = "admins,parents")]
         public async Task<IHttpActionResult> UpdateParent([FromUri] int parentId, [FromBody] ParentUpdateDto parentUpdate)
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
@@ -304,7 +313,7 @@ namespace eGradeBook.Controllers
         /// Retrieve info about the logged in user
         /// </summary>
         /// <returns></returns>
-        [Authorize(Roles ="admins,teachers,students,parents")]
+        [Authorize(Roles ="admins, teachers, students, parents")]
         [Route("whoami")]
         [ResponseType(typeof(UserDataDto))]
         [HttpGet]
@@ -335,6 +344,155 @@ namespace eGradeBook.Controllers
         {
             return Ok(service.GetUserData(userId));
         }
+
+        #region CRUD
+        /// <summary>
+        /// Update password
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="passwordDto"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("{userId}/changePassword")]
+        [ResponseType(typeof(PasswordDto))]
+        public async Task<IHttpActionResult> ChangePassword(int userId, PasswordDto passwordDto)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Password change requested for {@userId} by {@userData}", userId, userData);
+
+            var userInfo = Utilities.WebApi.IdentityHelper.FetchUserData(RequestContext);
+
+            if (userInfo.UserId == null)
+            {
+                return Unauthorized();
+            }
+
+            if (userId != passwordDto.UserId)
+            {
+                return BadRequest();
+            }
+
+            var loggedInUserId = userInfo.UserId ?? 0;
+
+            if (userInfo.IsAdmin)
+            {
+                // an admin can change anything
+                //if (loggedInUserId != userId)
+                //{
+                //    return Unauthorized();
+                //}
+            }
+            else 
+            {
+                // anyone else -> only can change own data
+                if (loggedInUserId != userId)
+                {
+                    return Unauthorized();
+                }
+            }
+
+            var result = await service.ChangePassword(userId, passwordDto);
+
+            if (!result)
+            {
+                return NotFound();
+            }
+
+            return Ok(passwordDto);
+        }
+
+        /// <summary>
+        /// Variation of the exercise from the class.
+        /// We need to connect the file with the given user as an owner.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>Status code with empty payload.</returns>
+        [Route("{userId}/upload")]
+        [HttpPost]
+        [ResponseType(typeof(FileResourceDto))]
+        public async Task<IHttpActionResult> UploadFileForUser(int userId)
+        {
+            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
+
+            logger.Info("Password change requested for {@userId} by {@userData}", userId, userData);
+
+            var userInfo = Utilities.WebApi.IdentityHelper.FetchUserData(RequestContext);
+
+            // admin can upload, change and remoce for anyone
+            // others only for themselves
+
+            // Check if user exists
+            var owner = service.GetUserData(userId);
+            int fileId = 0;
+
+            if (owner == null)
+            {
+                return NotFound();
+            }
+
+            // Check if the request contains multipart/form-data.
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+            }
+
+            string root = HttpContext.Current.Server.MapPath("~/App_Data");
+
+            var provider = new MultipartFormDataStreamProvider(root);
+
+            // OK. We will take the file, save it, and return the info about the created resource...
+            // Ideally, we would certainly connect with EntityFramework. But in this case, we will only save
+            // The id, without real reference...
+
+            try
+            {
+                // Read the form data.
+                await Request.Content.ReadAsMultipartAsync(provider);
+                // This illustrates how to get the file names.
+                foreach (MultipartFileData file in provider.FileData)
+                {
+                    Trace.WriteLine(file.Headers.ContentDisposition.FileName);
+                    Trace.WriteLine("Server file path: " + file.LocalFileName);
+
+                    char[] charsToTrim = { '"' };
+
+                    Trace.WriteLine(file.Headers.ContentDisposition.FileName.Trim(charsToTrim));
+                    string fileOriginal = file.Headers.ContentDisposition.FileName.Trim(charsToTrim);
+
+                    // FileResource creation logic comes here: (probably not optimal)
+                    FileResource fileResource = new FileResource()
+                    {
+                        UserId = userId,
+                        Description = fileOriginal,
+                        Path = file.LocalFileName
+                    };
+
+                    // If a user can create a FileResource, should I add that capability to the UsersService?
+
+                    var fr = fileResourcesService.CreateFileResource(fileResource); // probably need method with parameters
+                    fileId = fr.Id;
+                    //return CreatedAtRoute("FileResource", new { id = fileId }, fr);
+
+                    var frDto = new FileResourceDto
+                    {
+                        Id = fr.Id,
+                        UserId = fr.UserId,
+                        Description = fr.Description
+                    };
+
+                    // This is for a single file!
+                    // for multiple files I need another enpoint
+                    return Ok(frDto);
+                }
+                return BadRequest("There were no files in the request");
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+        #endregion
 
         /// <summary>
         /// Dispose method
