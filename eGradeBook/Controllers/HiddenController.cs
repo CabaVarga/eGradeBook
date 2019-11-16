@@ -272,22 +272,22 @@ namespace eGradeBook.Controllers
 
                     #region Programs
                     List<Program> programs = new List<Program>();
-                    programs.Add(new Program() { Teaching = teachings[0], ClassRoom = classRooms[0], WeeklyHours = 5, Course = courses[0] });
-                    programs.Add(new Program() { Teaching = teachings[7], ClassRoom = classRooms[0], WeeklyHours = 3, Course = courses[1] });
-                    programs.Add(new Program() { Teaching = teachings[2], ClassRoom = classRooms[0], WeeklyHours = 5, Course = courses[4] });
-                    programs.Add(new Program() { Teaching = teachings[3], ClassRoom = classRooms[0], WeeklyHours = 3, Course = courses[2] });
-                    programs.Add(new Program() { Teaching = teachings[6], ClassRoom = classRooms[1], WeeklyHours = 5, Course = courses[0] });
-                    programs.Add(new Program() { Teaching = teachings[1], ClassRoom = classRooms[1], WeeklyHours = 3, Course = courses[1] });
-                    programs.Add(new Program() { Teaching = teachings[2], ClassRoom = classRooms[1], WeeklyHours = 5, Course = courses[4] });
-                    programs.Add(new Program() { Teaching = teachings[5], ClassRoom = classRooms[1], WeeklyHours = 3, Course = courses[3] });
-                    programs.Add(new Program() { Teaching = teachings[6], ClassRoom = classRooms[2], WeeklyHours = 4, Course = courses[0] });
-                    programs.Add(new Program() { Teaching = teachings[7], ClassRoom = classRooms[2], WeeklyHours = 4, Course = courses[1] });
-                    programs.Add(new Program() { Teaching = teachings[4], ClassRoom = classRooms[2], WeeklyHours = 4, Course = courses[4] });
-                    programs.Add(new Program() { Teaching = teachings[3], ClassRoom = classRooms[2], WeeklyHours = 4, Course = courses[2] });
-                    programs.Add(new Program() { Teaching = teachings[0], ClassRoom = classRooms[3], WeeklyHours = 4, Course = courses[0] });
-                    programs.Add(new Program() { Teaching = teachings[1], ClassRoom = classRooms[3], WeeklyHours = 4, Course = courses[1] });
-                    programs.Add(new Program() { Teaching = teachings[4], ClassRoom = classRooms[3], WeeklyHours = 4, Course = courses[4] });
-                    programs.Add(new Program() { Teaching = teachings[5], ClassRoom = classRooms[3], WeeklyHours = 4, Course = courses[3] });
+                    programs.Add(new Program() { Teaching = teachings[0], ClassRoom = classRooms[0], WeeklyHours = 5 });
+                    programs.Add(new Program() { Teaching = teachings[7], ClassRoom = classRooms[0], WeeklyHours = 3 });
+                    programs.Add(new Program() { Teaching = teachings[2], ClassRoom = classRooms[0], WeeklyHours = 5 });
+                    programs.Add(new Program() { Teaching = teachings[3], ClassRoom = classRooms[0], WeeklyHours = 3 });
+                    programs.Add(new Program() { Teaching = teachings[6], ClassRoom = classRooms[1], WeeklyHours = 5 });
+                    programs.Add(new Program() { Teaching = teachings[1], ClassRoom = classRooms[1], WeeklyHours = 3 });
+                    programs.Add(new Program() { Teaching = teachings[2], ClassRoom = classRooms[1], WeeklyHours = 5 });
+                    programs.Add(new Program() { Teaching = teachings[5], ClassRoom = classRooms[1], WeeklyHours = 3 });
+                    programs.Add(new Program() { Teaching = teachings[6], ClassRoom = classRooms[2], WeeklyHours = 4 });
+                    programs.Add(new Program() { Teaching = teachings[7], ClassRoom = classRooms[2], WeeklyHours = 4 });
+                    programs.Add(new Program() { Teaching = teachings[4], ClassRoom = classRooms[2], WeeklyHours = 4 });
+                    programs.Add(new Program() { Teaching = teachings[3], ClassRoom = classRooms[2], WeeklyHours = 4 });
+                    programs.Add(new Program() { Teaching = teachings[0], ClassRoom = classRooms[3], WeeklyHours = 4 });
+                    programs.Add(new Program() { Teaching = teachings[1], ClassRoom = classRooms[3], WeeklyHours = 4 });
+                    programs.Add(new Program() { Teaching = teachings[4], ClassRoom = classRooms[3], WeeklyHours = 4 });
+                    programs.Add(new Program() { Teaching = teachings[5], ClassRoom = classRooms[3], WeeklyHours = 4 });
 
 
                     context.Programs.AddRange(programs);
@@ -296,14 +296,14 @@ namespace eGradeBook.Controllers
 
                     #region Students
                     List<StudentUser> students = new List<StudentUser>();
-                    students.Add(new StudentUser() { UserName = "zoranzoric", FirstName = "Zoran", LastName = "Zoric", Email = "zoran@gmail.com", Gender = "m", PhoneNumber = "064548458", PlaceOfBirth = "Novi Sad", DateOfBirth = DateTime.Parse("2010-05-23"), ClassRoom = classRooms[0] });
-                    students.Add(new StudentUser() { UserName = "zoricazoric", FirstName = "Zorica", LastName = "Zoric", Email = "zorica@gmail.com", Gender = "f", PhoneNumber = "063565485", PlaceOfBirth = "Novi Sad", DateOfBirth = DateTime.Parse("2010-05-23"), ClassRoom = classRooms[0] });
-                    students.Add(new StudentUser() { UserName = "dragankljajic", FirstName = "Dragan", LastName = "Kljajic", Email = "dragan@gmail.com", Gender = "m", PhoneNumber = "02365465", PlaceOfBirth = "Becej", DateOfBirth = DateTime.Parse("2010-01-23"), ClassRoom = classRooms[1] });
-                    students.Add(new StudentUser() { UserName = "draganamihic", FirstName = "Dragana", LastName = "Mihic", Email = "dragana@gmail.com", Gender = "f", PhoneNumber = "062456895", PlaceOfBirth = "Temerin", DateOfBirth = DateTime.Parse("2010-04-12"), ClassRoom = classRooms[1] });
-                    students.Add(new StudentUser() { UserName = "milanmihic", FirstName = "Milan", LastName = "Mihic", Email = "milan@gmail.com", Gender = "m", PhoneNumber = "06548575", PlaceOfBirth = "Rumenka", DateOfBirth = DateTime.Parse("2009-11-05"), ClassRoom = classRooms[2] });
-                    students.Add(new StudentUser() { UserName = "milanaivic", FirstName = "Milana", LastName = "Ivic", Email = "milana@gmail.com", Gender = "f", PhoneNumber = "02365847", PlaceOfBirth = "Novi Sad", DateOfBirth = DateTime.Parse("2009-08-07"), ClassRoom = classRooms[2] });
-                    students.Add(new StudentUser() { UserName = "ivanmihic", FirstName = "Ivan", LastName = "Mihic", Email = "aleksandar@gmail.com", Gender = "m", PhoneNumber = "01254822", PlaceOfBirth = "Novi Sad", DateOfBirth = DateTime.Parse("2009-03-30"), ClassRoom = classRooms[3] });
-                    students.Add(new StudentUser() { UserName = "ivanazoric", FirstName = "Ivana", LastName = "Zoric", Email = "aleksandra@gmail.com", Gender = "f", PhoneNumber = "01525465", PlaceOfBirth = "Beograd", DateOfBirth = DateTime.Parse("2009-02-28"), ClassRoom = classRooms[3] });
+                    students.Add(new StudentUser() { UserName = "zoranzoric", FirstName = "Zoran", LastName = "Zoric", Email = "zoran@gmail.com", Gender = "m", PhoneNumber = "064548458", PlaceOfBirth = "Novi Sad", DateOfBirth = DateTime.Parse("2010-05-23") });
+                    students.Add(new StudentUser() { UserName = "zoricazoric", FirstName = "Zorica", LastName = "Zoric", Email = "zorica@gmail.com", Gender = "f", PhoneNumber = "063565485", PlaceOfBirth = "Novi Sad", DateOfBirth = DateTime.Parse("2010-05-23") });
+                    students.Add(new StudentUser() { UserName = "dragankljajic", FirstName = "Dragan", LastName = "Kljajic", Email = "dragan@gmail.com", Gender = "m", PhoneNumber = "02365465", PlaceOfBirth = "Becej", DateOfBirth = DateTime.Parse("2010-01-23") });
+                    students.Add(new StudentUser() { UserName = "draganamihic", FirstName = "Dragana", LastName = "Mihic", Email = "dragana@gmail.com", Gender = "f", PhoneNumber = "062456895", PlaceOfBirth = "Temerin", DateOfBirth = DateTime.Parse("2010-04-12") });
+                    students.Add(new StudentUser() { UserName = "milanmihic", FirstName = "Milan", LastName = "Mihic", Email = "milan@gmail.com", Gender = "m", PhoneNumber = "06548575", PlaceOfBirth = "Rumenka", DateOfBirth = DateTime.Parse("2009-11-05") });
+                    students.Add(new StudentUser() { UserName = "milanaivic", FirstName = "Milana", LastName = "Ivic", Email = "milana@gmail.com", Gender = "f", PhoneNumber = "02365847", PlaceOfBirth = "Novi Sad", DateOfBirth = DateTime.Parse("2009-08-07") });
+                    students.Add(new StudentUser() { UserName = "ivanmihic", FirstName = "Ivan", LastName = "Mihic", Email = "aleksandar@gmail.com", Gender = "m", PhoneNumber = "01254822", PlaceOfBirth = "Novi Sad", DateOfBirth = DateTime.Parse("2009-03-30") });
+                    students.Add(new StudentUser() { UserName = "ivanazoric", FirstName = "Ivana", LastName = "Zoric", Email = "aleksandra@gmail.com", Gender = "f", PhoneNumber = "01525465", PlaceOfBirth = "Beograd", DateOfBirth = DateTime.Parse("2009-02-28") });
 
                     foreach (var student in students)
                     {
@@ -311,41 +311,57 @@ namespace eGradeBook.Controllers
                         _userManager.AddToRole(student.Id, "students");
                     }
                     #endregion
+                    List<Enrollment> enrollments = new List<Enrollment>();
+                    enrollments.Add(new Enrollment() { Student = students[0], ClassRoom = classRooms[0] });
+                    enrollments.Add(new Enrollment() { Student = students[1], ClassRoom = classRooms[0] });
+                    enrollments.Add(new Enrollment() { Student = students[2], ClassRoom = classRooms[1] });
+                    enrollments.Add(new Enrollment() { Student = students[3], ClassRoom = classRooms[1] });
+                    enrollments.Add(new Enrollment() { Student = students[4], ClassRoom = classRooms[2] });
+                    enrollments.Add(new Enrollment() { Student = students[5], ClassRoom = classRooms[2] });
+                    enrollments.Add(new Enrollment() { Student = students[6], ClassRoom = classRooms[3] });
+                    enrollments.Add(new Enrollment() { Student = students[7], ClassRoom = classRooms[3] });
+
+                    context.Enrollments.AddRange(enrollments);
+                    context.SaveChanges();
+
+                    #region Enrollments
+
+                    #endregion
 
                     #region Takings
                     List<Taking> takings = new List<Taking>();
-                    takings.Add(new Taking() { Program = programs[0], Student = students[0] });
-                    takings.Add(new Taking() { Program = programs[1], Student = students[0] });
-                    takings.Add(new Taking() { Program = programs[2], Student = students[0] });
-                    takings.Add(new Taking() { Program = programs[3], Student = students[0] });
-                    takings.Add(new Taking() { Program = programs[0], Student = students[1] });
-                    takings.Add(new Taking() { Program = programs[1], Student = students[1] });
-                    takings.Add(new Taking() { Program = programs[2], Student = students[1] });
-                    takings.Add(new Taking() { Program = programs[3], Student = students[1] });
-                    takings.Add(new Taking() { Program = programs[4], Student = students[2] });
-                    takings.Add(new Taking() { Program = programs[5], Student = students[2] });
-                    takings.Add(new Taking() { Program = programs[6], Student = students[2] });
-                    takings.Add(new Taking() { Program = programs[7], Student = students[2] });
-                    takings.Add(new Taking() { Program = programs[4], Student = students[3] });
-                    takings.Add(new Taking() { Program = programs[5], Student = students[3] });
-                    takings.Add(new Taking() { Program = programs[6], Student = students[3] });
-                    takings.Add(new Taking() { Program = programs[7], Student = students[3] });
-                    takings.Add(new Taking() { Program = programs[8], Student = students[4] });
-                    takings.Add(new Taking() { Program = programs[9], Student = students[4] });
-                    takings.Add(new Taking() { Program = programs[10], Student = students[4] });
-                    takings.Add(new Taking() { Program = programs[11], Student = students[4] });
-                    takings.Add(new Taking() { Program = programs[8], Student = students[5] });
-                    takings.Add(new Taking() { Program = programs[9], Student = students[5] });
-                    takings.Add(new Taking() { Program = programs[10], Student = students[5] });
-                    takings.Add(new Taking() { Program = programs[11], Student = students[5] });
-                    takings.Add(new Taking() { Program = programs[12], Student = students[6] });
-                    takings.Add(new Taking() { Program = programs[13], Student = students[6] });
-                    takings.Add(new Taking() { Program = programs[14], Student = students[6] });
-                    takings.Add(new Taking() { Program = programs[15], Student = students[6] });
-                    takings.Add(new Taking() { Program = programs[12], Student = students[7] });
-                    takings.Add(new Taking() { Program = programs[13], Student = students[7] });
-                    takings.Add(new Taking() { Program = programs[14], Student = students[7] });
-                    takings.Add(new Taking() { Program = programs[15], Student = students[7] });
+                    takings.Add(new Taking() { Program = programs[0], Enrollment = enrollments[0] });
+                    takings.Add(new Taking() { Program = programs[1], Enrollment = enrollments[0] });
+                    takings.Add(new Taking() { Program = programs[2], Enrollment = enrollments[0] });
+                    takings.Add(new Taking() { Program = programs[3], Enrollment = enrollments[0] });
+                    takings.Add(new Taking() { Program = programs[0], Enrollment = enrollments[1] });
+                    takings.Add(new Taking() { Program = programs[1], Enrollment = enrollments[1] });
+                    takings.Add(new Taking() { Program = programs[2], Enrollment = enrollments[1] });
+                    takings.Add(new Taking() { Program = programs[3], Enrollment = enrollments[1] });
+                    takings.Add(new Taking() { Program = programs[4], Enrollment = enrollments[2] });
+                    takings.Add(new Taking() { Program = programs[5], Enrollment = enrollments[2] });
+                    takings.Add(new Taking() { Program = programs[6], Enrollment = enrollments[2] });
+                    takings.Add(new Taking() { Program = programs[7], Enrollment = enrollments[2] });
+                    takings.Add(new Taking() { Program = programs[4], Enrollment = enrollments[3] });
+                    takings.Add(new Taking() { Program = programs[5], Enrollment = enrollments[3] });
+                    takings.Add(new Taking() { Program = programs[6], Enrollment = enrollments[3] });
+                    takings.Add(new Taking() { Program = programs[7], Enrollment = enrollments[3] });
+                    takings.Add(new Taking() { Program = programs[8], Enrollment = enrollments[4] });
+                    takings.Add(new Taking() { Program = programs[9], Enrollment = enrollments[4] });
+                    takings.Add(new Taking() { Program = programs[10], Enrollment = enrollments[4] });
+                    takings.Add(new Taking() { Program = programs[11], Enrollment = enrollments[4] });
+                    takings.Add(new Taking() { Program = programs[8], Enrollment = enrollments[5] });
+                    takings.Add(new Taking() { Program = programs[9], Enrollment = enrollments[5] });
+                    takings.Add(new Taking() { Program = programs[10], Enrollment = enrollments[5] });
+                    takings.Add(new Taking() { Program = programs[11], Enrollment = enrollments[5] });
+                    takings.Add(new Taking() { Program = programs[12], Enrollment = enrollments[6] });
+                    takings.Add(new Taking() { Program = programs[13], Enrollment = enrollments[6] });
+                    takings.Add(new Taking() { Program = programs[14], Enrollment = enrollments[6] });
+                    takings.Add(new Taking() { Program = programs[15], Enrollment = enrollments[6] });
+                    takings.Add(new Taking() { Program = programs[12], Enrollment = enrollments[7] });
+                    takings.Add(new Taking() { Program = programs[13], Enrollment = enrollments[7] });
+                    takings.Add(new Taking() { Program = programs[14], Enrollment = enrollments[7] });
+                    takings.Add(new Taking() { Program = programs[15], Enrollment = enrollments[7] });
 
                     context.Takings.AddRange(takings);
                     context.SaveChanges();

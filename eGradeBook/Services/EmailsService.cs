@@ -59,7 +59,7 @@ namespace eGradeBook.Services
         {
             // Get parent and email...
 
-            var parents = grade.Taking.Student.StudentParents.Select(sp => sp.Parent);
+            var parents = grade.Taking.Enrollment.Student.StudentParents.Select(sp => sp.Parent);
 
             foreach (var parent in parents)
             {

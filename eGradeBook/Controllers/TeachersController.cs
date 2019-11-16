@@ -38,7 +38,7 @@ namespace eGradeBook.Controllers
             var user = IdentityHelper.GetLoggedInUser(RequestContext);
             logger.Info("User {@userData} is requesting a list of all teacher", user);
 
-            var teachers = teachersService.GetAllTeachersDtos();
+            var teachers = teachersService.GetAllTeachers();
 
             return Ok(teachers);
         }
@@ -56,7 +56,7 @@ namespace eGradeBook.Controllers
             var user = IdentityHelper.GetLoggedInUser(RequestContext);
             logger.Info("User {@userData} is requesting a teacher by Id {teacherId}", user, teacherId);
 
-            var teacher = teachersService.GetTeacherByIdDto(teacherId);
+            var teacher = teachersService.GetTeacherById(teacherId);
 
             if (teacher == null)
             {
@@ -66,34 +66,6 @@ namespace eGradeBook.Controllers
             return Ok(teacher);
         }
 
-        /// <summary>
-        /// Assign a Course to the given teacher.
-        /// </summary>
-        /// <param name="teacherId">The Id of the teacher</param>
-        /// <param name="assignment">A Teaching Assignment Dto Json object</param>
-        /// <returns>Status code of 200 in case of success</returns>
-        [Route("{teacherId:int}/courses")]
-        [ResponseType(typeof(void))]
-        [Authorize(Roles = "admins")]
-        [HttpPost]
-        public IHttpActionResult PostAssignCourseToTeacher(int teacherId, TeachingAssignmentDto assignment)
-        {
-            var user = IdentityHelper.GetLoggedInUser(RequestContext);
-            logger.Info("User {@userData} is requesting a teaching assignment creation {assignmentData}", user, assignment);
-
-            if (assignment.TeacherId != teacherId)
-            {
-                logger.Error("Provided Teacher identity does not match the assignment values.");
-                return BadRequest("Teacher identities do not match.");
-            }
-
-            // I'm not sure how to handle these cases
-            // Maybe Mladen's solution can help? Probably not...
-            // Read up again about the subject...
-            teachersService.AssignCourseToTeacher(assignment);
-            logger.Info("Teaching assignment successfully created.");
-            return Ok();
-        }
 
         // TODO Add the rest of CRUD methods. We have create (in account), read (all and one), we need update and delete.
         // Watch what will happen in UserRole if I delete a subject... Can I even delete without clearing that first?
@@ -150,112 +122,6 @@ namespace eGradeBook.Controllers
             }
 
             return Ok(result);
-        }
-
-        /// <summary>
-        /// Return a list of courses with the classrooms and a list of classrooms with the courses
-        /// </summary>
-        /// <param name="teacherId"></param>
-        /// <returns></returns>
-        [Route("{teacherId}/extended")]
-        [HttpGet]
-        [ResponseType(typeof(TeacherExtendedDto))]
-        public IHttpActionResult GetTeacherExtendedData(int teacherId)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get Extended data for teacher {@teacherId} by {@userData}", teacherId, userData);
-
-            if (userData.UserId != teacherId && userData.UserRole == "teachers")
-            {
-                throw new UnauthorizedAccessException("You are not allowed to access other teachers data");
-            }
-
-            return Ok(teachersService.GetExtendedDataForTeacher(teacherId));
-        }
-
-        // TODO Crud for admin, student and parent
-        // TODO Prepare methods in services
-
-
-        [Route("{teacherId}/courses")]
-        [HttpGet]
-        public IHttpActionResult GetCoursesForTeacher(int teacherId)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get Courses for teacher {@teacherId} by {@userData}", teacherId, userData);
-
-            if (userData.UserId != teacherId && userData.UserRole == "teachers")
-            {
-                throw new UnauthorizedAccessException("You are not allowed to access other teachers data");
-            }
-
-            return Ok(teachersService.GetCoursesForTeacher(teacherId));
-        }
-
-        [Route("{teacherId}/courses-and-classrooms")]
-        [HttpGet]
-        public IHttpActionResult GetCoursesClassroomsForTeacher(int teacherId)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get Courses and classrooms data for teacher {@teacherId} by {@userData}", teacherId, userData);
-
-            if (userData.UserId != teacherId && userData.UserRole == "teachers")
-            {
-                throw new UnauthorizedAccessException("You are not allowed to access other teachers data");
-            }
-
-            return Ok(teachersService.GetCoursesClassRoomsForTeacher(teacherId));
-        }
-
-        [Route("{teacherId}/classrooms")]
-        [HttpGet]
-        public IHttpActionResult GetClassroomsForTeacher(int teacherId)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get classrooms for teacher {@teacherId} by {@userData}", teacherId, userData);
-
-            if (userData.UserId != teacherId && userData.UserRole == "teachers")
-            {
-                throw new UnauthorizedAccessException("You are not allowed to access other teachers data");
-            }
-
-            return Ok(teachersService.GetClassRoomsForTeacher(teacherId));
-        }
-
-        [Route("{teacherId}/classrooms-and-courses")]
-        [HttpGet]
-        public IHttpActionResult GetClassroomsCoursesForTeacher(int teacherId)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get classrooms and courses data for teacher {@teacherId} by {@userData}", teacherId, userData);
-
-            if (userData.UserId != teacherId && userData.UserRole == "teachers")
-            {
-                throw new UnauthorizedAccessException("You are not allowed to access other teachers data");
-            }
-
-            return Ok(teachersService.GetClassRoomsCoursesForTeacher(teacherId));
-        }
-
-        [Route("{teacherId}/report")]
-        [HttpGet]
-        public IHttpActionResult GetTeacherReport(int teacherId)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get Report teacher {@teacherId} by {@userData}", teacherId, userData);
-
-            if (userData.UserId != teacherId && userData.UserRole == "teachers")
-            {
-                throw new UnauthorizedAccessException("You are not allowed to access other teachers data");
-            }
-
-            return Ok(teachersService.GetTeacherReport(teacherId));
         }
 
         #region CRUD

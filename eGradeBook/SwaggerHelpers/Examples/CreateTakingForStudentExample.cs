@@ -13,10 +13,8 @@ namespace eGradeBook.SwaggerHelpers.Examples
         {
             return new TakingDto()
             {
-                CourseId = 1,
-                TeacherId = 3,
-                ClassRoomId = 1,
-                StudentId = 20
+                EnrollmentId = 1,
+                ProgramId = 1
             };
         }
     }

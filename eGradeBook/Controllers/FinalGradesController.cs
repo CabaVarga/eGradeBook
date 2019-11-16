@@ -111,7 +111,7 @@ namespace eGradeBook.Controllers
 
             logger.Info("Requestad all Final Grades by {@userData}", userData);
 
-            var result = service.GetAllFinalGradesDto();
+            var result = service.GetAllFinalGrades();
 
             if (result == null)
             {
@@ -132,7 +132,7 @@ namespace eGradeBook.Controllers
 
             logger.Info("Requested Final Grade {@finalGradeId} by {@userData}", finalGradeId, userData);
 
-            var result = service.GetFinalGradeDtoById(finalGradeId);
+            var result = service.GetFinalGradeById(finalGradeId);
 
             if (result == null)
             {

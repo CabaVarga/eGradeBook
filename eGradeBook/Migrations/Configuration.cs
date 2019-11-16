@@ -1,9 +1,9 @@
 namespace eGradeBook.Migrations
 {
-    using System;
-    using System.Data.Entity;
+    using eGradeBook.Models;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<eGradeBook.Infrastructure.GradeBookContext>
     {
@@ -26,6 +26,26 @@ namespace eGradeBook.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            //UserManager<GradeBookUser, int> _userManager =
+            //    new UserManager<GradeBookUser, int>(
+            //    new UserStore<GradeBookUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(context));
+
+            //RoleManager<CustomRole, int> _roleManager =
+            //    new RoleManager<CustomRole, int>(new RoleStore<CustomRole, int, CustomUserRole>(context));
+
+            //#region Roles
+            //CustomRole adminRole = new CustomRole() { Name = "admins" };
+            //CustomRole studentRole = new CustomRole() { Name = "students" };
+            //CustomRole teacherRole = new CustomRole() { Name = "teachers" };
+            //CustomRole parentRole = new CustomRole() { Name = "parents" };
+
+            //_roleManager.Create(adminRole);
+            //_roleManager.Create(studentRole);
+            //_roleManager.Create(teacherRole);
+            //_roleManager.Create(parentRole);
+            //#endregion
+
         }
     }
 }

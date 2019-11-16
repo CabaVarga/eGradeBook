@@ -19,14 +19,10 @@ namespace eGradeBook.Services.Converters
             {
                 FinalGradeId = finalGrade.Id,
                 FinalGradePoint = finalGrade.GradePoint,
-                SchoolGrade = finalGrade.Taking.Program.ClassRoom.ClassGrade,
                 Semester = finalGrade.SchoolTerm,
-                StudentId = finalGrade.Taking.Student.Id,
-                CourseId = finalGrade.Taking.Program.Teaching.Course.Id,
                 AssignmentDate = finalGrade.Assigned,
                 Notes = finalGrade.Notes,
-                ClassRoomId = finalGrade.Taking.Program.ClassRoomId,
-                TeacherId = finalGrade.Taking.Program.Teaching.TeacherId
+                TakingId = finalGrade.TakingId
             };
         }
     }

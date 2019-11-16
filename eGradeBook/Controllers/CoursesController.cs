@@ -47,7 +47,7 @@ namespace eGradeBook.Controllers
 
             logger.Info("Get all Courses by {@userData}", user);
 
-            var courses = service.GetAllCoursesDto();
+            var courses = service.GetAllCourses();
 
             // TODO this is not right
             if (courses == null)
@@ -72,7 +72,7 @@ namespace eGradeBook.Controllers
             var user = IdentityHelper.GetLoggedInUser(RequestContext);
             logger.Info("Get Course {@courseId} by {@userData}", courseId, user);
 
-            var course = service.GetCourseDtoById(courseId);
+            var course = service.GetCourseById(courseId);
 
             if (course == null)
             {
@@ -151,135 +151,7 @@ namespace eGradeBook.Controllers
             return Ok(deletedCourse);
         }
 
-
-        #region Teachings
-        [Route("{courseId}/teachers")]
-        [Authorize(Roles = "admins")]
-        [HttpGet]
-        public IHttpActionResult GetTeachingAssignments(int courseId)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get Teachings for Course {@courseId} by {@userData}", courseId, userData);
-
-            return Ok(service.GetAllTeachings(courseId));
-        }
-
-        [Route("{courseId}/teachers/{teacherId}")]
-        [HttpGet]
-        [Authorize(Roles = "admins")]
-        public IHttpActionResult GetTeachingAssignments(int courseId, int teacherId)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get Teaching for Course {@courseId} and Teacher {@teacherId} by {@userData}", courseId, teacherId, userData);
-
-            return Ok(service.GetTeaching(courseId, teacherId));
-        }
-
-        [Route("{courseId}/teachers")]
-        [HttpPost]
-        [Authorize(Roles = "admins")]
-        public IHttpActionResult CreateTeachingAssignment(int courseId, TeachingDto teaching)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Create Teaching {@teachingData} for Course {@courseId} by {@userData}", teaching, courseId, userData);
-
-            return Ok(service.CreateTeachingAssignment(teaching));
-        }
-        #endregion
-
-        #region Programs
-        [Route("{courseId}/teachers/{teacherId}/classrooms")]
-        [HttpGet]
-        [Authorize(Roles = "admins")]
-        public IHttpActionResult GetAllClassRoomsPrograms(int courseId, int teacherId)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get Programs for Course {@courseId} and Teacher {@teacherId} by {@userData}", courseId, teacherId, userData);
-
-            return Ok(service.GetAllPrograms(courseId, teacherId));
-        }
-
-        [Route("{courseId}/teachers/{teacherId}/classrooms/{classRoomId}")]
-        [HttpGet]
-        [Authorize(Roles = "admins")]
-        public IHttpActionResult GetClassRoomProgram(int courseId, int teacherId, int classRoomId)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get Program for Course {@courseId} Teacher {@teacherId} and ClassRoom {@classRoomId} by {@userData}", courseId, teacherId, classRoomId, userData);
-
-            return Ok(service.GetProgram(courseId, teacherId, classRoomId));
-        }
-
-        [Route("{courseId}/teachers/{teacherId}/classrooms")]
-        [HttpPost]
-        [Authorize(Roles = "admins")]
-        public IHttpActionResult CreateClassRoomProgram(ProgramDto dto)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Create Program {@programData} by {@userData}", dto, userData);
-
-            ProgramDto createdProgram = service.CreateProgram(dto);
-
-            var link = Url.Route("DefaultApi", new
-            {
-                controller = "GetClassRoomProgram",
-                courseId = createdProgram.CourseId,
-                teacherId = createdProgram.TeacherId,
-                classRoomId = createdProgram.ClassRoomId
-            });
-
-            Uri.TryCreate(link, UriKind.Absolute, out Uri uri);
-
-            logger.Info("Program {@programId} created at route {@route}", createdProgram.ClassRoomId, link);
-
-            return Created(uri, createdProgram); 
-        }
-        #endregion
-
-        #region Takings
-        [Route("{courseId}/teachers/{teacherId}/classrooms/{classRoomId}/students")]
-        [HttpGet]
-        [Authorize(Roles = "admins")]
-        public IHttpActionResult GetStudentsTakings(int courseId, int teacherId, int classRoomId)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get Students taking Course {@courseId} with Teacher {@teacherId} in Classroom {@classRoomId} by {@userData}", courseId, teacherId, classRoomId, userData);
-
-            return Ok(service.GetAllTakings(courseId, teacherId, classRoomId));
-        }
-
-        [Route("{courseId}/teachers/{teacherId}/classrooms/{classRoomId}/students/{studentId}")]
-        [HttpGet]
-        [Authorize(Roles = "admins")]
-        public IHttpActionResult GetStudentTaking(int courseId, int teacherId, int classRoomId, int studentId)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get Student {@studentId} taking Course {@courseId} with Teacher {@teacherId} in Classroom {@classRoomId} by {@userData}", studentId, courseId, teacherId, classRoomId, userData);
-
-            return Ok(service.GetTaking(courseId, teacherId, classRoomId, studentId));
-        }
-
-        [Route("{courseId}/teachers/{teacherId}/classrooms/{classRoomId}/students")]
-        [HttpPost]
-        [Authorize(Roles = "admins")]
-        public IHttpActionResult CreateStudentTaking(TakingDto taking)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Create Taking {@takingData} by {@userData}", taking, userData);
-
-            return Ok(service.CreateTaking(taking));
-        }
-        #endregion
-
+        
         #region QUERY
         /// <summary>
         /// Get courses based on query

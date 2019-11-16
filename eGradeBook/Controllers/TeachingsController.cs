@@ -48,7 +48,7 @@ namespace eGradeBook.Controllers
         {
             logger.Info("Create teaching assignment {@teachingData}", teachingDto);
 
-            var teaching = teachings.CreateTeachingDto(teachingDto);
+            var teaching = teachings.CreateTeaching(teachingDto);
 
             return CreatedAtRoute("GetTeaching", new { teachingId = teaching.TeachingId }, teaching);
         }
@@ -64,7 +64,7 @@ namespace eGradeBook.Controllers
         {
             // let us try making it queryable...
             logger.Info("Get all teaching");
-            return Ok(teachings.GetAllTeachingsDtos());
+            return Ok(teachings.GetAllTeachings());
         }
 
         /// <summary>
@@ -79,77 +79,15 @@ namespace eGradeBook.Controllers
         {
             logger.Info("Get teaching by Id {@teachingId}", teachingId);
 
-            return Ok(teachings.GetTeachingDtoById(teachingId));
+            return Ok(teachings.GetTeachingById(teachingId));
         }
 
-        /// <summary>
-        /// Get all teaching assignments of a teacher
-        /// </summary>
-        /// <returns></returns>
-        [Route("by-teachers")]
-        public IHttpActionResult GetTeachingAssignmentsByTeachers()
-        {
-            return Ok(teachings.GetAllTeachingAssignmentsByTeachers());
-        }
-
-        /// <summary>
-        /// Get all teaching assignments of a course
-        /// </summary>
-        /// <returns></returns>
-        [Route("by-courses")]
-        public IHttpActionResult GetTeachingAssignmentsByCourses()
-        {
-            return Ok(teachings.GetAllTeachingAssignmentsByCourses());
-        }
-        /// <summary>
-        /// Remove teaching assignment
-        /// </summary>
-        /// <param name="assignment"></param>
-        /// <returns></returns>
-        [Route("remove-assignment")]
-        [HttpPut]
-        public IHttpActionResult RemoveTeachingAssignment(TeachingAssignmentDto assignment)
-        {
-            teachings.RemoveTeacherFromCourse(assignment.SubjectId, assignment.TeacherId);
-
-            return Ok();
-        }
 
         // THE API IS SHIT
         // INSTEAD OF THESE STUPID BY TEACHER ETC METHODS I NEED A CLEAR
         // QUERY BASED METHOD
         // TEACHINGS -> RETURNS EITHER A TEACHING OR AN ARRAY OF TEACHINGS. CLEAR & SIMPLE
 
-
-        // 
-
-        /// <summary>
-        /// Retrieve teachings by different criteria
-        /// </summary>
-        /// <returns></returns>
-        [Route("params")]
-        [HttpGet]
-        [Authorize(Roles = "admins")]
-        public IHttpActionResult GetTeachingsByParameters(
-            [FromUri]int? courseId = null,
-            [FromUri]int? teacherId = null
-            )
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get Teachings : Query by {@userData}", userData);
-
-            logger.Trace("Tracer, is authenticated -- {0}", this.User.Identity.IsAuthenticated);
-
-            var filteredTeachings = teachings.GetTeachingsByParameters(courseId, teacherId);
-
-            if (filteredTeachings == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(filteredTeachings);
-        }
 
         /// <summary>
         /// Delete Teaching by teachingId

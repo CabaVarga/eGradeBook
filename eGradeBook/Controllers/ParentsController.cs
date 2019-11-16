@@ -42,7 +42,7 @@ namespace eGradeBook.Controllers
         [HttpGet]
         public IHttpActionResult GetParentById(int parentId)
         {
-            return Ok(service.GetParentByIdDto(parentId));
+            return Ok(service.GetParentById(parentId));
         }
 
         /// <summary>
@@ -55,60 +55,6 @@ namespace eGradeBook.Controllers
         {
             var result = service.GetAllParents();
             return Ok(result);
-        }
-
-        /// <summary>
-        /// Get the children for a given parent
-        /// </summary>
-        /// <param name="parentId"></param>
-        /// <returns></returns>
-        [Route("{parentId}/children")]
-        [HttpGet]
-        public IHttpActionResult GetChildrenOfParent(int parentId)
-        {
-            return Ok(service.GetAllChildren(parentId));
-        }
-
-        /// <summary>
-        /// Add a student user as a child to the given parent user
-        /// </summary>
-        /// <param name="parentId"></param>
-        /// <param name="studentId"></param>
-        /// <returns></returns>
-        [Route("{parentId}/children")]
-        [HttpPost]
-        public IHttpActionResult AddStudentAsChild(int parentId, [FromUri]int studentId)
-        {
-            return Ok(service.AddChild(parentId, studentId));
-        } 
-
-        /// <summary>
-        /// Get the parents of the given student
-        /// NOTE not sure this is a good place
-        /// NOTE not even in students. studentDto by default carries the info
-        /// </summary>
-        /// <returns></returns>
-        [Route("parents-for-students")]
-        [HttpGet]
-        public IHttpActionResult GetParentsForStudents()
-        {
-            return Ok(service.GetParentsForStudents());
-        }
-
-        [Route("{parentId}/report")]
-        [HttpGet]
-        public IHttpActionResult GetParentReport(int parentId)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get Parent report for {@parentId} by {@userData}", parentId, userData);
-
-            if (parentId != userData.UserId && userData.UserRole == "parents")
-            {
-                throw new UnauthorizedAccessException("You are not allowed to access other parents data");
-            }
-
-            return Ok(service.GetParentReport(parentId));
         }
 
         [HttpDelete]

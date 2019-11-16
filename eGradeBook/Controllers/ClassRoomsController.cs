@@ -69,30 +69,6 @@ namespace eGradeBook.Controllers
         }
 
         /// <summary>
-        /// Used to enroll a student in a given classroom
-        /// </summary>
-        /// <param name="classRoomId"></param>
-        /// <param name="enroll"></param>
-        /// <returns></returns>
-        [Route("{classRoomId}/enrollments")]
-        [Authorize(Roles = "admins")]
-        [SwaggerRequestExample(typeof(ClassRoomEnrollStudentDto), typeof(EnrollStudentInClassRoomExample))]
-        [HttpPost]
-        public IHttpActionResult PostEnrollStudent(int classRoomId, ClassRoomEnrollStudentDto enroll)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Enroll Student {@studentId} in ClassRoom {@classRoomId} {@enrollData} by {@userData}", enroll.StudentId, enroll.ClassRoomId, enroll, userData);
-
-            if (classRoomId != enroll.ClassRoomId)
-            {
-                return BadRequest("Class identities do not match.");
-            }
-
-            return Ok(service.EnrollStudent(enroll));
-        }
-
-        /// <summary>
         /// Create a new classroom
         /// </summary>
         /// <param name="classRoom"></param>
@@ -143,58 +119,6 @@ namespace eGradeBook.Controllers
 
             return Ok(updatedClassRoom);
         }
-
-        /// <summary>
-        /// Create a new program entry associated with the given classroom
-        /// </summary>
-        /// <param name="classRoomId">Class room Id</param>
-        /// <param name="program">Class room program dto</param>
-        /// <returns></returns>
-        [Route("{classRoomId:int}/programs")]
-        [HttpPost]
-        [Authorize(Roles = "admins")]
-        [SwaggerRequestExample(typeof(ClassRoomProgramDto), typeof(CreateClassRoomProgramExample))]
-        public IHttpActionResult PostCreateProgramOfClassRoom(int classRoomId, ClassRoomProgramDto program)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Create Program {@programData} for ClassRoom {@classRoomId} by {@userData}", program, classRoomId, userData);
-
-            service.CreateClassRoomProgram(program);
-
-            return Ok();
-        }
-
-
-        #region Reports
-        [Route("{classRoomId}/basic-report")]
-        [HttpGet]
-        [Authorize(Roles = "admins")]
-        public IHttpActionResult GetClassRoomBasicReport(int classRoomId)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get Basic Report for ClassRoom {@classRoomId} by {@userData}", classRoomId, userData);
-
-            var report = service.GetBasicReport(classRoomId);
-
-            return Ok(report);
-        }
-
-        [Route("{classRoomId}/full-report")]
-        [HttpGet]
-        [Authorize(Roles = "admins")]
-        public IHttpActionResult GetClassRoomFullReport(int classRoomId)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get Basic Report for ClassRoom {@classRoomId} by {@userData}", classRoomId, userData);
-
-            var report = service.GetFullReport(classRoomId);
-
-            return Ok(report);
-        }
-        #endregion
 
         #region QUERY
         /// <summary>

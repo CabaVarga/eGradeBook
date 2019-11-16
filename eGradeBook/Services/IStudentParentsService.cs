@@ -9,33 +9,12 @@ namespace eGradeBook.Services
 {
     public interface IStudentParentsService
     {
-        // FULL MODEL
-        StudentParent CreateStudentParent(StudentParentDto studentParentDto);
-        StudentParent CreateStudentParent(int studentId, int parentId);
 
-        StudentParent GetStudentParent(StudentParentDto studentParentDto);
-        StudentParent GetStudentParent(int studentId, int parentId);
-        StudentParent GetStudentParent(int studentParentId);
+        StudentParentDto CreateStudentParent(StudentParentDto studentParentDto);
 
-        IEnumerable<StudentParent> GetAllStudentParents();
+        StudentParentDto GetStudentParentById(int studentParentId);
 
-        StudentParent DeleteStudentParent(StudentParentDto studentParentDto);
-        StudentParent DeleteStudentParent(int studentId, int parentId);
-        StudentParent DeleteStudentParent(int studentParentId);
-
-        // DTO
-        StudentParentDto CreateStudentParentDto(StudentParentDto studentParentDto);
-        StudentParentDto CreateStudentParentDto(int studentId, int parentId);
-
-        StudentParentDto GetStudentParentDto(StudentParentDto studentParentDto);
-        StudentParentDto GetStudentParentDto(int studentId, int parentId);
-        StudentParentDto GetStudentParentDto(int studentParentId);
-
-        IEnumerable<StudentParentDto> GetAllStudentParentsDto();
-
-        StudentParentDto DeleteStudentParentDto(StudentParentDto studentParentDto);
-        StudentParentDto DeleteStudentParentDto(int studentId, int parentId);
-        StudentParentDto DeleteStudentParentDto(int studentParentId);
+        IEnumerable<StudentParentDto> GetAllStudentParents();
 
         // Diretct access is problematic...
         StudentParentDto DeleteStudentParentForReal(int studentParentId);

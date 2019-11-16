@@ -16,24 +16,12 @@ namespace eGradeBook.Services
         /// Get all final grades
         /// </summary>
         /// <returns></returns>
-        IEnumerable<FinalGradeDto> GetAllFinalGradesDto();
+        IEnumerable<FinalGradeDto> GetAllFinalGrades();
 
-        /// <summary>
-        /// Get all final grades for the given student
-        /// </summary>
-        /// <param name="studentId"></param>
-        /// <returns></returns>
-        IEnumerable<FinalGradeDto> GetAllFinalGradesForStudent(int studentId);
 
-        /// <summary>
-        /// Get all final grades for the given course
-        /// </summary>
-        /// <param name="courseId"></param>
-        /// <returns></returns>
-        IEnumerable<FinalGradeDto> GetAllFinalGradesForCourse(int courseId);
 
-        FinalGrade GetFinalGradeById(int finalGradeId);
-        FinalGradeDto GetFinalGradeDtoById(int finalGradeId);
+
+        FinalGradeDto GetFinalGradeById(int finalGradeId);
 
         FinalGradeDto CreateFinalGrade(FinalGradeDto finalGradeDto);
         FinalGradeDto UpdateFinalGrade(int finalGradeId, FinalGradeDto finalGradeDto);

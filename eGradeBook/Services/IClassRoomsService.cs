@@ -47,34 +47,11 @@ namespace eGradeBook.Services
         /// <returns></returns>
         ClassRoomDto DeleteClassRoom(int classRoomId);
 
-        /// <summary>
-        /// Enroll the given student in the given classroom
-        /// </summary>
-        /// <param name="enroll"></param>
-        /// <returns></returns>
-        ClassRoomDto EnrollStudent(ClassRoomEnrollStudentDto enroll);
 
-        /// <summary>
-        /// Create a program associated with a classroom
-        /// </summary>
-        /// <param name="program"></param>
-        void CreateClassRoomProgram(ClassRoomProgramDto program);
 
-        ClassRoom GetClassRoom(int classRoomId);
 
-        /// <summary>
-        /// Get Basic Report (courses and enrolled students) for given Classroom
-        /// </summary>
-        /// <param name="classRoomId"></param>
-        /// <returns></returns>
-        ClassRoomBasicReportDto GetBasicReport(int classRoomId);
 
-        /// <summary>
-        /// Get Full Report (courses, enrolled students and grades) for given Classroom
-        /// </summary>
-        /// <param name="classRoomId"></param>
-        /// <returns></returns>
-        ClassRoomFullReportDto GetFullReport(int classRoomId);
+
 
         IEnumerable<ClassRoomDto> GetClassRoomsByQuery(
             int? teacherId = null,

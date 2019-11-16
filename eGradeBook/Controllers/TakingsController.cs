@@ -43,7 +43,7 @@ namespace eGradeBook.Controllers
         {
             logger.Info("Get taking by Id {@takingId}", takingId);
 
-            return Ok(takingsService.GetTakingDtoById(takingId));
+            return Ok(takingsService.GetTakingById(takingId));
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace eGradeBook.Controllers
         {
             logger.Info("Get all takings");
 
-            return Ok(takingsService.GetAllTakingsDtos());
+            return Ok(takingsService.GetAllTakings());
         }
 
         // NOTE no update (at the moment. If a taking has a startDate and endDate, then yes.

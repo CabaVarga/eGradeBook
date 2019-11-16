@@ -64,7 +64,7 @@ namespace eGradeBook.Controllers
 
             if (userInfo.IsAdmin)
             {
-                grade = gradesService.GetGradeDtoById(gradeId);
+                grade = gradesService.GetGradeById(gradeId);
             }
             else if (userInfo.IsTeacher)
             {
@@ -92,108 +92,8 @@ namespace eGradeBook.Controllers
             return Ok(grade);
         }
 
-        /// <summary>
-        /// Create grade as teacher
-        /// </summary>
-        /// <param name="teacherId"></param>
-        /// <param name="gradeDto"></param>
-        /// <returns></returns>
-        [Route("for-teachers/{teacherId}")]
-        [SwaggerRequestExample(typeof(GradeDto), typeof(CreateGradeByTeacherExample))]
-        [HttpPost]
-        [Authorize(Roles = "admins,teachers")]
-        public IHttpActionResult CreateGradeAsTeacher(int teacherId, GradeDto gradeDto)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
-            logger.Info("Create Grade {@gradeData} for Teacher {@teacherId} by {@userData}", gradeDto, teacherId, userData);
-            
-            if (teacherId != gradeDto.TeacherId)
-            {
-                return BadRequest("Id mismatch");
-            }
 
-            if (userData.UserRole != "teachers")
-            {
-                return Unauthorized();
-            }
-
-            if (teacherId != userData.UserId)
-            {
-                throw new UnauthorizedAccessException(string.Format("You are not allowed to assign grades for teacher {0}", teacherId));
-            }
-
-            GradeDto createdGrade = gradesService.CreateGradeDto(gradeDto);
-
-            logger.Info("Teacher {@userData} created grade {@gradeData}", userData, createdGrade);
-
-            return CreatedAtRoute("GetGrade", new { gradeId = createdGrade.GradeId }, createdGrade);            
-        }
-
-        /// <summary>
-        /// Retrieve all grades.
-        /// It will first identify the user by role and id
-        /// The call the matching service method and return the list of grades
-        /// </summary>
-        /// <returns></returns>
-        [Authorize]
-        [Route("auto")]
-        public IHttpActionResult GetGrades()
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get Grades by {@userData}", userData);
-
-            logger.Info("Get grades for logged in user --- auto dispatch");
-
-            var userInfo = Utilities.WebApi.IdentityHelper.FetchUserData(RequestContext);
-
-            if (userInfo.UserId == null)
-            {
-                return Unauthorized();
-            }
-
-            var userId = userInfo.UserId ?? 0;
-
-            if (userInfo.IsAdmin)
-            {
-                return Ok(gradesService.GetAllGrades());
-            }
-            else if (userInfo.IsTeacher)
-            {
-                return Ok(gradesService.GetAllGradesForTeacher(userId));
-            }
-            else if (userInfo.IsStudent)
-            {
-                return Ok(gradesService.GetAllGradesForStudent(userId));
-            }
-            else if (userInfo.IsParent)
-            {
-                return Ok(gradesService.GetAllGradesForParent(userId));
-            }
-            else
-            {
-                logger.Error("Authenticated user with no role --- this should not happen");
-                return InternalServerError();
-            }
-        }
-
-        /// <summary>
-        /// Get all grades PUBLIC --- testing
-        /// </summary>
-        /// <returns></returns>
-        [AllowAnonymous]
-        [Route("api/grades-by-courses/forpublic")]
-        public IHttpActionResult GetGradesForPublicByCourses()
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get grades by {@userData}", userData);
-
-            logger.Info("Retrieving all grades from public endpoint");
-
-            return Ok(gradesService.GetGradesByCourses());
-        }
 
         /// <summary>
         /// Get all grades PUBLIC --- testing
@@ -285,14 +185,6 @@ namespace eGradeBook.Controllers
                 return BadRequest("Ids do not match");
             }
 
-            if (userData.UserRole == "teachers")
-            {
-                if (gradeDto.TeacherId != userData.UserId)
-                {
-                    throw new UnauthorizedAccessException();
-                }
-            }
-
             GradeDto result = gradesService.UpdateGrade(gradeDto);
 
             if (result == null)
@@ -306,7 +198,6 @@ namespace eGradeBook.Controllers
         /// <summary>
         /// Create grade as teacher
         /// </summary>
-        /// <param name="teacherId"></param>
         /// <param name="gradeDto"></param>
         /// <returns></returns>
         [Route("")]
@@ -317,9 +208,9 @@ namespace eGradeBook.Controllers
         {
             var userData = IdentityHelper.GetLoggedInUser(RequestContext);
 
-            logger.Info("Create Grade {@gradeData} for Teacher {@teacherId} by {@userData}", gradeDto, gradeDto.TeacherId, userData);
+            logger.Info("Create Grade {@gradeData} for Teacher {@teacherId} by {@userData}", gradeDto, userData);
 
-            GradeDto createdGrade = gradesService.CreateGradeDto(gradeDto);
+            GradeDto createdGrade = gradesService.CreateGrade(gradeDto);
 
             if (createdGrade == null)
             {
@@ -362,15 +253,15 @@ namespace eGradeBook.Controllers
             }
             else if (userInfo.IsTeacher)
             {
-                return Ok(gradesService.GetAllGradesForTeacher(userId));
+                return Ok(gradesService.GetGradesByParameters(teacherId: userId));
             }
             else if (userInfo.IsStudent)
             {
-                return Ok(gradesService.GetAllGradesForStudent(userId));
+                return Ok(gradesService.GetGradesByParameters(studentId: userId));
             }
             else if (userInfo.IsParent)
             {
-                return Ok(gradesService.GetAllGradesForParent(userId));
+                return Ok(gradesService.GetGradesByParameters(parentId: userId));
             }
             else
             {

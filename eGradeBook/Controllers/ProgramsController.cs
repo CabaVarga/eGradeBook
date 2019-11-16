@@ -47,7 +47,7 @@ namespace eGradeBook.Controllers
         {
             logger.Info("Create program {@programData}", programDto);
 
-            var createdProgram = programs.CreateProgramDto(programDto);
+            var createdProgram = programs.CreateProgram(programDto);
 
             return CreatedAtRoute("GetProgram", new { programId = createdProgram.ProgramId }, createdProgram);
         }
@@ -64,16 +64,16 @@ namespace eGradeBook.Controllers
         {
             logger.Info("Get program {@programId}", programId);
 
-            return Ok(programs.GetProgramDto(programId));
+            return Ok(programs.GetProgramById(programId));
         }
 
         [Route("")]
         [HttpGet]
-        public IHttpActionResult GetAllProgramsDtos()
+        public IHttpActionResult GetAllPrograms()
         {
             logger.Info("Get all programs");
 
-            return Ok(programs.GetAllProgramsDtos());
+            return Ok(programs.GetAllPrograms());
         }
 
         [Route("{programId}")]
@@ -87,32 +87,11 @@ namespace eGradeBook.Controllers
                 return BadRequest("Id mismatch");
             }
 
-            ProgramDto updatedProgram = programs.UpdateProgramDto(programDto);
+            ProgramDto updatedProgram = programs.UpdateProgram(programDto);
 
             return Ok(updatedProgram);
         }
 
-        /// <summary>
-        /// Get programs grouped by courses
-        /// </summary>
-        /// <returns></returns>
-        [Route("by-courses")]
-        public IHttpActionResult GetProgramsByCourses()
-        {
-            logger.Info("Get programs grouped by courses");
-            return Ok(programs.GetAllProgramsGroupedByCourses());
-        }
-
-        /// <summary>
-        /// Get programs grouped by classrooms
-        /// </summary>
-        /// <returns></returns>
-        [Route("by-classes")]
-        public IHttpActionResult GetProgramsBySchoolClasses()
-        {
-            logger.Info("Get programs grouped by classrooms");
-            return Ok(programs.GetAllProgramsGroupedBySchoolClasses());
-        }
 
         #region QUERY
         /// <summary>
@@ -223,7 +202,7 @@ namespace eGradeBook.Controllers
 
             logger.Trace("Delete Teaching {@programId} by {@userData}", programId, userData);
 
-            var result = programs.DeleteProgramById(programId);
+            var result = programs.DeleteProgram(programId);
 
             if (result == null)
             {

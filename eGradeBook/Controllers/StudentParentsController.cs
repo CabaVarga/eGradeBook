@@ -31,7 +31,7 @@ namespace eGradeBook.Controllers
 
             logger.Info("Get StudentParent {@studentParentId} by {@userData}", studentParentId, userData);
 
-            return Ok(studentParentsService.GetStudentParentDto(studentParentId));
+            return Ok(studentParentsService.GetStudentParentById(studentParentId));
         }
 
         [Route("")]
@@ -42,7 +42,7 @@ namespace eGradeBook.Controllers
 
             logger.Info("Get all StudentParents by {@userData}", userData);
 
-            return Ok(studentParentsService.GetAllStudentParentsDto());
+            return Ok(studentParentsService.GetAllStudentParents());
         }
 
         [Route("")]
@@ -53,7 +53,7 @@ namespace eGradeBook.Controllers
 
             logger.Info("Create StudentParent {@studentParentDto} by {@userData}", studentParentDto, userData);
 
-            var result = studentParentsService.CreateStudentParentDto(studentParentDto);
+            var result = studentParentsService.CreateStudentParent(studentParentDto);
 
             logger.Info("Created StudentParent {@StudentParentId}", result.StudentParentId);
 

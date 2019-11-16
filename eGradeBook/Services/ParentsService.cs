@@ -28,98 +28,10 @@ namespace eGradeBook.Services
             this.db = db;
         }
 
-        /// <summary>
-        /// Add a student to the parent as a child
-        /// </summary>
-        /// <param name="parentId"></param>
-        /// <param name="studentId"></param>
-        /// <returns></returns>
-        public ParentChildrenDto AddChild(int parentId, int studentId)
-        {
-            logger.Info("Make {@userId} parent of {@userId}", parentId, studentId);
-
-            ParentUser parent = db.ParentsRepository.Get(p => p.Id == parentId).FirstOrDefault();
-
-            if (parent == null)
-            {
-                return null;
-            }
-
-            StudentUser student = db.StudentsRepository.Get(s => s.Id == studentId).FirstOrDefault();
-
-            if (student == null)
-            {
-                return null;
-            }
-
-            StudentParent sp = new StudentParent()
-            {
-                Student = student,
-                Parent = parent
-            };
-
-            db.StudentParentsRepository.Insert(sp);            
-            db.Save();
-
-            // What even to return???
-
-            return new ParentChildrenDto()
-            {
-                Name = parent.FirstName + " " + parent.LastName,
-                ParentId = parent.Id,
-                Children = parent.StudentParents.Select(c => new StudentDto()
-                {
-                    FirstName = c.Student.FirstName,
-                    LastName = c.Student.LastName,
-                    ClassRoom = c.Student.ClassRoom.Name,
-                    ClassRoomId = c.Student.ClassRoom.Id,
-                    StudentId = c.Student.Id
-                }).ToList()
-            };
-        }
-
-        public IEnumerable<StudentDto> GetAllChildren(int parentId)
-        {
-            ParentUser parent = db.ParentsRepository.Get(p => p.Id == parentId).FirstOrDefault();
-
-            if (parent == null)
-            {
-                return null;
-            }
-
-            return parent.StudentParents.Select(c => new StudentDto()
-            {
-
-                FirstName = c.Student.FirstName,
-                LastName = c.Student.LastName,
-                ClassRoom = c.Student.ClassRoom.Name,
-                ClassRoomId = c.Student.ClassRoom.Id,
-                StudentId = c.Student.Id
-            });
-        }
-
         public IEnumerable<ParentDto> GetAllParents()
         {
             return db.ParentsRepository.Get()
                 .Select(p => Converters.ParentsConverter.ParentToParentDto(p));
-        }
-
-        public IEnumerable<ParentChildrenDto> GetAllParentsWithTheirChildrent()
-        {
-            return db.ParentsRepository.Get()
-                .Select(parent => new ParentChildrenDto()
-                {
-                    Name = parent.FirstName + " " + parent.LastName,
-                    ParentId = parent.Id,
-                    Children = parent.StudentParents.Select(c => new StudentDto()
-                    {
-                        FirstName = c.Student.FirstName,
-                        LastName = c.Student.LastName,
-                        ClassRoom = c.Student.ClassRoom.Name,
-                        ClassRoomId = c.Student.ClassRoom.Id,
-                        StudentId = c.Student.Id
-                    }).ToList()
-                });
         }
 
         /// <summary>
@@ -127,9 +39,9 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="parentId"></param>
         /// <returns></returns>
-        public ParentDto GetParentByIdDto(int parentId)
+        public ParentDto GetParentById(int parentId)
         {
-            var parent = GetParentById(parentId);
+            var parent = db.ParentsRepository.GetByID(parentId);
 
             if (parent == null)
             {
@@ -138,52 +50,6 @@ namespace eGradeBook.Services
             }
 
             return ParentsConverter.ParentToParentDto(parent);
-        }
-
-        public ParentUser GetParentById(int parentId)
-        {
-            ParentUser parent = db.ParentsRepository.Get(p => p.Id == parentId).FirstOrDefault();
-
-            if (parent == null)
-            {
-                // Not exception but return NotFound from controller.
-                return null;
-            }
-
-            return parent;
-        }
-
-        /// <summary>
-        /// Probably should by in Student? I cannot decide...
-        /// Most probably not even an independent method... or API
-        /// </summary>
-        /// <param name="studentId"></param>
-        /// <returns></returns>
-        public StudentParentsDto GetParentsForStudent(int studentId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        /// <summary>
-        /// This was only a test method
-        /// TODO delete
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<StudentParentsDto> GetParentsForStudents()
-        {
-            return db.StudentsRepository.Get()
-                .Select(s => new StudentParentsDto()
-                {
-                    Name = s.FirstName + " " + s.LastName,
-                    Parents = s.StudentParents.Select(p => p.Parent.LastName + " " + p.Parent.FirstName).ToList()
-                });
-        }
-
-        public ParentReportDto GetParentReport(int parentId)
-        {
-            ParentUser parent = GetParentById(parentId);
-
-            return Converters.ParentsConverter.ParentToParentReportDto(parent);
         }
 
         public async Task<ParentDto> DeleteParent(int parentId)
@@ -212,12 +78,12 @@ namespace eGradeBook.Services
         public IEnumerable<ParentDto> GetParentsByQuery(int? teacherId = null, int? studentId = null, int? parentId = null, int? courseId = null, int? classRoomId = null, int? schoolGrade = null)
         {
             var parents = db.ParentsRepository.Get(
-                g => (courseId != null ? g.StudentParents.Any(sp => sp.Student.Takings.Any(t => t.Program.Teaching.CourseId == courseId)) : true) &&
-                    (teacherId != null ? g.StudentParents.Any(sp => sp.Student.Takings.Any(t => t.Program.Teaching.TeacherId == teacherId)) : true) &&
-                    (classRoomId != null ? g.StudentParents.Any(sp => sp.Student.Takings.Any(t => t.Program.ClassRoomId == classRoomId)) : true) &&
+                g => (courseId != null ? g.StudentParents.Any(sp => sp.Student.Enrollments.Any(e => e.Takings.Any(t => t.Program.Teaching.CourseId == courseId))) : true) &&
+                    (teacherId != null ? g.StudentParents.Any(sp => sp.Student.Enrollments.Any(e => e.Takings.Any(t => t.Program.Teaching.TeacherId == teacherId))) : true) &&
+                    (classRoomId != null ? g.StudentParents.Any(sp => sp.Student.Enrollments.Any(e => e.Takings.Any(t => t.Program.ClassRoomId == classRoomId))) : true) &&
                     (studentId != null ? g.StudentParents.Any(sp => sp.StudentId == studentId) : true) &&
                     (parentId != null ? g.Id == parentId : true) &&
-                    (schoolGrade != null ? g.StudentParents.Any(sp => sp.Student.ClassRoom.ClassGrade == schoolGrade) : true))
+                    (schoolGrade != null ? g.StudentParents.Any(sp => sp.Student.Enrollments.Any(e => e.ClassRoom.ClassGrade == schoolGrade)) : true))
                     .Select(g => Converters.ParentsConverter.ParentToParentDto(g));
 
             return parents;

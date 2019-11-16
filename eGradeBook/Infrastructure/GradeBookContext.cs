@@ -94,5 +94,7 @@ namespace eGradeBook.Infrastructure
         public DbSet<Taking> Takings { get; set; }
 
         public DbSet<FileResource> FileResources { get; set; }
+
+        public DbSet<Enrollment> Enrollments { get; set; }
     }
 }

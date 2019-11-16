@@ -28,26 +28,6 @@ namespace eGradeBook.Services
         /// <returns></returns>
         IEnumerable<StudentDto> GetStudentsByLastNameStartingWith(string start);
 
-        // This will have to be gone
-        /// <summary>
-        /// Retrieve all students
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<StudentUser> GetAllStudents();
-
-        // Course GPA Dto GetGpaForStudentCourse(int studentId, int courseId);
-        // Student Courses GPA (by course and total) GetGpaForStudent(int studentId)
-
-        // CRUD without the C
-        /// <summary>
-        /// Get a student by Id
-        /// </summary>
-        /// <param name="studentId"></param>
-        /// <returns></returns>
-        StudentUser GetStudentById(int studentId);
-
-        // IEnumerable<StudentDto> GetAllStudents();
-
         /// <summary>
         /// Update a student
         /// </summary>
@@ -68,31 +48,9 @@ namespace eGradeBook.Services
         /// Retrieve all students
         /// </summary>
         /// <returns></returns>
-        IEnumerable<StudentDto> GetAllStudentsDto();
+        IEnumerable<StudentDto> GetAllStudents();
 
-        /// <summary>
-        /// Retrieve all students and their parents
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<StudentWithParentsDto> GetAllStudentsWithParents();
-
-        /// <summary>
-        /// Assign a course to a student
-        /// NOTE I think I added this in a hurry.
-        /// Need to rethink this implementation... on the other hand, maybe it's enough?
-        /// We already know the classRoom and who teaches the course in the classroom...
-        /// Is the void an ok return type?
-        /// Probably a Full student dto
-        /// Or at least student + courses list would be maybe better?
-        /// </summary>
-        /// <param name="course"></param>
-        TakingDto AssignCourseToStudent(StudentCourseDto course);
-
-        StudentDto GetStudentByIdDto(int studentId);
-
-        StudentReportDto GetStudentReport(int studentId);
-
-        bool IsParent(int studentId, int parentId);
+        StudentDto GetStudentById(int studentId);
 
         IEnumerable<StudentDto> GetStudentsByQuery(
             int? teacherId = null,

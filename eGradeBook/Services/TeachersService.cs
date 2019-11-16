@@ -35,18 +35,7 @@ namespace eGradeBook.Services
             this.logger = logger;
         }
 
-        /// <summary>
-        /// Assign a course to a teacher
-        /// </summary>
-        /// <param name="assignment"></param>
-        public void AssignCourseToTeacher(TeachingAssignmentDto assignment)
-        {
-            logger.Info("Service received request for assigning a course to a teacher {@teachingAssignment}", assignment);
-            // but again ... course --> teaching. teaching --> course...
-            // Or another service that will reference everything but is not referenced by anything?
-            // SHAT!!!
-            // teachingsService.AssignTeacherToCourse(assignment.SubjectId, assignment.TeacherId);
-        }
+
 
         /// <summary>
         /// Delete a teacher user from the system
@@ -76,25 +65,13 @@ namespace eGradeBook.Services
             return TeachersConverter.TeacherToTeacherDto(deletedTeacher);
         }
 
-        /// <summary>
-        /// Retrieve all teachers
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<TeacherDto> GetAllTeachers()
-        {
-            logger.Info("Service received request for retrieving all teachers");
 
-            return db.TeachersRepository.Get()
-                // maybe won't work?
-                // also, without include it will take a number of roundtrips to the database...
-                .Select(t => TeachersConverter.TeacherToTeacherDto(t));
-        }
 
         /// <summary>
         /// Get all teachers as IEnumerable of TeacherDto
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<TeacherDto> GetAllTeachersDtos()
+        public IEnumerable<TeacherDto> GetAllTeachers()
         {
             logger.Info("Service received request for retrieving all teachers");
 
@@ -108,7 +85,7 @@ namespace eGradeBook.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public TeacherDto GetTeacherByIdDto(int id)
+        public TeacherDto GetTeacherById(int id)
         {
             logger.Info("Service received request for retrieving teacher by Id {teacherId}", id);
 
@@ -134,139 +111,11 @@ namespace eGradeBook.Services
             throw new NotImplementedException();
         }
 
-        public TeacherExtendedDto GetExtendedDataForTeacher(int teacherId)
-        {
-            TeacherUser teacher = db.TeachersRepository.Get(t => t.Id == teacherId).FirstOrDefault();
-
-            if (teacher == null)
-            {
-                return null;
-            }
-
-            TeacherExtendedDto teacherData = new TeacherExtendedDto()
-            {
-                TeacherId = teacher.Id,
-                FirstName = teacher.FirstName,
-                LastName = teacher.LastName,
-                ClassRooms = teacher.Teachings
-                .SelectMany(t => t.Programs).GroupBy(p => p.ClassRoom)
-                .Select(g => new TeacherExtendedDto.ClassRoomCoursesDto()
-                {
-                    ClassRoomId = g.Key.Id,
-                    ClassRoomName = g.Key.Name,
-                    Grade = g.Key.ClassGrade,
-                    Courses = g.Select(prog => new TeacherExtendedDto.ClassRoomCoursesDto.InnerCourseDto()
-                    {
-                        CourseId = prog.Course.Id,
-                        CourseName = prog.Course.Name,
-                        WeeklyHours = prog.WeeklyHours
-                    }).ToList()
-                }).ToList(),
-                // No groupings or selectmanys?? and still working...
-                Courses = teacher.Teachings
-                .Select(g => new TeacherExtendedDto.CourseClassRoomDto()
-                {
-                CourseId = g.Course.Id,
-                CourseName = g.Course.Name,
-                ClassRooms = g.Programs.Select(p => new TeacherExtendedDto.CourseClassRoomDto.InnerClassRoomDto()
-                {
-                ClassRoomId = p.ClassRoom.Id,
-                ClassRoomName = p.ClassRoom.Name,
-                Grade = p.ClassRoom.ClassGrade,
-                WeeklyHours = p.WeeklyHours
-                }).ToList()
-                }).ToList()
-            };
-
-            return teacherData;
-        }
-
-        public object GetClassRoomsForTeacher(int teacherId)
-        {
-            return db.TeachersRepository.Get(t => t.Id == teacherId)
-    .Select(t => new
-    {
-        TeacherId = t.Id,
-        FName = t.FirstName,
-        LName = t.LastName,
-        ClassRooms = t.Teachings.GroupBy(ts => ts.Programs).Select(p => new
-        {
-            ClassRoom = p.Key.Select(k => new { k.ClassRoom.Id, k.ClassRoom.Name })
-        })
-    });
-        }
-
-        public object GetCoursesForTeacher(int teacherId)
-        {
-            var teacher = db.TeachersRepository.Get(filter: t => t.Id == teacherId, includeProperties : "Teachings,Teachings.Programs,Teachings.Programs.TakingStudents").FirstOrDefault();
-
-            return Converters.TeachersConverter.TeacherToTeacherEvenMoreExtendedDto(teacher);
-        }
-
-        public object GetClassRoomsCoursesForTeacher(int teacherId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public object GetCoursesClassRoomsForTeacher(int teacherId)
-        {
-            // experiments
-            // I dont need everything to check out if something is ok...
-            var teacher = db.TeachersRepository.Get(tr => tr.Id == teacherId).FirstOrDefault();
-
-            var programsGrouped = teacher.Teachings.SelectMany(t => t.Programs).GroupBy(p => p.ClassRoom);
-
-            // Ok ovo vraca spisak odeljenja
-            var classrooms = programsGrouped.Select(g => new
-            {
-                ClassRoomId = g.Key.Id,
-                ClassName = g.Key.Name
-            });
-
-            // da probam opet -- izgleda da je ovo to...
-            var classroomsAndCourses = programsGrouped.Select(g => new
-            {
-                ClassRoomId = g.Key.Id,
-                ClassName = g.Key.Name,
-                Courses = g.Select(prog => new
-                {
-                    CourseId = prog.Course.Id,
-                    CourseName = prog.Course.Name,
-                    TeacherId = prog.Teaching.TeacherId,
-                    TeacherName = prog.Teaching.Teacher.FirstName
-                })
-            });
 
 
-            return null;
-        }
 
-        /// <summary>
-        /// Get a teacher by Id
-        /// </summary>
-        /// <param name="teacherId"></param>
-        /// <returns></returns>
-        public TeacherUser GetTeacherById(int teacherId)
-        {
-            TeacherUser teacher = db.TeachersRepository.Get(t => t.Id == teacherId).FirstOrDefault();
 
-            if (teacher == null)
-            {
-                logger.Info("Teacher {@teacherId} not found", teacherId);
-                var ex = new TeacherNotFoundException(string.Format("Teacher {0} not found", teacherId));
-                ex.Data.Add("teacherId", teacherId);
-                throw ex;
-            }
 
-            return teacher;
-        }
-
-        public TeacherReportDto GetTeacherReport(int teacherId)
-        {
-            TeacherUser teacher = GetTeacherById(teacherId);
-
-            return Converters.TeachersConverter.TeacherToTeacherReportDto(teacher);
-        }
 
         public IEnumerable<TeacherDto> GetTeachersByQuery(int? teacherId = null, int? studentId = null, int? parentId = null, int? courseId = null, int? classRoomId = null, int? schoolGrade = null)
         {
@@ -274,8 +123,8 @@ namespace eGradeBook.Services
                 g => (courseId != null ? g.Teachings.Any(t => t.CourseId == courseId) : true) &&
                     (teacherId != null ? g.Id == teacherId : true) &&
                     (classRoomId != null ? g.Teachings.Any(t => t.Programs.Any(p => p.ClassRoomId == classRoomId)) : true) &&
-                    (studentId != null ? g.Teachings.Any(t => t.Programs.Any(p => p.TakingStudents.Any(ts => ts.StudentId == studentId))) : true) &&
-                    (parentId != null ? g.Teachings.Any(t => t.Programs.Any(p => p.TakingStudents.Any(ts => ts.Student.StudentParents.Any(sp => sp.ParentId == parentId)))) : true) &&
+                    (studentId != null ? g.Teachings.Any(t => t.Programs.Any(p => p.Takings.Any(tk => tk.Enrollment.StudentId == studentId))) : true) &&
+                    (parentId != null ? g.Teachings.Any(t => t.Programs.Any(p => p.Takings.Any(tk => tk.Enrollment.Student.StudentParents.Any(sp => sp.ParentId == parentId)))) : true) &&
                     (schoolGrade != null ? g.Teachings.Any(t => t.Programs.Any(p => p.ClassRoom.ClassGrade == schoolGrade)) : true))
                     .Select(g => Converters.TeachersConverter.TeacherToTeacherDto(g));
 

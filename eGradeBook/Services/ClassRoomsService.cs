@@ -57,59 +57,7 @@ namespace eGradeBook.Services
             return dto;
         }
 
-        /// <summary>
-        /// Create classRoom program item.
-        /// Every classRoom has a program consisting of courses taught by one teacher per course.
-        /// </summary>
-        /// <param name="program"></param>
-        public void CreateClassRoomProgram(ClassRoomProgramDto program)
-        {
-            logger.Trace("Service received request for classroom program creation {programData}", program);
 
-            // I see. Manual setup.
-            ClassRoom classRoom = db.ClassRoomsRepository.Get(c => c.Id == program.ClassRoomId).FirstOrDefault();
-
-            if (classRoom == null)
-            {
-                // I can throw an exception and process it in the handler at the api level
-                return;
-            }
-
-            Course course = db.CoursesRepository.Get(c => c.Id == program.CourseId).FirstOrDefault();
-
-            if (course == null)
-            {
-                return;
-            }
-
-            TeacherUser teacher = db.TeachersRepository.Get(t => t.Id == program.TeacherId).FirstOrDefault();
-
-            if (teacher == null)
-            {
-                return;
-            }
-
-            Teaching teaching = db.TeachingAssignmentsRepository.Get(ta => ta.CourseId == program.CourseId && ta.TeacherId == program.TeacherId).FirstOrDefault();
-
-            if (teaching == null)
-            {
-                // this is the special case
-                // every id is ok but the teacher does not teach the course
-                // if we went directly, we would not know if the problem is with one of the id's or their combo...
-                return;
-            }
-
-            Program newProgram = new Program()
-            {
-                Course = course,
-                ClassRoom = classRoom,
-                Teaching = teaching,
-                WeeklyHours = program.WeeklyHours
-            };
-
-            db.ProgramsRepository.Insert(newProgram);
-            db.Save();
-        }
 
         /// <summary>
         /// Delete a classroom
@@ -134,89 +82,7 @@ namespace eGradeBook.Services
 
             return deletedClassroom;
         }
-
-
-
-        /// <summary>
-        /// Enroll student in classroom
-        /// OPTIONS: enroll in classroom, enroll in program
-        /// TODO use converter for classroom
-        /// </summary>
-        /// <param name="enroll"></param>
-        /// <returns></returns>
-        public ClassRoomDto EnrollStudent(ClassRoomEnrollStudentDto enroll)
-        {
-            // Check if classroom is ok
-            ClassRoom classRoom = db.ClassRoomsRepository.GetByID(enroll.ClassRoomId);
-
-            if (classRoom == null)
-            {
-                return null;
-            }
-
-            StudentUser student = db.StudentsRepository.Get(s => s.Id == enroll.StudentId).FirstOrDefault();
-
-            if (student == null)
-            {
-                return null;
-            }
-
-            // --- IF STUDENT IS ENROLLED:
-
-            if (student.ClassRoomId != null)
-            {
-                // check if already registered for a course
-                var takingCourse = db.TakingsRepository.Get(t => t.Student.Id == student.Id).FirstOrDefault();
-
-                if (takingCourse != null)
-                {
-                    // can't switch classroom, too late
-                    logger.Info("Student {@studentId} from classroom {@classRoomId} is enrolled in a course, cannot change classRooms anymore", student.Id, classRoom.Id);
-                    var ex = new StudentEnrolledInCourseException(string.Format("Student {0} from classroom {1} is enrolled in a course, cannot change classRooms anymore", student.Id, classRoom.Id));
-                    ex.Data.Add("studentId", student.Id);
-                    ex.Data.Add("classRoomId", classRoom.Id);
-                    throw ex;
-                }
-            }
-
-            // Two strategies with current model:
-            // -- 1. Change ClassRoom property of student.
-            // -- 2. Update Students collection of classroom.
-            // -- (3.) with associative table
-
-            // with the collection stuff we have one problem:
-            // well, let's find out, dear...
-
-            var enrolled = classRoom.Students;
-
-            // Can we check like this:
-            if (enrolled.Where(e => e.Id == student.Id).FirstOrDefault() != null)
-            {
-                // student is already enrolled, quit
-                return null;
-            }
-
-            enrolled.Add(student);
-
-            db.Save();
-
-            // This is only the classroom with the list of enrolled students
-            // no courses.
-            return db.ClassRoomsRepository.Get(c => c.Id == classRoom.Id)
-                .Select(cr => new ClassRoomDto()
-                {
-                    ClassRoomId = cr.Id,
-                    Name = cr.Name,
-                    Program = null,
-                    SchoolGrade = cr.ClassGrade,
-                    Students = cr.Students.Select(s => new ClassRoomDto.ClassRoomStudentDto()
-                    {
-                        FullName = s.FirstName + " " + s.LastName,
-                        StudentId = s.Id
-                    }).ToList()
-                })
-                .FirstOrDefault();
-        }
+                         
 
         /// <summary>
         /// Return a list of all classrooms
@@ -275,62 +141,14 @@ namespace eGradeBook.Services
             return ClassRoomConverter.ClassRoomToClassRoomDto(updatedClassRoom);
         }
 
-        public ClassRoom GetClassRoom(int classRoomId)
-        {
-            ClassRoom classRoom = db.ClassRoomsRepository.GetByID(classRoomId);
-
-            if (classRoom == null)
-            {
-                logger.Info("ClassRoom {@classRoomId} not found", classRoomId);
-                var ex = new ClassRoomNotFoundException(string.Format("ClassRoom {0} not found", classRoomId));
-                ex.Data.Add("classRoomId", classRoomId);
-                throw ex;
-            }
-
-            return classRoom;
-        }
-
-        /// <summary>
-        /// Get basic report for a given classroom
-        /// </summary>
-        /// <param name="classRoomId"></param>
-        /// <returns></returns>
-        public ClassRoomBasicReportDto GetBasicReport(int classRoomId)
-        {
-            ClassRoom classRoom = db.ClassRoomsRepository.GetByID(classRoomId);
-
-            if (classRoom == null)
-            {
-                throw new ClassRoomNotFoundException(string.Format("ClassRoom {0} not found", classRoomId));
-            }
-
-            var report = Converters.ClassRoomConverter.ClassRoomToClassRoomBasicReportDto(classRoom);
-
-            return report;
-        }
-
-        public ClassRoomFullReportDto GetFullReport(int classRoomId)
-        {
-            ClassRoom classRoom = db.ClassRoomsRepository.GetByID(classRoomId);
-
-            if (classRoom == null)
-            {
-                throw new ClassRoomNotFoundException(string.Format("ClassRoom {0} not found", classRoomId));
-            }
-
-            var report = Converters.ClassRoomConverter.ClassRoomToClassRoomFullReportDto(classRoom);
-
-            return report;
-        }
-
         public IEnumerable<ClassRoomDto> GetClassRoomsByQuery(int? teacherId = null, int? studentId = null, int? parentId = null, int? courseId = null, int? classRoomId = null, int? schoolGrade = null)
         {
             var classRooms = db.ClassRoomsRepository.Get(
                 g => (courseId != null ? g.Program.Any(p => p.Teaching.CourseId == courseId) : true) &&
                     (teacherId != null ? g.Program.Any(p => p.Teaching.TeacherId == teacherId) : true) &&
                     (classRoomId != null ? g.Id == classRoomId : true) &&
-                    (studentId != null ? g.Students.Any(s => s.Id == studentId) : true) &&
-                    (parentId != null ? g.Students.Any(s => s.StudentParents.Any(sp => sp.ParentId == parentId)) : true) &&
+                    (studentId != null ? g.Enrollments.Any(e => e.StudentId == studentId) : true) &&
+                    (parentId != null ? g.Enrollments.Any(e => e.Student.StudentParents.Any(sp => sp.ParentId == parentId)) : true) &&
                     (schoolGrade != null ? g.ClassGrade == schoolGrade : true))
                     .Select(g => Converters.ClassRoomConverter.ClassRoomToClassRoomDto(g));
 

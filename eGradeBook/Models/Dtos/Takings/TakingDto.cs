@@ -8,7 +8,7 @@ using System.Web;
 
 namespace eGradeBook.Models.Dtos.Takings
 {
-    public class TakingDto : ProgramOptionalHoursDto
+    public class TakingDto
     {
         /// <summary>
         /// Taking Id
@@ -20,12 +20,9 @@ namespace eGradeBook.Models.Dtos.Takings
         /// Student Id
         /// </summary>
         [Required]
-        public int StudentId { get; set; }
+        public int EnrollmentId { get; set; }
 
-        /// <summary>
-        /// Students username
-        /// </summary>
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public string StudentName { get; set; }
+        [Required]
+        public int ProgramId { get; set; }
     }
 }

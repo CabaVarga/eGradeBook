@@ -19,56 +19,18 @@ namespace eGradeBook.Services
     {
         private IUnitOfWork db;
         private ILogger logger;
-        private Lazy<IClassRoomsService> classRoomsService;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="db"></param>
-        public StudentsService(IUnitOfWork db, ILogger logger,
-            Lazy<IClassRoomsService> classRoomsService)
+        public StudentsService(IUnitOfWork db, ILogger logger)
         {
             this.db = db;
             this.logger = logger;
-            this.classRoomsService = classRoomsService;
         }
 
-        public TakingDto AssignCourseToStudent(StudentCourseDto course)
-        {
-            logger.Info("Service received request for assigning a course to a student {@course}", course);
 
-            StudentUser student = db.StudentsRepository.Get(s => s.Id == course.StudentId).FirstOrDefault();
-
-            if (student == null)
-            {
-                return null;
-            }
-
-            Course theCourse = db.CoursesRepository.Get(c => c.Id == course.CourseId).FirstOrDefault();
-
-            if (theCourse == null)
-            {
-                return null;
-            }
-
-            Program program = db.ProgramsRepository.Get(p => p.Teaching.Course.Id == course.CourseId).FirstOrDefault();
-
-            if (program == null)
-            {
-                return null;
-            }
-
-            Taking taking = new Taking()
-            {
-                Program = program,
-                Student = student
-            };
-
-            db.TakingsRepository.Insert(taking);
-            db.Save();
-
-            return Converters.TakingsConverter.TakingToTakingDto(taking);
-        }
 
         /// <summary>
         /// Delete a student from the system
@@ -99,21 +61,13 @@ namespace eGradeBook.Services
             return Converters.StudentsConverter.StudentToStudentDto(deletedStudent);
         }
 
-        /// <summary>
-        /// Retrieve all students
-        /// </summary>
-        /// <returns>IEnumerable of StudentUser</returns>
-        public IEnumerable<StudentUser> GetAllStudents()
-        {
-            logger.Info("Service received request for returning all students");
-            return db.StudentsRepository.Get();
-        }
+
 
         /// <summary>
         /// Retrieve all students
         /// </summary>
         /// <returns>IEnumerable of StudentDto</returns>
-        public IEnumerable<StudentDto> GetAllStudentsDto()
+        public IEnumerable<StudentDto> GetAllStudents()
         {
             logger.Info("Service received request for returning all students");
 
@@ -123,48 +77,15 @@ namespace eGradeBook.Services
         }
 
         /// <summary>
-        /// Retrieve all students and their parents
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<StudentWithParentsDto> GetAllStudentsWithParents()
-        {
-            logger.Info("Service received request for returning all students with their parents");
-            return db.StudentsRepository.Get()
-                .Select(s => Converters.StudentsConverter.StudentToStudentWithParentsDto(s));
-        }
-
-        /// <summary>
-        /// Retrieve a student by Id
-        /// </summary>
-        /// <param name="studentId"></param>
-        /// <returns></returns>
-        public StudentUser GetStudentById(int studentId)
-        {
-            logger.Info("Service received request for returning a student by Id {studentId}", studentId);
-
-            var student = db.StudentsRepository.Get(s => s.Id == studentId).FirstOrDefault();
-
-            if (student == null)
-            {
-                logger.Info("Student {@studentId} not found", studentId);
-                var ex = new StudentNotFoundException(string.Format("Student {0} not found", studentId));
-                ex.Data.Add("studentId", studentId);
-                throw ex;
-            }
-
-            return student;
-        }
-
-        /// <summary>
         /// Retrieve a student by Id, another version
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns></returns>
-        public StudentDto GetStudentByIdDto(int studentId)
+        public StudentDto GetStudentById(int studentId)
         {
             logger.Info("Service received request for returning a student by Id {studentId}", studentId);
 
-            StudentUser student = GetStudentById(studentId);
+            StudentUser student = db.StudentsRepository.GetByID(studentId);
 
             if (student == null)
             {
@@ -174,12 +95,7 @@ namespace eGradeBook.Services
             return Converters.StudentsConverter.StudentToStudentDto(student);
         }
 
-        public StudentReportDto GetStudentReport(int studentId)
-        {
-            StudentUser student = GetStudentById(studentId);
 
-            return Converters.StudentsConverter.StudentToStudentReportDto(student);
-        }
 
         /// <summary>
         /// Retrieve students whose first name starts with the provided string
@@ -213,12 +129,12 @@ namespace eGradeBook.Services
         public IEnumerable<StudentDto> GetStudentsByQuery(int? teacherId = null, int? studentId = null, int? parentId = null, int? courseId = null, int? classRoomId = null, int? schoolGrade = null)
         {
             var students = db.StudentsRepository.Get(
-                g => (courseId != null ? g.Takings.Any(t => t.Program.Teaching.Course.Id == courseId) : true) &&
-                    (teacherId != null ? g.Takings.Any(t => t.Program.Teaching.TeacherId == teacherId) : true) &&
-                    (classRoomId != null ? g.Takings.Any(t => t.Program.ClassRoomId == classRoomId) : true) &&
+                g => (courseId != null ? g.Enrollments.Any(e => e.Takings.Any(t => t.Program.Teaching.Course.Id == courseId)) : true) &&
+                    (teacherId != null ? g.Enrollments.Any(e => e.Takings.Any(t => t.Program.Teaching.TeacherId == teacherId)) : true) &&
+                    (classRoomId != null ? g.Enrollments.Any(e => e.ClassRoomId == classRoomId) : true) &&
                     (studentId != null ? g.Id == studentId : true) &&
                     (parentId != null ? g.StudentParents.Any(sp => sp.Parent.Id  == parentId) : true) &&
-                    (schoolGrade != null ? g.ClassRoom.ClassGrade == schoolGrade : true))
+                    (schoolGrade != null ? g.Enrollments.Any(e => e.ClassRoom.ClassGrade == schoolGrade) : true))
                     .Select(g => Converters.StudentsConverter.StudentToStudentDto(g));
 
             return students;

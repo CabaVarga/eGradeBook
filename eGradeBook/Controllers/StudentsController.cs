@@ -46,7 +46,7 @@ namespace eGradeBook.Controllers
             logger.Info("User {@user} requested all students",
                 IdentityHelper.GetLoggedInUser(userData));
 
-            return Ok(service.GetAllStudentsDto());
+            return Ok(service.GetAllStudents());
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace eGradeBook.Controllers
 
             logger.Info("User {@user} requested student with Id {studentId}",
                 IdentityHelper.GetLoggedInUser(userData), studentId);
-            return Ok(service.GetStudentByIdDto(studentId));
+            return Ok(service.GetStudentById(studentId));
         }
 
         /// <summary>
@@ -100,84 +100,6 @@ namespace eGradeBook.Controllers
                 IdentityHelper.GetLoggedInUser(userData), lastName);
 
             return Ok(service.GetStudentsByLastNameStartingWith(lastName));
-        }
-
-
-        /// <summary>
-        /// Get students with their parents
-        /// </summary>
-        /// <returns></returns>
-        [Route("with-parents")]
-        [ResponseType(typeof(IEnumerable<StudentWithParentsDto>))]
-        [Authorize(Roles = "admins")]
-        [HttpGet]
-        public IHttpActionResult GetStudentsWithParents()
-        {
-            var userData = IdentityHelper.FetchUserData(RequestContext);
-
-            logger.Info("User {@user} requested retrieval of all students with their parents",
-                IdentityHelper.GetLoggedInUser(userData));
-
-            return Ok(service.GetAllStudentsWithParents());
-        }
-
-
-        /// <summary>
-        /// Assign a course to the student.
-        /// NOTE: the implementation will check if the course is assignable to the student.
-        /// 1) You cannot assign the same course twice
-        /// 2) The course must be in the classroom's program
-        /// 3) The course will be teached by the assigned teacher for the classroom
-        /// </summary>
-        /// <param name="studentId"></param>
-        /// <param name="course"></param>
-        /// <returns></returns>
-        [Route("{studentId}/courses")]
-        [Authorize(Roles = "admins")]
-        [HttpPost]
-        public IHttpActionResult PostAssignCourseToStudent(int studentId, StudentCourseDto course)
-        {
-            var userData = IdentityHelper.FetchUserData(RequestContext);
-            logger.Info("User {@user} requested assignment of course {@assignment} to student {studentId}",
-                IdentityHelper.GetLoggedInUser(userData), course, studentId);
-
-            var taking = service.AssignCourseToStudent(course);
-
-            if (taking == null)
-            {
-                return BadRequest("Course assignment failed");
-            }
-
-            return Ok(taking);
-        }
-
-        [Authorize(Roles = "admins,students,parents")]
-        [Route("{studentId}/report")]
-        [HttpGet]
-        public IHttpActionResult GetStudentReport(int studentId)
-        {
-            var userData = IdentityHelper.GetLoggedInUser(RequestContext);
-
-            logger.Info("Get Student report for {@studentId} by {@userData}", studentId, userData);                       
-
-            if (studentId != userData.UserId && userData.UserRole == "students")
-            {
-                throw new UnauthorizedAccessException("You are not allowed to access other students data");
-            }
-
-            else if (userData.UserRole == "parents")
-            {
-                if (!service.IsParent(studentId, (int)userData.UserId))
-                {
-                    throw new UnauthorizedAccessException("You are not allowed to access other parents childrens data");
-                }
-            }
-
-            // Teacher is a special case, because he/she can't see other courses...
-
-            var report = service.GetStudentReport(studentId);
-
-            return Ok(report);
         }
 
         /// <summary>

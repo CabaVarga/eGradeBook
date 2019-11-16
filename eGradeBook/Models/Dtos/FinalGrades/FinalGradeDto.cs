@@ -11,7 +11,7 @@ namespace eGradeBook.Models.Dtos.FinalGrades
     /// <summary>
     /// Dto for final grades
     /// </summary>
-    public class FinalGradeDto : TakingDto
+    public class FinalGradeDto
     {
         /// <summary>
         /// Grade Id
@@ -44,5 +44,7 @@ namespace eGradeBook.Models.Dtos.FinalGrades
         [Required]
         [Range(1, 5, ErrorMessage = "Final Grade point must be in range 1 to 5")]
         public int FinalGradePoint { get; set; }
+
+        public int TakingId { get; set; }
     }
 }

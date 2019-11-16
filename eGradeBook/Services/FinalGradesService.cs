@@ -32,17 +32,6 @@ namespace eGradeBook.Services
 
         public FinalGradeDto CreateFinalGrade(FinalGradeDto finalGradeDto)
         {
-            var taking = db.TakingsRepository.Get(t =>
-                t.StudentId == finalGradeDto.StudentId &&
-                t.Program.ClassRoomId == finalGradeDto.ClassRoomId &&
-                t.Program.Teaching.CourseId == finalGradeDto.CourseId &&
-                t.Program.Teaching.TeacherId == finalGradeDto.TeacherId).FirstOrDefault();
-
-            if (taking == null)
-            {
-                return null;
-            }
-
             // no logging for now
             FinalGrade createdGrade = new FinalGrade
             {
@@ -50,7 +39,7 @@ namespace eGradeBook.Services
                 GradePoint = finalGradeDto.FinalGradePoint,
                 Notes = finalGradeDto.Notes,
                 SchoolTerm = finalGradeDto.Semester,
-                Taking = taking              
+                TakingId = finalGradeDto.TakingId              
             };
 
             db.FinalGradesRepository.Insert(createdGrade);
@@ -82,63 +71,17 @@ namespace eGradeBook.Services
         /// Retrieve all final grades and convert them to Dtos
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<FinalGradeDto> GetAllFinalGradesDto()
+        public IEnumerable<FinalGradeDto> GetAllFinalGrades()
         {
             return db.FinalGradesRepository.Get().Select(fg => Converters.FinalGradesConverter.FinalGradeToFinalGradeDto(fg));
         }
 
-        /// <summary>
-        /// Retrieve all final grades for the given course
-        /// </summary>
-        /// <param name="courseId"></param>
-        /// <returns></returns>
-        public IEnumerable<FinalGradeDto> GetAllFinalGradesForCourse(int courseId)
-        {
-            Course course = db.CoursesRepository.GetByID(courseId);
-
-            if (course == null)
-            {
-                throw new Exception("Course not found");
-            }
-
-            return db.FinalGradesRepository.Get(fg => fg.Taking.Program.Course == course)
-                .Select(fg => Converters.FinalGradesConverter.FinalGradeToFinalGradeDto(fg));
-        }
-
-        /// <summary>
-        /// Retrieve all final grades for the given student
-        /// </summary>
-        /// <param name="studentId"></param>
-        /// <returns></returns>
-        public IEnumerable<FinalGradeDto> GetAllFinalGradesForStudent(int studentId)
-        {
-            StudentUser student = db.StudentsRepository.GetByID(studentId);
-
-            if (student == null)
-            {
-                throw new Exception("Student not found");
-            }
-
-            // I had an exception when I have tried with fg.Taking.Studet == student
-            // After I have added the id compare, it is working
-            var finalGrades = db.FinalGradesRepository.Get(fg => fg.Taking.Student.Id == student.Id)
-                .Select(fg => Converters.FinalGradesConverter.FinalGradeToFinalGradeDto(fg));
-
-            return finalGrades;
-        }
-
-        public FinalGrade GetFinalGradeById(int finalGradeId)
-        {
-            logger.Info("Get final grade by Id {@finalGradeId}", finalGradeId);
-
-            return db.FinalGradesRepository.GetByID(finalGradeId);
-        }
-
-        public FinalGradeDto GetFinalGradeDtoById(int finalGradeId)
+ 
+        public FinalGradeDto GetFinalGradeById(int finalGradeId)
         {
             logger.Info("Get final grade dto by Id {@finalGradeId}", finalGradeId);
 
-            FinalGrade finalGrade = GetFinalGradeById(finalGradeId);
+            FinalGrade finalGrade = db.FinalGradesRepository.GetByID(finalGradeId);
 
             if (finalGrade == null)
             {
@@ -154,11 +97,11 @@ namespace eGradeBook.Services
                 filter:
                 g => (gradeId != null ? g.Taking.Grades.Any(gr => gr.Id == gradeId) : true) &&
                     (finalGradeId != null ? g.Id == finalGradeId : true) &&
-                    (courseId != null ? g.Taking.Program.CourseId == courseId : true) &&
+                    (courseId != null ? g.Taking.Program.Teaching.CourseId == courseId : true) &&
                     (teacherId != null ? g.Taking.Program.Teaching.TeacherId == teacherId : true) &&
                     (classRoomId != null ? g.Taking.Program.ClassRoomId == classRoomId : true) &&
-                    (studentId != null ? g.Taking.StudentId == studentId : true) &&
-                    (parentId != null ? g.Taking.Student.StudentParents.Any(sp => sp.ParentId == parentId) : true) &&
+                    (studentId != null ? g.Taking.Enrollment.StudentId == studentId : true) &&
+                    (parentId != null ? g.Taking.Enrollment.Student.StudentParents.Any(sp => sp.ParentId == parentId) : true) &&
                     (semester != null ? g.SchoolTerm == semester : true) &&
                     (schoolGrade != null ? g.Taking.Program.ClassRoom.ClassGrade == schoolGrade : true) &&
                     (grade != null ? g.Taking.Grades.Any(gr => gr.GradePoint == grade) : true) &&

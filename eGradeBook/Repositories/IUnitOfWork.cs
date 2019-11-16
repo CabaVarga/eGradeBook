@@ -83,6 +83,8 @@ namespace eGradeBook.Repositories
 
         IGenericRepository<FileResource> FileResourcesRepository { get; }
 
+        IGenericRepository<Enrollment> EnrollmentsRepository { get; }
+
         /// <summary>
         /// Save changes
         /// </summary>

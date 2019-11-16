@@ -13,35 +13,19 @@ namespace eGradeBook.Services
     /// </summary>
     public interface ITeachersService
     {
-        #region Full CRUD --- well, only R, even that incomplete...
-        TeacherUser GetTeacherById(int teacherId);
-        #endregion
         // These will must go
         /// <summary>
         /// Retrieve all teachers
         /// </summary>
         /// <returns></returns>
-        IEnumerable<TeacherDto> GetAllTeachersDtos();
+        IEnumerable<TeacherDto> GetAllTeachers();
 
         /// <summary>
         /// Retrieve a teacher by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        TeacherDto GetTeacherByIdDto(int id);
-
-        /// <summary>
-        /// Assign a course to a teacher
-        /// </summary>
-        /// <param name="assignment"></param>
-        void AssignCourseToTeacher(TeachingAssignmentDto assignment);
-
-        // CRUD without the C
-        /// <summary>
-        /// Retrieve all teachers
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<TeacherDto> GetAllTeachers();
+        TeacherDto GetTeacherById(int id);
 
         /// <summary>
         /// Update a teacher
@@ -58,16 +42,8 @@ namespace eGradeBook.Services
         /// <returns></returns>
         Task<TeacherDto> DeleteTeacher(int teacherId);
 
-        TeacherExtendedDto GetExtendedDataForTeacher(int teacherId);
 
-        // MUST TEST THESE
 
-        object GetClassRoomsForTeacher(int teacherId);
-        object GetCoursesForTeacher(int teacherId);
-        object GetClassRoomsCoursesForTeacher(int teacherId);
-        object GetCoursesClassRoomsForTeacher(int teacherId);
-
-        TeacherReportDto GetTeacherReport(int teacherId);
 
         IEnumerable<TeacherDto> GetTeachersByQuery(
             int? teacherId = null,

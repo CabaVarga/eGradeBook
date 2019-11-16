@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -37,5 +38,8 @@ namespace eGradeBook.Models
         /// </summary>
         [ForeignKey("ClassRoomId")]
         public virtual ClassRoom ClassRoom { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<Taking> Takings { get; set; }
     }
 }

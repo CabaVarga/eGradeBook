@@ -23,23 +23,11 @@ namespace eGradeBook.Services.Converters
             return new GradeDto()
             {
                 GradeId = grade.Id,
-                CourseId = grade.Taking.Program.Teaching.Course.Id,
-                TeacherId = grade.Taking.Program.Teaching.TeacherId,
-                TeachingId = grade.Taking.Program.Teaching.Id,
-                ClassRoomId = grade.Taking.Program.ClassRoomId,
-                ProgramId = grade.Taking.Program.Id,
-                StudentId = grade.Taking.StudentId,
                 TakingId = grade.Taking.Id,
                 GradePoint = grade.GradePoint,
                 AssignmentDate = grade.Assigned,
                 Semester = grade.SchoolTerm,
                 Notes = grade.Notes,
-                SchoolGrade = grade.Taking.Program.ClassRoom.ClassGrade,
-                CourseName = grade.Taking.Program.Course.Name,
-                TeacherName = grade.Taking.Program.Teaching.Teacher.UserName,
-                ClassRoomName = grade.Taking.Program.ClassRoom.Name,
-                StudentName = grade.Taking.Student.UserName,
-                WeeklyHours = grade.Taking.Program.WeeklyHours                
             };
         }
 
@@ -50,8 +38,8 @@ namespace eGradeBook.Services.Converters
                 ParentFirstName = parent.FirstName,
                 ParentLastName = parent.LastName,
                 ParentEmail = parent.Email,
-                StudentFirstName = grade.Taking.Student.FirstName,
-                StudentLastName = grade.Taking.Student.LastName,
+                StudentFirstName = grade.Taking.Enrollment.Student.FirstName,
+                StudentLastName = grade.Taking.Enrollment.Student.LastName,
                 TeacherFirstName = grade.Taking.Program.Teaching.Teacher.FirstName,
                 TeacherLastName = grade.Taking.Program.Teaching.Teacher.LastName,
                 Course = grade.Taking.Program.Teaching.Course.Name,

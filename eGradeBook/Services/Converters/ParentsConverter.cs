@@ -67,20 +67,5 @@ namespace eGradeBook.Services.Converters
                 AvatarId = dto.AvatarId
             };
         }
-
-        public static ParentReportDto ParentToParentReportDto(ParentUser parent)
-        {
-            var report = new ParentReportDto()
-            {
-                ParentId = parent.Id,
-                FirstName = parent.FirstName,
-                LastName = parent.LastName,
-                Email = parent.Email,
-                Gender = parent.Gender,
-                Students = parent.StudentParents.Select(sp => Converters.StudentsConverter.StudentToStudentReportDto(sp.Student))
-            };
-
-            return report;
-        }
     }
 }

@@ -13,13 +13,13 @@ namespace eGradeBook.Models
     /// </summary>
     public class ClassRoom
     {
-        /// <summary>
-        /// Class Room constructor
-        /// </summary>
-        public ClassRoom()
-        {
-            this.Students = new HashSet<StudentUser>();
-        }
+        ///// <summary>
+        ///// Class Room constructor
+        ///// </summary>
+        //public ClassRoom()
+        //{
+        //    this.Students = new HashSet<StudentUser>();
+        //}
 
         /// <summary>
         /// Identifies a classroom by an integer number
@@ -52,11 +52,11 @@ namespace eGradeBook.Models
         /// </summary>
         public virtual ClassMasterUser ClassMaster { get; set; }
 
-        /// <summary>
-        /// A classroom consists of students
-        /// </summary>
-        [JsonIgnore]
-        public virtual ICollection<StudentUser> Students { get; set; }
+        ///// <summary>
+        ///// A classroom consists of students
+        ///// </summary>
+        //[JsonIgnore]
+        //public virtual ICollection<StudentUser> Students { get; set; }
 
         /// <summary>
         /// Every classroom has a program, a list of courses the students can / must take

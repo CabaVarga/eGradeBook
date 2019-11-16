@@ -13,10 +13,7 @@ namespace eGradeBook.SwaggerHelpers.Examples
         {
             return new GradeDto()
             {
-                CourseId = 2,
-                TeacherId = 3,
-                ClassRoomId = 2,
-                StudentId = 10,
+                TakingId = 1,
                 Semester = 1,
                 AssignmentDate = new DateTime(2019, 09, 10),
                 GradePoint = 2,

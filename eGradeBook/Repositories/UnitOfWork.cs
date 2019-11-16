@@ -114,6 +114,12 @@ namespace eGradeBook.Repositories
         public IGenericRepository<FileResource> FileResourcesRepository { get; set; }
 
         /// <summary>
+        /// Enrollments repository
+        /// </summary>
+        [Dependency]
+        public IGenericRepository<Enrollment> EnrollmentsRepository { get; set; }
+
+        /// <summary>
         /// Save all changes.
         /// </summary>
         public void Save()

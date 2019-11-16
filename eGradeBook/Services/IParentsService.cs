@@ -14,54 +14,7 @@ namespace eGradeBook.Services
     /// </summary>
     public interface IParentsService
     {
-        /// <summary>
-        /// Get all parents with their children
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<ParentChildrenDto> GetAllParentsWithTheirChildrent();
-
-        /// <summary>
-        /// Get all children of a given parent
-        /// </summary>
-        /// <param name="parentId"></param>
-        /// <returns></returns>
-        IEnumerable<StudentDto> GetAllChildren(int parentId);
-
-        /// <summary>
-        /// Connect a student with a parent
-        /// </summary>
-        /// <param name="parentId"></param>
-        /// <param name="studentId"></param>
-        /// <returns></returns>
-        ParentChildrenDto AddChild(int parentId, int studentId);
-
-        // THIS WILL GO TO STUDENTS BUT I WANT TO TEST OUT...
-
-        /// <summary>
-        /// Get parents by students
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<StudentParentsDto> GetParentsForStudents();
-
-        /// <summary>
-        /// Get parents of a given student
-        /// </summary>
-        /// <param name="studentId"></param>
-        /// <returns></returns>
-        StudentParentsDto GetParentsForStudent(int studentId);
-
-        // CRUD without the C
-
-        /// <summary>
-        /// Get parent by Id
-        /// </summary>
-        /// <param name="parentId"></param>
-        /// <returns></returns>
-        ParentUser GetParentById(int parentId);
-
-        ParentDto GetParentByIdDto(int parentId);
-
-        ParentReportDto GetParentReport(int parentId);
+        ParentDto GetParentById(int parentId);
 
         /// <summary>
         /// Get all parent users

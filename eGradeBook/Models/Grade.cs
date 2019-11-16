@@ -51,9 +51,12 @@ namespace eGradeBook.Models
         /// </summary>
         public DateTime? LastChange { get; set; }
 
+        public int TakingId { get; set; }
+
         /// <summary>
         /// The structure containing the student + course + classroom + teacher combo
         /// </summary>
+        [ForeignKey("TakingId")]
         public virtual Taking Taking { get; set; }
     }
 }

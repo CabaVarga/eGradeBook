@@ -21,14 +21,20 @@ namespace eGradeBook.Models
         /// The programs Id
         /// NOTE Program is teacher + course + classroom
         /// </summary>
-        [Index("IX_Student_Program", IsUnique = true, Order = 1)]
+        //[Index("IX_Student_Program", IsUnique = true, Order = 1)]
         public int ProgramId { get; set; }
 
         /// <summary>
         /// The students Id
         /// </summary>
-        [Index("IX_Student_Program", IsUnique = true, Order = 2)]
-        public int StudentId { get; set; }
+        //[Index("IX_Student_Program", IsUnique = true, Order = 2)]
+        //public int StudentId { get; set; }
+
+        /// <summary>
+        /// It was student, now it is enrollment
+        /// </summary>
+        //[Index("IX_Enrollment_Program", IsUnique = true, Order = 2)]
+        public int EnrollmentId { get; set; }
 
         /// <summary>
         /// The program in the relation
@@ -38,11 +44,11 @@ namespace eGradeBook.Models
         public virtual Program Program { get; set; }
 
         /// <summary>
-        /// The student in the relation
+        /// The enrollment in the relation
         /// </summary>
-        [Required]
-        [ForeignKey("StudentId")]
-        public virtual StudentUser Student { get; set; }
+        //[Required]
+        [ForeignKey("EnrollmentId")]
+        public virtual Enrollment Enrollment { get; set; }
 
         /// <summary>
         /// Grades for the current course

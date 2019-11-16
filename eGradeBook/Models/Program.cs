@@ -23,18 +23,18 @@ namespace eGradeBook.Models
         /// </summary>
         public int WeeklyHours { get; set; }
 
-        /// <summary>
-        /// The associated course's Id
-        /// TODO remove
-        /// NOTE indexed as unique, for the same class cannot be added twice to the same classroom
-        /// </summary>
-        [Index("IX_Teacher_ClassRoom", IsUnique = true, Order = 1)]
-        public int CourseId { get; set; }
+        ///// <summary>
+        ///// The associated course's Id
+        ///// TODO remove
+        ///// NOTE indexed as unique, for the same class cannot be added twice to the same classroom
+        ///// </summary>
+        //[Index("IX_Teacher_ClassRoom", IsUnique = true, Order = 1)]
+        //public int CourseId { get; set; }
 
-        /// <summary>
-        /// The classroom's Id
-        /// </summary>
-        [Index("IX_Teacher_ClassRoom", IsUnique = true, Order = 2)]
+        ///// <summary>
+        ///// The classroom's Id
+        ///// </summary>
+        //[Index("IX_Teacher_ClassRoom", IsUnique = true, Order = 2)]
         public int ClassRoomId { get; set; }
 
         /// <summary>
@@ -49,13 +49,6 @@ namespace eGradeBook.Models
         // If the SchoolClass + Course combo is unique, the teaching id is also unique by default (for a given SchoolClass + Course combo...)
         // The natural relation here is between the course and the schoolClass. The Teaching is here for the teacher. Why not directly the teacher though, then??
         // well, at least we can check directly if the subject is teached by him /her
-
-        /// <summary>
-        /// Course Id
-        /// </summary>
-        [Required]
-        [ForeignKey("CourseId")]
-        public virtual Course Course { get; set; }
 
         /// <summary>
         /// Teaching is a gerund between a course and a teacher teaching the course
@@ -75,6 +68,6 @@ namespace eGradeBook.Models
         /// Uhm this should be the Takings, not directly the Students...
         /// TODO URGENT
         /// </summary>
-        public virtual ICollection<Taking> TakingStudents { get; set; }
+        public virtual ICollection<Taking> Takings { get; set; }
     }
 }

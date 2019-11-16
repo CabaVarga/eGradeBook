@@ -14,7 +14,7 @@ namespace eGradeBook.Models.Dtos.Grades
     /// Dto for grades, limited for now
     /// For viewing, not for grade assignment
     /// </summary>
-    public class GradeDto : TakingDto
+    public class GradeDto
     {
         /// <summary>
         /// Grade Id
@@ -47,5 +47,8 @@ namespace eGradeBook.Models.Dtos.Grades
         [Required]
         [Range(1, 5, ErrorMessage = "Grade point must be in range 1 to 5")]
         public int GradePoint { get; set; }
+
+        [Required]
+        public int TakingId { get; set; }
     }
 }

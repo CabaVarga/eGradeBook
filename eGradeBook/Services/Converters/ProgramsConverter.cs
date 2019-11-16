@@ -14,15 +14,9 @@ namespace eGradeBook.Services.Converters
             return new ProgramDto()
             {
                 ProgramId = program.Id,
-                CourseId = program.CourseId,
-                TeacherId = program.Teaching.TeacherId,
                 TeachingId = program.Teaching.Id,
                 ClassRoomId = program.ClassRoomId,
                 WeeklyHours = program.WeeklyHours,
-                CourseName= program.Teaching.Course.Name,
-                TeacherName = program.Teaching.Teacher.UserName,
-                ClassRoomName = program.ClassRoom.Name,
-                SchoolGrade = program.ClassRoom.ClassGrade
             };
         }
     }
